@@ -1,7 +1,12 @@
 import "./App.css";
+import Home from "./Components/Home/Home";
 
 function App() {
-  return <div className="w-full h-screen bg-blue-200"></div>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }
 
 export default App;
