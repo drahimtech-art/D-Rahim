@@ -2,3 +2,39 @@
 .pointer {
   cursor: pointer;
 }
+
+@media (min-width: 320px) {
+  .card {
+    width: 9rem;
+  }
+  @media (min-width: 370px) {
+    .card {
+      width: 9.8rem;
+    }
+  }
+  @media (min-width: 400px) {
+    .card {
+      width: 11rem;
+    }
+  }
+  @media (min-width: 500px) {
+    .card {
+      width: 14rem;
+    }
+  }
+  @media (min-width: 800px) {
+    .card {
+      width: 15rem;
+    }
+  }
+  @media (min-width: 900px) {
+    .card {
+      width: 17rem;
+    }
+  }
+  @media (min-width: 1040px) {
+    .card {
+      width: 100%;
+    }
+  }
+}

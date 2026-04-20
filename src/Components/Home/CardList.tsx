@@ -35,7 +35,7 @@ function CardList() {
 
   return (
     <>
-      <div className="flex w-full gap-10 lg:pl-10 lg:pr-10 pl-5 pr-5 justify-around flex-wrap mt-4 lg:mt-8 items-stretch">
+      <div className="flex w-full lg:gap-10 gap-4 lg:pl-10 lg:pr-10 pl-5 pr-5 justify-around flex-wrap mt-4 lg:mt-8 items-stretch">
         {productData.map((e, i) => {
           return (
             <Card key={`card${i}`} imageUrl={e.image} imageText={e.text} />

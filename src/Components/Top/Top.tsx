@@ -1,8 +1,12 @@
+import Logo from "/images/log.png";
 function Top() {
   return (
     <div className="flex w-full h-16 items-center lg:pl-10 lg:pr-10 pl-5 pr-5 bg-white sticky top-0 ">
-      <div className="lg:hidden">
+      <div className="lg:hidden mr-2">
         <i className="fa fa-bars text-[1.5rem]"></i>
+      </div>
+      <div className=" w-16 lg:w-24">
+        <img className="" src={Logo}></img>
       </div>
       <div className="lg:flex gap-6 ml-auto hidden">
         <span className="border-b-2 border-white text-[1.5rem] font-semibold hover:border-black pointer">

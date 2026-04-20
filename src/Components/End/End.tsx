@@ -2,7 +2,7 @@ function End() {
   return (
     <div className="mt-40 bg-green-900 lg:pl-10 lg:pr-10 pl-5 pr-5 pt-10">
       <div className="w-full flex">
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-wrap">
           <span className="block">
             <h5 className="lg:text-[2rem] text-[1.2rem] text-gray-200 font-semibold">
               Reach Us Today

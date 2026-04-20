@@ -3,9 +3,7 @@ function Category() {
     <>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-30 mt-10">
         <span className="block">
-          <h5 className="lg:text-[3rem] text-[1.6rem] font-semibold">
-            Our Work
-          </h5>
+          <h5 className="lg:text-[4rem] text-[2rem] font-bold">Our Work</h5>
         </span>
       </div>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex lg:mt-8 mt-3 lg:gap-7 gap-2 w-full overflow-x-auto pb-2">
