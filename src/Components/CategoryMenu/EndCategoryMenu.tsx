@@ -5,19 +5,17 @@ function EndCategoryMenu() {
   const [option3, setOption3] = useState<boolean>(false);
   const [option4, setOption4] = useState<boolean>(false);
   return (
-    <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col lg:mt-16 mt-8">
+    <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col mt-27.25">
       <span className="block">
-        <h5 className="lg:text-[4.5rem] text-[2rem] font-inter">Our Values</h5>
+        <h5 className="text-[80px] font-semibold">Our Values</h5>
       </span>
-      <div className="flex flex-col mt-2">
+      <div className="flex flex-col mt-15 mb-15">
         <span
           className="flex flex-col pt-2 pb-2 border-t-2 border-b-2 "
           onClick={() => setOption1(!option1)}
         >
-          <span className="flex justify-start items-center">
-            <h5 className="lg:text-[3rem] text-[1.6rem] font-inter">
-              Simplicity First
-            </h5>
+          <span className="flex justify-start items-center  pl-2.5 pr-2.5 pt-10 pb-10">
+            <h5 className="text-[58px] font-inter">Simplicity First</h5>
             {!option1 ? (
               <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
@@ -37,10 +35,8 @@ function EndCategoryMenu() {
           className="flex flex-col pt-2 pb-2  border-b-2 "
           onClick={() => setOption2(!option2)}
         >
-          <span className="flex justify-start items-center">
-            <h5 className="lg:text-[3rem] text-[1.6rem] font-inter">
-              User-Centered Thinking
-            </h5>
+          <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
+            <h5 className="text-[58px] font-inter">User-Centered Thinking</h5>
             {!option2 ? (
               <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
@@ -61,10 +57,8 @@ function EndCategoryMenu() {
           className="flex flex-col pt-2 pb-2  border-b-2 "
           onClick={() => setOption3(!option3)}
         >
-          <span className="flex justify-start items-center">
-            <h5 className="lg:text-[3rem] text-[1.6rem] font-inter">
-              Impact Over Hype
-            </h5>
+          <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
+            <h5 className="text-[58px] font-inter">Impact Over Hype</h5>
             {!option3 ? (
               <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
@@ -85,10 +79,8 @@ function EndCategoryMenu() {
           className="flex flex-col pt-2 pb-2  border-b-2 "
           onClick={() => setOption4(!option4)}
         >
-          <span className="flex justify-start items-center">
-            <h5 className="lg:text-[3rem] text-[1.6rem] font-inter">
-              Accessibility For All
-            </h5>
+          <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
+            <h5 className="text-[58px] font-inter">Accessibility For All</h5>
             {!option4 ? (
               <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (

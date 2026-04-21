@@ -5,7 +5,7 @@ type ImageData = {
 function Card(props: ImageData) {
   return (
     <span className="flex flex-col grow items-stretch">
-      <img className="w-full h-fit max-h-112   card" src={props.imageUrl}></img>
+      <img className=" h-101  w-full   " src={props.imageUrl}></img>
       <h5 className="text-[1.3rem] font-bold ">{props.imageText}</h5>
       <h5></h5>
     </span>
