@@ -43,7 +43,7 @@ function CardList() {
         })}
       </div>
       <div className="flex justify-center gap-6 lg:mt-16 mt-8">
-        <span className="w-fit h-fit p-3  bg-green-900 hover:bg-green-500 rounded-full">
+        <span className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full">
           <i className="fa fa-arrow-left text-gray-200 text-[1.2rem]"></i>
         </span>
         <span className="flex gap-4 self-center text-[1rem] lg:text-[1.2rem] text-gray-400 font-semibold">
@@ -51,7 +51,7 @@ function CardList() {
           <h5>2</h5>
           <h5>3</h5>
         </span>
-        <span className="w-fit h-fit p-3  bg-green-900 hover:bg-green-500 rounded-full">
+        <span className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full">
           <i className="fa fa-arrow-right text-gray-200 text-[1.2rem]"></i>
         </span>
       </div>
