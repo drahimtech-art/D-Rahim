@@ -1,6 +1,6 @@
 function End() {
   return (
-    <div className="mt-40 bg-primary-green lg:pl-10 lg:pr-40 pl-5 pr-5 pt-10">
+    <div className="mt-96 bg-primary-green lg:pl-10 lg:pr-40 pl-5 pr-5 pt-10">
       <div className="w-full flex">
         <div className="flex flex-col flex-wrap">
           <span className="block">

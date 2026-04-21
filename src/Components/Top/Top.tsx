@@ -1,12 +1,12 @@
 import Logo from "/images/logo.png";
 function Top() {
   return (
-    <div className="flex w-full h-16 items-center lg:p-10 lg:pt-16 lg:pb-16 p-5 pt-7 pb-7 bg-white sticky top-0 ">
+    <div className="flex w-full h-28.75 items-center lg:p-10 lg:pt-16 lg:pb-16  bg-white sticky top-0 ">
       <div className="md:hidden block mr-2">
         <i className="fa fa-bars text-[1.5rem]"></i>
       </div>
       <div className="flex">
-        <div className=" w-7 lg:w-9 h-10">
+        <div className="w-[32.14px] h-10">
           <img className="" src={Logo} alt="logo"></img>
         </div>
         <span className="mt-0.5">
