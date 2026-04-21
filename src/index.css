@@ -9,16 +9,11 @@
   cursor: pointer;
 }
 
-@media (min-width: 320px) {
+@media (min-width: 370px) {
   .card {
-    width: 9rem;
+    width: 9.8rem;
   }
-  @media (min-width: 370px) {
-    .card {
-      width: 9.8rem;
-    }
-  }
-  @media (min-width: 400px) {
+  @media (min-width: 410px) {
     .card {
       width: 11rem;
     }
