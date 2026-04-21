@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 function EndCategoryMenu() {
   const [option1, setOption1] = useState<boolean>(false);
   const [option2, setOption2] = useState<boolean>(false);
