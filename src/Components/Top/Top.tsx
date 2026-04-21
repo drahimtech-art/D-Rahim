@@ -9,16 +9,16 @@ function Top() {
         <img className="" src={Logo}></img>
       </div>
       <div className="md:flex gap-6 ml-auto hidden">
-        <span className="border-b-2 border-black text-[1.5rem]  font-inter hover:text-gray-400 pointer">
+        <span className="border-b-2 border-black text-[1.5rem]  font-inter  pointer">
           <h5>Work</h5>
         </span>
-        <span className="border-b-2 border-white text-[1.5rem]  font-inter hover:text-gray-400 pointer">
+        <span className="border-b-2 border-white text-[1.5rem]  font-inter  pointer">
           <h5>Services</h5>
         </span>
-        <span className="border-b-2 border-white text-[1.5rem]  font-inter hover:text-gray-400 pointer">
+        <span className="border-b-2 border-white text-[1.5rem]  font-inter  pointer">
           <h5>About</h5>
         </span>
-        <span className="border-b-2 border-white text-[1.5rem]  font-inter hover:text-gray-400 pointer">
+        <span className="border-b-2 border-white text-[1.5rem]  font-inter  pointer">
           <h5>Mentorship</h5>
         </span>
       </div>

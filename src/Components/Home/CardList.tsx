@@ -13,15 +13,15 @@ function CardList() {
     },
     {
       image: image1,
-      text: "Mobile Design",
+      text: "Mobile Design 🇳🇬",
     },
     {
       image: image2,
-      text: "Mobile Design",
+      text: "Mobile Design 🇳🇬",
     },
     {
       image: image3,
-      text: "Mobile Design",
+      text: "Mobile Design 🇳🇬",
     },
     {
       image: image4,
@@ -29,7 +29,7 @@ function CardList() {
     },
     {
       image: image5,
-      text: "Mobile Design",
+      text: "Mobile Design 🇳🇬",
     },
   ];
 
