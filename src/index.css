@@ -28,6 +28,21 @@
       width: 14rem;
     }
   }
+  @media (min-width: 600px) {
+    .card {
+      width: 16rem;
+    }
+  }
+  @media (min-width: 650px) {
+    .card {
+      width: 18rem;
+    }
+  }
+  @media (min-width: 700px) {
+    .card {
+      width: 19.5rem;
+    }
+  }
   @media (min-width: 800px) {
     .card {
       width: 15rem;
