@@ -23,7 +23,7 @@ function Top() {
         </span>
       </div>
       <div className="ml-auto ">
-        <span className="block w-fit h-fit p-2 pl-7 pr-7 rounded-full bg-primary-green hover:bg-secondary-green pointer">
+        <span className="block w-fit h-fit lg:p-2 p-1 lg:pl-7 lg:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer">
           <h5 className="text-white lg:text-[1.5rem] text-[1.3rem] font-inter ">
             Get In Touch{" "}
           </h5>
