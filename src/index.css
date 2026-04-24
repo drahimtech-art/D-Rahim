@@ -5,6 +5,9 @@
   --color-secondary-green: #56d566;
   --font-size-heading: clamp(40px, 2vw, 80px);
 }
+body {
+  min-width: 1000px;
+}
 
 .pointer {
   cursor: pointer;
