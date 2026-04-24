@@ -1,11 +1,21 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import products from "../Products";
 import CardList from "../Home/CardList";
+type OurWorkData = {
+  image: string;
+  text: string;
+  subText?: string;
+};
 function Category() {
   const projectRef = useRef<HTMLSpanElement | null>(null);
   const mDesignRef = useRef<HTMLSpanElement | null>(null);
   const wDesignRef = useRef<HTMLSpanElement | null>(null);
   const brandingRef = useRef<HTMLSpanElement | null>(null);
-
+  const ourWorkData: Array<OurWorkData[]> = products();
+  const [ourWorkRender, setOurWorkRender] = useState<OurWorkData[]>(
+    ourWorkData[0],
+  );
+  const [ourWorkFirstRender, setOurWorkFirstRender] = useState<boolean>(true);
   function projectCliked() {
     if (
       !projectRef.current ||
@@ -50,6 +60,8 @@ function Category() {
       "hover:text-gray-200",
       "text-black",
     );
+    setOurWorkFirstRender(true);
+    return setOurWorkRender(ourWorkData[0]);
   }
   function mDesignCliked() {
     if (
@@ -96,6 +108,8 @@ function Category() {
       "border-primary-green",
       "text-gray-200",
     );
+    setOurWorkFirstRender(false);
+    return setOurWorkRender(ourWorkData[1]);
   }
   function wDesignCliked() {
     if (
@@ -142,6 +156,8 @@ function Category() {
       "border-primary-green",
       "text-gray-200",
     );
+    setOurWorkFirstRender(false);
+    return setOurWorkRender(ourWorkData[2]);
   }
   function brandingCliked() {
     if (
@@ -188,12 +204,16 @@ function Category() {
       "border-primary-green",
       "text-gray-200",
     );
+    setOurWorkFirstRender(false);
+    return setOurWorkRender(ourWorkData[3]);
   }
   return (
     <>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-30 mt-10">
         <span className="block">
-          <h5 className="text-[80px] font-semibold">Our Work</h5>
+          <h5 className="text-[80px] font-size-heading font-semibold">
+            Our Work
+          </h5>
         </span>
       </div>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex mt-15 gap-9.5 w-full overflow-x-auto pb-2 ">
@@ -226,7 +246,22 @@ function Category() {
           <h5>Branding</h5>
         </span>
       </div>
-      <CardList />
+      <CardList body={ourWorkRender} />
+      {ourWorkFirstRender && (
+        <div className="flex justify-center gap-6 lg:mt-16 mt-8">
+          <span className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full">
+            <i className="fa fa-arrow-left text-gray-200 text-[1.2rem]"></i>
+          </span>
+          <span className="flex gap-4 self-center text-[1rem] lg:text-[1.2rem] text-gray-400 font-semibold">
+            <h5 className="text-green-500">1</h5>
+            <h5>2</h5>
+            <h5>3</h5>
+          </span>
+          <span className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full">
+            <i className="fa fa-arrow-right text-gray-200 text-[1.2rem]"></i>
+          </span>
+        </div>
+      )}
     </>
   );
 }

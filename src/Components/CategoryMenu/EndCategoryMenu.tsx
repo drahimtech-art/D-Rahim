@@ -7,7 +7,9 @@ function EndCategoryMenu() {
   return (
     <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col mt-27.25">
       <span className="block">
-        <h5 className="text-[80px] font-semibold">Our Values</h5>
+        <h5 className="text-[80px] font-semibold font-size-heading">
+          Our Values
+        </h5>
       </span>
       <div className="flex flex-col mt-15 mb-15">
         <span
