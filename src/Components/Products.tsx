@@ -21,7 +21,7 @@ const productData: Array<OurWorkData[]> = [
   [
     {
       image: image0,
-      text: "branding",
+      text: "Branding 🇳🇬",
     },
     {
       image: image1,

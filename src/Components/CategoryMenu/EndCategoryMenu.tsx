@@ -25,7 +25,7 @@ function EndCategoryMenu() {
             )}
           </span>
           {option1 && (
-            <span className="font-inter lg:text-[2.2rem] text-[1.3rem] max-w-[75%] pt-6 pb-4 transition-all">
+            <span className="font-inter font-medium lg:text-[2.2rem] text-[1.3rem] max-w-[75%] pt-6 pb-4 transition-all">
               <h5>
                 We Believe The Best Solutions Are Simple, Clear, And Easy To Use
                 No Unnecessary Complexity.
@@ -47,7 +47,7 @@ function EndCategoryMenu() {
           </span>
 
           {option2 && (
-            <span className="font-inter lg:text-[2.2rem] text-[1.3rem]  pt-6 pb-4 transition-all">
+            <span className="font-inter font-medium lg:text-[2.2rem] text-[1.3rem]  pt-6 pb-4 transition-all">
               <h5>
                 Every Decision Starts With The User Real Needs, Real Behavior,
                 Real Problems.
@@ -69,7 +69,7 @@ function EndCategoryMenu() {
           </span>
 
           {option3 && (
-            <span className="font-inter lg:text-[2.2rem] text-[1.3rem] max-w-[80%] pt-6 pb-4 transition-all">
+            <span className="font-inter font-medium lg:text-[2.2rem] text-[1.3rem] max-w-[80%] pt-6 pb-4 transition-all">
               <h5>
                 We Focus On Solutions That Create Real Value And Meaningful
                 Change, Not Just What Looks Good.
@@ -91,7 +91,7 @@ function EndCategoryMenu() {
           </span>
 
           {option4 && (
-            <span className="font-inter lg:text-[2.2rem] text-[1.3rem]  pt-6 pb-4 transition-all">
+            <span className="font-inter font-medium lg:text-[2.2rem] text-[1.3rem]  pt-6 pb-4 transition-all">
               <h5>
                 We Believe Technology Should Work For Everyone, Regardless Of
                 Background Or Experience.
