@@ -15,7 +15,12 @@ function CardList(props: Body) {
       <div className="grid grid-cols-3  gap-10 lg:pl-10 lg:pr-10 pl-5 pr-5 justify-around  mt-4 lg:mt-8 items-stretch">
         {productData.map((e, i) => {
           return (
-            <Card key={`card${i}`} imageUrl={e.image} imageText={e.text} />
+            <Card
+              key={`card${i}`}
+              imageUrl={e.image}
+              imageText={e.text}
+              subText={e.subText}
+            />
           );
         })}
       </div>
