@@ -8,21 +8,21 @@ function CategoryMenu() {
     <div className="pl-16 pr-16  ">
       {/** */}
       <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
-        <span className="w-full">
+        <span className="w-full" onClick={() => setOptionOne(!optionOne)}>
           <h5 className="text-[50px] font-inter font-medium">
             Digital Product Design
           </h5>
         </span>
         <span className=" ml-20">
-          <span className=" flex">
+          <span className=" flex" onClick={() => setOptionOne(!optionOne)}>
             {optionOne ? (
               <i
-                className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionOne(!optionOne)}
               ></i>
             ) : (
               <i
-                className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionOne(!optionOne)}
               ></i>
             )}
@@ -45,19 +45,19 @@ function CategoryMenu() {
       </div>
       {/** */}
       <div className="grid grid-cols-2  border-b-2 pt-10  pb-10 p-2.5">
-        <span className="w-full">
+        <span className="w-full " onClick={() => setOptionTwo(!optionTwo)}>
           <h5 className="text-[50px] font-inter font-medium">Website Design</h5>
         </span>
         <span className="ml-20 ">
-          <span className="flex">
+          <span className="flex" onClick={() => setOptionTwo(!optionTwo)}>
             {optionTwo ? (
               <i
-                className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionTwo(!optionTwo)}
               ></i>
             ) : (
               <i
-                className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionTwo(!optionTwo)}
               ></i>
             )}
@@ -79,19 +79,19 @@ function CategoryMenu() {
       </div>
       {/** */}
       <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
-        <span className="w-full">
+        <span className="w-full" onClick={() => setOptionThree(!optionThree)}>
           <h5 className="text-[50px] font-inter font-medium">Branding</h5>
         </span>
         <span className=" ml-20">
-          <span className=" flex">
+          <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
             {optionThree ? (
               <i
-                className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionThree(!optionThree)}
               ></i>
             ) : (
               <i
-                className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionThree(!optionThree)}
               ></i>
             )}
@@ -114,19 +114,19 @@ function CategoryMenu() {
       </div>
       {/** */}
       <div className="grid grid-cols-2   border-b-2  pt-10  pb-10 p-2.5 w-full">
-        <span className="w-full">
+        <span className="w-full" onClick={() => setOptionFour(!optionFour)}>
           <h5 className="text-[50px] font-inter font-medium">Development</h5>
         </span>
         <span className=" ml-20">
-          <span className=" flex">
+          <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
             {optionFour ? (
               <i
-                className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionFour(!optionFour)}
               ></i>
             ) : (
               <i
-                className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionFour(!optionFour)}
               ></i>
             )}

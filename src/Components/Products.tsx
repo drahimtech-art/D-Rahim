@@ -85,77 +85,77 @@ const productData: Array<OurWorkData[]> = [
   [
     {
       image: image9,
-      text: "Wankard Moblie App 🇳🇬",
+      text: "Xnora Web App 🇳🇬",
       subText:
-        "Wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions.",
+        "Xnora is a modern web platform built for seamless deployment and efficient performance. It provides a clean, environment for deployment",
     },
     {
       image: image4,
-      text: "Snap Moblie App 🇳🇬",
+      text: "Finance All Website 🇦🇺🇺🇸",
       subText:
-        "This case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
+        "A financial dashboard designed to provide a clear, real-time overview of personal and business finances. It delivers insights and analytics. ",
     },
     {
       image: image10,
-      text: "Jobified Moblie App 🇳🇬",
+      text: "Pdf to word web app 🇳🇬",
       subText:
-        "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting.",
     },
     {
       image: image0,
-      text: "Health PocketMoblie App 🇳🇬",
+      text: "Alhafeez foundation web App 🇳🇬🇬🇫",
       subText:
-        "Health in Pocket is a mobile health companion designed to put essential healthcare services directly in the hands of users.",
+        "A non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
     },
     {
       image: image14,
-      text: "Travel Express Moblie App 🇳🇬",
+      text: "NYSC Redesign web App 🇳🇬",
       subText:
-        "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
+        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and intuitive interface.",
     },
     {
       image: image16,
-      text: "Vite-Care Moblie App 🇳🇬",
+      text: "Razor Web App 🇧🇪🇬🇧🏝️",
       subText:
-        "VitaCare is a digital healthcare platform designed to simplify access to medical services and help users to manage their health anytime.",
+        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and intuitive interface.",
     },
   ],
   [
     {
       image: image0,
-      text: "Health PocketMoblie App 🇳🇬",
+      text: "Alhafeez foundation web App 🇳🇬🇬🇫",
       subText:
-        "Health in Pocket is a mobile health companion designed to put essential healthcare services directly in the hands of users.",
+        "A non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
     },
     {
       image: image14,
-      text: "Travel Express Moblie App 🇳🇬",
+      text: "Razor Web App 🇧🇪🇬🇧🏝️",
       subText:
-        "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
+        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and intuitive interface.",
     },
     {
       image: image6,
-      text: "Vite-Care Moblie App 🇳🇬",
+      text: "Face Scan Mobile App 🇬🇫",
       subText:
-        "VitaCare is a digital healthcare platform designed to simplify access to medical services and help users to manage their health anytime.",
+        " a biometric authentication system that enables secure and seamless user verification using facial recognition technology.",
     },
     {
       image: image17,
-      text: "Wankard Moblie App 🇳🇬",
+      text: "Home Architect web App🇳🇬",
       subText:
-        "Wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions.",
+        "A design platform that helps users plan, visualize, and create functional home layouts through an intuitive and user-friendly interface.",
     },
     {
       image: image4,
-      text: "Snap Moblie App 🇳🇬",
+      text: "Finance All Website 🇦🇺🇺🇸🇺",
       subText:
-        "This case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
+        "A financial dashboard designed to provide a clear, real-time overview of personal and business finances. It delivers insights and analytics. ",
     },
     {
       image: image10,
-      text: "Jobified Moblie App 🇳🇬",
+      text: "Pdf To Word Web App 🇳🇬",
       subText:
-        "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting.",
     },
   ],
 ];
