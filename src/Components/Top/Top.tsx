@@ -1,7 +1,51 @@
 import Logo from "/images/logo.png";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 function Top() {
+  const serverPath = window.location.pathname;
+  const workRef = useRef<HTMLSpanElement | null>(null);
+  const servicesRef = useRef<HTMLSpanElement | null>(null);
+  const aboutRef = useRef<HTMLSpanElement | null>(null);
+  const mentorshipRef = useRef<HTMLSpanElement | null>(null);
+  const urlNavigator = useNavigate();
+  function services() {
+    urlNavigator("/services", { replace: true });
+  }
+  function work() {
+    urlNavigator("/", { replace: true });
+  }
+  useEffect(() => {
+    if (
+      !workRef.current ||
+      !servicesRef.current ||
+      !aboutRef.current ||
+      !mentorshipRef.current
+    )
+      return;
+    if (serverPath.length === 9) {
+      mentorshipRef.current.classList.remove("border-black");
+      mentorshipRef.current.classList.add("border-white");
+      aboutRef.current.classList.remove("border-black");
+      aboutRef.current.classList.add("border-white");
+      servicesRef.current.classList.add("border-white");
+      servicesRef.current.classList.remove("border-black");
+      workRef.current.classList.remove("border-white");
+      workRef.current.classList.add("border-black");
+    } else {
+      if (serverPath.split("/").includes("services")) {
+        mentorshipRef.current.classList.remove("border-black");
+        mentorshipRef.current.classList.add("border-white");
+        aboutRef.current.classList.remove("border-black");
+        aboutRef.current.classList.add("border-white");
+        workRef.current.classList.add("border-white");
+        workRef.current.classList.remove("border-black");
+        servicesRef.current.classList.remove("border-white");
+        servicesRef.current.classList.add("border-black");
+      }
+    }
+  }, [serverPath]);
   return (
-    <div className="flex w-full h-28.75 items-center lg:p-10 lg:pt-16 lg:pb-16  bg-white sticky top-0 ">
+    <div className="flex w-full h-28.75 items-center p-10 pt-16 pb-16  bg-white sticky top-0 z-10">
       <div className="md:hidden block mr-2">
         <i className="fa fa-bars text-[1.5rem]"></i>
       </div>
@@ -16,16 +60,30 @@ function Top() {
       </div>
 
       <div className="md:flex gap-6 ml-auto hidden">
-        <span className="border-b-2 border-black text-[24px]  font-inter  pointer">
+        <span
+          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          onClick={work}
+          ref={workRef}
+        >
           <h5>Work</h5>
         </span>
-        <span className="border-b-2 border-white text-[24px]  font-inter  pointer">
+        <span
+          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          onClick={services}
+          ref={servicesRef}
+        >
           <h5>Services</h5>
         </span>
-        <span className="border-b-2 border-white text-[24px]  font-inter  pointer">
+        <span
+          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          ref={aboutRef}
+        >
           <h5>About</h5>
         </span>
-        <span className="border-b-2 border-white text-[24px]  font-inter  pointer">
+        <span
+          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          ref={mentorshipRef}
+        >
           <h5>Mentorship</h5>
         </span>
       </div>

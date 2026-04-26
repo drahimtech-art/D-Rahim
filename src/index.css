@@ -8,14 +8,20 @@
 body {
   min-width: 1000px;
 }
-
+.body-spacing {
+  padding-top: 64px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .pointer {
   cursor: pointer;
 }
 .font-size-heading {
   font-size: clamp(42px, 7vw, 80px);
 }
-
+.fontPoppins {
+  font-family: "Poppins", sans-serif;
+}
 @media (min-width: 370px) {
   .card {
     width: 9.8rem;

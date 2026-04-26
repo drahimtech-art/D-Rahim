@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./Components/Home/Home";
+import Service from "./Components/Services/Service";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
@@ -8,6 +9,10 @@ function App() {
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/services",
+        element: <Service />,
       },
     ],
     {
