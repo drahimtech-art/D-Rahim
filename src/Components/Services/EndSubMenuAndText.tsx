@@ -31,7 +31,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="75.75 max-h-171.5 absolute  top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="75.75 max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv1}
               ></img>
             </span>
@@ -43,7 +43,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="75.75 max-h-171.5 absolute  top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="75.75 max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv2}
               ></img>
             </span>
@@ -55,7 +55,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="w-full max-h-171.5 absolute  top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv3}
               ></img>
             </span>
@@ -64,7 +64,7 @@ function EndSubMenuAndText() {
             <img className="rounded-4xl   max-h-75.75 " src={cv4Image}></img>
             <span className="">
               <img
-                className=" max-h-171.5 absolute  top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className=" max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv4}
               ></img>
             </span>

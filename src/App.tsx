@@ -1,6 +1,7 @@
 import "./App.css";
 import Home from "./Components/Home/Home";
 import Service from "./Components/Services/Service";
+import About from "./Components/About/About";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
@@ -13,6 +14,10 @@ function App() {
       {
         path: "/services",
         element: <Service />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
     {

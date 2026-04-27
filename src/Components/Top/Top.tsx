@@ -14,6 +14,9 @@ function Top() {
   function work() {
     urlNavigator("/", { replace: true });
   }
+  function about() {
+    urlNavigator("/about", { replace: true });
+  }
   useEffect(() => {
     if (
       !workRef.current ||
@@ -41,6 +44,24 @@ function Top() {
         workRef.current.classList.remove("border-black");
         servicesRef.current.classList.remove("border-white");
         servicesRef.current.classList.add("border-black");
+      } else if (serverPath.split("/").includes("about")) {
+        mentorshipRef.current.classList.remove("border-black");
+        mentorshipRef.current.classList.add("border-white");
+        servicesRef.current.classList.remove("border-black");
+        servicesRef.current.classList.add("border-white");
+        workRef.current.classList.add("border-white");
+        workRef.current.classList.remove("border-black");
+        aboutRef.current.classList.remove("border-white");
+        aboutRef.current.classList.add("border-black");
+      } else if (serverPath.split("/").includes("mentorship")) {
+        aboutRef.current.classList.remove("border-black");
+        aboutRef.current.classList.add("border-white");
+        servicesRef.current.classList.remove("border-black");
+        servicesRef.current.classList.add("border-white");
+        workRef.current.classList.add("border-white");
+        workRef.current.classList.remove("border-black");
+        mentorshipRef.current.classList.remove("border-white");
+        mentorshipRef.current.classList.add("border-black");
       }
     }
   }, [serverPath]);
@@ -76,6 +97,7 @@ function Top() {
         </span>
         <span
           className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          onClick={about}
           ref={aboutRef}
         >
           <h5>About</h5>

@@ -17,7 +17,7 @@ function ServiceCard() {
           <img className="rounded-4xl w-full max-h-171.5 " src={cv1Image}></img>
           <span className="">
             <img
-              className="w-full max-h-171.5 absolute  top-0 bg-black rounded-4xl hover:hidden transition-all"
+              className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
               src={cv1}
             ></img>
           </span>
@@ -27,7 +27,7 @@ function ServiceCard() {
             <img className="rounded-4xl w-full h-full" src={cv2Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv2}
               ></img>
             </span>
@@ -36,7 +36,7 @@ function ServiceCard() {
             <img className="rounded-4xl w-full h-full" src={cv3Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv3}
               ></img>
             </span>
@@ -45,7 +45,7 @@ function ServiceCard() {
             <img className="rounded-4xl w-full h-full" src={cv4Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv4}
               ></img>
             </span>
@@ -54,7 +54,7 @@ function ServiceCard() {
             <img className="rounded-4xl w-full h-full " src={cv5Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-black rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv5}
               ></img>
             </span>

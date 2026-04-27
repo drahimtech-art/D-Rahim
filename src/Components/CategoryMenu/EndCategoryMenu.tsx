@@ -19,7 +19,7 @@ function EndCategoryMenu() {
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 pt-10 pb-10">
             <h5 className="text-[58px] font-inter">Simplicity First</h5>
             {!option1 ? (
-              <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
               <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
@@ -40,7 +40,7 @@ function EndCategoryMenu() {
           <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
             <h5 className="text-[58px] font-inter">User-Centered Thinking</h5>
             {!option2 ? (
-              <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
               <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
@@ -62,7 +62,7 @@ function EndCategoryMenu() {
           <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
             <h5 className="text-[58px] font-inter">Impact Over Hype</h5>
             {!option3 ? (
-              <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
               <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
@@ -84,7 +84,7 @@ function EndCategoryMenu() {
           <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
             <h5 className="text-[58px] font-inter">Accessibility For All</h5>
             {!option4 ? (
-              <i className=" fa fa-plus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
               <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
