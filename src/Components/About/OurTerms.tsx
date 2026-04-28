@@ -13,9 +13,9 @@ function OurTerms() {
             <img className="w-full h-full rounded-3xl" src={jimohImg}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">
-            Jimoh Abdulrahim Dauda
+            Jimoh Abdulrahim
           </h5>
-          <h5 className="font-inter text-[35px] font-medium ">Co-Founder</h5>
+          <h5 className="font-inter text-[35px] font-medium ">Founder & CEO</h5>
           <h5 className="font-inter font-medium text-[24px] text-gray-600 ">
             A passionate UI/UX designer focused on helping startups & founders,
             tech entrepreneurs, developers & software teams, e-commerce sellers,

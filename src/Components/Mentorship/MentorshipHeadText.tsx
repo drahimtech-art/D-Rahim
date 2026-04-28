@@ -2,7 +2,7 @@ function MentorshipHeadText() {
   return (
     <div className="body-spacing lg:mt-10 mt-5 flex flex-col gap-10">
       <div className="w-full">
-        <h5 className="w-353 text-[80px] font-size-heading fontPoppins font-semibold">
+        <h5 className="w-250 text-[80px] font-size-heading fontPoppins font-semibold">
           Elevate Your UI/UX Skills with Expert Mentorship.
         </h5>
       </div>
