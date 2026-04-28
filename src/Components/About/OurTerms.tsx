@@ -3,14 +3,14 @@ import abdulmalikImg from "/images/26.png";
 import victoryImg from "/images/28.png";
 function OurTerms() {
   return (
-    <div className="mt-27.25 pl-10 pr-10">
+    <div className="mt-27.25 pl-10 pr-10 w-full">
       <span>
         <h5 className="fontPoppins font-semibold text-[80px]">Our Teams</h5>
       </span>
-      <div className="mt-15 flex gap-10 h-203 justify-around">
+      <div className="mt-15 flex lg:gap-10 h-203 justify-around">
         <div className="flex flex-col w-111">
           <span className="w-111 h-107.75">
-            <img className="w-full h-full" src={jimohImg}></img>
+            <img className="w-full h-full rounded-3xl" src={jimohImg}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">
             Jimoh Abdulrahim Dauda
@@ -25,7 +25,10 @@ function OurTerms() {
         </div>
         <div className="flex flex-col w-111">
           <span className="w-111 h-107.75">
-            <img className="w-full h-full" src={abdulmalikImg}></img>
+            <img
+              className="w-full h-full rounded-3xl"
+              src={abdulmalikImg}
+            ></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">
             Abdulmalik Mohammed

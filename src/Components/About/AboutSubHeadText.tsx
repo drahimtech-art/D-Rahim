@@ -31,7 +31,7 @@ function AboutSubHeadText() {
       </div>
       <div className="mt-27.25">
         <span>
-          <h5 className="w-248 font-inter text-[58px] font-medium ">
+          <h5 className="w-273.5 font-inter text-[58px] font-medium ">
             Our mission is to simplify technology and design meaningful digital
             experiences that empower underserved individuals and businesses
             across Africa regardless of their background.

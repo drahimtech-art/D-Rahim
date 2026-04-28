@@ -17,6 +17,9 @@ function Top() {
   function about() {
     urlNavigator("/about", { replace: true });
   }
+  function mentorship() {
+    urlNavigator("/mentorship", { replace: true });
+  }
   useEffect(() => {
     if (
       !workRef.current ||
@@ -104,6 +107,7 @@ function Top() {
         </span>
         <span
           className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          onClick={mentorship}
           ref={mentorshipRef}
         >
           <h5>Mentorship</h5>

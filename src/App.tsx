@@ -1,8 +1,10 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy } from "react";
 import "./App.css";
 import Home from "./Components/Home/Home";
 import Service from "./Components/Services/Service";
-import About from "./Components/About/About";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+const About = lazy(() => import("./Components/About/About"));
+const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
 
 function App() {
   const routes = createBrowserRouter(
@@ -18,6 +20,10 @@ function App() {
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/mentorship",
+        element: <Mentorship />,
       },
     ],
     {
