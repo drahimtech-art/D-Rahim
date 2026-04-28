@@ -7,9 +7,9 @@ function OurStudents() {
       <span>
         <h5 className="fontPoppins font-semibold text-[80px]">Our Students</h5>
       </span>
-      <div className="mt-15 flex gap-10 h-203 justify-around">
-        <div className="flex flex-col w-111">
-          <span className="w-111 h-107.75">
+      <div className="mt-15 grid grid-cols-3 h-203 justify-evenly gap-10">
+        <div className="flex flex-col ">
+          <span className=" h-107.75">
             <img className="w-full h-full" src={image1}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">Zainab Jimoh</h5>
@@ -21,8 +21,8 @@ function OurStudents() {
             Hmedix all thanks to this program."
           </h5>
         </div>
-        <div className="flex flex-col w-111">
-          <span className="w-111 h-107.75">
+        <div className="flex flex-col ">
+          <span className=" h-107.75">
             <img className="w-full h-full" src={image2}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">Chinedu Paul</h5>
@@ -34,8 +34,8 @@ function OurStudents() {
             I now have confidence as a product designer."
           </h5>
         </div>
-        <div className="flex flex-col w-111">
-          <span className="w-111 h-107.75 ">
+        <div className="flex flex-col ">
+          <span className=" h-107.75 ">
             <img className="w-full h-full " src={image3}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">

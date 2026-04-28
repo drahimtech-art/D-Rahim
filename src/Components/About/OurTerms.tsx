@@ -7,9 +7,9 @@ function OurTerms() {
       <span>
         <h5 className="fontPoppins font-semibold text-[80px]">Our Teams</h5>
       </span>
-      <div className="mt-15 flex lg:gap-10 h-203 justify-around">
-        <div className="flex flex-col w-111">
-          <span className="w-111 h-107.75">
+      <div className="mt-15 grid grid-cols-3 h-203 justify-evenly gap-10">
+        <div className="flex flex-col ">
+          <span className=" h-107.75">
             <img className="w-full h-full rounded-3xl" src={jimohImg}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">
@@ -23,8 +23,8 @@ function OurTerms() {
             to build simple, beautiful, and user-friendly digital products.
           </h5>
         </div>
-        <div className="flex flex-col w-111">
-          <span className="w-111 h-107.75">
+        <div className="flex flex-col ">
+          <span className=" h-107.75">
             <img
               className="w-full h-full rounded-3xl"
               src={abdulmalikImg}
@@ -41,8 +41,8 @@ function OurTerms() {
             the user in mind.
           </h5>
         </div>
-        <div className="flex flex-col w-111">
-          <span className="w-111 h-107.75 ">
+        <div className="flex flex-col ">
+          <span className=" h-107.75 ">
             <img className="w-full h-full " src={victoryImg}></img>
           </span>
           <h5 className="font-inter text-[35px] font-semibold">
