@@ -17,7 +17,7 @@ function EndCategoryMenu() {
           onClick={() => setOption1(!option1)}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 pt-10 pb-10">
-            <h5 className="text-[58px] font-inter">Simplicity First</h5>
+            <h5 className=" font-inter ourWorkMenuText">Simplicity First</h5>
             {!option1 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
@@ -38,7 +38,9 @@ function EndCategoryMenu() {
           onClick={() => setOption2(!option2)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
-            <h5 className="text-[58px] font-inter">User-Centered Thinking</h5>
+            <h5 className="ourWorkMenuText font-inter">
+              User-Centered Thinking
+            </h5>
             {!option2 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
@@ -60,7 +62,7 @@ function EndCategoryMenu() {
           onClick={() => setOption3(!option3)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
-            <h5 className="text-[58px] font-inter">Impact Over Hype</h5>
+            <h5 className="ourWorkMenuText font-inter">Impact Over Hype</h5>
             {!option3 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
@@ -82,7 +84,9 @@ function EndCategoryMenu() {
           onClick={() => setOption4(!option4)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 pt-10 pb-10">
-            <h5 className="text-[58px] font-inter">Accessibility For All</h5>
+            <h5 className="ourWorkMenuText font-inter">
+              Accessibility For All
+            </h5>
             {!option4 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (

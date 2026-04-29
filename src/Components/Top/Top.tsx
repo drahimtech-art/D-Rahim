@@ -70,43 +70,40 @@ function Top() {
   }, [serverPath]);
   return (
     <div className="flex w-full h-28.75 items-center p-10 pt-16 pb-16  bg-white sticky top-0 z-10">
-      <div className="md:hidden block mr-2">
-        <i className="fa fa-bars text-[1.5rem]"></i>
-      </div>
       <div className="flex">
         <div className="w-[32.14px] h-10">
           <img className="" src={Logo} alt="logo"></img>
         </div>
         <span className="mt-0.5">
-          <h5 className="font-inter font-semibold text-[20.09px]">D'RAHIM</h5>
-          <h5 className="-mt-1 font-semibold text-[9.04px]">TECH INNOVATION</h5>
+          <h5 className="font-inter font-semibold logoMainText">D'RAHIM</h5>
+          <h5 className="-mt-1 font-semibold logoSubText">TECH INNOVATION</h5>
         </span>
       </div>
 
-      <div className="md:flex gap-6 ml-auto hidden">
+      <div className="flex gap-6 ml-auto ">
         <span
-          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
           onClick={work}
           ref={workRef}
         >
           <h5>Work</h5>
         </span>
         <span
-          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
           onClick={services}
           ref={servicesRef}
         >
           <h5>Services</h5>
         </span>
         <span
-          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
           onClick={about}
           ref={aboutRef}
         >
           <h5>About</h5>
         </span>
         <span
-          className="border-b-2 border-white text-[24px]  font-inter  pointer"
+          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
           onClick={mentorship}
           ref={mentorshipRef}
         >

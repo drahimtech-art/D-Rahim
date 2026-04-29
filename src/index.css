@@ -5,9 +5,7 @@
   --color-secondary-green: #56d566;
   --font-size-heading: clamp(40px, 2vw, 80px);
 }
-body {
-  min-width: 1024px;
-}
+
 .body-spacing {
   padding-top: 64px;
   padding-left: 40px;
@@ -84,4 +82,16 @@ body {
 }
 .font-inter {
   font-family: "Inter", sans-serif;
+}
+.ourWorkMenuText {
+  font-size: clamp(40px, 5vw, 58px);
+}
+.ourWorkHeadMenu {
+  font-size: clamp(16px, 2.5vw, 24px);
+}
+.logoMainText {
+  font-size: clamp(16px, 2.3vw, 20.09px);
+}
+.logoSubText {
+  font-size: clamp(7px, 1vw, 9.04px);
 }
