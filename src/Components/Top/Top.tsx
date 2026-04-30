@@ -69,18 +69,17 @@ function Top() {
     }
   }, [serverPath]);
   return (
-    <div className="flex w-full h-28.75 items-center p-10 pt-16 pb-16  bg-white sticky top-0 z-10">
+    <div className="flex w-full h-28.75 items-center lg:p-10 p-7 pt-16 pb-16  bg-white sticky top-0 z-10">
       <div className="flex">
-        <div className="w-[32.14px] h-10">
-          <img className="" src={Logo} alt="logo"></img>
+        <div className="w-8 h-10">
+          <img src={Logo} alt="logo"></img>
         </div>
         <span className="mt-0.5">
-          <h5 className="font-inter font-semibold logoMainText">D'RAHIM</h5>
-          <h5 className="-mt-1 font-semibold logoSubText">TECH INNOVATION</h5>
+          <h5 className="font-inter font-semibold text-[1.1rem]">D'RAHIM</h5>
+          <h5 className="-mt-1 font-semibold text-[0.5rem]">TECH INNOVATION</h5>
         </span>
       </div>
-
-      <div className="flex gap-6 ml-auto ">
+      <div className="sm:flex gap-6 ml-auto hidden">
         <span
           className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
           onClick={work}
