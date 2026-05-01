@@ -20,6 +20,9 @@ function Top() {
   function mentorship() {
     urlNavigator("/mentorship", { replace: true });
   }
+  function contact() {
+    urlNavigator("/contact", { replace: true });
+  }
   useEffect(() => {
     if (
       !workRef.current ||
@@ -110,7 +113,10 @@ function Top() {
         </span>
       </div>
       <div className="ml-auto ">
-        <span className="block w-fit h-fit lg:p-2 p-1 lg:pl-7 lg:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer">
+        <span
+          className="block w-fit h-fit lg:p-2 p-1 lg:pl-7 lg:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
+          onClick={contact}
+        >
           <h5 className="text-white ourWorkHeadMenu  font-inter ">
             Get In Touch{" "}
           </h5>

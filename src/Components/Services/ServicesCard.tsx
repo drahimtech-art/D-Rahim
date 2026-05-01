@@ -22,7 +22,7 @@ function ServiceCard() {
             ></img>
           </span>
         </div>
-        <div className="grid grid-cols-2  ml-5 w-full">
+        <div className="grid grid-cols-2 gap-2 ml-5 w-full">
           <div className="relative w-full h-full  ml-auto mr-auto max-w-80.75 max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv2Image}></img>
             <span className="">

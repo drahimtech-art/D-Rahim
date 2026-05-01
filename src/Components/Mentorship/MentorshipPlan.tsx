@@ -3,7 +3,7 @@ import standardPlanImg from "/images/30.png";
 import premiumPlanImg from "/images/29.png";
 function MentorshipPlan() {
   return (
-    <div className="pl-10 pr-10">
+    <div className="pl-10 pr-10 mt-20">
       <span className="block">
         <h5 className="text-[80px] font-semibold fontPoppins font-size-heading">
           Ready? Choose Mentorship Plan
