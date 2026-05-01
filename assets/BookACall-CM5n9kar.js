@@ -1,0 +1,1 @@
+import{n as e,t}from"./Top-BxexF3rf.js";var n=e();function r(){return(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(t,{})})}export{r as default};
