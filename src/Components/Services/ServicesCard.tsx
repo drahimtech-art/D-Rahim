@@ -22,8 +22,8 @@ function ServiceCard() {
             ></img>
           </span>
         </div>
-        <div className="grid grid-cols-2 ml-5">
-          <div className="relative m-5 mt-0 max-80.75 max-h-80.75">
+        <div className="grid grid-cols-2  ml-5 w-full">
+          <div className="relative w-full h-full  ml-auto mr-auto max-w-80.75 max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv2Image}></img>
             <span className="">
               <img
@@ -32,7 +32,7 @@ function ServiceCard() {
               ></img>
             </span>
           </div>
-          <div className="relative m-5 mt-0  max-80.75 max-h-80.75">
+          <div className="relative w-full h-full  ml-auto mr-auto  max-w-80.75 max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv3Image}></img>
             <span className="">
               <img
@@ -41,7 +41,7 @@ function ServiceCard() {
               ></img>
             </span>
           </div>
-          <div className="relative ml-5 mr-5 mt-0 mb-0 max-80.75 max-h-80.75">
+          <div className="relative w-full h-full  ml-auto mr-auto mb-0 max-w-80.75 max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv4Image}></img>
             <span className="">
               <img
@@ -50,7 +50,7 @@ function ServiceCard() {
               ></img>
             </span>
           </div>
-          <div className="relative ml-5 mr-5 mt-0 mb-0 max-80.75 max-h-80.75">
+          <div className="relative w-full h-full  ml-auto mr-auto mb-0 max-w-80.75 max-h-80.75">
             <img className="rounded-4xl w-full h-full " src={cv5Image}></img>
             <span className="">
               <img

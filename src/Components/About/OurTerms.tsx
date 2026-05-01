@@ -5,18 +5,22 @@ function OurTerms() {
   return (
     <div className="mt-27.25 pl-10 pr-10 w-full">
       <span>
-        <h5 className="fontPoppins font-semibold text-[80px]">Our Teams</h5>
+        <h5 className="fontPoppins font-semibold font-size-heading">
+          Our Teams
+        </h5>
       </span>
-      <div className="mt-15 grid grid-cols-3 h-203 justify-evenly gap-10">
-        <div className="flex flex-col ">
-          <span className=" h-107.75">
+      <div className="mt-15 grid grid-cols-3 max-h-203 justify-evenly gap-10">
+        <div className="flex flex-col h-203">
+          <span className="  max-h-107.75">
             <img className="w-full h-full rounded-3xl" src={jimohImg}></img>
           </span>
-          <h5 className="font-inter text-[35px] font-semibold">
+          <h5 className="font-inter ourTermHeadText font-semibold">
             Jimoh Abdulrahim
           </h5>
-          <h5 className="font-inter text-[35px] font-medium ">Founder & CEO</h5>
-          <h5 className="font-inter font-medium text-[24px] text-gray-600 ">
+          <h5 className="font-inter ourTermHeadText font-medium ">
+            Founder & CEO
+          </h5>
+          <h5 className="font-inter font-medium ourWorkHeadMenu text-gray-600 ">
             A passionate UI/UX designer focused on helping startups & founders,
             tech entrepreneurs, developers & software teams, e-commerce sellers,
             small & medium businesses, nonprofits & NGO, creative professionals
@@ -24,17 +28,17 @@ function OurTerms() {
           </h5>
         </div>
         <div className="flex flex-col ">
-          <span className=" h-107.75">
+          <span className="   max-h-107.75">
             <img
               className="w-full h-full rounded-3xl"
               src={abdulmalikImg}
             ></img>
           </span>
-          <h5 className="font-inter text-[35px] font-semibold">
+          <h5 className="font-inter ourTermHeadText font-semibold">
             Abdulmalik Mohammed
           </h5>
-          <h5 className="font-inter text-[35px] font-medium">Co-Founder</h5>
-          <h5 className="font-inter font-medium text-[24px] text-gray-600">
+          <h5 className="font-inter ourTermHeadText font-medium">Co-Founder</h5>
+          <h5 className="font-inter font-medium ourWorkHeadMenu text-gray-600">
             A detail-oriented UI/UX Designer helping brands and startups turn
             ideas into user-friendly, engaging digital products. I focus on
             creating clean, functional designs that make an impact, always with
@@ -42,16 +46,16 @@ function OurTerms() {
           </h5>
         </div>
         <div className="flex flex-col ">
-          <span className=" h-107.75 ">
+          <span className="   max-h-107.75 ">
             <img className="w-full h-full " src={victoryImg}></img>
           </span>
-          <h5 className="font-inter text-[35px] font-semibold">
+          <h5 className="font-inter ourTermHeadText font-semibold">
             Victory Nwanoruo
           </h5>
-          <h5 className="font-inter text-[35px] font-medium">
+          <h5 className="font-inter ourTermHeadText font-medium">
             Full-stack Developer
           </h5>
-          <h5 className="font-inter font-medium text-[24px] text-gray-600">
+          <h5 className="font-inter font-medium ourWorkHeadMenu text-gray-600">
             A full stack developer focused on building scalable high-performance
             web application that deliver real business value specialized in
             developing end-to -end solution from responsive, frontend to

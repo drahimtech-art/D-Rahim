@@ -9,7 +9,7 @@ function CategoryMenu() {
       {/** */}
       <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
         <span className="w-full" onClick={() => setOptionOne(!optionOne)}>
-          <h5 className="text-[50px] font-inter font-medium">
+          <h5 className="serviceMenuText font-inter font-medium">
             Digital Product Design
           </h5>
         </span>
@@ -28,8 +28,8 @@ function CategoryMenu() {
             )}
           </span>
           {optionOne && (
-            <div className=" w-86.77">
-              <span className="font-inter font-medium  text-[20px] flex flex-col gap-2.5">
+            <div className=" w-86.77 ">
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
                 <h5>Market & User Research</h5>
                 <h5> Product Strategy & Road Mapping </h5>
                 <h5>UI/UX Design</h5>
@@ -46,7 +46,9 @@ function CategoryMenu() {
       {/** */}
       <div className="grid grid-cols-2  border-b-2 pt-10  pb-10 p-2.5">
         <span className="w-full " onClick={() => setOptionTwo(!optionTwo)}>
-          <h5 className="text-[50px] font-inter font-medium">Website Design</h5>
+          <h5 className="serviceMenuText font-inter font-medium">
+            Website Design
+          </h5>
         </span>
         <span className="ml-20 ">
           <span className="flex" onClick={() => setOptionTwo(!optionTwo)}>
@@ -65,7 +67,7 @@ function CategoryMenu() {
 
           {optionTwo && (
             <div className="  w-86.77">
-              <span className="font-inter font-medium  text-[20px] flex flex-col gap-2.5">
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
                 <h5>Web Design</h5>
                 <h5> Development & Testing</h5>
                 <h5>Launch & Maintenace</h5>
@@ -80,7 +82,7 @@ function CategoryMenu() {
       {/** */}
       <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
         <span className="w-full" onClick={() => setOptionThree(!optionThree)}>
-          <h5 className="text-[50px] font-inter font-medium">Branding</h5>
+          <h5 className="serviceMenuText font-inter font-medium">Branding</h5>
         </span>
         <span className=" ml-20">
           <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
@@ -98,7 +100,7 @@ function CategoryMenu() {
           </span>
           {optionThree && (
             <div className=" w-86.77">
-              <span className="font-inter font-medium  text-[20px] flex flex-col gap-2.5">
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
                 <h5>Visual Audit</h5>
                 <h5> Logo & Visual Identity </h5>
                 <h5>UI/UX Design</h5>
@@ -115,7 +117,9 @@ function CategoryMenu() {
       {/** */}
       <div className="grid grid-cols-2   border-b-2  pt-10  pb-10 p-2.5 w-full">
         <span className="w-full" onClick={() => setOptionFour(!optionFour)}>
-          <h5 className="text-[50px] font-inter font-medium">Development</h5>
+          <h5 className="serviceMenuText font-inter font-medium">
+            Development
+          </h5>
         </span>
         <span className=" ml-20">
           <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
@@ -133,7 +137,7 @@ function CategoryMenu() {
           </span>
           {optionFour && (
             <div className=" w-86.77">
-              <span className="font-inter font-medium  text-[20px] flex flex-col gap-4.5">
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-4.5">
                 <h5>Technology Consulting</h5>
                 <h5> Mobile App Development </h5>
                 <h5>Frontend Web Development</h5>

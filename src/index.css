@@ -95,10 +95,16 @@
 .logoSubText {
   font-size: clamp(7px, 1vw, 9.04px);
 }
-@media (min-width: 3000px) {
+.serviceMenuText {
+  font-size: clamp(38px, 5vw, 50px);
+}
+.ourTermHeadText {
+  font-size: clamp(18px, 5vw, 35px);
+}
+@media (min-width: 2000px) {
   body {
     margin-left: auto;
     margin-right: auto;
-    max-width: 3000px;
+    max-width: 1800px;
   }
 }
