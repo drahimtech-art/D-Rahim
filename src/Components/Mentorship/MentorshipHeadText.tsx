@@ -1,13 +1,13 @@
 function MentorshipHeadText() {
   return (
-    <div className="body-spacing lg:mt-10 mt-5 flex flex-col gap-10">
+    <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-10 mt-5 flex flex-col gap-10">
       <div className="w-full">
-        <h5 className="max-w-250 font-size-heading font-size-heading fontPoppins font-semibold">
+        <h5 className="max-w-full sm:max-w-250 font-size-heading font-size-heading fontPoppins font-semibold">
           Elevate Your UI/UX Skills with Expert Mentorship.
         </h5>
       </div>
       <div>
-        <h5 className="max-w-150 font-inter font-medium ourWorkHeadMenu ">
+        <h5 className="sm:max-w-150 font-inter font-medium ourWorkHeadMenu ">
           Join our mentorship program to learn UI?UX design from the ground up,
           gain real-world experience and build a portfolio that gets you hired.
         </h5>
@@ -20,7 +20,7 @@ function MentorshipHeadText() {
               <i className="fa fa-check absolute logoMainText text-white mt-0.3 min-[800px]:mt-0.5 ml-[0.32rem] min-[800px]:ml-0.75"></i>
             </span>
           </span>
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText font-medium  lg:font-semibold">
             UI/UX Fundamentals
           </h5>
         </span>
@@ -31,7 +31,7 @@ function MentorshipHeadText() {
               <i className="fa fa-check absolute logoMainText text-white mt-0.3 min-[800px]:mt-0.5 ml-[0.32rem] min-[800px]:ml-0.75"></i>
             </span>
           </span>
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText  font-medium  lg:font-semibold">
             Figma for UI Design
           </h5>
         </span>
@@ -43,7 +43,7 @@ function MentorshipHeadText() {
             </span>
           </span>
 
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText  font-medium  lg:font-semibold">
             Wireframing & Prototype
           </h5>
         </span>
@@ -54,7 +54,7 @@ function MentorshipHeadText() {
               <i className="fa fa-check absolute logoMainText text-white mt-0.3 min-[800px]:mt-0.5 ml-[0.32rem] min-[800px]:ml-0.75"></i>
             </span>
           </span>
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText  font-medium  lg:font-semibold">
             Creating Responsive Designs
           </h5>
         </span>
@@ -66,7 +66,7 @@ function MentorshipHeadText() {
             </span>
           </span>
 
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText  font-medium  lg:font-semibold">
             Usability Testing & Research
           </h5>
         </span>
@@ -77,7 +77,7 @@ function MentorshipHeadText() {
               <i className="fa fa-check absolute logoMainText text-white mt-0.3 min-[800px]:mt-0.5 ml-[0.32rem] min-[800px]:ml-0.75"></i>
             </span>
           </span>
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText  font-medium  lg:font-semibold">
             Personalized 1-on-1 Coaching
           </h5>
         </span>
@@ -88,7 +88,7 @@ function MentorshipHeadText() {
               <i className="fa fa-check absolute logoMainText text-white mt-0.3 min-[800px]:mt-0.5 ml-[0.32rem] min-[800px]:ml-0.75"></i>
             </span>
           </span>
-          <h5 className="font-inter ourWorkHeadMenu  font-semibold">
+          <h5 className="font-inter mentoshipIconText  font-medium  lg:font-semibold">
             Design Systems & Optimization
           </h5>
         </span>

@@ -305,33 +305,35 @@ function Category() {
     <>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-30 mt-10">
         <span className="block">
-          <h5 className="font-size-heading  font-semibold">Our Work</h5>
+          <h5 className="font-size-heading fontPoppins font-semibold">
+            Our Work
+          </h5>
         </span>
       </div>
-      <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 sm:flex-row flex flex-col mt-15 lg:gap-9.5 gap-4 w-full overflow-hidden pb-2 ">
+      <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 sm:flex-row flex flex-col mt-10 sm:mt-15 lg:gap-9.5 gap-4 max-w-48.5 sm:max-w-full overflow-hidden pb-2 ">
         <span
-          className="w-[30%] max-w-57.25 sm:pl-7.5  pl-4 flex justify-start items-center   h-12.5 font-inter   ourWorkHeadMenu  border-primary-green bg-primary-green  border   text-gray-200 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="w-fit sm:w-[30%]   max-w-57.25 sm:pl-7.5 sm:pr-0  pl-5 pr-5  flex sm:justify-start justify-center items-center   h-12.5 font-inter   ourWorkHeadMenu  border-primary-green bg-primary-green  border   text-gray-200 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={projectRef}
           onClick={projectCliked}
         >
           <h5 className="">All Projects</h5>
         </span>
         <span
-          className="  w-[30%] max-w-57.25 flex justify-center items-center  h-12.5 font-inter ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="  w-fit sm:w-[30%] pl-5 pr-5 sm:pl-0 sm:pr-0 max-w-57.25 flex justify-center items-center  h-12.5 font-inter ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={mDesignRef}
           onClick={mDesignCliked}
         >
           <h5>Moblie Design</h5>
         </span>
         <span
-          className="w-[30%] max-w-61.25 flex justify-center items-center   h-12.5 font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="w-fit sm:w-[30%] pl-5 pr-5 sm:pl-0 sm:pr-0 max-w-61.25 flex justify-center items-center   h-12.5 font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={wDesignRef}
           onClick={wDesignCliked}
         >
           <h5>Website Design</h5>
         </span>
         <span
-          className="w-[30%] max-w-41.75 flex justify-center items-center   h-12.5 font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="w-fit sm:w-[30%] pl-5 pr-5 sm:pl-0 sm:pr-0 max-w-41.75 flex justify-center items-center   h-12.5 font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={brandingRef}
           onClick={brandingCliked}
         >
@@ -340,7 +342,7 @@ function Category() {
       </div>
       <CardList body={ourWorkRender} />
       {ourWorkFirstRender && (
-        <div className="flex justify-center gap-6 lg:mt-16 mt-8">
+        <div className="hidden sm:flex justify-center gap-6 lg:mt-16 mt-8 ">
           <span
             className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
             onClick={countMinus}

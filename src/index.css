@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 .font-size-heading {
-  font-size: clamp(42px, 7vw, 80px);
+  font-size: clamp(40px, 7vw, 80px);
 }
 .fontPoppins {
   font-family: "Poppins", sans-serif;
@@ -87,19 +87,22 @@
   font-size: clamp(40px, 5vw, 58px);
 }
 .ourWorkHeadMenu {
-  font-size: clamp(16px, 2.5vw, 24px);
+  font-size: clamp(16px, 3vw, 24px);
+}
+.mentoshipIconText {
+  font-size: clamp(20px, 3vw, 24px);
 }
 .logoMainText {
-  font-size: clamp(16px, 2.3vw, 20.09px);
+  font-size: clamp(17.28px, 2.3vw, 20.09px);
 }
 .logoSubText {
-  font-size: clamp(7px, 1vw, 9.04px);
+  font-size: clamp(7.77px, 1vw, 9.04px);
 }
 .serviceMenuText {
   font-size: clamp(38px, 5vw, 50px);
 }
 .ourTermHeadText {
-  font-size: clamp(18px, 5vw, 35px);
+  font-size: clamp(28px, 5vw, 35px);
 }
 @media (min-width: 2000px) {
   body {
@@ -107,4 +110,7 @@
     margin-right: auto;
     max-width: 1800px;
   }
+}
+.max40Px {
+  font-size: clamp(2.4rem, 4.5vw, 40px);
 }

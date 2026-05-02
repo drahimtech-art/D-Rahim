@@ -12,7 +12,7 @@ function CardList(props: Body) {
   if (!productData) return;
   return (
     <>
-      <div className="grid grid-cols-3  gap-10 lg:pl-10 lg:pr-10 pl-5 pr-5 justify-around  mt-4 lg:mt-8 items-stretch">
+      <div className="flex flex-wrap sm:grid sm:grid-cols-2 lg:grid-cols-3  sm:gap-10 gap-5 lg:pl-10 lg:pr-10 pl-5 pr-5 justify-around  mt-4 lg:mt-8 items-stretch">
         {productData.map((e, i) => {
           return (
             <Card

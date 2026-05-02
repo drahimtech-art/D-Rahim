@@ -5,7 +5,7 @@ function EndCategoryMenu() {
   const [option3, setOption3] = useState<boolean>(false);
   const [option4, setOption4] = useState<boolean>(false);
   return (
-    <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col mt-27.25">
+    <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col mt-27.25 w-full">
       <span className="block">
         <h5 className="text-[80px] font-semibold font-size-heading">
           Our Values
