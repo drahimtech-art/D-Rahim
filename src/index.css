@@ -104,6 +104,12 @@
 .ourTermHeadText {
   font-size: clamp(28px, 5vw, 35px);
 }
+.ourTermHeadSubText {
+  font-size: clamp(22px, 5vw, 35px);
+}
+.ourValueSubText {
+  font-size: clamp(17px, 5vw, 58px);
+}
 @media (min-width: 2000px) {
   body {
     margin-left: auto;
@@ -113,4 +119,24 @@
 }
 .max40Px {
   font-size: clamp(2.4rem, 4.5vw, 40px);
+}
+.expereanceText {
+  font-size: clamp(40px, 5vw, 58px);
+  font-weight: 500;
+}
+.expereanceTextSubText2 {
+  font-size: clamp(20px, 3vw, 24px);
+  font-weight: 600;
+}
+@media (min-width: 640px) {
+  .expereanceText {
+    font-size: clamp(40px, 7vw, 80px);
+    font-weight: 700;
+  }
+  .expereanceTextSubText {
+    font-size: clamp(40px, 7vw, 80px);
+  }
+  .expereanceTextSubText2 {
+    font-size: clamp(40px, 7vw, 80px);
+  }
 }
