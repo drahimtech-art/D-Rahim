@@ -92,6 +92,9 @@
 .mentoshipIconText {
   font-size: clamp(20px, 3vw, 24px);
 }
+.min22 {
+  font-size: clamp(22px, 3vw, 24px);
+}
 .logoMainText {
   font-size: clamp(17.28px, 2.3vw, 20.09px);
 }
@@ -142,4 +145,7 @@
 }
 .menuText {
   font-size: clamp(30px, 5vw, 34px);
+}
+.max20px {
+  font-size: clamp(18px, 3vw, 20px);
 }
