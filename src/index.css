@@ -140,3 +140,6 @@
     font-size: clamp(40px, 7vw, 80px);
   }
 }
+.menuText {
+  font-size: clamp(30px, 5vw, 34px);
+}

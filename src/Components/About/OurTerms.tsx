@@ -9,7 +9,7 @@ function OurTerms() {
           Our Teams
         </h5>
       </span>
-      <div className="mt-10 sm:mt-15 flex flex-wrap sm:grid sm:grid-cols-3 sm:max-h-203 justify-evenly gap-10">
+      <div className="mt-10 sm:mt-15 flex flex-wrap sm:grid sm:grid-cols-3 lg:max-h-203 justify-evenly gap-10">
         <div className="flex flex-col sm:h-203">
           <span className=" max-h-107.75">
             <img className="w-full h-full rounded-3xl" src={jimohImg}></img>

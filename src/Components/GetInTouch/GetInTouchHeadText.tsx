@@ -12,7 +12,7 @@ function GetInTouchHeadText() {
             Need Help With a Project?
           </h5>
         </span>
-        <span className="block mt-15">
+        <span className="block sm:mt-15 mt-10">
           <h5 className="ourTermHeadText w-[80%] max-w-209.75 ">
             <strong
               className="text-green-400 border-b-2 border-green-400 pointer"

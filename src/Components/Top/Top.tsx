@@ -1,7 +1,9 @@
 import Logo from "/images/logo.png";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Menu from "../Menu/Menu";
 function Top() {
+  const [menuControl, setMenuControl] = useState<boolean>(false);
   const serverPath = window.location.pathname;
   const workRef = useRef<HTMLSpanElement | null>(null);
   const servicesRef = useRef<HTMLSpanElement | null>(null);
@@ -72,60 +74,68 @@ function Top() {
     }
   }, [serverPath]);
   return (
-    <div className="flex w-full h-28.75 items-center lg:p-10 p-7 sm:pt-16 sm:pb-16   bg-white sticky top-0 z-10">
-      <div className="flex">
-        <div className="w-7  sm:w-8 h-10">
-          <img src={Logo} alt="logo"></img>
+    <>
+      <div className="flex w-full h-28.75 items-center lg:p-10 p-7 sm:pt-16 sm:pb-16   bg-white sticky top-0 z-10">
+        <div className="flex">
+          <div className="w-7  sm:w-8 h-10">
+            <img src={Logo} alt="logo"></img>
+          </div>
+          <span className="mt-0.5">
+            <h5 className="font-inter font-semibold text-[1.1rem]">D'RAHIM</h5>
+            <h5 className="-mt-1 font-semibold text-[0.5rem]">
+              TECH INNOVATION
+            </h5>
+          </span>
         </div>
-        <span className="mt-0.5">
-          <h5 className="font-inter font-semibold text-[1.1rem]">D'RAHIM</h5>
-          <h5 className="-mt-1 font-semibold text-[0.5rem]">TECH INNOVATION</h5>
-        </span>
+        <div className="sm:flex gap-6 ml-auto hidden">
+          <span
+            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+            onClick={work}
+            ref={workRef}
+          >
+            <h5>Work</h5>
+          </span>
+          <span
+            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+            onClick={services}
+            ref={servicesRef}
+          >
+            <h5>Services</h5>
+          </span>
+          <span
+            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+            onClick={about}
+            ref={aboutRef}
+          >
+            <h5>About</h5>
+          </span>
+          <span
+            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+            onClick={mentorship}
+            ref={mentorshipRef}
+          >
+            <h5>Mentorship</h5>
+          </span>
+        </div>
+        <div className="hidden sm:block ml-auto ">
+          <span
+            className="block w-fit h-fit lg:p-2 p-1 lg:pl-7 lg:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
+            onClick={contact}
+          >
+            <h5 className="text-white ourWorkHeadMenu  font-inter ">
+              Get In Touch{" "}
+            </h5>
+          </span>
+        </div>
+        <div className="block sm:hidden ml-auto">
+          <i
+            className="fa fa-bars text-[1.5rem]"
+            onClick={() => setMenuControl(!menuControl)}
+          ></i>
+        </div>
       </div>
-      <div className="sm:flex gap-6 ml-auto hidden">
-        <span
-          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-          onClick={work}
-          ref={workRef}
-        >
-          <h5>Work</h5>
-        </span>
-        <span
-          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-          onClick={services}
-          ref={servicesRef}
-        >
-          <h5>Services</h5>
-        </span>
-        <span
-          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-          onClick={about}
-          ref={aboutRef}
-        >
-          <h5>About</h5>
-        </span>
-        <span
-          className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-          onClick={mentorship}
-          ref={mentorshipRef}
-        >
-          <h5>Mentorship</h5>
-        </span>
-      </div>
-      <div className="hidden sm:block ml-auto ">
-        <span
-          className="block w-fit h-fit lg:p-2 p-1 lg:pl-7 lg:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
-          onClick={contact}
-        >
-          <h5 className="text-white ourWorkHeadMenu  font-inter ">
-            Get In Touch{" "}
-          </h5>
-        </span>
-      </div>
-      <div className="block sm:hidden ml-auto">
-        <i className="fa fa-bars text-[1.5rem]"></i>
-      </div>
-    </div>
+      {menuControl && <Menu setMenuControl={setMenuControl} />}
+    </>
   );
 }
 export default Top;
