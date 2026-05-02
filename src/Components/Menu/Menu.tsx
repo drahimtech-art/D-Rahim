@@ -48,7 +48,10 @@ function Menu(props: MenuControl) {
         >
           <h5>Work</h5>
         </span>
-        <span className="p-2.5 menuText text-gray-200 font-inter font-semibold ">
+        <span
+          className="p-2.5 menuText text-gray-200 font-inter font-semibold "
+          onClick={services}
+        >
           <h5>Services</h5>
         </span>
         <span
