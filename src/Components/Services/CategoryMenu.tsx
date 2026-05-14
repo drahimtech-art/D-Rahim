@@ -8,16 +8,19 @@ function CategoryMenu() {
     <div className="pl-16 pr-16  ">
       {/** */}
       <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
-        <span className="w-full" onClick={() => setOptionOne(!optionOne)}>
-          <h5 className="serviceMenuText font-inter font-medium">
+        <span
+          className="w-full flex  relative"
+          onClick={() => setOptionOne(!optionOne)}
+        >
+          <h5 className=" serviceMenuText font-inter font-medium">
             Digital Product Design
           </h5>
         </span>
-        <span className=" ml-20">
-          <span className=" flex" onClick={() => setOptionOne(!optionOne)}>
+        <span className="ml-20 mt-5">
+          <span className=" flex " onClick={() => setOptionOne(!optionOne)}>
             {optionOne ? (
               <i
-                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionOne(!optionOne)}
               ></i>
             ) : (
@@ -50,11 +53,11 @@ function CategoryMenu() {
             Website Design
           </h5>
         </span>
-        <span className="ml-20 ">
+        <span className="ml-20 mt-5 ">
           <span className="flex" onClick={() => setOptionTwo(!optionTwo)}>
             {optionTwo ? (
               <i
-                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionTwo(!optionTwo)}
               ></i>
             ) : (
@@ -84,11 +87,11 @@ function CategoryMenu() {
         <span className="w-full" onClick={() => setOptionThree(!optionThree)}>
           <h5 className="serviceMenuText font-inter font-medium">Branding</h5>
         </span>
-        <span className=" ml-20">
+        <span className="ml-20 mt-5">
           <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
             {optionThree ? (
               <i
-                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionThree(!optionThree)}
               ></i>
             ) : (
@@ -121,11 +124,11 @@ function CategoryMenu() {
             Development
           </h5>
         </span>
-        <span className=" ml-20">
+        <span className="ml-20 mt-5">
           <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
             {optionFour ? (
               <i
-                className=" fas fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"
+                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
                 onClick={() => setOptionFour(!optionFour)}
               ></i>
             ) : (

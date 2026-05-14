@@ -24,33 +24,33 @@ function EndSubMenuAndText() {
       </div>
       <div className="pl-10 pr-10 mt-20">
         <div className="flex gap-10 justify-around">
-          <div className="relative w-75.75  max-h-75.75 ">
+          <div className="relative w-full  max-h-171.5 ">
             <img
-              className="rounded-4xl w-full 75.75 max-h-75.75 "
+              className="rounded-4xl w-full 75.75 max-h-171.5 "
               src={cv1Image}
             ></img>
             <span className="">
               <img
-                className="75.75 max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv1}
               ></img>
             </span>
           </div>
-          <div className="relative w-75.75   max-h-75.75 ">
+          <div className="relative w-full   max-h-171.5 ">
             <img
-              className="rounded-4xl 75.75 max-h-75.75 "
+              className="rounded-4xl w-full max-h-171.5 "
               src={cv2Image}
             ></img>
             <span className="">
               <img
-                className="75.75 max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv2}
               ></img>
             </span>
           </div>
-          <div className="relative w-75.75  max-h-75.75 ">
+          <div className="relative w-full  max-h-171.5 ">
             <img
-              className="rounded-4xl w-full max-h-75.75 "
+              className="rounded-4xl w-full max-h-171.5 "
               src={cv3Image}
             ></img>
             <span className="">
@@ -60,11 +60,14 @@ function EndSubMenuAndText() {
               ></img>
             </span>
           </div>
-          <div className="relative w-75.75  max-h-75.75 ">
-            <img className="rounded-4xl   max-h-75.75 " src={cv4Image}></img>
+          <div className="relative w-full  max-h-171.5 ">
+            <img
+              className="rounded-4xl w-full max-h-171.5 "
+              src={cv4Image}
+            ></img>
             <span className="">
               <img
-                className=" max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
                 src={cv4}
               ></img>
             </span>

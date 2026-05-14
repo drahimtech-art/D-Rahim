@@ -12,18 +12,21 @@ import cv5Image from "/images/7.png";
 function ServiceCard() {
   return (
     <div className="mt-20 pl-10 pr-10  w-full  max-h-171.5">
-      <div className="grid grid-cols-2 ">
-        <div className="relative max-h-171.5">
-          <img className="rounded-4xl w-full max-h-171.5 " src={cv1Image}></img>
+      <div className="grid grid-cols-2 gap-4 ">
+        <div className="relative  max-h-171.5 bg-[#bdb9b9] rounded-4xl w-full h-full ">
+          <img
+            className="rounded-4xl w-full max-h-171.5 bg-[#bdb9b9]"
+            src={cv1Image}
+          ></img>
           <span className="">
             <img
-              className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+              className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
               src={cv1}
             ></img>
           </span>
         </div>
-        <div className="grid grid-cols-2 gap-2 ml-5 w-full">
-          <div className="relative w-full h-full  ml-auto mr-auto max-w-80.75 max-h-80.75">
+        <div className="grid grid-cols-2 gap-4  w-full">
+          <div className="relative w-full h-full mr-2   max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv2Image}></img>
             <span className="">
               <img
@@ -32,7 +35,7 @@ function ServiceCard() {
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full  ml-auto mr-auto  max-w-80.75 max-h-80.75">
+          <div className="relative w-full h-full     max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv3Image}></img>
             <span className="">
               <img
@@ -41,7 +44,7 @@ function ServiceCard() {
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full  ml-auto mr-auto mb-0 max-w-80.75 max-h-80.75">
+          <div className="relative w-full h-full   mb-0  max-h-80.75">
             <img className="rounded-4xl w-full h-full" src={cv4Image}></img>
             <span className="">
               <img
@@ -50,7 +53,7 @@ function ServiceCard() {
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full  ml-auto mr-auto mb-0 max-w-80.75 max-h-80.75">
+          <div className="relative w-full h-full   mb-0  max-h-80.75">
             <img className="rounded-4xl w-full h-full " src={cv5Image}></img>
             <span className="">
               <img

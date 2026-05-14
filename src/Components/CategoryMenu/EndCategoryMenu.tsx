@@ -19,7 +19,7 @@ function EndCategoryMenu() {
             {!option1 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
           {option1 && (
@@ -42,7 +42,7 @@ function EndCategoryMenu() {
             {!option2 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 
@@ -64,7 +64,7 @@ function EndCategoryMenu() {
             {!option3 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 
@@ -88,7 +88,7 @@ function EndCategoryMenu() {
             {!option4 ? (
               <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-minus ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 
