@@ -149,3 +149,19 @@
 .max20px {
   font-size: clamp(18px, 3vw, 20px);
 }
+.dropDownMenuAnimation {
+  position: absolute;
+  opacity: 0;
+  top: 100%;
+  left: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+}
+.dropDownMenuAnimation-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}

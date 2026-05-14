@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy } from "react";
+import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
 import Service from "./Components/Services/Service";
 const About = lazy(() => import("./Components/About/About"));
@@ -11,27 +12,33 @@ function App() {
     [
       {
         path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/services",
-        element: <Service />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/mentorship",
-        element: <Mentorship />,
-      },
-      {
-        path: "/contact",
-        element: <GetInTouch />,
-      },
-      {
-        path: "/book/call",
-        element: <BookACall />,
+        element: <ScrollToTop />,
+        children: [
+          {
+            path: "/",
+            element: <Home />,
+          },
+          {
+            path: "/services",
+            element: <Service />,
+          },
+          {
+            path: "/about",
+            element: <About />,
+          },
+          {
+            path: "/mentorship",
+            element: <Mentorship />,
+          },
+          {
+            path: "/contact",
+            element: <GetInTouch />,
+          },
+          {
+            path: "/book/call",
+            element: <BookACall />,
+          },
+        ],
       },
     ],
     {
@@ -40,7 +47,7 @@ function App() {
   );
   return (
     <>
-      <RouterProvider router={routes} />
+      <RouterProvider router={routes}></RouterProvider>
     </>
   );
 }

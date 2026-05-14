@@ -1,9 +1,50 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 function CategoryMenu() {
   const [optionOne, setOptionOne] = useState<boolean>(true);
   const [optionTwo, setOptionTwo] = useState<boolean>(false);
   const [optionThree, setOptionThree] = useState<boolean>(false);
   const [optionFour, setOptionFour] = useState<boolean>(false);
+  const dropdownMenuRef1 = useRef<HTMLDivElement | null>(null);
+  const dropdownMenuRef2 = useRef<HTMLDivElement | null>(null);
+  const dropdownMenuRef3 = useRef<HTMLDivElement | null>(null);
+  const dropdownMenuRef4 = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (
+      !dropdownMenuRef1.current ||
+      !dropdownMenuRef2.current ||
+      !dropdownMenuRef3.current ||
+      !dropdownMenuRef4.current
+    )
+      return;
+    if (optionOne) {
+      dropdownMenuRef1.current.classList.remove("dropDownMenuAnimation");
+      dropdownMenuRef1.current.classList.add("dropDownMenuAnimation-open");
+    } else {
+      dropdownMenuRef1.current.classList.remove("dropDownMenuAnimation-open");
+      dropdownMenuRef1.current.classList.add("dropDownMenuAnimation");
+    }
+    if (optionTwo) {
+      dropdownMenuRef2.current.classList.remove("dropDownMenuAnimation");
+      dropdownMenuRef2.current.classList.add("dropDownMenuAnimation-open");
+    } else {
+      dropdownMenuRef2.current.classList.remove("dropDownMenuAnimation-open");
+      dropdownMenuRef2.current.classList.add("dropDownMenuAnimation");
+    }
+    if (optionThree) {
+      dropdownMenuRef3.current.classList.remove("dropDownMenuAnimation");
+      dropdownMenuRef3.current.classList.add("dropDownMenuAnimation-open");
+    } else {
+      dropdownMenuRef3.current.classList.remove("dropDownMenuAnimation-open");
+      dropdownMenuRef3.current.classList.add("dropDownMenuAnimation");
+    }
+    if (optionFour) {
+      dropdownMenuRef4.current.classList.remove("dropDownMenuAnimation");
+      dropdownMenuRef4.current.classList.add("dropDownMenuAnimation-open");
+    } else {
+      dropdownMenuRef4.current.classList.remove("dropDownMenuAnimation-open");
+      dropdownMenuRef4.current.classList.add("dropDownMenuAnimation");
+    }
+  }, [optionOne, optionTwo, optionThree, optionFour]);
   return (
     <div className="pl-16 pr-16  ">
       {/** */}
@@ -30,8 +71,8 @@ function CategoryMenu() {
               ></i>
             )}
           </span>
-          {optionOne && (
-            <div className=" w-86.77 ">
+          <div className="relative">
+            <div className=" w-86.77 " ref={dropdownMenuRef1}>
               <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
                 <h5>Market & User Research</h5>
                 <h5> Product Strategy & Road Mapping </h5>
@@ -43,7 +84,7 @@ function CategoryMenu() {
                 </span>
               </span>
             </div>
-          )}
+          </div>
         </span>
       </div>
       {/** */}
@@ -68,8 +109,11 @@ function CategoryMenu() {
             )}
           </span>
 
-          {optionTwo && (
-            <div className="  w-86.77">
+          <div className="relative">
+            <div
+              className="block w-86.77 dropDownMenuAnimation"
+              ref={dropdownMenuRef2}
+            >
               <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
                 <h5>Web Design</h5>
                 <h5> Development & Testing</h5>
@@ -79,7 +123,7 @@ function CategoryMenu() {
                 </span>
               </span>
             </div>
-          )}
+          </div>
         </span>
       </div>
       {/** */}
