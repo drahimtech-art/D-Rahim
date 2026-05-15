@@ -21,27 +21,39 @@ const productData: Array<OurWorkData[]> = [
   [
     {
       image: image0,
-      text: "Branding 🇳🇬",
+      text: "ALHAFIZ FOUNDATION",
+      subText:
+        "A mobile health companion designed to put essential healthcare services directly in the hands of users.",
     },
     {
       image: image1,
-      text: "Mobile Design 🇳🇬",
+      text: "Wankard Mobile App",
+      subText:
+        "A fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions.",
     },
     {
       image: image2,
-      text: "Mobile Design 🇳🇬",
+      text: "Jobified Mobile app",
+      subText:
+        "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
     },
     {
       image: image3,
-      text: "Mobile Design 🇳🇬",
+      text: "Snap Mobile app",
+      subText:
+        "This case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
     },
     {
       image: image4,
-      text: "Mobile Design 🇳🇬",
+      text: "Finance All Website",
+      subText:
+        "A financial dashboard designed to provide a clear, real-time overview of personal and business finances. It delivers insights and analytics.",
     },
     {
       image: image5,
-      text: "Mobile Design 🇳🇬",
+      text: "Travel Express Mobile App",
+      subText:
+        "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
     },
   ],
   [

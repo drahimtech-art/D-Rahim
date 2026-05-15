@@ -3,15 +3,15 @@ import abdulmalikImg from "/images/26.png";
 import victoryImg from "/images/28.png";
 function OurTerms() {
   return (
-    <div className="mt-10 sm:mt-27.25 lg:pl-10 lg:pr-10 pl-5 pr-5 w-full">
+    <div className="mt-10 lg:mt-27.25 lg:pl-10 lg:pr-10 pl-5 pr-5 w-full">
       <span>
         <h5 className="fontPoppins font-semibold font-size-heading">
           Our Teams
         </h5>
       </span>
-      <div className="mt-10 sm:mt-15 flex flex-wrap sm:grid sm:grid-cols-3 lg:max-h-203 justify-evenly gap-10">
-        <div className="flex flex-col sm:h-203">
-          <span className=" max-h-107.75">
+      <div className="mt-10 lg:mt-15 flex flex-wrap lg:grid lg:grid-cols-3 lg:max-h-203 justify-evenly gap-10">
+        <div className="flex flex-col lg:h-203">
+          <span className=" max-h-175">
             <img className="w-full h-full rounded-3xl" src={jimohImg}></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
@@ -20,7 +20,7 @@ function OurTerms() {
           <h5 className="font-inter ourTermHeadSubText font-medium ">
             Founder & CEO
           </h5>
-          <h5 className="font-inter line-clamp-4 font-medium ourWorkHeadMenu text-gray-600 ">
+          <h5 className="font-inter line-clamp-4  ourWorkHeadMenu text-gray-600 ">
             A passionate UI/UX designer focused on helping startups & founders,
             tech entrepreneurs, developers & software teams, e-commerce sellers,
             small & medium businesses, nonprofits & NGO, creative professionals
@@ -35,7 +35,7 @@ function OurTerms() {
           </a>
         </div>
         <div className="flex flex-col ">
-          <span className="   max-h-107.75">
+          <span className="   max-h-175">
             <img
               className="w-full h-full rounded-3xl"
               src={abdulmalikImg}
@@ -47,7 +47,7 @@ function OurTerms() {
           <h5 className="font-inter ourTermHeadSubText font-medium">
             Co-Founder
           </h5>
-          <h5 className="font-inter line-clamp-4 font-medium ourWorkHeadMenu text-gray-600">
+          <h5 className="font-inter line-clamp-4  ourWorkHeadMenu text-gray-600">
             A detail-oriented UI/UX Designer helping brands and startups turn
             ideas into user-friendly, engaging digital products. I focus on
             creating clean, functional designs that make an impact, always with
@@ -62,7 +62,7 @@ function OurTerms() {
           </a>
         </div>
         <div className="flex flex-col ">
-          <span className="   max-h-107.75 ">
+          <span className="   max-h-175 ">
             <img className="w-full h-full " src={victoryImg}></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
@@ -71,7 +71,7 @@ function OurTerms() {
           <h5 className="font-inter ourTermHeadSubText font-medium">
             Full-stack Developer
           </h5>
-          <h5 className="font-inter line-clamp-4 font-medium ourWorkHeadMenu text-gray-600">
+          <h5 className="font-inter line-clamp-4  ourWorkHeadMenu text-gray-600">
             A full stack developer focused on building scalable high-performance
             web application that deliver real business value specialized in
             developing end-to -end solution from responsive, frontend to

@@ -9,6 +9,7 @@ function Top() {
   const servicesRef = useRef<HTMLSpanElement | null>(null);
   const aboutRef = useRef<HTMLSpanElement | null>(null);
   const mentorshipRef = useRef<HTMLSpanElement | null>(null);
+  const menuDivRef = useRef<HTMLDivElement | null>(null);
   const urlNavigator = useNavigate();
   function services() {
     urlNavigator("/services", { replace: true });
@@ -73,11 +74,21 @@ function Top() {
       }
     }
   }, [serverPath]);
+  useEffect(() => {
+    if (!menuDivRef.current) return;
+    if (menuControl) {
+      menuDivRef.current.classList.remove("menuAnimationSlideIn");
+      menuDivRef.current.classList.add("menuAnimationSlideIn-open");
+    } else {
+      menuDivRef.current.classList.remove("menuAnimationSlideIn-open");
+      menuDivRef.current.classList.add("menuAnimationSlideIn");
+    }
+  }, [menuControl]);
   return (
     <>
-      <div className="flex w-full h-28.75 items-center lg:p-10 p-7 sm:pt-16 sm:pb-16   bg-white sticky top-0 z-10">
+      <div className="flex w-full max-h-28.75 items-center lg:p-10 p-5    bg-white sticky top-0 z-10">
         <div className="flex">
-          <div className="w-7  sm:w-8 h-10">
+          <div className="w-7  lg:w-8 h-10">
             <img src={Logo} alt="logo"></img>
           </div>
           <span className="mt-0.5">
@@ -87,7 +98,7 @@ function Top() {
             </h5>
           </span>
         </div>
-        <div className="sm:flex gap-6 ml-auto hidden">
+        <div className="lg:flex gap-6 ml-auto hidden">
           <span
             className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
             onClick={work}
@@ -117,7 +128,7 @@ function Top() {
             <h5>Mentorship</h5>
           </span>
         </div>
-        <div className="hidden sm:block ml-auto ">
+        <div className="hidden lg:block ml-auto ">
           <span
             className="block w-fit h-fit lg:p-2 p-1 lg:pl-7 lg:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
             onClick={contact}
@@ -127,14 +138,16 @@ function Top() {
             </h5>
           </span>
         </div>
-        <div className="block sm:hidden ml-auto">
+        <div className="block lg:hidden ml-auto">
           <i
             className="fa fa-bars text-[1.5rem]"
             onClick={() => setMenuControl(!menuControl)}
           ></i>
         </div>
       </div>
-      {menuControl && <Menu setMenuControl={setMenuControl} />}
+      <div className="menuAnimationSlideIn lg:hidden" ref={menuDivRef}>
+        <Menu setMenuControl={setMenuControl} />
+      </div>
     </>
   );
 }
