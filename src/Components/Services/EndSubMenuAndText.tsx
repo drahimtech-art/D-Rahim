@@ -22,7 +22,7 @@ function EndSubMenuAndText() {
           </h5>
         </span>
       </div>
-      <div className="pl-10 pr-10 mt-20">
+      <div className="-mb-10 sm:-mb-80 pl-10 pr-10 mt-20 ">
         <div className="flex gap-10 justify-around">
           <div className="relative w-full  max-h-171.5 ">
             <img
@@ -31,7 +31,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv1}
               ></img>
             </span>
@@ -43,7 +43,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv2}
               ></img>
             </span>
@@ -55,7 +55,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv3}
               ></img>
             </span>
@@ -67,7 +67,7 @@ function EndSubMenuAndText() {
             ></img>
             <span className="">
               <img
-                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full max-h-171.5 absolute  top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv4}
               ></img>
             </span>

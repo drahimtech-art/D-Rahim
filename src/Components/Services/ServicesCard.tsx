@@ -4,8 +4,8 @@ import cv2 from "/images/c3.png";
 import cv2Image from "/images/11.png";
 import cv3 from "/images/c6.png";
 import cv3Image from "/images/15.png";
-import cv4 from "/images/c9.png";
-import cv4Image from "/images/20.png";
+import cv4 from "/images/hr.png";
+import cv4Image from "/images/2.png";
 import cv5 from "/images/c7.png";
 import cv5Image from "/images/7.png";
 
@@ -20,45 +20,45 @@ function ServiceCard() {
           ></img>
           <span className="">
             <img
-              className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+              className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
               src={cv1}
             ></img>
           </span>
         </div>
-        <div className="grid grid-cols-2 gap-4  w-full">
-          <div className="relative w-full h-full mr-2   max-h-80.75">
+        <div className="grid grid-cols-2 gap-4 max-h-171.5 w-full">
+          <div className="relative w-full h-full   max-h-81    ">
             <img className="rounded-4xl w-full h-full" src={cv2Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv2}
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full     max-h-80.75">
+          <div className="relative w-full h-full   max-h-81   ">
             <img className="rounded-4xl w-full h-full" src={cv3Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv3}
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full   mb-0  max-h-80.75">
-            <img className="rounded-4xl w-full h-full" src={cv4Image}></img>
-            <span className="">
-              <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
-                src={cv4}
-              ></img>
-            </span>
-          </div>
-          <div className="relative w-full h-full   mb-0  max-h-80.75">
+          <div className="relative w-full h-full   max-h-81   mb-0  ">
             <img className="rounded-4xl w-full h-full " src={cv5Image}></img>
             <span className="">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:hidden transition-all"
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
                 src={cv5}
+              ></img>
+            </span>
+          </div>
+          <div className="relative w-full h-full   max-h-81   mb-0  ">
+            <img className="rounded-4xl w-full h-full" src={cv4Image}></img>
+            <span className="">
+              <img
+                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
+                src={cv4}
               ></img>
             </span>
           </div>

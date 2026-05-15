@@ -16,6 +16,7 @@ function CategoryMenu() {
       !dropdownMenuRef4.current
     )
       return;
+
     if (optionOne) {
       dropdownMenuRef1.current.classList.remove("dropDownMenuAnimation");
       dropdownMenuRef1.current.classList.add("dropDownMenuAnimation-open");
@@ -46,7 +47,7 @@ function CategoryMenu() {
     }
   }, [optionOne, optionTwo, optionThree, optionFour]);
   return (
-    <div className="pl-16 pr-16  ">
+    <div className="pl-16 pr-16  pointer">
       {/** */}
       <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
         <span
@@ -72,8 +73,8 @@ function CategoryMenu() {
             )}
           </span>
           <div className="relative">
-            <div className=" w-86.77 " ref={dropdownMenuRef1}>
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
+            <div className=" w-86.77 block" ref={dropdownMenuRef1}>
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
                 <h5>Market & User Research</h5>
                 <h5> Product Strategy & Road Mapping </h5>
                 <h5>UI/UX Design</h5>
@@ -109,20 +110,18 @@ function CategoryMenu() {
             )}
           </span>
 
-          <div className="relative">
-            <div
-              className="block w-86.77 dropDownMenuAnimation"
+          <div className="relative ">
+            <span
+              className=" font-inter font-medium  logoMainText flex flex-col gap-2.5 "
               ref={dropdownMenuRef2}
             >
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
-                <h5>Web Design</h5>
-                <h5> Development & Testing</h5>
-                <h5>Launch & Maintenace</h5>
-                <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
-                  <h5>Discover all services we provide </h5>
-                </span>
+              <h5>Web Design</h5>
+              <h5> Development & Testing</h5>
+              <h5>Launch & Maintenace</h5>
+              <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+                <h5>Discover all services we provide </h5>
               </span>
-            </div>
+            </span>
           </div>
         </span>
       </div>
@@ -145,9 +144,9 @@ function CategoryMenu() {
               ></i>
             )}
           </span>
-          {optionThree && (
-            <div className=" w-86.77">
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5">
+          <div className="relative">
+            <div className=" w-86.77" ref={dropdownMenuRef3}>
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
                 <h5>Visual Audit</h5>
                 <h5> Logo & Visual Identity </h5>
                 <h5>UI/UX Design</h5>
@@ -158,7 +157,7 @@ function CategoryMenu() {
                 </span>
               </span>
             </div>
-          )}
+          </div>
         </span>
       </div>
       {/** */}
@@ -169,7 +168,7 @@ function CategoryMenu() {
           </h5>
         </span>
         <span className="ml-20 mt-5">
-          <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
+          <span className=" flex" onClick={() => setOptionFour(!optionFour)}>
             {optionFour ? (
               <i
                 className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
@@ -182,9 +181,9 @@ function CategoryMenu() {
               ></i>
             )}
           </span>
-          {optionFour && (
-            <div className=" w-86.77">
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-4.5">
+          <div className="relative">
+            <div className=" w-86.77" ref={dropdownMenuRef4}>
+              <span className="font-inter font-medium  logoMainText flex flex-col gap-4.5 ">
                 <h5>Technology Consulting</h5>
                 <h5> Mobile App Development </h5>
                 <h5>Frontend Web Development</h5>
@@ -194,7 +193,7 @@ function CategoryMenu() {
                 </span>
               </span>
             </div>
-          )}
+          </div>
         </span>
       </div>
     </div>

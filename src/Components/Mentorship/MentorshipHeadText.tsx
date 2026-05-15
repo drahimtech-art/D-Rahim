@@ -7,7 +7,7 @@ function MentorshipHeadText() {
         </h5>
       </div>
       <div>
-        <h5 className="sm:max-w-150 font-inter font-medium ourWorkHeadMenu ">
+        <h5 className="sm:max-w-150 font-inter  ourWorkHeadMenu ">
           Join our mentorship program to learn UI?UX design from the ground up,
           gain real-world experience and build a portfolio that gets you hired.
         </h5>

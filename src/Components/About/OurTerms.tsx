@@ -20,14 +20,14 @@ function OurTerms() {
           <h5 className="font-inter ourTermHeadSubText font-medium ">
             Founder & CEO
           </h5>
-          <h5 className="font-inter line-clamp-5 font-medium ourWorkHeadMenu text-gray-600 ">
+          <h5 className="font-inter line-clamp-4 font-medium ourWorkHeadMenu text-gray-600 ">
             A passionate UI/UX designer focused on helping startups & founders,
             tech entrepreneurs, developers & software teams, e-commerce sellers,
             small & medium businesses, nonprofits & NGO, creative professionals
             to build simple, beautiful, and user-friendly digital products.
           </h5>
           <a
-            className="w-fit font-inter line-clamp-5 font-medium ourWorkHeadMenu text-blue-600 pb border-b-2 border-blue-600"
+            className="w-fit font-inter line-clamp-4 font-medium ourWorkHeadMenu text-blue-600 pb border-b-2 border-blue-600"
             target="_blank"
             href="https://www.linkedin.com/in/jimoh-abdulrahim-a81378318/"
           >
@@ -47,14 +47,14 @@ function OurTerms() {
           <h5 className="font-inter ourTermHeadSubText font-medium">
             Co-Founder
           </h5>
-          <h5 className="font-inter line-clamp-5 font-medium ourWorkHeadMenu text-gray-600">
+          <h5 className="font-inter line-clamp-4 font-medium ourWorkHeadMenu text-gray-600">
             A detail-oriented UI/UX Designer helping brands and startups turn
             ideas into user-friendly, engaging digital products. I focus on
             creating clean, functional designs that make an impact, always with
             the user in mind.
           </h5>
           <a
-            className="w-fit font-inter line-clamp-5 font-medium ourWorkHeadMenu text-blue-600 pb border-b-2 border-blue-600"
+            className="w-fit font-inter line-clamp-4 font-medium ourWorkHeadMenu text-blue-600 pb border-b-2 border-blue-600"
             target="_blank"
             href="https://www.linkedin.com/in/abdulmalik-mohammed-0b90a32b4/"
           >
@@ -71,14 +71,14 @@ function OurTerms() {
           <h5 className="font-inter ourTermHeadSubText font-medium">
             Full-stack Developer
           </h5>
-          <h5 className="font-inter line-clamp-5 font-medium ourWorkHeadMenu text-gray-600">
+          <h5 className="font-inter line-clamp-4 font-medium ourWorkHeadMenu text-gray-600">
             A full stack developer focused on building scalable high-performance
             web application that deliver real business value specialized in
             developing end-to -end solution from responsive, frontend to
             efficient, maintainable backend systems.
           </h5>
           <a
-            className="w-fit font-inter line-clamp-5 font-medium ourWorkHeadMenu text-blue-600 pb border-b-2 border-blue-600"
+            className="w-fit font-inter line-clamp-4 font-medium ourWorkHeadMenu text-blue-600 pb border-b-2 border-blue-600"
             target="_blank"
             href="https://www.linkedin.com/in/victory-nwanoruo-2189493b4/"
           >

@@ -5,7 +5,7 @@ function SubHeadText() {
         <h5 className="fontPoppins font-semibold text-[60px] ">
           Delivering Solutions Across Many Industries
         </h5>
-        <h5 className="font-inter text-[24px] font-medium max-w-181.5">
+        <h5 className="font-inter text-[24px]  max-w-181.5">
           At every stage of the business lifecycle, we turn digital potential
           into impactful user-centered design and branding for systems, apps,
           and websites. We blend client insights with our expertise to solve

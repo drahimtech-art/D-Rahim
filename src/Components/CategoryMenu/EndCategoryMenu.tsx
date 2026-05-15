@@ -46,11 +46,11 @@ function EndCategoryMenu() {
     }
   }, [option1, option2, option3, option4]);
   return (
-    <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col sm:mt-27.25 mt-10 w-full ">
+    <div className=" lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col sm:mt-27.25 mt-10 w-full ">
       <span className="block">
         <h5 className=" font-semibold font-size-heading">Our Values</h5>
       </span>
-      <div className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5">
+      <div className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5 pointer">
         <span
           className="flex flex-col pt-2 pb-2 border-t-2 border-b-2 transition-all"
           onClick={() => setOption1(!option1)}
