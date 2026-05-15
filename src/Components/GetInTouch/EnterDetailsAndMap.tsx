@@ -73,6 +73,9 @@ function EnterDetailsAndMap() {
           <h5 className="font-semibold logoMainText">Find Us On The Map</h5>
         </span>
         <div className="mt-2 w-full h-[50%] max-h-112.5 bg-gray-900 rounded-2xl"></div>
+        <span className="flex justify-center mt-25">
+          <i className="fa-brands fa-whatsapp sm:text-[5rem] text-green-600"></i>
+        </span>
       </div>
     </div>
   );
