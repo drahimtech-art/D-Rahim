@@ -71,6 +71,40 @@ function Category() {
   const oneRef = useRef<HTMLHeadingElement>(null);
   const twoRef = useRef<HTMLHeadingElement>(null);
   const threeRef = useRef<HTMLHeadingElement>(null);
+  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>([]);
+  const [allProductsControl, setAllProductsControl] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!allProductsControl) return;
+    const data = products();
+    let newArray: OurWorkData[] = [];
+    for (const array of data) {
+      for (const element of array) {
+        newArray.push(element);
+      }
+    }
+    (() => {
+      const copyArray = [...newArray];
+      const newData: OurWorkData[] = [];
+      for (let i = 0; i < copyArray.length; i++) {
+        if (newData.length > 1) {
+          let pass = false;
+          for (let j = 0; j < newData.length; j++) {
+            if (newData[j].image === copyArray[i].image) {
+              pass = true;
+            }
+          }
+          if (!pass) {
+            newData.push(copyArray[i]);
+          }
+        } else {
+          newData.push(copyArray[i]);
+        }
+      }
+      setAllProductsMoblie([...newData]);
+      setAllProductsControl(false);
+    })();
+  }, [allProductsControl]);
   function projectCliked() {
     if (
       !projectRef.current ||
@@ -116,7 +150,9 @@ function Category() {
       "text-black",
     );
     setOurWorkFirstRender(true);
-    return setOurWorkRender(ourWorkData[0]);
+    console.log("all");
+    setAllProductsControl(true);
+    return setOurWorkRender([...ourWorkData[0]]);
   }
   function mDesignCliked() {
     if (
@@ -164,7 +200,9 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    return setOurWorkRender(ourWorkData[1]);
+    setAllProductsMoblie([...ourWorkData[1]]);
+    setAllProductsControl(false);
+    return setOurWorkRender([...ourWorkData[1]]);
   }
   function wDesignCliked() {
     if (
@@ -212,7 +250,9 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    return setOurWorkRender(ourWorkData[2]);
+    setAllProductsMoblie([...ourWorkData[2]]);
+    setAllProductsControl(false);
+    return setOurWorkRender([...ourWorkData[2]]);
   }
   function brandingCliked() {
     if (
@@ -260,7 +300,9 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    return setOurWorkRender(ourWorkData[3]);
+    setAllProductsMoblie([...ourWorkData[3]]);
+    setAllProductsControl(false);
+    return setOurWorkRender([...ourWorkData[3]]);
   }
   function countPlus() {
     if (firstRenderCount === 3) return;
@@ -340,7 +382,14 @@ function Category() {
           <h5>Branding</h5>
         </span>
       </div>
-      <CardList body={ourWorkRender} />
+      <div>
+        <span className="hidden sm:block">
+          <CardList body={ourWorkRender} />
+        </span>
+        <span className="block sm:hidden">
+          <CardList body={allProductsMoblie} />
+        </span>
+      </div>
       {ourWorkFirstRender && (
         <div className="hidden lg:flex justify-center gap-6 lg:mt-16 mt-8 ">
           <span
