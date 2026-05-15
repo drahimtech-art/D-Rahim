@@ -86,7 +86,7 @@ function High() {
         </span>
       </span>
       <div className="flex w-full justify-center pb-5">
-        <span className="w-fit h-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 bg-[#D4AF37] rounded-full">
+        <span className="w-fit h-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 bg-[#D4AF37] rounded-full pointer">
           <h5 className="font-inter font-medium text-[20px] text-[#191919]">
             Select Plan
           </h5>
