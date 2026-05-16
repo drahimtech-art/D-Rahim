@@ -86,7 +86,7 @@ function Top() {
   }, [menuControl]);
   return (
     <>
-      <div className="flex w-full max-h-28.75 items-center lg:p-10 p-5    bg-white sticky top-0 z-10">
+      <div className="flex w-full max-h-28.75 items-center lg:p-10 p-5    bg-white sticky top-0 z-5">
         <div className="flex">
           <div className="w-7  lg:w-8 h-10">
             <img src={Logo} alt="logo"></img>

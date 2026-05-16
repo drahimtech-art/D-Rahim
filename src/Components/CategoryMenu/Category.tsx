@@ -68,9 +68,9 @@ function Category() {
   );
   const [ourWorkFirstRender, setOurWorkFirstRender] = useState<boolean>(true);
   const [firstRenderCount, setFirstRenderCount] = useState<number>(1);
-  const oneRef = useRef<HTMLHeadingElement>(null);
-  const twoRef = useRef<HTMLHeadingElement>(null);
-  const threeRef = useRef<HTMLHeadingElement>(null);
+  const oneRef = useRef<HTMLHeadingElement | null>(null);
+  const twoRef = useRef<HTMLHeadingElement | null>(null);
+  const threeRef = useRef<HTMLHeadingElement | null>(null);
   const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>([]);
   const [allProductsControl, setAllProductsControl] = useState<boolean>(true);
 
@@ -150,7 +150,6 @@ function Category() {
       "text-black",
     );
     setOurWorkFirstRender(true);
-    console.log("all");
     setAllProductsControl(true);
     return setOurWorkRender([...ourWorkData[0]]);
   }
@@ -354,39 +353,39 @@ function Category() {
       </div>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:flex-row flex flex-col mt-10 lg:mt-15 lg:gap-9.5 gap-4  lg:max-w-full overflow-hidden pb-2 ">
         <span
-          className="w-fit lg:w-[30%]   max-w-57.25 lg:pl-0 lg:pr-0  pl-5 pr-5  flex  justify-center items-center   h-12.5 font-inter   ourWorkHeadMenu  border-primary-green bg-primary-green  border   text-gray-200 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="w-fit  p-2.5 pl-7.5 pr-7.5 flex  justify-center items-center   h-fit font-inter   ourWorkHeadMenu  border-primary-green bg-primary-green  border   text-gray-200 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={projectRef}
           onClick={projectCliked}
         >
           <h5 className="">All Projects</h5>
         </span>
         <span
-          className="  w-fit lg:w-[30%] pl-5 pr-5 lg:pl-0 lg:pr-0 max-w-57.25 flex justify-center items-center  h-12.5 font-inter ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="  w-fit  p-2.5 pl-7.5 pr-7.5  flex justify-center items-center  h-fit font-inter ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={mDesignRef}
           onClick={mDesignCliked}
         >
           <h5>Moblie Design</h5>
         </span>
         <span
-          className="w-fit lg:w-[30%] pl-5 pr-5 lg:pl-0 lg:pr-0 max-w-61.25 flex justify-center items-center   h-12.5 font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="w-fit   p-2.5 pl-7.5 pr-7.5 flex justify-center items-center   h-fit font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={wDesignRef}
           onClick={wDesignCliked}
         >
           <h5>Website Design</h5>
         </span>
         <span
-          className="w-fit lg:w-[30%] pl-5 pr-5 lg:pl-0 lg:pr-0 max-w-41.75 flex justify-center items-center   h-12.5 font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
+          className="w-fit   p-2.5 pl-7.5 pr-7.5 flex justify-center items-center   h-fit font-inter ourWorkHeadMenu   border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={brandingRef}
           onClick={brandingCliked}
         >
           <h5>Branding</h5>
         </span>
       </div>
-      <div>
-        <span className="hidden sm:block">
+      <div className="w-full">
+        <span className="hidden w-full min-[700px]:block">
           <CardList body={ourWorkRender} />
         </span>
-        <span className="block sm:hidden">
+        <span className="block w-full min-[700px]:hidden">
           <CardList body={allProductsMoblie} />
         </span>
       </div>
