@@ -3,6 +3,14 @@ type OurWorkData = {
   image: string;
   text: string;
   subText?: string;
+  popUpHeadding: string;
+  popHeadText: string;
+  capabilities: string[];
+  duration: string;
+  team: string[];
+  location: string;
+  industry: string[];
+  endText: string;
 };
 type Body = {
   body: OurWorkData[];
@@ -17,9 +25,17 @@ function CardList(props: Body) {
           return (
             <Card
               key={`card${i}`}
-              imageUrl={e.image}
-              imageText={e.text}
+              image={e.image}
+              text={e.text}
               subText={e.subText}
+              popUpHeadding={e.popUpHeadding}
+              popHeadText={e.popHeadText}
+              capabilities={e.capabilities}
+              duration={e.duration}
+              team={e.team}
+              location={e.location}
+              industry={e.industry}
+              endText={e.endText}
             />
           );
         })}

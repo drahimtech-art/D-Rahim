@@ -120,6 +120,12 @@
     max-width: 1800px;
     position: relative;
   }
+  .popUpCardWideViewCenter {
+    top: 45%;
+    max-width: 1800px;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 }
 .max40Px {
   font-size: clamp(2.4rem, 4.5vw, 40px);
