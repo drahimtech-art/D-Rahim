@@ -1,18 +1,16 @@
 import Logo1 from "/images/logo1.png";
-import founderImg from "/images/27.png";
 function BookACallContent() {
   return (
     <div className="sm:pl-10 sm:pr-10 pl-5 pr-5  mt-20 flex gap-10 justify-around">
       <div className="flex flex-col mr-auto w-[32%]">
-        <span className="block w-27.25 h-27.25 ml-auto mr-30">
-          <img className="w-full h-full" src={Logo1}></img>
-        </span>
         <div className="flex flex-col gap-2 mt-6">
-          <span className="w-35 h-35 rounded-full">
-            <img className="w-full h-full rounded-full" src={founderImg}></img>
-          </span>
-          <h5 className="font-inter font-semibold text-[20px]">
-            Jimoh Abdulrahim
+          <div className="flex justify-center pr-20">
+            <span className="w-35 h-35 rounded-full ">
+              <img className="w-full h-full rounded-full" src={Logo1}></img>
+            </span>
+          </div>
+          <h5 className="font-inter font-semibold text-[20px] text-gray-500">
+            Hello from D'rahim Tech Innovation👋!
           </h5>
           <h5 className="font-inter font-semibold text-[24px]">Let’s Meet!</h5>
         </div>

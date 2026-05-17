@@ -26,16 +26,16 @@ function GetInTouchHeadText() {
         <div className="sm:mt-15 mt-10">
           <h5 className="min22 font-bold">I'm interested in</h5>
           <div className="flex flex-col sm:flex-row lg:gap-10 gap-5 mt-5">
-            <span className="  pl-5 pr-5 sm:pl-0 sm:pr-0 w-fit sm:w-[30%] sm:max-w-81.5 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
+            <span className="  w-fit  p-2.5 pl-7.5 pr-7.5   flex justify-center items-center h-12.5  font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
               <h5>Moblie Design</h5>
             </span>
-            <span className="pl-5 pr-5 sm:pl-0 sm:pr-0 w-fit sm:w-[30%] sm:max-w-61.25 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
+            <span className="w-fit  p-2.5 pl-7.5 pr-7.5 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
               <h5>Website Design</h5>
             </span>
-            <span className="pl-5 pr-5 sm:pl-0 sm:pr-0  w-fit sm:w-[30%] sm:max-w-45 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
+            <span className="w-fit  p-2.5 pl-7.5 pr-7.5 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
               <h5>Branding</h5>
             </span>
-            <span className="pl-5 pr-5 sm:pl-0 sm:pr-0  w-fit sm:w-[30%] sm:max-w-32.5 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
+            <span className="w-fit  p-2.5 pl-7.5 pr-7.5 flex justify-center items-center  h-12.5 font-inter font-medium ourWorkHeadMenu     border text-black border-black hover:bg-secondary-green hover:text-gray-200 hover:border-green-500 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer">
               <h5>Other</h5>
             </span>
           </div>
