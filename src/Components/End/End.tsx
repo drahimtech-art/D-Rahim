@@ -36,7 +36,7 @@ function End() {
         <span className="flex gap-5 text-[1.8rem] lg:text-[2rem] text-gray-200">
           <i className="fa-brands fa-facebook"></i>
           <i className="fa-brands fa-linkedin"></i>
-          <i className="fa-brands fa-twitter"></i>
+          <i className="fa-brands fa-behance"></i>
           <i className="fa-brands fa-instagram"></i>
         </span>
       </div>

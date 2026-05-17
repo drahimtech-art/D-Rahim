@@ -14,46 +14,218 @@ type OurWorkData = {
   image: string;
   text: string;
   subText?: string;
+  popUpHeadding: string;
+  popHeadText: string;
+  capabilities: string[];
+  duration: string;
+  team: string[];
+  location: string;
+  industry: string[];
+  endText: string;
 };
 const countData = [
   [
     {
       image: image0,
-      text: "Website Design 🇳🇬",
+      text: "Website Design ",
+      subText: "",
+      popUpHeadding:
+        "Simplifying document conversion through speed, accuracy, and seamless accessibility.",
+      popHeadText: "Pdf to Word",
+      capabilities: [
+        "UI/UX Design",
+        "Document Conversion Flow",
+        "Product Research",
+        "Web App Design",
+      ],
+      duration: "3months",
+      team: ["Product Design", "UI Designer", "Developer"],
+      location: "Nigeria",
+      industry: ["Productivity Tools", "Document Technology"],
+      endText:
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word",
     },
     {
       image: image1,
-      text: "Mobile Design 🇳🇬",
+      text: "Mobile Design ",
+      subText: "",
+      popUpHeadding:
+        "Creating accessible healthcare solutions that connect people to better care and wellness.",
+      popHeadText: "Vite Care ",
+      capabilities: [
+        "UI/UX Design",
+        "Healthcare Experience Design",
+        "User Resarch",
+        "Mobile App Design",
+      ],
+      duration: "3months",
+      team: [
+        "Product Designer",
+        "UI Designer",
+        "Healthcare Researcher",
+        "Developer",
+      ],
+      location: "Nigeria",
+      industry: ["HealthTech", "Healthcare"],
+      endText:
+        "VitaCare is a digital healthcare platform designed to simplify access to medical services and",
     },
     {
       image: image2,
       text: "Mobile Design 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Connecting people to delicious meals through fast, seamless, and convenient food ordering experiences.",
+      popHeadText: "Come Chop",
+      capabilities: [
+        "UI/UX Design",
+        "Food Ordering Experience",
+        "User Research",
+        "Mobile App Design",
+      ],
+      duration: "3months",
+      team: ["Product Designer", "UI Designer", "Developer"],
+      location: "Nigeria",
+      industry: ["Food Technology", "Delivery Services"],
+      endText:
+        "Come Chop is a food delivery platform designed to connect users with local restaurants and",
     },
     {
       image: image3,
       text: "Website Design 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Creating secure and seamless authentication experiences for modern digital platforms.",
+      popHeadText: "Razor",
+      capabilities: [
+        "UI/UX Design",
+        "Mobile App Design",
+        "Fintech Strategy",
+        "User Research",
+      ],
+      duration: "2months",
+      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      location: "Nigeria",
+      industry: ["Cybersecurity", "Authentication Technology"],
+      endText:
+        "A secure authentication system designed to provide fast, seamless, and reliable user access",
     },
     {
       image: image4,
       text: "Mobile Design 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Creating accessible healthcare solutions that connect people to quality care anytime, anywhere.",
+      popHeadText: "Medi Link",
+      capabilities: [
+        "UI/UX Design",
+        "Healtcare Experience Design",
+        "User Research",
+        "Mobile App Design",
+      ],
+      duration: "3months",
+      team: [
+        "Product Designer",
+        "UI Designer",
+        "Healthcare Researcher",
+        "Developer",
+      ],
+      location: "Nigeria",
+      industry: ["HealthTech", "Healthcare"],
+      endText:
+        "A Clean, modern, and easy to remember. It sounds trustworthy and feels like a real health-tech product",
     },
     {
       image: image5,
       text: "Branding 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Transforming ideas into functional living spaces through smart design and visualization.",
+      popHeadText: "Home Architect",
+      capabilities: [
+        "UI/UX Design",
+        "Architecture Planning",
+        "3D Visualization",
+        "Product Research",
+      ],
+      duration: "3months",
+      team: [
+        "Product Designer",
+        "UI Designer",
+        "Architectural Consultant",
+        "Developer",
+      ],
+      location: "Nigeria",
+      industry: ["Architecture", "Real Estate Tecnology"],
+      endText:
+        "A design platform that helps users plan, visualize, and create functional home layouts",
     },
   ],
   [
     {
       image: image6,
       text: "Branding 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Creating secure identity verification through fast, seamless, and intelligent facial recognition.",
+      popHeadText: "Face Scan",
+      capabilities: [
+        "UI/UX Design",
+        "Biometric Authentication",
+        "Security Research",
+        "Mobile Experience Design",
+      ],
+      duration: "2months",
+      team: ["Product Designer", "UI Designer", "Developer"],
+      location: "Nigeria",
+      industry: ["Security Technology", "Biometic Solutions"],
+      endText:
+        "a biometric authentication system that enables secure and seamless user verification using",
     },
     {
       image: image7,
       text: "Website Design 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Empowering businesses to deploy, manage, and scale digital products with speed and efficiency.",
+      popHeadText: "Xnora",
+      capabilities: [
+        "UI/UX Design",
+        "Web Platform Design",
+        "Developer Experience",
+        "Product Strategy",
+      ],
+      duration: "3months",
+      team: [
+        "Product Designer",
+        "UI Designer",
+        "Developer",
+        "Product Strategist",
+      ],
+      location: "Nigeria",
+      industry: ["Cloud Technology", "Software Development"],
+      endText:
+        "Xnora is a modern web platform built for seamless deployment and efficient performance. It",
     },
     {
       image: image8,
       text: "Mobile Design 🇳🇬",
+      subText: "",
+      popUpHeadding:
+        "Creating faster, smarter, and more meaningful communication experiences for everyday conversations.",
+      popHeadText: "Target Message",
+      capabilities: [
+        "UI/UX Design",
+        "Messaging Experience Design",
+        "User Research",
+        "Moblie App Design",
+      ],
+      duration: "3months",
+      team: ["Product Designer", "UI Designer", "Developer"],
+      location: "Nigeria",
+      industry: ["Communication Technology", "Social Networking"],
+      endText:
+        "A mobile app designed to put essential end-to-end encrypted messaging in the hands of users",
     },
   ],
 ];

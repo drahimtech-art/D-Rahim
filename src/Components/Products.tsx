@@ -149,7 +149,7 @@ const productData: Array<OurWorkData[]> = [
         "Wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions.",
       popUpHeadding:
         "Creating seamless, secure, and accessible financial solutions for everyday transactions.",
-      popHeadText: "",
+      popHeadText: "Wankard",
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -170,7 +170,7 @@ const productData: Array<OurWorkData[]> = [
         "This case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
       popUpHeadding:
         "Creating faster, smarter, and more connected mobile experiences for everyday communication.",
-      popHeadText: "",
+      popHeadText: "Snap Moblie",
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -191,7 +191,7 @@ const productData: Array<OurWorkData[]> = [
         "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
       popUpHeadding:
         "Creating smarter pathways to career growth, opportunity, and seamless job connections.",
-      popHeadText: "",
+      popHeadText: "Jobified Employer",
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -210,18 +210,19 @@ const productData: Array<OurWorkData[]> = [
       text: "Health PocketMoblie App 🇳🇬",
       subText:
         "Health in Pocket is a mobile health companion designed to put essential healthcare services directly in the hands of users.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Creating faster, smarter, and more meaningful communication experiences for everyday conversations.",
+      popHeadText: "Target Message",
       capabilities: [
         "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
+        "Messaging Experience Design",
         "User Research",
+        "Moblie App Design",
       ],
       duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      team: ["Product Designer", "UI Designer", "Developer"],
       location: "Nigeria",
-      industry: ["Communication", "Technology", "Social Networking"],
+      industry: ["Communication Technology", "Social Networking"],
       endText:
         "A mobile app designed to put essential end-to-end encrypted messaging in the hands of users",
     },
@@ -232,7 +233,7 @@ const productData: Array<OurWorkData[]> = [
         "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
       popUpHeadding:
         "Creating seamless travel experiences through smarter booking, planning, and journey management.",
-      popHeadText: "",
+      popHeadText: "Travel Express",
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -279,38 +280,47 @@ const productData: Array<OurWorkData[]> = [
       text: "Xnora Web App 🇳🇬",
       subText:
         "Xnora is a modern web platform built for seamless deployment and efficient performance. It provides a clean, environment for deployment",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Empowering businesses to deploy, manage, and scale digital products with speed and efficiency.",
+      popHeadText: "Xnora",
       capabilities: [
         "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
+        "Web Platform Design",
+        "Developer Experience",
+        "Product Strategy",
       ],
       duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      team: [
+        "Product Designer",
+        "UI Designer",
+        "Developer",
+        "Product Strategist",
+      ],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Cloud Technology", "Software Development"],
+      endText:
+        "Xnora is a modern web platform built for seamless deployment and efficient performance. It",
     },
     {
       image: image4,
       text: "Finance All Website 🇦🇺🇺🇸",
       subText:
         "A financial dashboard designed to provide a clear, real-time overview of personal and business finances. It delivers insights and analytics. ",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
+      popHeadText: "Finance All",
       capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
+        "UI/UX Designer",
+        "Finacial Dashboard Design",
+        "Data Visualization",
         "User Research",
       ],
       duration: "3months",
       team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Fintech", "Financial Analytics"],
+      endText:
+        "A financial dashboard designed to provide a clear, real-time overview of personal and",
     },
     {
       image: image10,
@@ -354,7 +364,7 @@ const productData: Array<OurWorkData[]> = [
     },
     {
       image: image14,
-      text: "NYSC Redesign web App 🇳🇬",
+      text: "Razor Web App 🇧🇪🇬🇧🏝️",
       subText:
         "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and intuitive interface.",
       popUpHeadding:
@@ -375,22 +385,24 @@ const productData: Array<OurWorkData[]> = [
     },
     {
       image: image16,
-      text: "Razor Web App 🇧🇪🇬🇧🏝️",
+      text: "NYSC Redesign web App ",
       subText:
         "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and intuitive interface.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Transforming youth service operations through seamless digital experiences, accessibility, and efficiency.",
+      popHeadText: "NYSC Redesign web App 🇳🇬",
       capabilities: [
         "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
+        "System Resign",
         "User Research",
+        "Product Strategy",
       ],
-      duration: "3months",
+      duration: "4months",
       team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Government Technology", "Public Services"],
+      endText:
+        "A user-centered digital project aimed at improving the experience of corps members by",
     },
   ],
   [
@@ -438,76 +450,89 @@ const productData: Array<OurWorkData[]> = [
       text: "Face Scan Mobile App 🇬🇫",
       subText:
         " a biometric authentication system that enables secure and seamless user verification using facial recognition technology.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Creating secure identity verification through fast, seamless, and intelligent facial recognition.",
+      popHeadText: "Face Scan",
       capabilities: [
         "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
+        "Biometric Authentication",
+        "Security Research",
+        "Mobile Experience Design",
       ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher Developer"],
+      duration: "2months",
+      team: ["Product Designer", "UI Designer", "Developer"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Security Technology", "Biometic Solutions"],
+      endText:
+        "a biometric authentication system that enables secure and seamless user verification using",
     },
     {
       image: image17,
       text: "Home Architect web App🇳🇬",
       subText:
         "A design platform that helps users plan, visualize, and create functional home layouts through an intuitive and user-friendly interface.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Transforming ideas into functional living spaces through smart design and visualization.",
+      popHeadText: "Home Architect",
       capabilities: [
         "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
+        "Architecture Planning",
+        "3D Visualization",
+        "Product Research",
       ],
       duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      team: [
+        "Product Designer",
+        "UI Designer",
+        "Architectural Consultant",
+        "Developer",
+      ],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Architecture", "Real Estate Tecnology"],
+      endText:
+        "A design platform that helps users plan, visualize, and create functional home layouts",
     },
     {
       image: image4,
       text: "Finance All Website 🇦🇺🇺🇸🇺",
       subText:
         "A financial dashboard designed to provide a clear, real-time overview of personal and business finances. It delivers insights and analytics. ",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
+      popHeadText: "Finance All",
       capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
+        "UI/UX Designer",
+        "Finacial Dashboard Design",
+        "Data Visualization",
         "User Research",
       ],
       duration: "3months",
       team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Fintech", "Financial Analytics"],
+      endText:
+        "A financial dashboard designed to provide a clear, real-time overview of personal and",
     },
     {
       image: image10,
       text: "Pdf To Word Web App 🇳🇬",
       subText:
         "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Simplifying document conversion through speed, accuracy, and seamless accessibility.",
+      popHeadText: "Pdf to word",
       capabilities: [
         "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
+        "Document Conversion Flow",
+        "Product Research",
+        "Web App Design",
       ],
       duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      team: ["Product Designer", "UI Designer", "Developer"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Productivity Tools", "Document Technology"],
+      endText:
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word",
     },
   ],
 ];

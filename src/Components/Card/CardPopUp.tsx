@@ -44,7 +44,7 @@ function CardPopUp(props: Body) {
     >
       <div className="max-w-450 h-full top-[50%]">
         <div
-          className=" w-full h-full relative  overflow-hidden pl-5 pt-10  pr-5 rounded-4xl bg-white opacity-0  "
+          className=" w-full h-full relative  overflow-hidden pl-5 pt-12  pr-5 rounded-4xl bg-white opacity-0  "
           ref={popUpCardRef}
         >
           <div className=" overflow-y-scroll w-full h-full scroll-container pr-5 ">
@@ -87,9 +87,9 @@ function CardPopUp(props: Body) {
                 />
               </span>
             </div>
-            <div className=" mt-23.75 pl-5 pr-5">
+            <div className=" mt-23.75 pl-10 pr-10">
               <div className="flex gap-41 ">
-                <span className="flex flex-col w-53.5 ">
+                <span className="flex flex-col w-60 ">
                   <span>
                     <h5 className="font-inter font-medium text-[30px]">
                       Capabilities
@@ -142,7 +142,7 @@ function CardPopUp(props: Body) {
                 </span>
               </div>
               <div className="flex gap-41 mt-10">
-                <span className="w-53.5 ">
+                <span className="w-60 ">
                   <h5 className="font-inter font-medium text-[30px]">
                     Duration
                   </h5>
