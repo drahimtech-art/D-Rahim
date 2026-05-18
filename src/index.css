@@ -98,11 +98,14 @@
 .logoMainText {
   font-size: clamp(17.28px, 2.3vw, 20.09px);
 }
+.min16Max20px {
+  font-size: clamp(16px, 3vw, 20px);
+}
 .logoSubText {
   font-size: clamp(7.77px, 1vw, 9.04px);
 }
 .serviceMenuText {
-  font-size: clamp(38px, 5vw, 50px);
+  font-size: clamp(24px, 5vw, 50px);
 }
 .ourTermHeadText {
   font-size: clamp(28px, 5vw, 35px);
@@ -160,9 +163,7 @@
   position: absolute;
   opacity: 0;
   top: 100%;
-  left: 0;
   pointer-events: none;
-  transform: translateY(-10px);
   transition:
     opacity 180ms ease-out,
     transform 180ms ease-out;
@@ -170,7 +171,6 @@
 .dropDownMenuAnimation-open {
   position: none;
   opacity: 1;
-  transform: translateY(0);
   transition:
     opacity 180ms ease-in,
     transform 180ms ease-in;

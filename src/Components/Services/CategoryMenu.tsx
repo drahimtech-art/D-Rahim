@@ -47,74 +47,86 @@ function CategoryMenu() {
     }
   }, [optionOne, optionTwo, optionThree, optionFour]);
   return (
-    <div className="pl-16 pr-16  pointer">
+    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 pointer">
       {/** */}
-      <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
-        <span
-          className="w-full flex  relative"
-          onClick={() => setOptionOne(!optionOne)}
-        >
-          <h5 className=" serviceMenuText font-inter font-medium">
-            Digital Product Design
-          </h5>
-        </span>
-        <span className="ml-20 mt-5">
-          <span className=" flex " onClick={() => setOptionOne(!optionOne)}>
-            {optionOne ? (
-              <i
-                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionOne(!optionOne)}
-              ></i>
-            ) : (
-              <i
-                className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionOne(!optionOne)}
-              ></i>
-            )}
+      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+        <div className="flex items-center">
+          <span
+            className="w-full flex  relative"
+            onClick={() => setOptionOne(!optionOne)}
+          >
+            <h5 className=" serviceMenuText font-inter font-medium">
+              Digital Product Design
+            </h5>
           </span>
-          <div className="relative">
-            <div className=" w-86.77 block" ref={dropdownMenuRef1}>
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
-                <h5>Market & User Research</h5>
-                <h5> Product Strategy & Road Mapping </h5>
-                <h5>UI/UX Design</h5>
-                <h5> UX Writing</h5> <h5>Design Systems</h5>{" "}
-                <h5>User Testing</h5>
-                <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
-                  <h5>Discover all services we provide </h5>
-                </span>
+          <span className="ml-20  ">
+            <span className=" flex " onClick={() => setOptionOne(!optionOne)}>
+              {optionOne ? (
+                <i
+                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionOne(!optionOne)}
+                ></i>
+              ) : (
+                <i
+                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionOne(!optionOne)}
+                ></i>
+              )}
+            </span>
+          </span>
+        </div>
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+          <div className="w-full min-[1000px]:block hidden"></div>
+          <div
+            className="min-[1000px]:ml-20  w-86.77 block "
+            ref={dropdownMenuRef1}
+          >
+            <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
+              <h5>Market & User Research</h5>
+              <h5> Product Strategy & Road Mapping </h5>
+              <h5>UI/UX Design</h5>
+              <h5> UX Writing</h5> <h5>Design Systems</h5> <h5>User Testing</h5>
+              <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+                <h5>Discover all services we provide </h5>
               </span>
-            </div>
+            </span>
           </div>
-        </span>
+        </div>
       </div>
       {/** */}
-      <div className="grid grid-cols-2  border-b-2 pt-10  pb-10 p-2.5">
-        <span className="w-full " onClick={() => setOptionTwo(!optionTwo)}>
-          <h5 className="serviceMenuText font-inter font-medium">
-            Website Design
-          </h5>
-        </span>
-        <span className="ml-20 mt-5 ">
-          <span className="flex" onClick={() => setOptionTwo(!optionTwo)}>
-            {optionTwo ? (
-              <i
-                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionTwo(!optionTwo)}
-              ></i>
-            ) : (
-              <i
-                className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionTwo(!optionTwo)}
-              ></i>
-            )}
+      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+        <div className="flex items-center">
+          <span
+            className="w-full flex  relative"
+            onClick={() => setOptionOne(!optionTwo)}
+          >
+            <h5 className=" serviceMenuText font-inter font-medium">
+              Website Design
+            </h5>
           </span>
-
-          <div className="relative ">
-            <span
-              className=" font-inter font-medium  logoMainText flex flex-col gap-2.5 "
-              ref={dropdownMenuRef2}
-            >
+          <span className="ml-20  ">
+            <span className=" flex " onClick={() => setOptionTwo(!optionTwo)}>
+              {optionTwo ? (
+                <i
+                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionTwo(!optionTwo)}
+                ></i>
+              ) : (
+                <i
+                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionTwo(!optionTwo)}
+                ></i>
+              )}
+            </span>
+          </span>
+        </div>
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+          <div className="w-full min-[1000px]:block hidden"></div>
+          <div
+            className="min-[1000px]:ml-20  w-86.77 block "
+            ref={dropdownMenuRef2}
+          >
+            <span className=" font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
               <h5>Web Design</h5>
               <h5> Development & Testing</h5>
               <h5>Launch & Maintenace</h5>
@@ -123,78 +135,101 @@ function CategoryMenu() {
               </span>
             </span>
           </div>
-        </span>
+        </div>
       </div>
       {/** */}
-      <div className="grid grid-cols-2   border-b-2 pt-10  pb-10 p-2.5 w-full">
-        <span className="w-full" onClick={() => setOptionThree(!optionThree)}>
-          <h5 className="serviceMenuText font-inter font-medium">Branding</h5>
-        </span>
-        <span className="ml-20 mt-5">
-          <span className=" flex" onClick={() => setOptionThree(!optionThree)}>
-            {optionThree ? (
-              <i
-                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionThree(!optionThree)}
-              ></i>
-            ) : (
-              <i
-                className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionThree(!optionThree)}
-              ></i>
-            )}
+      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+        <div className="flex items-center">
+          <span
+            className="w-full flex  relative"
+            onClick={() => setOptionThree(!optionThree)}
+          >
+            <h5 className=" serviceMenuText font-inter font-medium">
+              Branding
+            </h5>
           </span>
-          <div className="relative">
-            <div className=" w-86.77" ref={dropdownMenuRef3}>
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
-                <h5>Visual Audit</h5>
-                <h5> Logo & Visual Identity </h5>
-                <h5>UI/UX Design</h5>
-                <h5> Guidelines & Brandbooks</h5> <h5>Graphic Design</h5>{" "}
-                <h5>Motio Design</h5>
-                <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
-                  <h5>Discover all services we provide </h5>
-                </span>
+          <span className="ml-20  ">
+            <span
+              className=" flex "
+              onClick={() => setOptionThree(!optionThree)}
+            >
+              {optionThree ? (
+                <i
+                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionThree(!optionThree)}
+                ></i>
+              ) : (
+                <i
+                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionThree(!optionThree)}
+                ></i>
+              )}
+            </span>
+          </span>
+        </div>
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+          <div className="w-full min-[1000px]:block hidden"></div>
+          <div
+            className="min-[1000px]:ml-20  w-86.77 block "
+            ref={dropdownMenuRef3}
+          >
+            <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
+              <h5>Visual Audit</h5>
+              <h5> Logo & Visual Identity </h5>
+              <h5>UI/UX Design</h5>
+              <h5> Guidelines & Brandbooks</h5> <h5>Graphic Design</h5>{" "}
+              <h5>Motio Design</h5>
+              <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+                <h5>Discover all services we provide </h5>
               </span>
-            </div>
+            </span>
           </div>
-        </span>
+        </div>
       </div>
       {/** */}
-      <div className="grid grid-cols-2   border-b-2  pt-10  pb-10 p-2.5 w-full">
-        <span className="w-full" onClick={() => setOptionFour(!optionFour)}>
-          <h5 className="serviceMenuText font-inter font-medium">
-            Development
-          </h5>
-        </span>
-        <span className="ml-20 mt-5">
-          <span className=" flex" onClick={() => setOptionFour(!optionFour)}>
-            {optionFour ? (
-              <i
-                className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionFour(!optionFour)}
-              ></i>
-            ) : (
-              <i
-                className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                onClick={() => setOptionFour(!optionFour)}
-              ></i>
-            )}
+      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+        <div className="flex items-center">
+          <span
+            className="w-full flex  relative"
+            onClick={() => setOptionFour(!optionFour)}
+          >
+            <h5 className=" serviceMenuText font-inter font-medium">
+              Development
+            </h5>
           </span>
-          <div className="relative">
-            <div className=" w-86.77" ref={dropdownMenuRef4}>
-              <span className="font-inter font-medium  logoMainText flex flex-col gap-4.5 ">
-                <h5>Technology Consulting</h5>
-                <h5> Mobile App Development </h5>
-                <h5>Frontend Web Development</h5>
-                <h5> Backend Development</h5> <h5>Quality Assurance</h5>
-                <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
-                  <h5>Discover all services we provide </h5>
-                </span>
+          <span className="ml-20  ">
+            <span className=" flex " onClick={() => setOptionFour(!optionFour)}>
+              {optionFour ? (
+                <i
+                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionFour(!optionFour)}
+                ></i>
+              ) : (
+                <i
+                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
+                  onClick={() => setOptionFour(!optionFour)}
+                ></i>
+              )}
+            </span>
+          </span>
+        </div>
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+          <div className="w-full min-[1000px]:block hidden"></div>
+          <div
+            className="min-[1000px]:ml-20  w-86.77 block "
+            ref={dropdownMenuRef4}
+          >
+            <span className="font-inter font-medium  logoMainText flex flex-col gap-4.5 ">
+              <h5>Technology Consulting</h5>
+              <h5> Mobile App Development </h5>
+              <h5>Frontend Web Development</h5>
+              <h5> Backend Development</h5> <h5>Quality Assurance</h5>
+              <span className="w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+                <h5>Discover all services we provide </h5>
               </span>
-            </div>
+            </span>
           </div>
-        </span>
+        </div>
       </div>
     </div>
   );
