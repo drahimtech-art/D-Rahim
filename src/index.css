@@ -164,9 +164,7 @@
   opacity: 0;
   top: 100%;
   pointer-events: none;
-  transition:
-    opacity 180ms ease-out,
-    transform 180ms ease-out;
+  transition: transform 180ms ease-out;
 }
 .dropDownMenuAnimation-open {
   position: none;
@@ -240,4 +238,10 @@
   .fitPopUpCard {
     height: fit-content;
   }
+}
+.min40Max60px {
+  font-size: clamp(40px, 5vw, 60px);
+}
+.min16Max24px {
+  font-size: clamp(16px, 3vw, 24px);
 }

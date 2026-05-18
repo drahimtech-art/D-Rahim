@@ -75,10 +75,10 @@ function CategoryMenu() {
             </span>
           </span>
         </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2   ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
-            className="min-[1000px]:ml-20  w-86.77 block "
+            className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
             ref={dropdownMenuRef1}
           >
             <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
@@ -120,10 +120,10 @@ function CategoryMenu() {
             </span>
           </span>
         </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
-            className="min-[1000px]:ml-20  w-86.77 block "
+            className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
             ref={dropdownMenuRef2}
           >
             <span className=" font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
@@ -167,10 +167,10 @@ function CategoryMenu() {
             </span>
           </span>
         </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
-            className="min-[1000px]:ml-20  w-86.77 block "
+            className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
             ref={dropdownMenuRef3}
           >
             <span className="font-inter font-medium  logoMainText flex flex-col gap-2.5 ">
@@ -213,10 +213,10 @@ function CategoryMenu() {
             </span>
           </span>
         </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2 mt-5 min-[1000px]:mt-0">
+        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
-            className="min-[1000px]:ml-20  w-86.77 block "
+            className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
             ref={dropdownMenuRef4}
           >
             <span className="font-inter font-medium  logoMainText flex flex-col gap-4.5 ">
