@@ -261,7 +261,6 @@ function Category() {
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", () => handleWindowResize);
   }, []);
-  console.log(devicesWidth);
   function projectCliked() {
     if (
       !projectRef.current ||
@@ -537,9 +536,9 @@ function Category() {
       </div>
 
       {devicesWidth !== undefined && devicesWidth >= 700 ? (
-        <CardList body={ourWorkRender} />
+        <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
       ) : (
-        <CardList body={allProductsMoblie} />
+        <CardList body={allProductsMoblie} isPC={false} isMoblie={true} />
       )}
 
       {ourWorkFirstRender && (

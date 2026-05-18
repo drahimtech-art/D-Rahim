@@ -14,6 +14,8 @@ type OurWorkData = {
 };
 type Body = {
   body: OurWorkData[];
+  isPC: boolean;
+  isMoblie: boolean;
 };
 function CardList(props: Body) {
   const productData = props.body;
@@ -36,6 +38,8 @@ function CardList(props: Body) {
               location={e.location}
               industry={e.industry}
               endText={e.endText}
+              isPC={props.isPC}
+              isMoblie={props.isMoblie}
             />
           );
         })}

@@ -12,6 +12,8 @@ type ImageData = {
   location: string;
   industry: string[];
   endText: string;
+  isPC: boolean;
+  isMoblie: boolean;
 };
 
 function Card(props: ImageData) {
@@ -48,12 +50,23 @@ function Card(props: ImageData) {
   return (
     <>
       <span className="flex flex-col grow  lg:max-h-full items-stretch">
-        <img
-          className="w-full h-full pointer lg:h-100 "
-          src={props.image}
-          onClick={handleClick}
-        ></img>
-        <h5 className="logoMainText font-bold ">{props.text}</h5>
+        {props.isPC && (
+          <img
+            className="w-full h-full pointer lg:h-100 "
+            src={props.image}
+            onClick={handleClick}
+          ></img>
+        )}
+        {props.isMoblie && (
+          <img
+            className="w-full h-full pointer lg:h-100  rounded-2xl"
+            src={props.image}
+            onClick={handleClick}
+          ></img>
+        )}
+        <h5 className="logoMainText font-bold ">
+          {props.text.toLocaleUpperCase()}
+        </h5>
         <h5 className="ourWorkHeadMenu text-gray-600 lg:line-clamp-3   font-inter">
           {props.subText}
         </h5>
