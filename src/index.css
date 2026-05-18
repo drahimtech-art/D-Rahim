@@ -226,9 +226,8 @@
   }
 }
 .animate-fade-in {
-  background-color: #f9fafb57;
   opacity: 0;
-  backdrop-filter: blur(12px);
+
   animation: fade-in 200ms ease-out forwards;
 }
 .animate-pop-in {
