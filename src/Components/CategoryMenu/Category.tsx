@@ -249,16 +249,32 @@ function Category() {
   useEffect(() => {
     if (!allProductsControl) return;
     const data = products();
+    const subData = countData;
     let newArray: OurWorkData[] = [];
+    //*push all data to a single array newArray
     for (const array of data) {
+      //*push all data in array becouse data is a 2D or looped array module
       for (const element of array) {
-        newArray.push(element);
+        if (element.subText?.trim() !== "") {
+          //* if no sub text dont add to array
+          newArray.push(element);
+        }
+      }
+    }
+    for (const array of subData) {
+      //* added subdata to single array list
+      for (const element of array) {
+        if (element.subText?.trim() !== "") {
+          //* if no sub text dont add to array
+          newArray.push(element);
+        }
       }
     }
     (() => {
       const copyArray = [...newArray];
       const newData: OurWorkData[] = [];
       for (let i = 0; i < copyArray.length; i++) {
+        //*filter/  removes duplicateted data
         if (newData.length > 1) {
           let pass = false;
           for (let j = 0; j < newData.length; j++) {
