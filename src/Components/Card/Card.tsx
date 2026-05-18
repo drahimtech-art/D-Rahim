@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardPopUp from "./CardPopUp";
 type ImageData = {
   image: string;
@@ -29,6 +29,19 @@ function Card(props: ImageData) {
     industry: props.industry,
     endText: props.endText,
   };
+  const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
+  useEffect(() => {
+    const handleWindowResize = () => {
+      if (typeof window !== undefined) {
+        return setDevicesWidth(window.innerWidth);
+      }
+      return setDevicesWidth(0);
+    };
+
+    handleWindowResize();
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", () => handleWindowResize);
+  }, []);
   function handleClick() {
     setIsPopUpVisible(!isPopUpVisible);
   }
@@ -45,11 +58,13 @@ function Card(props: ImageData) {
           {props.subText}
         </h5>
       </span>
-      <CardPopUp
-        control={isPopUpVisible}
-        setIsPopUpVisible={setIsPopUpVisible}
-        body={data}
-      />
+      {devicesWidth !== undefined && devicesWidth >= 1000 && (
+        <CardPopUp
+          control={isPopUpVisible}
+          setIsPopUpVisible={setIsPopUpVisible}
+          body={data}
+        />
+      )}
     </>
   );
 }

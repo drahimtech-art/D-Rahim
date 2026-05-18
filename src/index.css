@@ -227,7 +227,7 @@
 }
 .animate-fade-in {
   opacity: 0;
-
+  background-color: rgba(219, 218, 218, 0.527);
   animation: fade-in 200ms ease-out forwards;
 }
 .animate-pop-in {

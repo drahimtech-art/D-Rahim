@@ -39,7 +39,7 @@ function CardPopUp(props: Body) {
   }, [isPopUpVisible]);
   return (
     <div
-      className="hidden lg:flex w-full popUpCardWideViewCenter  h-screen fitPopUpCard fixed -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2  inset-0  z-50   items-center justify-center p-7 pl-16 pr-16  "
+      className="w-full popUpCardWideViewCenter  h-screen fitPopUpCard fixed -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2  inset-0  z-50   items-center justify-center p-7 pl-16 pr-16  "
       ref={backGroundRef}
     >
       <div className="max-w-450 h-full top-[50%]">

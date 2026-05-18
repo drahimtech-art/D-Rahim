@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import products from "../Products";
+import mobileProducts from "../MobileProducts";
 import CardList from "../Home/CardList";
 import image0 from "/images/10.png";
 import image1 from "/images/11.png";
@@ -235,6 +236,7 @@ function Category() {
   const wDesignRef = useRef<HTMLSpanElement | null>(null);
   const brandingRef = useRef<HTMLSpanElement | null>(null);
   const ourWorkData: Array<OurWorkData[]> = products();
+  const ourWorkDataMobile: Array<OurWorkData[]> = mobileProducts();
   const [ourWorkRender, setOurWorkRender] = useState<OurWorkData[]>(
     ourWorkData[0],
   );
@@ -243,56 +245,23 @@ function Category() {
   const oneRef = useRef<HTMLHeadingElement | null>(null);
   const twoRef = useRef<HTMLHeadingElement | null>(null);
   const threeRef = useRef<HTMLHeadingElement | null>(null);
-  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>([]);
-  const [allProductsControl, setAllProductsControl] = useState<boolean>(true);
-
+  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>(
+    ourWorkDataMobile[0],
+  );
+  const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
   useEffect(() => {
-    if (!allProductsControl) return;
-    const data = products();
-    const subData = countData;
-    let newArray: OurWorkData[] = [];
-    //*push all data to a single array newArray
-    for (const array of data) {
-      //*push all data in array becouse data is a 2D or looped array module
-      for (const element of array) {
-        if (element.subText?.trim() !== "") {
-          //* if no sub text dont add to array
-          newArray.push(element);
-        }
+    const handleWindowResize = () => {
+      if (typeof window !== undefined) {
+        return setDevicesWidth(window.innerWidth);
       }
-    }
-    for (const array of subData) {
-      //* added subdata to single array list
-      for (const element of array) {
-        if (element.subText?.trim() !== "") {
-          //* if no sub text dont add to array
-          newArray.push(element);
-        }
-      }
-    }
-    (() => {
-      const copyArray = [...newArray];
-      const newData: OurWorkData[] = [];
-      for (let i = 0; i < copyArray.length; i++) {
-        //*filter/  removes duplicateted data
-        if (newData.length > 1) {
-          let pass = false;
-          for (let j = 0; j < newData.length; j++) {
-            if (newData[j].image === copyArray[i].image) {
-              pass = true;
-            }
-          }
-          if (!pass) {
-            newData.push(copyArray[i]);
-          }
-        } else {
-          newData.push(copyArray[i]);
-        }
-      }
-      setAllProductsMoblie([...newData]);
-      setAllProductsControl(false);
-    })();
-  }, [allProductsControl]);
+      return setDevicesWidth(0);
+    };
+
+    handleWindowResize();
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", () => handleWindowResize);
+  }, []);
+  console.log(devicesWidth);
   function projectCliked() {
     if (
       !projectRef.current ||
@@ -338,7 +307,7 @@ function Category() {
       "text-black",
     );
     setOurWorkFirstRender(true);
-    setAllProductsControl(true);
+    setAllProductsMoblie([...ourWorkDataMobile[0]]);
     return setOurWorkRender([...ourWorkData[0]]);
   }
   function mDesignCliked() {
@@ -387,8 +356,7 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    setAllProductsMoblie([...ourWorkData[1]]);
-    setAllProductsControl(false);
+    setAllProductsMoblie([...ourWorkDataMobile[1]]);
     return setOurWorkRender([...ourWorkData[1]]);
   }
   function wDesignCliked() {
@@ -437,8 +405,7 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    setAllProductsMoblie([...ourWorkData[2]]);
-    setAllProductsControl(false);
+    setAllProductsMoblie([...ourWorkDataMobile[2]]);
     return setOurWorkRender([...ourWorkData[2]]);
   }
   function brandingCliked() {
@@ -487,8 +454,7 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    setAllProductsMoblie([...ourWorkData[3]]);
-    setAllProductsControl(false);
+    setAllProductsMoblie([...ourWorkDataMobile[3]]);
     return setOurWorkRender([...ourWorkData[3]]);
   }
   function countPlus() {
@@ -569,14 +535,13 @@ function Category() {
           <h5>Branding</h5>
         </span>
       </div>
-      <div className="w-full">
-        <span className="hidden w-full min-[700px]:block">
-          <CardList body={ourWorkRender} />
-        </span>
-        <span className="block w-full min-[700px]:hidden">
-          <CardList body={allProductsMoblie} />
-        </span>
-      </div>
+
+      {devicesWidth !== undefined && devicesWidth >= 700 ? (
+        <CardList body={ourWorkRender} />
+      ) : (
+        <CardList body={allProductsMoblie} />
+      )}
+
       {ourWorkFirstRender && (
         <div className="hidden lg:flex justify-center gap-6 lg:mt-16 mt-8 ">
           <span
