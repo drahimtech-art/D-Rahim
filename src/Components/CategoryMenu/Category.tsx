@@ -43,7 +43,7 @@ const countData = [
       location: "Nigeria",
       industry: ["Productivity Tools", "Document Technology"],
       endText:
-        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word",
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting",
     },
     {
       image: image1,
@@ -68,11 +68,11 @@ const countData = [
       location: "Nigeria",
       industry: ["HealthTech", "Healthcare"],
       endText:
-        "VitaCare is a digital healthcare platform designed to simplify access to medical services and",
+        "VitaCare is a digital healthcare platform designed to simplify access to medical services and help users to manage their health anytime.",
     },
     {
       image: image2,
-      text: "Mobile Design 🇳🇬",
+      text: "Mobile Design ",
       subText: "",
       popUpHeadding:
         "Connecting people to delicious meals through fast, seamless, and convenient food ordering experiences.",
@@ -92,7 +92,7 @@ const countData = [
     },
     {
       image: image3,
-      text: "Website Design 🇳🇬",
+      text: "Website Design ",
       subText: "",
       popUpHeadding:
         "Creating secure and seamless authentication experiences for modern digital platforms.",
@@ -108,11 +108,11 @@ const countData = [
       location: "Nigeria",
       industry: ["Cybersecurity", "Authentication Technology"],
       endText:
-        "A secure authentication system designed to provide fast, seamless, and reliable user access",
+        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and inteuitve interface",
     },
     {
       image: image4,
-      text: "Mobile Design 🇳🇬",
+      text: "Mobile Design ",
       subText: "",
       popUpHeadding:
         "Creating accessible healthcare solutions that connect people to quality care anytime, anywhere.",
@@ -137,7 +137,7 @@ const countData = [
     },
     {
       image: image5,
-      text: "Branding 🇳🇬",
+      text: "Branding ",
       subText: "",
       popUpHeadding:
         "Transforming ideas into functional living spaces through smart design and visualization.",
@@ -158,13 +158,13 @@ const countData = [
       location: "Nigeria",
       industry: ["Architecture", "Real Estate Tecnology"],
       endText:
-        "A design platform that helps users plan, visualize, and create functional home layouts",
+        "A design platform that helps users plan, visualize, and create functional home layouts through an intuitive and user-friendly interface.",
     },
   ],
   [
     {
       image: image6,
-      text: "Branding 🇳🇬",
+      text: "Branding ",
       subText: "",
       popUpHeadding:
         "Creating secure identity verification through fast, seamless, and intelligent facial recognition.",
@@ -180,11 +180,11 @@ const countData = [
       location: "Nigeria",
       industry: ["Security Technology", "Biometic Solutions"],
       endText:
-        "a biometric authentication system that enables secure and seamless user verification using",
+        "a biometric authentication system that enables secure and seamless user verification using facial recognition technology",
     },
     {
       image: image7,
-      text: "Website Design 🇳🇬",
+      text: "Website Design ",
       subText: "",
       popUpHeadding:
         "Empowering businesses to deploy, manage, and scale digital products with speed and efficiency.",
@@ -205,11 +205,11 @@ const countData = [
       location: "Nigeria",
       industry: ["Cloud Technology", "Software Development"],
       endText:
-        "Xnora is a modern web platform built for seamless deployment and efficient performance. It",
+        "Xnora is a modern web platform built for seamless deployment and efficient performance. It provides a clean, enviroment for deployment.",
     },
     {
       image: image8,
-      text: "Mobile Design 🇳🇬",
+      text: "Mobile Design ",
       subText: "",
       popUpHeadding:
         "Creating faster, smarter, and more meaningful communication experiences for everyday conversations.",

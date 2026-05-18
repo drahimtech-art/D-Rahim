@@ -31,14 +31,20 @@ const productData: Array<OurWorkData[]> = [
       image: image0,
       text: "Branding",
       subText: "",
-      popUpHeadding: "",
-      popHeadText: "",
-      capabilities: [""],
+      popUpHeadding:
+        "Creating pathways of hope, support, and sustainable change for underserved communities.",
+      popHeadText: "Alhafeez Foundation",
+      capabilities: [
+        "Community Support",
+        "Humanitarian Aid",
+        "Education Programes",
+      ],
       duration: "3months",
-      team: [""],
+      team: ["Program Coordinator", "Volunteers", "Community Leaders"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Non-profit Organization", "Humanitarian Services"],
+      endText:
+        "Alhafeez foundation is a non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
     },
     {
       image: image1,
@@ -58,7 +64,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Fintech", "Digital Payments"],
       endText:
-        "wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transaction",
+        "wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions",
     },
     {
       image: image2,
@@ -78,11 +84,11 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Recruitment", "Career Technology"],
       endText:
-        "Creating a job-matching platform designed to bridge the gap between job seekers and",
+        "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
     },
     {
       image: image3,
-      text: "Snap Mobile app",
+      text: "Mobile Design",
       subText: "",
       popUpHeadding:
         "Creating faster, smarter, and more connected mobile experiences for everyday communication.",
@@ -98,11 +104,11 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Mobile Technology", "Communication"],
       endText:
-        "Snap Mobile case study showcases our end-to-end UX design process from research and",
+        "Snap Mobile case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
     },
     {
       image: image4,
-      text: "Finance All Website",
+      text: "Website Design",
       subText: "",
       popUpHeadding:
         "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
@@ -118,11 +124,11 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Fintech", "Financial Analytics"],
       endText:
-        "A financial dashboard designed to provide a clear, real-time overview of personal and",
+        "A financial dashboard designed to provide a clear, real-time overview of personal and business finaces. it delivers insights and analytics.",
     },
     {
       image: image5,
-      text: "Travel Express Mobile App",
+      text: "Mobile Design",
       subText: "",
       popUpHeadding:
         "Creating seamless travel experiences through smarter booking, planning, and journey management.",
@@ -138,7 +144,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Travel Technology", "Transportation"],
       endText:
-        "Travel express is a travel experience platform designed to simplify trip planning and enhance",
+        "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
     },
   ],
   [
@@ -161,7 +167,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Fintech Digital Payments"],
       endText:
-        "Wankard is a fintech app focused on creating a clean, accessible, and efficient platform for",
+        "wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions",
     },
     {
       image: image3,
@@ -182,7 +188,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Mobile Technology", "Communication"],
       endText:
-        "Snap Mobile case study showcases our end-to-end UX design process from research and",
+        "Snap Mobile case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
     },
     {
       image: image2,
@@ -203,7 +209,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Recruitment Career Technology"],
       endText:
-        "Creating a job-matching platform designed to bridge the gap between job seekers and",
+        "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
     },
     {
       image: image12,
@@ -245,7 +251,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Travel Technology", "Transportation"],
       endText:
-        "Travel express is a travel experience platform designed to simplify trip planning and enhance",
+        "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
     },
     {
       image: image11,
@@ -271,7 +277,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["HealthTech", "Healthcare"],
       endText:
-        "VitaCare is a digital healthcare platform designed to simplify access to medical services and",
+        "VitaCare is a digital healthcare platform designed to simplify access to medical services and help users to manage their health anytime.",
     },
   ],
   [
@@ -299,7 +305,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Cloud Technology", "Software Development"],
       endText:
-        "Xnora is a modern web platform built for seamless deployment and efficient performance. It",
+        "Xnora is a modern web platform built for seamless deployment and efficient performance. It provides a clean, enviroment for deployment.",
     },
     {
       image: image4,
@@ -320,7 +326,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Fintech", "Financial Analytics"],
       endText:
-        "A financial dashboard designed to provide a clear, real-time overview of personal and",
+        "A financial dashboard designed to provide a clear, real-time overview of personal and business finaces. it delivers insights and analytics.",
     },
     {
       image: image10,
@@ -341,26 +347,27 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Productivity Tools", "Document Technology"],
       endText:
-        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word",
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting",
     },
     {
       image: image0,
       text: "Alhafeez foundation web App 🇳🇬🇬🇫",
       subText:
         "A non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Creating pathways of hope, support, and sustainable change for underserved communities.",
+      popHeadText: "Alhafeez Foundation",
       capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
+        "Community Support",
+        "Humanitarian Aid",
+        "Education Programes",
       ],
       duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      team: ["Program Coordinator", "Volunteers", "Community Leaders"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Non-profit Organization", "Humanitarian Services"],
+      endText:
+        "Alhafeez foundation is a non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
     },
     {
       image: image14,
@@ -381,7 +388,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Cybersecurity", "Authentication Technology"],
       endText:
-        "A secure authentication system designed to provide fast, seamless, and reliable user access",
+        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and inteuitve interface",
     },
     {
       image: image16,
@@ -402,7 +409,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Government Technology", "Public Services"],
       endText:
-        "A user-centered digital project aimed at improving the experience of corps members by",
+        "A user-centered digital project aimed at improving the experience of corps members by simplifing processes, and modernizing the overall platform",
     },
   ],
   [
@@ -411,19 +418,20 @@ const productData: Array<OurWorkData[]> = [
       text: "Alhafeez foundation web App 🇳🇬🇬🇫",
       subText:
         "A non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
-      popUpHeadding: "",
-      popHeadText: "",
+      popUpHeadding:
+        "Creating pathways of hope, support, and sustainable change for underserved communities.",
+      popHeadText: "Alhafeez Foundation",
       capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
+        "Community Support",
+        "Humanitarian Aid",
+        "Education Programes",
       ],
       duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
+      team: ["Program Coordinator", "Volunteers", "Community Leaders"],
       location: "Nigeria",
-      industry: [""],
-      endText: "",
+      industry: ["Non-profit Organization", "Humanitarian Services"],
+      endText:
+        "Alhafeez foundation is a non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
     },
     {
       image: image14,
@@ -443,7 +451,8 @@ const productData: Array<OurWorkData[]> = [
       team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
       location: "Nigeria",
       industry: ["Cybersecurity", "Authentication Technology"],
-      endText: "",
+      endText:
+        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and inteuitve interface",
     },
     {
       image: image6,
@@ -464,7 +473,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Security Technology", "Biometic Solutions"],
       endText:
-        "a biometric authentication system that enables secure and seamless user verification using",
+        "a biometric authentication system that enables secure and seamless user verification using facial recognition technology",
     },
     {
       image: image17,
@@ -490,7 +499,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Architecture", "Real Estate Tecnology"],
       endText:
-        "A design platform that helps users plan, visualize, and create functional home layouts",
+        "A design platform that helps users plan, visualize, and create functional home layouts through an intuitive and user-friendly interface.",
     },
     {
       image: image4,
@@ -511,7 +520,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Fintech", "Financial Analytics"],
       endText:
-        "A financial dashboard designed to provide a clear, real-time overview of personal and",
+        "A financial dashboard designed to provide a clear, real-time overview of personal and business finaces. it delivers insights and analytics.",
     },
     {
       image: image10,
@@ -532,7 +541,7 @@ const productData: Array<OurWorkData[]> = [
       location: "Nigeria",
       industry: ["Productivity Tools", "Document Technology"],
       endText:
-        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word",
+        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting",
     },
   ],
 ];
