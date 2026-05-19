@@ -40,13 +40,19 @@ function EnterDetailsAndMap() {
             <h5 className="ourWorkHeadMenu font-inter font-medium">
               Tell us about your project
             </h5>
-            <input className="h-41.75 sm:h-full border-2 sm:border-0 sm:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 sm:pb-7 sm:mt-6 rounded-2xl sm:rounded-none"></input>
+            <span>
+              <input className="min-[1000px]:inline-block hidden h-41.75 sm:h-full border-2 sm:border-0 sm:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 sm:pb-7 sm:mt-6 rounded-2xl sm:rounded-none"></input>
+              <textarea className="min-[1000px]:hidden inline-block  h-41.75 sm:h-full border-2 sm:border-0 sm:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 sm:pb-7 sm:mt-6 rounded-2xl sm:rounded-none"></textarea>
+            </span>
           </span>
           <span className=" font-inter">
             <h5 className="ourWorkHeadMenu font-inter font-medium">
               How did you find D'rahim tech innovation?
             </h5>
-            <input className="h-41.75 sm:h-full border-2 sm:border-0 sm:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 sm:pb-7 sm:mt-6 rounded-2xl sm:rounded-none"></input>
+            <span>
+              <input className="min-[1000px]:inline-block hidden h-41.75 sm:h-full border-2 sm:border-0 sm:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 sm:pb-7 sm:mt-6 rounded-2xl sm:rounded-none"></input>
+              <textarea className="min-[1000px]:hidden inline-block  h-41.75 sm:h-full border-2 sm:border-0 sm:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 sm:pb-7 sm:mt-6 rounded-2xl sm:rounded-none"></textarea>
+            </span>
           </span>
         </div>
         <div className="mt-10">

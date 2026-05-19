@@ -1,6 +1,6 @@
 function Lowest() {
   return (
-    <div className=" flex flex-col p-10 gap-3 w-full h-full bg-[#F8FAFC]  rounded-2xl paymentCardShadow">
+    <div className=" flex flex-col p-10 gap-3 w-full h-full bg-[#F8FAFC]  rounded-2xl paymentCardShadow border-2 border-[black]">
       <span className="flex flex-col gap-1.5">
         <h5 className="fontPoppins font-semibold text-[40px] ">Basic Plan</h5>
         <h5 className="fontPoppins  text-[20px] -mt-2 ">Starter level</h5>
