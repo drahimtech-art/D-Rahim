@@ -245,3 +245,9 @@
 .min16Max24px {
   font-size: clamp(16px, 3vw, 24px);
 }
+.min24Max30px {
+  font-size: clamp(24px, 5vw, 30px);
+}
+.min58Max60px {
+  font-size: clamp(58px, 6vw, 60px);
+}

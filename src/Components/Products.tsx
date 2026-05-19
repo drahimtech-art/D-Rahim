@@ -12,12 +12,27 @@ import image12 from "/images/12.png";
 import image14 from "/images/14.png";
 import image16 from "/images/16.png";
 import image17 from "/images/17.png";
+import imageP0 from "/images/p0.png";
+import imageP1 from "/images/p1.png";
+import imageP2 from "/images/p2.png";
+import imageP3 from "/images/p3.png";
+import imageP4 from "/images/p4.png";
+import imageP5 from "/images/p5.png";
+import imageP6 from "/images/p6.png";
+import imageP9 from "/images/p9.png";
+import imageP10 from "/images/p10.png";
+import imageP11 from "/images/p11.png";
+import imageP12 from "/images/p12.png";
+import imageP14 from "/images/p14.png";
+import imageP16 from "/images/p16.png";
+import imageP17 from "/images/p17.png";
 type OurWorkData = {
   image: string;
   text: string;
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
+  popImageUrl: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -34,6 +49,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating pathways of hope, support, and sustainable change for underserved communities.",
       popHeadText: "Alhafeez Foundation",
+      popImageUrl: imageP0,
       capabilities: [
         "Community Support",
         "Humanitarian Aid",
@@ -53,6 +69,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating seamless, secure, and accessible financial solutions for everyday transactions.",
       popHeadText: "Wankard",
+      popImageUrl: imageP1,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -73,6 +90,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating smarter pathways to career growth, opportunity, and seamless job connections.",
       popHeadText: "Jobified Employer",
+      popImageUrl: imageP2,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -93,6 +111,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating faster, smarter, and more connected mobile experiences for everyday communication.",
       popHeadText: "Snap Mobile",
+      popImageUrl: imageP3,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -113,6 +132,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
       popHeadText: "Finance All",
+      popImageUrl: imageP4,
       capabilities: [
         "UI/UX Designer",
         "Finacial Dashboard Design",
@@ -133,6 +153,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating seamless travel experiences through smarter booking, planning, and journey management.",
       popHeadText: "Travel Express",
+      popImageUrl: imageP5,
       capabilities: [
         "UI/UX Design",
         "Travel Booking Experience",
@@ -156,6 +177,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating seamless, secure, and accessible financial solutions for everyday transactions.",
       popHeadText: "Wankard",
+      popImageUrl: imageP1,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -177,6 +199,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating faster, smarter, and more connected mobile experiences for everyday communication.",
       popHeadText: "Snap Moblie",
+      popImageUrl: imageP3,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -198,6 +221,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating smarter pathways to career growth, opportunity, and seamless job connections.",
       popHeadText: "Jobified Employer",
+      popImageUrl: imageP2,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -219,6 +243,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating faster, smarter, and more meaningful communication experiences for everyday conversations.",
       popHeadText: "Target Message",
+      popImageUrl: imageP12,
       capabilities: [
         "UI/UX Design",
         "Messaging Experience Design",
@@ -240,6 +265,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating seamless travel experiences through smarter booking, planning, and journey management.",
       popHeadText: "Travel Express",
+      popImageUrl: imageP5,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -261,6 +287,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating accessible healthcare solutions that connect people to better care and wellness.",
       popHeadText: "Vite-Care",
+      popImageUrl: imageP11,
       capabilities: [
         "UI/UX Design",
         "Healthcare Experience",
@@ -289,6 +316,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Empowering businesses to deploy, manage, and scale digital products with speed and efficiency.",
       popHeadText: "Xnora",
+      popImageUrl: imageP9,
       capabilities: [
         "UI/UX Design",
         "Web Platform Design",
@@ -315,6 +343,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
       popHeadText: "Finance All",
+      popImageUrl: imageP4,
       capabilities: [
         "UI/UX Designer",
         "Finacial Dashboard Design",
@@ -336,6 +365,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Simplifying document conversion through speed, accuracy, and seamless accessibility.",
       popHeadText: "Pdf to word",
+      popImageUrl: imageP10,
       capabilities: [
         "UI/UX Design",
         "Document Conversion Flow",
@@ -357,6 +387,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating pathways of hope, support, and sustainable change for underserved communities.",
       popHeadText: "Alhafeez Foundation",
+      popImageUrl: imageP0,
       capabilities: [
         "Community Support",
         "Humanitarian Aid",
@@ -377,6 +408,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating secure and seamless authentication experiences for modern digital platforms.",
       popHeadText: "Razor",
+      popImageUrl: imageP14,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -398,6 +430,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Transforming youth service operations through seamless digital experiences, accessibility, and efficiency.",
       popHeadText: "NYSC Redesign web App 🇳🇬",
+      popImageUrl: imageP16,
       capabilities: [
         "UI/UX Design",
         "System Resign",
@@ -421,6 +454,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating pathways of hope, support, and sustainable change for underserved communities.",
       popHeadText: "Alhafeez Foundation",
+      popImageUrl: imageP0,
       capabilities: [
         "Community Support",
         "Humanitarian Aid",
@@ -441,6 +475,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating secure and seamless authentication experiences for modern digital platforms.",
       popHeadText: "",
+      popImageUrl: imageP14,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -462,6 +497,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating secure identity verification through fast, seamless, and intelligent facial recognition.",
       popHeadText: "Face Scan",
+      popImageUrl: imageP6,
       capabilities: [
         "UI/UX Design",
         "Biometric Authentication",
@@ -483,6 +519,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Transforming ideas into functional living spaces through smart design and visualization.",
       popHeadText: "Home Architect",
+      popImageUrl: imageP17,
       capabilities: [
         "UI/UX Design",
         "Architecture Planning",
@@ -509,6 +546,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
       popHeadText: "Finance All",
+      popImageUrl: imageP4,
       capabilities: [
         "UI/UX Designer",
         "Finacial Dashboard Design",
@@ -530,6 +568,7 @@ const productData: Array<OurWorkData[]> = [
       popUpHeadding:
         "Simplifying document conversion through speed, accuracy, and seamless accessibility.",
       popHeadText: "Pdf to word",
+      popImageUrl: imageP10,
       capabilities: [
         "UI/UX Design",
         "Document Conversion Flow",

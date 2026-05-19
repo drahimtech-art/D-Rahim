@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-function EndCategoryMenu() {
+import { useState, useEffect, useRef } from "react";
+function FAQ() {
   const [option1, setOption1] = useState<boolean>(false);
   const [option2, setOption2] = useState<boolean>(false);
   const [option3, setOption3] = useState<boolean>(false);
@@ -46,9 +46,11 @@ function EndCategoryMenu() {
     }
   }, [option1, option2, option3, option4]);
   return (
-    <div className=" lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col sm:mt-27.25 mt-10 w-full ">
+    <div className=" lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col -mb-20 mt-10 w-full ">
       <span className="block">
-        <h5 className=" font-semibold font-size-heading">Our Values</h5>
+        <h5 className=" font-semibold fontPoppins font-size-heading">
+          Frequently Asked Questions
+        </h5>
       </span>
       <div className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5 pointer">
         <span
@@ -56,23 +58,26 @@ function EndCategoryMenu() {
           onClick={() => setOption1(!option1)}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className=" font-inter min58Max60px font-medium">
-              Simplicity First
+            <h5 className=" font-inter min24Max30px font-medium">
+              What makes your digital product design services stand out from
+              competitors?
             </h5>
             {!option1 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.3rem"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.3rem"></i>
             )}
           </span>
           <div className="relative ">
             <span
-              className="block font-inter font-medium  sm:text-[2.2rem] text-[1.3rem] max-w-[75%]  sm:pt-10  pt-3 sm:pb-10 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
+              className="block font-inter font-medium  sm:text-[2.2rem] text-[1.3rem]   sm:pt-10  pt-3 sm:pb-10 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef1}
             >
               <h5>
-                We Believe The Best Solutions Are Simple, Clear, And Easy To Use
-                No Unnecessary Complexity.
+                Quality design, data-driven solutions, and reliability. For the
+                past three years, we've delivered high-quality digital product
+                and UX design services. Backed by a skilled team and a proven
+                process, we ensure excellence in every project.
               </h5>
             </span>
           </div>
@@ -82,23 +87,25 @@ function EndCategoryMenu() {
           onClick={() => setOption2(!option2)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min58Max60px font-medium font-inter">
-              User-Centered Thinking
+            <h5 className="min24Max30px font-medium font-inter">
+              Why does digital product design matter today?
             </h5>
             {!option2 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.3rem"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.3rem"></i>
             )}
           </span>
-          <div className="relative w-full">
+          <div className="relative w-full pl-2.5 pr-2.5">
             <span
               className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 transition-all dropDownMenuAnimation"
               ref={dropdownMenuRef2}
             >
               <h5>
-                Every Decision Starts With The User Real Needs, Real Behavior,
-                Real Problems.
+                Quality design, data-driven solutions, and reliability. For the
+                past three years, we've delivered high-quality digital product
+                and UX design services. Backed by a skilled team and a proven
+                process, we ensure excellence in every project.
               </h5>
             </span>
           </div>
@@ -108,24 +115,26 @@ function EndCategoryMenu() {
           onClick={() => setOption3(!option3)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min58Max60px font-medium font-inter">
-              Impact Over Hype
+            <h5 className="min24Max30px font-medium font-inter">
+              How do you approach your product design process?
             </h5>
             {!option3 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.3rem"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.3rem"></i>
             )}
           </span>
 
-          <div className="relative">
+          <div className="relative pl-2.5 pr-2.5">
             <span
               className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem] max-w-[80%] sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef3}
             >
               <h5>
-                We Focus On Solutions That Create Real Value And Meaningful
-                Change, Not Just What Looks Good.
+                Quality design, data-driven solutions, and reliability. For the
+                past three years, we've delivered high-quality digital product
+                and UX design services. Backed by a skilled team and a proven
+                process, we ensure excellence in every project.
               </h5>
             </span>
           </div>
@@ -135,24 +144,27 @@ function EndCategoryMenu() {
           onClick={() => setOption4(!option4)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min58Max60px font-medium font-inter">
-              Accessibility For All
+            <h5 className="min24Max30px font-medium font-inter">
+              What distinguishes UX design services from digital product design
+              services?
             </h5>
             {!option4 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.3rem"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.3rem"></i>
             )}
           </span>
 
-          <div className="relative">
+          <div className="relative pl-2.5 pr-2.5">
             <span
               className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef4}
             >
               <h5>
-                We Believe Technology Should Work For Everyone, Regardless Of
-                Background Or Experience.
+                Quality design, data-driven solutions, and reliability. For the
+                past three years, we've delivered high-quality digital product
+                and UX design services. Backed by a skilled team and a proven
+                process, we ensure excellence in every project.
               </h5>
             </span>
           </div>
@@ -161,4 +173,4 @@ function EndCategoryMenu() {
     </div>
   );
 }
-export default EndCategoryMenu;
+export default FAQ;

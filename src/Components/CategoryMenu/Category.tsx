@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import products from "../Products";
-import mobileProducts from "../MobileProducts";
+import mobileProducts from "../mobileProducts";
 import CardList from "../Home/CardList";
 import image0 from "/images/10.png";
 import image1 from "/images/11.png";
@@ -11,12 +11,22 @@ import image5 from "/images/17.png";
 import image6 from "/images/6.png";
 import image7 from "/images/9.png";
 import image8 from "/images/12.png";
+import imageP0 from "/images/p10.png";
+import imageP1 from "/images/p11.png";
+import imageP2 from "/images/p8.png";
+import imageP3 from "/images/p14.png";
+import imageP4 from "/images/p13.png";
+import imageP5 from "/images/p17.png";
+import imageP6 from "/images/p6.png";
+import imageP7 from "/images/p9.png";
+import imageP8 from "/images/p12.png";
 type OurWorkData = {
   image: string;
   text: string;
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
+  popImageUrl?: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -33,6 +43,7 @@ const countData = [
       popUpHeadding:
         "Simplifying document conversion through speed, accuracy, and seamless accessibility.",
       popHeadText: "Pdf to Word",
+      popImageUrl: imageP0,
       capabilities: [
         "UI/UX Design",
         "Document Conversion Flow",
@@ -53,6 +64,7 @@ const countData = [
       popUpHeadding:
         "Creating accessible healthcare solutions that connect people to better care and wellness.",
       popHeadText: "Vite Care ",
+      popImageUrl: imageP1,
       capabilities: [
         "UI/UX Design",
         "Healthcare Experience Design",
@@ -78,6 +90,7 @@ const countData = [
       popUpHeadding:
         "Connecting people to delicious meals through fast, seamless, and convenient food ordering experiences.",
       popHeadText: "Come Chop",
+      popImageUrl: imageP2,
       capabilities: [
         "UI/UX Design",
         "Food Ordering Experience",
@@ -98,6 +111,7 @@ const countData = [
       popUpHeadding:
         "Creating secure and seamless authentication experiences for modern digital platforms.",
       popHeadText: "Razor",
+      popImageUrl: imageP3,
       capabilities: [
         "UI/UX Design",
         "Mobile App Design",
@@ -118,6 +132,7 @@ const countData = [
       popUpHeadding:
         "Creating accessible healthcare solutions that connect people to quality care anytime, anywhere.",
       popHeadText: "Medi Link",
+      popImageUrl: imageP4,
       capabilities: [
         "UI/UX Design",
         "Healtcare Experience Design",
@@ -143,6 +158,7 @@ const countData = [
       popUpHeadding:
         "Transforming ideas into functional living spaces through smart design and visualization.",
       popHeadText: "Home Architect",
+      popImageUrl: imageP5,
       capabilities: [
         "UI/UX Design",
         "Architecture Planning",
@@ -170,6 +186,7 @@ const countData = [
       popUpHeadding:
         "Creating secure identity verification through fast, seamless, and intelligent facial recognition.",
       popHeadText: "Face Scan",
+      popImageUrl: imageP6,
       capabilities: [
         "UI/UX Design",
         "Biometric Authentication",
@@ -190,6 +207,7 @@ const countData = [
       popUpHeadding:
         "Empowering businesses to deploy, manage, and scale digital products with speed and efficiency.",
       popHeadText: "Xnora",
+      popImageUrl: imageP7,
       capabilities: [
         "UI/UX Design",
         "Web Platform Design",
@@ -215,6 +233,7 @@ const countData = [
       popUpHeadding:
         "Creating faster, smarter, and more meaningful communication experiences for everyday conversations.",
       popHeadText: "Target Message",
+      popImageUrl: imageP8,
       capabilities: [
         "UI/UX Design",
         "Messaging Experience Design",

@@ -10,6 +10,7 @@ type BodyContent = {
   imageText: string;
   subText?: string;
   popUpHeadding: string;
+  popImageUrl?: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -81,7 +82,7 @@ function CardPopUp(props: Body) {
               </h5>
               <span className="block w-full h-172">
                 <img
-                  src={props.body.imageUrl}
+                  src={props.body.popImageUrl}
                   alt="Project Image"
                   className="w-full h-full "
                 />

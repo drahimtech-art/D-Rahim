@@ -42,7 +42,7 @@ function AboutSubHeadText() {
       </div>
       <div className="mt-10 sm:mt-27.25">
         <span>
-          <h5 className="sm:w-[80%] sm:max-w-273.5 font-inter expereanceTextSubText2 font-medium  ">
+          <h5 className="w-[80%] sm:max-w-268.5 font-inter min58Max80px font-medium  ">
             Our mission is to simplify technology and design meaningful digital
             experiences that empower underserved individuals and businesses
             across Africa regardless of their background.

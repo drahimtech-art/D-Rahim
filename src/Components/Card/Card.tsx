@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
+import { AppDataContext } from "../ContextApi/ContextApi";
 type ImageData = {
   image: string;
   text: string;
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
+  popImageUrl?: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -20,12 +22,16 @@ type ImageData = {
 function Card(props: ImageData) {
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
   const urlNavigator = useNavigate();
+  const dataContext = AppDataContext();
+  if (!dataContext) return;
+  const { setProjectInfo } = dataContext;
   const data = {
     imageUrl: props.image,
     imageText: props.text,
     subText: props.subText,
     popUpHeadding: props.popUpHeadding,
     popHeadText: props.popHeadText,
+    popImageUrl: props.popImageUrl,
     capabilities: props.capabilities,
     duration: props.duration,
     team: props.team,
@@ -47,9 +53,12 @@ function Card(props: ImageData) {
     return () => window.removeEventListener("resize", () => handleWindowResize);
   }, []);
   function handleClick() {
+    //*=== project pc info
     setIsPopUpVisible(!isPopUpVisible);
   }
   function projectInfo() {
+    //*=== project mobile info
+    setProjectInfo(data);
     const url = "/project/info";
     urlNavigator(url, { replace: false });
   }

@@ -5,6 +5,7 @@ type OurWorkData = {
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
+  popImageUrl?: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -32,6 +33,7 @@ function CardList(props: Body) {
               subText={e.subText}
               popUpHeadding={e.popUpHeadding}
               popHeadText={e.popHeadText}
+              popImageUrl={e.popImageUrl}
               capabilities={e.capabilities}
               duration={e.duration}
               team={e.team}

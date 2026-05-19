@@ -10,8 +10,8 @@ type Data = {
   setProjectInfo: React.Dispatch<SetStateAction<OurWorkData>>;
 };
 type OurWorkData = {
-  image: string;
-  text: string;
+  imageUrl: string;
+  imageText: string;
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
@@ -25,8 +25,8 @@ type OurWorkData = {
 const DataContext = createContext<Data | null>(null);
 export const DataContextProvider = ({ children }: { children: ReactNode }) => {
   const [projectInfo, setProjectInfo] = useState<OurWorkData>({
-    image: "",
-    text: "",
+    imageUrl: "",
+    imageText: "",
     subText: "",
     popUpHeadding: "",
     popHeadText: "",
