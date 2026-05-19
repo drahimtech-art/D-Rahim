@@ -11,53 +11,65 @@ import cv5Image from "/images/7.png";
 
 function ServiceCard() {
   return (
-    <div className="mt-20 pl-10 pr-10  w-full  max-h-171.5">
-      <div className="grid grid-cols-2 gap-4 ">
-        <div className="relative  max-h-171.5 bg-[#bdb9b9] rounded-4xl w-full h-full ">
+    <div className="min-[1000px]:mt-20 mt-10 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  w-full  min-[1000px]:max-h-171.5 overflow-hidden">
+      <div className="flex min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 gap-7.5 overflow-x-scroll">
+        <div className="relative min-w-70 h-70 min-[1000px]:max-h-171.5 bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:w-full min-[1000px]:h-full ">
           <img
-            className="rounded-4xl w-full max-h-171.5 bg-[#bdb9b9]"
+            className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  w-full max-h-171.5 min-[1000px]:bg-[#bdb9b9]"
             src={cv1Image}
           ></img>
-          <span className="">
+          <span className="min-w-70 min-[1000px]:w-full ">
             <img
-              className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
+              className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
               src={cv1}
             ></img>
           </span>
         </div>
-        <div className="grid grid-cols-2 gap-4 max-h-171.5 w-full">
-          <div className="relative w-full h-full   max-h-81    ">
-            <img className="rounded-4xl w-full h-full" src={cv2Image}></img>
-            <span className="">
+        <div className="flex gap-7.5 min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 min-[1000px]:maxh-171.5 w-full">
+          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+            <img
+              className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
+              src={cv2Image}
+            ></img>
+            <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
                 src={cv2}
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full   max-h-81   ">
-            <img className="rounded-4xl w-full h-full" src={cv3Image}></img>
-            <span className="">
+          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+            <img
+              className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
+              src={cv3Image}
+            ></img>
+            <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
                 src={cv3}
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full   max-h-81   mb-0  ">
-            <img className="rounded-4xl w-full h-full " src={cv5Image}></img>
-            <span className="">
+          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+            <img
+              className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
+              src={cv5Image}
+            ></img>
+            <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
                 src={cv5}
               ></img>
             </span>
           </div>
-          <div className="relative w-full h-full   max-h-81   mb-0  ">
-            <img className="rounded-4xl w-full h-full" src={cv4Image}></img>
-            <span className="">
+          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+            <img
+              className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
+              src={cv4Image}
+            ></img>
+            <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full absolute top-0 bg-[#bdb9b9] rounded-4xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
                 src={cv4}
               ></img>
             </span>
