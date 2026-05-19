@@ -98,7 +98,7 @@ function CategoryMenu() {
         <div className="flex items-center">
           <span
             className="w-full flex  relative"
-            onClick={() => setOptionOne(!optionTwo)}
+            onClick={() => setOptionTwo(!optionTwo)}
           >
             <h5 className=" serviceMenuText font-inter font-medium">
               Website Design

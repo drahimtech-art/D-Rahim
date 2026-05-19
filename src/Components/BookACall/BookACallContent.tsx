@@ -1,10 +1,10 @@
 import Logo1 from "/images/logo1.png";
 function BookACallContent() {
   return (
-    <div className="sm:pl-10 sm:pr-10 pl-5 pr-5  mt-20 flex gap-10 justify-around">
-      <div className="flex flex-col mr-auto w-[32%]">
-        <div className="flex flex-col gap-2 mt-6">
-          <div className="flex justify-center pr-20">
+    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-20 mt-10 flex flex-col min-[1000px]:flex-row min-[1000px]:gap-10 gap-5 justify-around">
+      <div className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
+        <div className="flex flex-col gap-2 min-[1000px]:mt-6">
+          <div className="flex justify-center min-[1000px]:pr-20">
             <span className="w-35 h-35 rounded-full ">
               <img className="w-full h-full rounded-full" src={Logo1}></img>
             </span>
@@ -36,16 +36,16 @@ function BookACallContent() {
         </div>
       </div>
       {/**calender */}
-      <div className="flex flex-col  w-[50%] mr-auto">
+      <div className="flex flex-col  min-[1000px]:w-[50%] min-[1000px]:mr-auto">
         <span>
           <h5 className="font-inter font-bold text-[24px]">
             Select a Date & Time
           </h5>
         </span>
-        <div className="mt-10 w-full h-137.5 bg-gray-300 rounded-2xl"></div>
+        <div className="min-[1000px]:mt-10 mt-5 w-full min-[1000px]:h-137.5 h-100 bg-gray-300 rounded-2xl"></div>
       </div>
       {/**time */}
-      <div className="mt-16 w-[20%] flex flex-col">
+      <div className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
         <span>
           <h5 className="font-inter  text-[24px]">Tuesday, September 9</h5>
         </span>
