@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
 type ImageData = {
   image: string;
@@ -18,6 +19,7 @@ type ImageData = {
 
 function Card(props: ImageData) {
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
+  const urlNavigator = useNavigate();
   const data = {
     imageUrl: props.image,
     imageText: props.text,
@@ -47,6 +49,10 @@ function Card(props: ImageData) {
   function handleClick() {
     setIsPopUpVisible(!isPopUpVisible);
   }
+  function projectInfo() {
+    const url = "/project/info";
+    urlNavigator(url, { replace: false });
+  }
   return (
     <>
       <span className="flex flex-col grow  min-[1000px]:max-h-full items-stretch">
@@ -61,7 +67,7 @@ function Card(props: ImageData) {
           <img
             className="w-full h-full pointer min-[1000px]:h-100  rounded-2xl"
             src={props.image}
-            onClick={handleClick}
+            onClick={projectInfo}
           ></img>
         )}
         <h5 className="logoMainText font-bold ">

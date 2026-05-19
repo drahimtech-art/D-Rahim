@@ -10,8 +10,11 @@ function AboutHeadText() {
           </h5>
         </div>
       </div>
-      <div className="w-full h-147  sm:max-h-198 mt-4">
-        <img className="w-full h-full  sm:max-h-198" src={companyImage}></img>
+      <div className="w-full h-147  min-[1000px]:max-h-198 mt-4">
+        <img
+          className="w-full h-full  min-[1000px]:max-h-198"
+          src={companyImage}
+        ></img>
       </div>
     </>
   );
