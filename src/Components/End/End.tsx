@@ -34,10 +34,26 @@ function End() {
       </div>
       <div className="mt-15.5 sm:mt-30">
         <span className="flex gap-5 text-[1.8rem] lg:text-[2rem] text-gray-200">
-          <i className="fa-brands fa-facebook"></i>
-          <i className="fa-brands fa-linkedin"></i>
-          <i className="fa-brands fa-behance"></i>
-          <i className="fa-brands fa-instagram"></i>
+          <a
+            className="fa-brands fa-facebook"
+            href="https://web.facebook.com/people/Drahim-Tech-Innovation/100076332797158/"
+            target="_blank"
+          ></a>
+          <a
+            className="fa-brands fa-linkedin"
+            href="https://www.linkedin.com/company/d-rahim-tech-innovation/"
+            target="_blank"
+          ></a>
+          <a
+            className="fa-brands fa-behance"
+            href="https://www.behance.net/drahimtechinnovation"
+            target="_blank"
+          ></a>
+          <a
+            className="fa-brands fa-instagram"
+            href="https://www.instagram.com/drahimtech?igsh=N2psejUyeTNlbnl0&utm_source=qr"
+            target="_blank"
+          ></a>
         </span>
       </div>
       <div className="mt-15.5 sm:mt-30 flex flex-col gap-10 sm:flex-row text-gray-200 text-[16px] font-inter  sm:gap-46.5">
