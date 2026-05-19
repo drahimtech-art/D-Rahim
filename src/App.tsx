@@ -7,6 +7,7 @@ const About = lazy(() => import("./Components/About/About"));
 const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
 const GetInTouch = lazy(() => import("./Components/GetInTouch/GetInTouch"));
 const BookACall = lazy(() => import("./Components/BookACall/BookACall"));
+const ProjectInfo = lazy(() => import("./Components/ProjectInfo/ProjectInfo"));
 function App() {
   const routes = createBrowserRouter(
     [
@@ -17,6 +18,10 @@ function App() {
           {
             path: "/",
             element: <Home />,
+          },
+          {
+            path: "/project/info",
+            element: <ProjectInfo />,
           },
           {
             path: "/services",
