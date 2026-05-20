@@ -56,7 +56,7 @@ function EndCategoryMenu() {
           onClick={() => setOption1(!option1)}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className=" font-inter min58Max60px font-medium">
+            <h5 className=" font-inter min24Max58px font-medium">
               Simplicity First
             </h5>
             {!option1 ? (
@@ -82,7 +82,7 @@ function EndCategoryMenu() {
           onClick={() => setOption2(!option2)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min58Max60px font-medium font-inter">
+            <h5 className="min24Max58px font-medium font-inter">
               User-Centered Thinking
             </h5>
             {!option2 ? (
@@ -108,7 +108,7 @@ function EndCategoryMenu() {
           onClick={() => setOption3(!option3)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min58Max60px font-medium font-inter">
+            <h5 className="min24Max58px font-medium font-inter">
               Impact Over Hype
             </h5>
             {!option3 ? (
@@ -135,7 +135,7 @@ function EndCategoryMenu() {
           onClick={() => setOption4(!option4)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min58Max60px font-medium font-inter">
+            <h5 className="min24Max58px font-medium font-inter">
               Accessibility For All
             </h5>
             {!option4 ? (

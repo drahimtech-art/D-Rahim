@@ -20,6 +20,9 @@ function Menu(props: MenuControl) {
   function contact() {
     urlNavigator("/contact", { replace: true });
   }
+  function bookACall() {
+    urlNavigator("/book/call", { replace: true });
+  }
   return (
     <div className="w-full h-screen fixed z-50 top-0 p-7 bg-[#030e03]">
       <div className="flex items-center">
@@ -72,7 +75,10 @@ function Menu(props: MenuControl) {
         >
           <h5>Get in touch</h5>
         </span>
-        <span className="p-2.5 menuText text-green-500 font-inter font-semibold ">
+        <span
+          className="p-2.5 menuText text-green-500 font-inter font-semibold "
+          onClick={bookACall}
+        >
           <h5>Book a call</h5>
         </span>
       </div>
