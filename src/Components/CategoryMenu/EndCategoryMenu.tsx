@@ -91,9 +91,9 @@ function EndCategoryMenu() {
               <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
-          <div className="relative w-full">
+          <div className="relative ">
             <span
-              className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 transition-all dropDownMenuAnimation"
+              className="block font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 transition-all dropDownMenuAnimation"
               ref={dropdownMenuRef2}
             >
               <h5>
@@ -120,7 +120,7 @@ function EndCategoryMenu() {
 
           <div className="relative">
             <span
-              className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem] max-w-[80%] sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
+              className="block font-inter font-medium sm:text-[2.2rem] text-[1.3rem] max-w-[80%] sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef3}
             >
               <h5>
@@ -147,7 +147,7 @@ function EndCategoryMenu() {
 
           <div className="relative">
             <span
-              className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
+              className="block font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef4}
             >
               <h5>
