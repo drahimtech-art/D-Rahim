@@ -48,7 +48,7 @@ function FAQ() {
   return (
     <div className=" lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col -mb-20 mt-10 w-full ">
       <span className="block">
-        <h5 className=" font-semibold fontPoppins font-size-heading">
+        <h5 className=" font-semibold fontPoppins min-[1000px]:font-inter min40Max60px">
           Frequently Asked Questions
         </h5>
       </span>
@@ -58,7 +58,7 @@ function FAQ() {
           onClick={() => setOption1(!option1)}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className=" font-inter min24Max30px font-medium">
+            <h5 className=" font-inter min24Max35px font-medium">
               What makes your digital product design services stand out from
               competitors?
             </h5>
@@ -70,7 +70,7 @@ function FAQ() {
           </span>
           <div className="relative ">
             <span
-              className="block font-inter font-medium  sm:text-[2.2rem] text-[1.3rem]   sm:pt-10  pt-3 sm:pb-10 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
+              className="block font-inter font-medium  min-[1000px]:font-normal min-[1000px]:text-[1.5rem] text-[1.3rem]   sm:pt-10  pt-3 sm:pb-10 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef1}
             >
               <h5>
@@ -87,7 +87,7 @@ function FAQ() {
           onClick={() => setOption2(!option2)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min24Max30px font-medium font-inter">
+            <h5 className="min24Max35px font-medium font-inter">
               Why does digital product design matter today?
             </h5>
             {!option2 ? (
@@ -98,7 +98,7 @@ function FAQ() {
           </span>
           <div className="relative w-full pl-2.5 pr-2.5">
             <span
-              className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 transition-all dropDownMenuAnimation"
+              className="font-inter font-medium min-[1000px]:font-normal min-[1000px]:text-[1.5rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 transition-all dropDownMenuAnimation"
               ref={dropdownMenuRef2}
             >
               <h5>
@@ -115,7 +115,7 @@ function FAQ() {
           onClick={() => setOption3(!option3)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min24Max30px font-medium font-inter">
+            <h5 className="min24Max35px font-medium font-inter">
               How do you approach your product design process?
             </h5>
             {!option3 ? (
@@ -127,7 +127,7 @@ function FAQ() {
 
           <div className="relative pl-2.5 pr-2.5">
             <span
-              className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem] max-w-[80%] sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
+              className="font-inter font-medium min-[1000px]:font-normal min-[1000px]:text-[1.5rem] text-[1.3rem] max-w-[80%] sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef3}
             >
               <h5>
@@ -144,7 +144,7 @@ function FAQ() {
           onClick={() => setOption4(!option4)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min24Max30px font-medium font-inter">
+            <h5 className="min24Max35px font-medium font-inter">
               What distinguishes UX design services from digital product design
               services?
             </h5>
@@ -157,7 +157,7 @@ function FAQ() {
 
           <div className="relative pl-2.5 pr-2.5">
             <span
-              className="font-inter font-medium sm:text-[2.2rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
+              className="font-inter font-medium min-[1000px]:font-normal min-[1000px]:text-[1.5rem] text-[1.3rem]  sm:pt-10 sm:pb-10 pt-3 pb-3 pl-3 sm:pl-0 dropDownMenuAnimation"
               ref={dropdownMenuRef4}
             >
               <h5>

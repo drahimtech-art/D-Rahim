@@ -13,7 +13,7 @@ function HeadText() {
             solutions faster and drive innovation forward.
           </h5>
         </span>
-        <span className="block min-[1000px]:mt-27.25 min-[1000px]:max-w-301.5 min-[1000px]:h-77.5 bg-gray-400"></span>
+        <span className="block min-[1000px]:mt-27.25 min-[1000px]:w-[70%] min-[1000px]:max-w-301.5 min-[1000px]:h-77.5 bg-gray-400"></span>
         <span className="block min-[1000px]:mt-26.25 text-[46px] font-semibold font-inter min-[1000px]:max-w-262.75  ">
           <h5>
             Develop a scalable ecosystem of experiences designed around people.
@@ -101,7 +101,6 @@ function HeadText() {
               <span className="p-2.5 border-b-2 border-t-2 text-[24px] font-inter">
                 <h5>Market Research</h5>
               </span>
-
               <span className="p-2.5 border-b-2  text-[24px] font-inter">
                 <h5>User Research</h5>
               </span>
@@ -130,46 +129,45 @@ function HeadText() {
           <div className="flex mt-10 min-[1000px]:gap-25">
             <div className="flex flex-col min-[1000px]:w-67.5">
               <span className="p-2.5  text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>Business Analysis</h5>
               </span>
 
               <span className="p-2.5   text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>UI/UX Design</h5>
               </span>
               <span className="p-2.5  text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>Service Design</h5>
               </span>
             </div>
             <div className="flex flex-col min-[1000px]:w-77.5">
               <span className="p-2.5  text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>User & Market Research</h5>
               </span>
 
               <span className="p-2.5   text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>UX writing</h5>
               </span>
               <span className="p-2.5  text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>UI/UX Consulting</h5>
               </span>
             </div>
             <div className="flex flex-col min-[1000px]:w-96.25">
               <span className="p-2.5  text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>Customer Experience Design</h5>
               </span>
-
               <span className="p-2.5   text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>Digital Product Management</h5>
               </span>
               <span className="p-2.5  text-[24px] font-inter">
-                <span className="border-b-2 w-[40%] block h-1"></span>
+                <span className="border-b-2 w-[40%] max-w-25 block h-1"></span>
                 <h5>Design Project Management</h5>
               </span>
             </div>
