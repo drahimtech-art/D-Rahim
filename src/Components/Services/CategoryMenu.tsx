@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 function CategoryMenu() {
+  const urlNavigator = useNavigate();
   const [optionOne, setOptionOne] = useState<boolean>(true);
   const [optionTwo, setOptionTwo] = useState<boolean>(false);
   const [optionThree, setOptionThree] = useState<boolean>(false);
@@ -46,6 +48,10 @@ function CategoryMenu() {
       dropdownMenuRef4.current.classList.add("dropDownMenuAnimation");
     }
   }, [optionOne, optionTwo, optionThree, optionFour]);
+  function toDiscoverAllServices() {
+    const url = "/discover/all/services";
+    urlNavigator(url, { replace: true });
+  }
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 pointer">
       {/** */}
@@ -86,7 +92,10 @@ function CategoryMenu() {
               <h5> Product Strategy & Road Mapping </h5>
               <h5>UI/UX Design</h5>
               <h5> UX Writing</h5> <h5>Design Systems</h5> <h5>User Testing</h5>
-              <span className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+              <span
+                className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]"
+                onClick={toDiscoverAllServices}
+              >
                 <h5>Discover all services we provide </h5>
                 <i className="fas fa-arrow-up  rotate-40"></i>
               </span>
@@ -131,7 +140,10 @@ function CategoryMenu() {
               <h5>Web Design</h5>
               <h5> Development & Testing</h5>
               <h5>Launch & Maintenace</h5>
-              <span className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+              <span
+                className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]"
+                onClick={toDiscoverAllServices}
+              >
                 <h5>Discover all services we provide </h5>
                 <i className="fas fa-arrow-up  rotate-40"></i>
               </span>
@@ -181,7 +193,10 @@ function CategoryMenu() {
               <h5>UI/UX Design</h5>
               <h5> Guidelines & Brandbooks</h5> <h5>Graphic Design</h5>{" "}
               <h5>Motio Design</h5>
-              <span className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+              <span
+                className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]"
+                onClick={toDiscoverAllServices}
+              >
                 <h5>Discover all services we provide </h5>
                 <i className="fas fa-arrow-up  rotate-40"></i>
               </span>
@@ -227,7 +242,10 @@ function CategoryMenu() {
               <h5> Mobile App Development </h5>
               <h5>Frontend Web Development</h5>
               <h5> Backend Development</h5> <h5>Quality Assurance</h5>
-              <span className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]">
+              <span
+                className="flex gap-2 w-fit mt-9 pt-0.5 pb-0.5 border-b-2 border-black font-inter font-bold text-[18px]"
+                onClick={toDiscoverAllServices}
+              >
                 <h5>Discover all services we provide </h5>
                 <i className="fas fa-arrow-up  rotate-40"></i>
               </span>

@@ -8,6 +8,9 @@ const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
 const GetInTouch = lazy(() => import("./Components/GetInTouch/GetInTouch"));
 const BookACall = lazy(() => import("./Components/BookACall/BookACall"));
 const ProjectInfo = lazy(() => import("./Components/ProjectInfo/ProjectInfo"));
+const DiscoverAllServices = lazy(
+  () => import("./Components/Services/DiscoverAllServices/DiscoverAllServices"),
+);
 function App() {
   const routes = createBrowserRouter(
     [
@@ -26,6 +29,10 @@ function App() {
           {
             path: "/services",
             element: <Service />,
+          },
+          {
+            path: "/discover/all/services",
+            element: <DiscoverAllServices />,
           },
           {
             path: "/about",
