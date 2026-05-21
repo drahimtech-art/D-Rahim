@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import cv1 from "/images/c2.png";
 import cv1Image from "/images/16.png";
 import cv2 from "/images/c3.png";
@@ -10,6 +11,7 @@ import cv5 from "/images/c7.png";
 import cv5Image from "/images/7.png";
 
 function ServiceCard() {
+  const [devicesWidth, setDevicesWidth] = useState(null);
   return (
     <div className="min-[1000px]:mt-20 mt-10 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  w-full  min-[1000px]:max-h-171.5 overflow-hidden">
       <div className="flex min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 gap-7.5 overflow-x-scroll min-[1000px]:overflow-auto">
