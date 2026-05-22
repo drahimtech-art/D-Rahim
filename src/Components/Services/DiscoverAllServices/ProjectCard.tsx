@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import image1 from "/images/1.png";
 import imageP1 from "/images/p1.png";
 import image4 from "/images/5.png";
@@ -166,15 +167,28 @@ const ourWorkRender: OurWorkData[] = [
   },
 ];
 function ProjectCard() {
+  const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
+  useEffect(() => {
+    const handleWindowResize = () => {
+      if (typeof window !== undefined) {
+        return setDevicesWidth(window.innerWidth);
+      }
+      return setDevicesWidth(0);
+    };
+
+    handleWindowResize();
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", () => handleWindowResize);
+  }, []);
   function exploreBtw() {}
   return (
     <>
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30">
-        <span className="block min-[1000px]:mt-30">
+      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30 mt-10">
+        <span className="block min-[1000px]:mt-30 ">
           <h5 className="fontPoppins font-semibold min40Max60px">
             Our Projects
           </h5>
-          <h5 className="mt-5 text-[24px] w-full  font-inter min-[1000px]:max-w-247.75">
+          <h5 className="min-[1000px]mt-5 mt-10 min16Max24px w-full  font-inter min-[1000px]:max-w-247.75">
             We’ve partnered with companies across a wide range of industries,
             from mobile banking to earthworks operations. What connects all our
             projects is a shared approach: deep empathy for end users, rapid
@@ -182,12 +196,16 @@ function ProjectCard() {
           </h5>
         </span>
       </div>
-      <div className="mt-15 h-fit  ">
-        <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
+      <div className="min-[1000px]:mt-15 mt-10 h-fit  ">
+        {devicesWidth !== undefined && devicesWidth >= 1000 ? (
+          <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
+        ) : (
+          <CardList body={ourWorkRender} isPC={false} isMoblie={true} />
+        )}
       </div>
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25">
+      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25 mt-10">
         <button
-          className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium text-[24px] bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
+          className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
           onClick={exploreBtw}
         >
           <h5 className="">Explore more projects</h5>
