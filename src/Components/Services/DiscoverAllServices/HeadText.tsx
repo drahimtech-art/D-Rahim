@@ -1,3 +1,4 @@
+import imageD1 from "/images/d1.png";
 function HeadText() {
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5 lg:mt-10 mt-5">
@@ -13,7 +14,9 @@ function HeadText() {
             solutions faster and drive innovation forward.
           </h5>
         </span>
-        <span className="block min-[1000px]:mt-27.25 min-[1000px]:w-[70%] min-[1000px]:max-w-301.5 min-[1000px]:h-77.5 bg-gray-400"></span>
+        <span className="block min-[1000px]:mt-27.25 min-[1000px]:w-[70%] min-[1000px]:max-w-301.5 min-[1000px]:h-77.5 ">
+          <img className="w-full h-full" src={imageD1}></img>
+        </span>
         <span className="block min-[1000px]:mt-26.25 text-[46px] font-semibold font-inter min-[1000px]:max-w-262.75  ">
           <h5>
             Develop a scalable ecosystem of experiences designed around people.
