@@ -3,7 +3,7 @@
 @theme {
   --color-primary-green: #004a3c;
   --color-secondary-green: #56d566;
-  --font-size-heading: clamp(40px, 2vw, 80px);
+  --font-size-heading: clamp(40px, 7vw, 80px);
 }
 
 .body-spacing {

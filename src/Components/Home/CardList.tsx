@@ -17,6 +17,7 @@ type Body = {
   body: OurWorkData[];
   isPC: boolean;
   isMoblie: boolean;
+  isNotClickCable?: boolean;
 };
 function CardList(props: Body) {
   const productData = props.body;
@@ -42,6 +43,7 @@ function CardList(props: Body) {
               endText={e.endText}
               isPC={props.isPC}
               isMoblie={props.isMoblie}
+              isNotClickCable={props.isNotClickCable}
             />
           );
         })}

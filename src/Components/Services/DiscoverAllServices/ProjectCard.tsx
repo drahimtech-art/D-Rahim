@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { replace, useNavigate } from "react-router-dom";
 import image1 from "/images/1.png";
 import imageP1 from "/images/p1.png";
 import image4 from "/images/5.png";
@@ -167,6 +168,7 @@ const ourWorkRender: OurWorkData[] = [
   },
 ];
 function ProjectCard() {
+  const urlNavigator = useNavigate();
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
   useEffect(() => {
     const handleWindowResize = () => {
@@ -180,7 +182,14 @@ function ProjectCard() {
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", () => handleWindowResize);
   }, []);
-  function exploreBtw() {}
+  function exploreBtw() {
+    const url = "/explore/projects";
+    urlNavigator(url, { replace: false });
+  }
+  function homeBtw() {
+    const url = "/";
+    urlNavigator(url, { replace: true });
+  }
   return (
     <>
       <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30 mt-10">
@@ -200,16 +209,30 @@ function ProjectCard() {
         {devicesWidth !== undefined && devicesWidth >= 1000 ? (
           <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
         ) : (
-          <CardList body={ourWorkRender} isPC={false} isMoblie={true} />
+          <CardList
+            body={ourWorkRender}
+            isPC={false}
+            isMoblie={true}
+            isNotClickCable={true}
+          />
         )}
       </div>
       <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25 mt-10">
-        <button
-          className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
-          onClick={exploreBtw}
-        >
-          <h5 className="">Explore more projects</h5>
-        </button>
+        {devicesWidth !== undefined && devicesWidth >= 1000 ? (
+          <button
+            className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
+            onClick={exploreBtw}
+          >
+            <h5 className="">Explore more projects</h5>
+          </button>
+        ) : (
+          <button
+            className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
+            onClick={homeBtw}
+          >
+            <h5 className="">Explore more projects</h5>
+          </button>
+        )}
       </div>
       <div className="mt-30">
         <FAQ />

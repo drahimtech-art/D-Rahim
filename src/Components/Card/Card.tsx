@@ -17,6 +17,7 @@ type ImageData = {
   endText: string;
   isPC: boolean;
   isMoblie: boolean;
+  isNotClickCable?: boolean;
 };
 
 function Card(props: ImageData) {
@@ -76,7 +77,7 @@ function Card(props: ImageData) {
           <img
             className="w-full h-full pointer min-[1000px]:h-100  rounded-2xl"
             src={props.image}
-            onClick={projectInfo}
+            onClick={props.isNotClickCable ? () => null : projectInfo}
           ></img>
         )}
         <h5 className="logoMainText font-bold ">
