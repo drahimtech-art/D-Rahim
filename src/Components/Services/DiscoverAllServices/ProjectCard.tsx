@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import image1 from "/images/1.png";
 import imageP1 from "/images/p1.png";
 import image4 from "/images/5.png";

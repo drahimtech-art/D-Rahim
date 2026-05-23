@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
 import Service from "./Components/Services/Service";
@@ -13,7 +13,9 @@ const DiscoverAllServices = lazy(
 );
 const ExploreProjects = lazy(
   () =>
-    import("./Components/Services/DiscoverAllServices/ExploreProjects/ExploreProjects"),
+    import("./Components/Services/DiscoverAllServices/ExploreProjects/ExploreProjects") as Promise<{
+      default: ComponentType<any>;
+    }>,
 );
 
 function App() {
