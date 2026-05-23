@@ -1,6 +1,6 @@
 function HeadText() {
   return (
-    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5 lg:mt-10 mt-5">
+    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5  mt-5">
       <div className="w-full border-b-2 border-gray-800">
         <span className="min-[1000px]:w-[45%] flex flex-col pb-10 min-[1000px]:pb-22 ">
           <h5 className=" font-size-heading fontPoppins font-semibold">

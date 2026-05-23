@@ -17,7 +17,7 @@ const ExploreProjects = lazy(
       default: ComponentType<any>;
     }>,
 );
-
+const UiUx = lazy(() => import("./Components/Services/ServicesCardInfo/UiUx"));
 function App() {
   const routes = createBrowserRouter(
     [
@@ -36,6 +36,10 @@ function App() {
           {
             path: "/services",
             element: <Service />,
+          },
+          {
+            path: "/services/uiux",
+            element: <UiUx />,
           },
           {
             path: "/discover/all/services",
