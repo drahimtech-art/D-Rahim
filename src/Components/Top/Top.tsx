@@ -93,9 +93,9 @@ function Top() {
   }, [menuControl]);
   return (
     <>
-      <div className="bg-white  sticky top-0">
+      <div className="bg-white  sticky top-0 z-5">
         <div
-          className="flex  w-full max-h-28.75 items-center min-[1000px]:p-10 p-5    bg-white  z-5"
+          className="flex  w-full max-h-28.75 items-center min-[1000px]:p-10 p-5    bg-white  "
           ref={topDivRef}
         >
           <div className="flex">
