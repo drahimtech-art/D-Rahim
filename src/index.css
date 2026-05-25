@@ -260,3 +260,6 @@
 .min20Max24px {
   font-size: clamp(20px, 3vw, 24px);
 }
+.min16Max30px {
+  font-size: clamp(16px, 5vw, 30px);
+}
