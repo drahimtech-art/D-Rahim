@@ -24,6 +24,9 @@ const SimpleBranding = lazy(
 const DesignWorkShop = lazy(
   () => import("./Components/Services/ServicesCardInfo/DesignWorkShop"),
 );
+const ConceptSpring = lazy(
+  () => import("./Components/Services/ServicesCardInfo/ConceptSpring"),
+);
 function App() {
   const routes = createBrowserRouter(
     [
@@ -50,6 +53,10 @@ function App() {
           {
             path: "/services/simplebranding",
             element: <SimpleBranding />,
+          },
+          {
+            path: "/services/conceptspring",
+            element: <ConceptSpring />,
           },
           {
             path: "/services/designworkshop",
