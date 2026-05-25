@@ -17,6 +17,10 @@ function EndSubMenuAndText() {
     const url = "/services/simplebranding";
     urlNavigator(url, { replace: false });
   }
+  function toDesignWorkShop() {
+    const url = "/services/designworkshop";
+    urlNavigator(url, { replace: false });
+  }
   return (
     <>
       <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-30 mt-10 min-[1000px]:mb-27.25 mb-10">
@@ -66,11 +70,13 @@ function EndSubMenuAndText() {
             <img
               className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
               src={cv3Image}
+              onClick={toDesignWorkShop}
             ></img>
             <span className="w-70">
               <img
                 className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
                 src={cv3}
+                onClick={toDesignWorkShop}
               ></img>
             </span>
           </div>

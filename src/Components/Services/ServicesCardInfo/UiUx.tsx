@@ -51,23 +51,31 @@ function UiUx() {
                   When products need UI/UX Audit?
                 </h5>
                 <span className="mt-10 flex flex-col  min-[1000px]:gap-9.5 gap-10">
-                  <h5 className="font-inter min16Max30px">
-                    <strong className="text-green-400 mr-1">*</strong> The
-                    product is still new and hasn’t achieved market fit yet
+                  <h5 className="font-inter min16Max30px flex items-center sm:block">
+                    <strong className="text-green-400 self-baseline mr-1">
+                      *
+                    </strong>{" "}
+                    The product is still new and hasn’t achieved market fit yet
                   </h5>
-                  <h5 className="font-inter min16Max30px">
-                    <strong className="text-green-400 mr-1">*</strong> There’s a
-                    high drop-off rate and low user engagement
+                  <h5 className="font-inter min16Max30px flex items-center sm:block">
+                    <strong className="text-green-400 self-baseline mr-1">
+                      *
+                    </strong>{" "}
+                    There’s a high drop-off rate and low user engagement
                   </h5>
-                  <h5 className="font-inter min16Max30px">
-                    <strong className="text-green-400 mr-1">*</strong> Users
-                    aren’t progressing through the sales funnel or completing
-                    key actions
+                  <h5 className="font-inter min16Max30px flex items-center sm:block">
+                    <strong className="text-green-400 self-baseline mr-1">
+                      *
+                    </strong>{" "}
+                    Users aren’t progressing through the sales funnel or
+                    completing key actions
                   </h5>
-                  <h5 className="font-inter min16Max30px">
-                    <strong className="text-green-400 mr-1">*</strong> The
-                    onboarding experience is causing users to leave instead of
-                    encouraging them to stay and explore
+                  <h5 className="font-inter min16Max30px flex items-center sm:block">
+                    <strong className="text-green-400 self-baseline mr-1">
+                      *
+                    </strong>{" "}
+                    The onboarding experience is causing users to leave instead
+                    of encouraging them to stay and explore
                   </h5>
                 </span>
               </div>
@@ -122,12 +130,16 @@ function UiUx() {
                   What will I get in the end?
                 </h5>
                 <span className="mt-10 flex flex-col gap-10 min-[1000px]:gap-9.5 ">
-                  <h5 className="font-inter min16Max30px">
-                    <strong className="text-green-400 mr-1">*</strong> UX audit
-                    report (here you can review a template)
+                  <h5 className="font-inter min16Max30px flex items-center sm:block">
+                    <strong className="text-green-400 self-baseline mr-1">
+                      *
+                    </strong>{" "}
+                    UX audit report (here you can review a template)
                   </h5>
-                  <h5 className="font-inter min16Max30px">
-                    <strong className="text-green-400 mr-1">*</strong>{" "}
+                  <h5 className="font-inter min16Max30px flex items-center sm:block">
+                    <strong className="text-green-400 self-baseline mr-1">
+                      *
+                    </strong>{" "}
                     Recommendations on further improvements of the product
                   </h5>
                 </span>

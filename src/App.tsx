@@ -21,6 +21,9 @@ const UiUx = lazy(() => import("./Components/Services/ServicesCardInfo/UiUx"));
 const SimpleBranding = lazy(
   () => import("./Components/Services/ServicesCardInfo/SimpleBranding"),
 );
+const DesignWorkShop = lazy(
+  () => import("./Components/Services/ServicesCardInfo/DesignWorkShop"),
+);
 function App() {
   const routes = createBrowserRouter(
     [
@@ -47,6 +50,10 @@ function App() {
           {
             path: "/services/simplebranding",
             element: <SimpleBranding />,
+          },
+          {
+            path: "/services/designworkshop",
+            element: <DesignWorkShop />,
           },
           {
             path: "/discover/all/services",
