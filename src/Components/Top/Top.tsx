@@ -93,66 +93,70 @@ function Top() {
   }, [menuControl]);
   return (
     <>
-      <div
-        className="flex w-full max-h-28.75 items-center min-[1000px]:p-10 p-5    bg-white sticky top-0 z-5"
-        ref={topDivRef}
-      >
-        <div className="flex">
-          <div className="w-7  min-[1000px]:w-8 h-10">
-            <img src={Logo} alt="logo"></img>
+      <div className="bg-white  sticky top-0">
+        <div
+          className="flex  w-full max-h-28.75 items-center min-[1000px]:p-10 p-5    bg-white  z-5"
+          ref={topDivRef}
+        >
+          <div className="flex">
+            <div className="w-7  min-[1000px]:w-8 h-10">
+              <img src={Logo} alt="logo"></img>
+            </div>
+            <span className="mt-0.5">
+              <h5 className="font-inter font-semibold text-[1.1rem]">
+                D'RAHIM
+              </h5>
+              <h5 className="-mt-1 font-semibold text-[0.5rem]">
+                TECH INNOVATION
+              </h5>
+            </span>
           </div>
-          <span className="mt-0.5">
-            <h5 className="font-inter font-semibold text-[1.1rem]">D'RAHIM</h5>
-            <h5 className="-mt-1 font-semibold text-[0.5rem]">
-              TECH INNOVATION
-            </h5>
-          </span>
-        </div>
-        <div className="min-[1000px]:flex gap-6 ml-auto hidden">
-          <span
-            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-            onClick={work}
-            ref={workRef}
-          >
-            <h5>Work</h5>
-          </span>
-          <span
-            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-            onClick={services}
-            ref={servicesRef}
-          >
-            <h5>Services</h5>
-          </span>
-          <span
-            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-            onClick={about}
-            ref={aboutRef}
-          >
-            <h5>About</h5>
-          </span>
-          <span
-            className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
-            onClick={mentorship}
-            ref={mentorshipRef}
-          >
-            <h5>Mentorship</h5>
-          </span>
-        </div>
-        <div className="hidden min-[1000px]:block ml-auto ">
-          <span
-            className="block w-fit h-fit min-[1000px]:p-2 p-1 min-[1000px]:pl-7 min-[1000px]:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
-            onClick={contact}
-          >
-            <h5 className="text-white ourWorkHeadMenu  font-inter ">
-              Get In Touch{" "}
-            </h5>
-          </span>
-        </div>
-        <div className="block min-[1000px]:hidden ml-auto">
-          <i
-            className="fa fa-bars text-[1.5rem]"
-            onClick={() => setMenuControl(!menuControl)}
-          ></i>
+          <div className="min-[1000px]:flex gap-6 ml-auto hidden">
+            <span
+              className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+              onClick={work}
+              ref={workRef}
+            >
+              <h5>Work</h5>
+            </span>
+            <span
+              className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+              onClick={services}
+              ref={servicesRef}
+            >
+              <h5>Services</h5>
+            </span>
+            <span
+              className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+              onClick={about}
+              ref={aboutRef}
+            >
+              <h5>About</h5>
+            </span>
+            <span
+              className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
+              onClick={mentorship}
+              ref={mentorshipRef}
+            >
+              <h5>Mentorship</h5>
+            </span>
+          </div>
+          <div className="hidden min-[1000px]:block ml-auto ">
+            <span
+              className="block w-fit h-fit min-[1000px]:p-2 p-1 min-[1000px]:pl-7 min-[1000px]:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
+              onClick={contact}
+            >
+              <h5 className="text-white ourWorkHeadMenu  font-inter ">
+                Get In Touch{" "}
+              </h5>
+            </span>
+          </div>
+          <div className="block min-[1000px]:hidden ml-auto">
+            <i
+              className="fa fa-bars text-[1.5rem]"
+              onClick={() => setMenuControl(!menuControl)}
+            ></i>
+          </div>
         </div>
       </div>
       <div
