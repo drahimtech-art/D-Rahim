@@ -40,7 +40,7 @@ function EndSubMenuAndText() {
           </h5>
         </span>
       </div>
-      <div className="-mb-10 sm:-mb-80 w-full  min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-20 overflow-hidden">
+      <div className="-mb-10 min-[1000px]:-mb-80 w-full  min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-20 overflow-hidden">
         <div className="flex  min-[1000px]:gap-10 gap-7.5 min-[1000px]:justify-around w-full min-[1000px]:w-full  overflow-x-scroll min-[1000px]:overflow-auto ">
           <div className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
             <img

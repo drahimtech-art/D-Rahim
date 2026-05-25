@@ -8,7 +8,7 @@ function Home() {
     <>
       <Top />
       <Category />
-      <div className="hidden sm:flex w-full">
+      <div className="hidden min-[1000px]:flex w-full">
         <EndCategoryMenu />
       </div>
       <End />

@@ -1,18 +1,28 @@
 import jimohImg from "/images/27.png";
 import abdulmalikImg from "/images/26.png";
 import victoryImg from "/images/28.png";
+import tpJimohImg from "/images/tp27.png";
+import tpAbdulmalikImg from "/images/tp26.png";
+import tpVictoryImg from "/images/tp28.png";
 function OurTerms() {
   return (
-    <div className="mt-10 lg:mt-27.25 lg:pl-10 lg:pr-10 pl-5 pr-5 w-full">
+    <div className="mt-10 min-[1000px]:mt-27.25 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 w-full">
       <span>
         <h5 className="fontPoppins font-semibold font-size-heading">
           Our Teams
         </h5>
       </span>
-      <div className="mt-10 lg:mt-15 flex flex-wrap lg:grid lg:grid-cols-3 lg:max-h-203 justify-evenly gap-10">
-        <div className="flex flex-col lg:h-203">
-          <span className=" max-h-175">
-            <img className="w-full h-full rounded-3xl" src={jimohImg}></img>
+      <div className="mt-10 min-[1000px]:mt-15 flex flex-wrap min-[1000px]:grid min-[1000px]:grid-cols-3 min-[1000px]:max-h-203 justify-evenly gap-10">
+        <div className="flex flex-col min-[1000px]:h-203">
+          <span className=" max-h-175 ">
+            <img
+              className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
+              src={jimohImg}
+            ></img>
+            <img
+              className="w-full h-full hidden sm:block imageDisplayOff rounded-3xl"
+              src={tpJimohImg}
+            ></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
             Jimoh Abdulrahim
@@ -37,8 +47,12 @@ function OurTerms() {
         <div className="flex flex-col ">
           <span className="   max-h-175">
             <img
-              className="w-full h-full rounded-3xl"
+              className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
               src={abdulmalikImg}
+            ></img>
+            <img
+              className="w-full h-full hidden sm:block imageDisplayOff rounded-3xl"
+              src={tpAbdulmalikImg}
             ></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
@@ -63,7 +77,14 @@ function OurTerms() {
         </div>
         <div className="flex flex-col ">
           <span className="   max-h-175 ">
-            <img className="w-full h-full " src={victoryImg}></img>
+            <img
+              className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
+              src={victoryImg}
+            ></img>
+            <img
+              className="w-full h-full hidden sm:block imageDisplayOff rounded-3xl"
+              src={tpVictoryImg}
+            ></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
             Victory Nwanoruo

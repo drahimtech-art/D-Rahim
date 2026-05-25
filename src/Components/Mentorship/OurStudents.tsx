@@ -1,6 +1,9 @@
 import image1 from "/images/22.png";
 import image2 from "/images/23.png";
 import image3 from "/images/24.png";
+import tpImage1 from "/images/tp22.png";
+import tpImage2 from "/images/tp23.png";
+import tpImage3 from "/images/tp24.png";
 function OurStudents() {
   return (
     <div className="mt-10 lg:mt-27.25 lg:pl-10 lg:pr-10 pl-5  pr-5">
@@ -12,7 +15,14 @@ function OurStudents() {
       <div className="mt-10 lg:mt-15 flex flex-wrap lg:grid lg:grid-cols-3 lg:max-h-203 justify-evenly gap-10">
         <div className="flex flex-col max-h-[602] lg:max-h-full">
           <span className=" max-h-175">
-            <img className="w-full h-full" src={image1}></img>
+            <img
+              className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
+              src={image1}
+            ></img>
+            <img
+              className="w-full h-full hidden sm:block imageDisplayOff rounded-3xl"
+              src={tpImage1}
+            ></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
             Zainab Jimoh
@@ -27,7 +37,14 @@ function OurStudents() {
         </div>
         <div className="flex flex-col ">
           <span className=" max-h-175">
-            <img className="w-full h-full" src={image2}></img>
+            <img
+              className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
+              src={image2}
+            ></img>
+            <img
+              className="w-full h-full hidden sm:block imageDisplayOff rounded-3xl"
+              src={tpImage2}
+            ></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
             Chinedu Paul
@@ -42,7 +59,14 @@ function OurStudents() {
         </div>
         <div className="flex flex-col ">
           <span className=" max-h-175 ">
-            <img className="w-full h-full " src={image3}></img>
+            <img
+              className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
+              src={image3}
+            ></img>
+            <img
+              className="w-full h-full hidden sm:block imageDisplayOff rounded-3xl"
+              src={tpImage3}
+            ></img>
           </span>
           <h5 className="font-inter ourTermHeadText font-semibold">
             Fumilayo Zuliat Alasela

@@ -25,7 +25,7 @@ function ProjectCard() {
   }, []);
 
   return (
-    <div className="mt-10 flex-col pl-5 pr-5 gap-10">
+    <div className="mt-10 flex-col pl-5 pr-5 gap-10 ">
       <span>
         <h5 className=" font-medium font-inter min24Max30px">
           {projectInfo.popHeadText}

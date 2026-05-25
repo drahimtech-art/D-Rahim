@@ -58,7 +58,7 @@ function FAQ() {
           onClick={() => setOption1(!option1)}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className=" font-inter min24Max35px font-medium">
+            <h5 className=" font-inter min24Max35px sm:max-w-75.75 min-[1000px]:w-full  font-medium">
               What makes your digital product design services stand out from
               competitors?
             </h5>
@@ -87,7 +87,7 @@ function FAQ() {
           onClick={() => setOption2(!option2)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min24Max35px font-medium font-inter">
+            <h5 className="min24Max35px sm:max-w-75.75 min-[1000px]:w-full font-medium font-inter">
               Why does digital product design matter today?
             </h5>
             {!option2 ? (
@@ -115,7 +115,7 @@ function FAQ() {
           onClick={() => setOption3(!option3)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min24Max35px font-medium font-inter">
+            <h5 className="min24Max35px sm:max-w-75.75 min-[1000px]:w-full font-medium font-inter">
               How do you approach your product design process?
             </h5>
             {!option3 ? (
@@ -144,7 +144,7 @@ function FAQ() {
           onClick={() => setOption4(!option4)}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
-            <h5 className="min24Max35px font-medium font-inter">
+            <h5 className="min24Max35px sm:max-w-75.75 min-[1000px]:w-full font-medium font-inter">
               What distinguishes UX design services from digital product design
               services?
             </h5>

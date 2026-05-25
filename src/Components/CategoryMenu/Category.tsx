@@ -554,7 +554,7 @@ function Category() {
         </span>
       </div>
 
-      {devicesWidth !== undefined && devicesWidth >= 700 ? (
+      {devicesWidth !== undefined && devicesWidth >= 1000 ? (
         <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
       ) : (
         <CardList body={allProductsMoblie} isPC={false} isMoblie={true} />

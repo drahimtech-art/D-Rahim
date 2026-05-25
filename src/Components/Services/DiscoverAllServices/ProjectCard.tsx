@@ -227,14 +227,14 @@ function ProjectCard() {
           </button>
         ) : (
           <button
-            className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
+            className="border-2 rounded-full pointer  w-fit sm:w-full sm:text-center pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
             onClick={homeBtw}
           >
             <h5 className="">Explore more projects</h5>
           </button>
         )}
       </div>
-      <div className="mt-30">
+      <div className="mt-30 sm:pb-10 min-[1000px]:mb-0">
         <FAQ />
       </div>
     </>

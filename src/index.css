@@ -263,3 +263,13 @@
 .min16Max30px {
   font-size: clamp(16px, 5vw, 30px);
 }
+@media (min-width: 1000px) {
+  .imageDisplayOn {
+    display: block;
+  }
+}
+@media (min-width: 1000px) {
+  .imageDisplayOff {
+    display: none;
+  }
+}

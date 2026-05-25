@@ -1,5 +1,6 @@
 import companyImage from "/images/25.png";
 import mcompanyImage from "/images/m25.png";
+import tpCompanyImage from "/images/tp25.png";
 function AboutHeadText() {
   return (
     <>
@@ -13,12 +14,16 @@ function AboutHeadText() {
       </div>
       <div className="w-full h-147  min-[1000px]:max-h-198 mt-4">
         <img
-          className=" hidden sm:block w-full h-full  min-[1000px]:max-h-198"
+          className=" hidden min-[1000px]:block w-full h-full  min-[1000px]:max-h-198"
           src={companyImage}
         ></img>
         <img
-          className="block sm:hidden w-full h-full  min-[1000px]:max-h-198"
+          className="block sm:hidden w-full h-full sm:max-h-147 min-[1000px]:max-h-[198]"
           src={mcompanyImage}
+        ></img>
+        <img
+          className="hidden sm:block imageDisplayOff w-full h-full sm:max-h-147 min-[1000px]:max-h-[198]"
+          src={tpCompanyImage}
         ></img>
       </div>
     </>

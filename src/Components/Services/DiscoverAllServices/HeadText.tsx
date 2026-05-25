@@ -17,7 +17,7 @@ function HeadText() {
         <span className="block min-[1000px]:mt-27.25 mt-10 min-[1000px]:w-[70%] min-[1000px]:max-w-301.5 min-[1000px]:h-77.5  ">
           <img className="w-full h-full" src={imageD1}></img>
         </span>
-        <span className="block min-[1000px]:mt-26.25 mt-10 min20Max46px font-semibold fontPoppins min-[1000px]:font-inter min-[1000px]:max-w-262.75  ">
+        <span className="block min-[1000px]:mt-26.25 mt-10 text-[20px] min-[1000px]:text-[46px] font-semibold fontPoppins min-[1000px]:font-inter min-[1000px]:max-w-262.75  ">
           <h5>
             Develop a scalable ecosystem of experiences designed around people.
           </h5>

@@ -75,7 +75,7 @@ function Card(props: ImageData) {
         )}
         {props.isMoblie && (
           <img
-            className="w-full h-full pointer min-[1000px]:h-100  rounded-2xl"
+            className="w-full h-full pointer min-[1000px]:h-100  rounded-2xl sm:rounded-[20px] sm:max-h-125"
             src={props.image}
             onClick={props.isNotClickCable ? () => null : projectInfo}
           ></img>
