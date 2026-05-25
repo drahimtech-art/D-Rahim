@@ -10,19 +10,19 @@ import { useNavigate } from "react-router-dom";
 function EndSubMenuAndText() {
   const urlNavigator = useNavigate();
   function toUiUxPage() {
-    const url = "/services/uiux";
+    const url = "/uiux";
     urlNavigator(url, { replace: false });
   }
   function toSimpleBranding() {
-    const url = "/services/simplebranding";
+    const url = "/simplebranding";
     urlNavigator(url, { replace: false });
   }
   function toDesignWorkShop() {
-    const url = "/services/designworkshop";
+    const url = "/designworkshop";
     urlNavigator(url, { replace: false });
   }
   function toConceptSpring() {
-    const url = "/services/conceptspring";
+    const url = "/conceptspring";
     urlNavigator(url, { replace: false });
   }
   return (

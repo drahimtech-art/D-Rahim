@@ -47,19 +47,19 @@ function App() {
             element: <Service />,
           },
           {
-            path: "/services/uiux",
+            path: "/uiux",
             element: <UiUx />,
           },
           {
-            path: "/services/simplebranding",
+            path: "/simplebranding",
             element: <SimpleBranding />,
           },
           {
-            path: "/services/conceptspring",
+            path: "/conceptspring",
             element: <ConceptSpring />,
           },
           {
-            path: "/services/designworkshop",
+            path: "/designworkshop",
             element: <DesignWorkShop />,
           },
           {
