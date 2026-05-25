@@ -267,9 +267,10 @@
   .imageDisplayOn {
     display: block;
   }
-}
-@media (min-width: 1000px) {
   .imageDisplayOff {
     display: none;
+  }
+  .widthFullAt1000px {
+    width: 100%;
   }
 }
