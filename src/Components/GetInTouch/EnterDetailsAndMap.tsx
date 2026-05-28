@@ -1,4 +1,8 @@
+import { useState } from "react";
+import Calendar from "react-calendar";
 function EnterDetailsAndMap() {
+  const [date, setDate] = useState(new Date());
+  console.log(date);
   return (
     <div className="flex min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-15 mt-10 min-[1000px]:gap-10 gap-5">
       <div className="min-[1000px]:w-[60%] min-[1000px]:max-w-232">
@@ -78,7 +82,9 @@ function EnterDetailsAndMap() {
         <span className="flex justify-center w-full">
           <h5 className="font-semibold logoMainText">Find Us On The Map</h5>
         </span>
-        <div className="mt-2 w-full h-[50%] max-h-112.5 bg-gray-900 rounded-2xl"></div>
+        <div className="mt-2 w-full h-[50%] max-h-112.5  rounded-2xl">
+          <Calendar value={date} />
+        </div>
         <span className="flex justify-center mt-25">
           <i className="fa-brands fa-whatsapp min-[1000px]:text-[5rem] text-green-600"></i>
         </span>
