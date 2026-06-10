@@ -274,3 +274,6 @@
     width: 100%;
   }
 }
+.min28pxMax32px{
+  font-size: clamp(28px, 5vw, 32px);
+}

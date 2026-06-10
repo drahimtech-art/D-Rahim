@@ -2,7 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
-import Service from "./Components/Services/Service";
+import AdminLogin from "./Components/Login/AdminLogin";
+const Service = lazy(()=> import("./Components/Services/Service"));
 const About = lazy(() => import("./Components/About/About"));
 const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
 const GetInTouch = lazy(() => import("./Components/GetInTouch/GetInTouch"));
@@ -36,8 +37,8 @@ function App() {
         element: <ScrollToTop />,
         children: [
           {
-            path: "/",
-            element: <Home />,
+            path: "/",//dev
+            element: <AdminLogin />,
           },
           {
             path: "/project/info",
