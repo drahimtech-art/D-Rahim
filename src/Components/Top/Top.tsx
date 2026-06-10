@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Menu from "../Menu/Menu";
 function Top() {
   const [menuControl, setMenuControl] = useState<boolean>(false);
-  const serverPath = window.location.pathname;
+  const serverPath = window.location.hash;
   const workRef = useRef<HTMLSpanElement | null>(null);
   const servicesRef = useRef<HTMLSpanElement | null>(null);
   const aboutRef = useRef<HTMLSpanElement | null>(null);
@@ -35,7 +35,7 @@ function Top() {
       !mentorshipRef.current
     )
       return;
-    if (serverPath.length === 9) {
+    if (serverPath.length === 2) {
       mentorshipRef.current.classList.remove("border-black");
       mentorshipRef.current.classList.add("border-white");
       aboutRef.current.classList.remove("border-black");

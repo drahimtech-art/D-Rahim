@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
@@ -30,7 +30,7 @@ const ConceptSpring = lazy(
 );
 
 function App() {
-  const routes = createBrowserRouter(
+  const routes = createHashRouter(
     [
       {
         path: "/",
@@ -91,9 +91,6 @@ function App() {
         ],
       },
     ],
-    {
-      basename: "/D-Rahim/",
-    },
   );
   return (
     <>
