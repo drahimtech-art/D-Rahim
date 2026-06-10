@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import products from "../Products";
-import mobileProducts from "../mobileProducts";
+import mobileProducts from "../MobileProducts";
 import CardList from "../Home/CardList";
 import image0 from "/images/10.png";
 import image1 from "/images/11.png";

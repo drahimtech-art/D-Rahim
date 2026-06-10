@@ -2,7 +2,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 function EnterDetailsAndMap() {
   const [date, setDate] = useState(new Date());
-  console.log(date);
+  console.log(setDate)
   return (
     <div className="flex min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-15 mt-10 min-[1000px]:gap-10 gap-5">
       <div className="min-[1000px]:w-[60%] min-[1000px]:max-w-232">
