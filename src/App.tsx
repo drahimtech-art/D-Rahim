@@ -37,8 +37,8 @@ function App() {
         element: <ScrollToTop />,
         children: [
           {
-            path: "/",//dev
-            element: <AdminLogin />,
+            path: "/",
+            element: <Home/>,
           },
           {
             path: "/project/info",
