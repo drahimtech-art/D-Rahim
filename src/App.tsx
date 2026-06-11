@@ -2,7 +2,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
-//import AdminLogin from "./Components/Login/AdminLogin";
+import AdminLogin from "./Components/Login/AdminLogin";
 const Service = lazy(()=> import("./Components/Services/Service"));
 const About = lazy(() => import("./Components/About/About"));
 const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
@@ -28,6 +28,8 @@ const DesignWorkShop = lazy(
 const ConceptSpring = lazy(
   () => import("./Components/Services/ServicesCardInfo/ConceptSpring"),
 );
+//ourwork page
+import AdminDasboard from "./Components/AdminDasboard/AdminDasbord";
 
 function App() {
   const routes = createHashRouter(
@@ -87,6 +89,14 @@ function App() {
           {
             path: "/book/call",
             element: <BookACall />,
+          },
+          {//devmode
+            path: "/devmode/admin/login",
+            element: <AdminLogin />,
+          },
+          {//devmode
+            path: "/devmode/admin/dashboard",
+            element: <AdminDasboard />,
           },
         ],
       },
