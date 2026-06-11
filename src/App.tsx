@@ -2,7 +2,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
-import AdminLogin from "./Components/Login/AdminLogin";
+//import AdminLogin from "./Components/Login/AdminLogin";
 const Service = lazy(()=> import("./Components/Services/Service"));
 const About = lazy(() => import("./Components/About/About"));
 const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));

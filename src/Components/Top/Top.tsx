@@ -35,7 +35,7 @@ function Top() {
       !mentorshipRef.current
     )
       return;
-    if (serverPath.length === 2) {
+    if (serverPath.length === 2 || !serverPath) {
       mentorshipRef.current.classList.remove("border-black");
       mentorshipRef.current.classList.add("border-white");
       aboutRef.current.classList.remove("border-black");
