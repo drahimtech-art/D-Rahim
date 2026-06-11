@@ -1,3 +1,4 @@
+import testImage from "/images/testimage.png"
 function TopBar() {
   return (
     <div className="w-full flex p-2.5 pl-4 pr-4 bg-[#FFFFFF] h-25 items-center rounded-[10px]">
@@ -17,7 +18,9 @@ function TopBar() {
           <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-gray-500 rounded-full">
             <i className="fa fa-bell text-2xl text-gray-500"></i>
           </span>
-          <span className="block mr-5  w-12.5 h-12.5 border border-gray-500 rounded-full"></span>
+          <span className="block mr-5  w-12.5 h-12.5 border border-gray-500 rounded-full">
+            <img className="w-full h-full" src={testImage}></img>
+          </span>
         </span>
       </div>
     </div>
