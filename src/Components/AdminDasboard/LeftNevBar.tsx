@@ -32,7 +32,7 @@ function LeftNevBar() {
           <h5 className="font-inter font-normal text-[18px]">Job inquires</h5>
         </button>
         <button className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl">
-          <i className="fas fa-box  text-[24px]"></i>
+          <i className="fas fa-cube  text-[24px]"></i>
           <h5 className="font-inter font-normal text-[18px]">Content</h5>
         </button>
         <button className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl">
