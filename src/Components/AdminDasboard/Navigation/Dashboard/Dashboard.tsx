@@ -1,12 +1,12 @@
-import TopBar from "../TopBar";
-import TopContent from "../TopContent";
-import RecentActivities from "../RecentActivities";
-import Alert from "../Alert";
+import TopBar from "../../TopBar";
+import TopContent from "../../TopContent";
+import RecentActivities from "./RecentActivities";
+import Alert from "./Alert";
 function Dashboard() {
   return (
     <div className="w-full h-full flex flex-col gap-7 ">
       {/**top bar */}
-      <TopBar />
+      <TopBar heading={"Good morning, Victory!"} subHeading={true} />
       {/**Top Content */}
       <TopContent />
       {/**booking & selas chat */}
