@@ -20,7 +20,7 @@ function LeftNevBar(props: NavigationControl) {
     if (
       !dashboardRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef ||
+      !mentorshipRef.current ||
       !jobInquiresRef.current ||
       !contentRef.current ||
       !settingsRef.current
@@ -53,7 +53,7 @@ function LeftNevBar(props: NavigationControl) {
     if (
       !dashboardRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef ||
+      !mentorshipRef.current ||
       !jobInquiresRef.current ||
       !contentRef.current ||
       !settingsRef.current
@@ -86,7 +86,7 @@ function LeftNevBar(props: NavigationControl) {
     if (
       !dashboardRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef ||
+      !mentorshipRef.current ||
       !jobInquiresRef.current ||
       !contentRef.current ||
       !settingsRef.current
@@ -119,7 +119,7 @@ function LeftNevBar(props: NavigationControl) {
     if (
       !dashboardRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef ||
+      !mentorshipRef.current ||
       !jobInquiresRef.current ||
       !contentRef.current ||
       !settingsRef.current
@@ -151,7 +151,7 @@ function LeftNevBar(props: NavigationControl) {
     if (
       !dashboardRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef ||
+      !mentorshipRef.current ||
       !jobInquiresRef.current ||
       !contentRef.current ||
       !settingsRef.current
@@ -183,7 +183,7 @@ function LeftNevBar(props: NavigationControl) {
     if (
       !dashboardRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef ||
+      !mentorshipRef.current ||
       !jobInquiresRef.current ||
       !contentRef.current ||
       !settingsRef.current

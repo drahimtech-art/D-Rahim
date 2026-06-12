@@ -3,6 +3,7 @@ import { lazy } from "react";
 import LeftNevBar from "./LeftNevBar";
 const Dashboard = lazy(() => import("./Navigation/Dashboard/Dashboard"));
 const Bookings = lazy(() => import("./Navigation/Booking/Bookings"));
+import Mentorship from "./Navigation/Mentorship/Mentorship";
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
@@ -75,6 +76,7 @@ function AdminDasboard() {
         {/**center content*/}
         {renderDashboard && <Dashboard />}
         {renderBooking && <Bookings />}
+        {renderMentorship && <Mentorship />}
       </div>
     </div>
   );
