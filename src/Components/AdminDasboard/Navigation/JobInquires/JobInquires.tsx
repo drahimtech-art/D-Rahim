@@ -1,12 +1,12 @@
 import TopBar from "../../TopBar";
 import TopContent from "../../TopContent";
-import MentorshipTable from "./MentorshipTable";
-function Mentorship() {
+import JobInquiresTable from "./JobInquiresTable";
+function JobInquires() {
   return (
     <div className="w-full h-full  ">
       <div className="w-full h-full flex flex-col gap-7">
         {/**Top bar*/}
-        <TopBar heading={"Mentorship Enrollments"} subHeading={false} />
+        <TopBar heading={"Job Inquiries"} subHeading={false} />
         {/**Top Content */}
         <TopContent />
       </div>
@@ -17,7 +17,7 @@ function Mentorship() {
             <i className="fa fa-search text-2xl"></i>
             <input
               className="w-full h-full pl-2"
-              placeholder="Search enrollments..."
+              placeholder="Search inquiries..."
             ></input>
           </span>
           {/** */}
@@ -35,7 +35,7 @@ function Mentorship() {
         {/**content */}
         <div className="w-full h-full">
           {/**grid head template structure */}
-          <div className="w-full h-15 border border-[#ebe8e8] bg-[#F5F5F5] grid grid-cols-[15%_30%_20%_10%_15%_10%]">
+          <div className="w-full h-15 border border-[#ebe8e8] bg-[#F5F5F5] grid grid-cols-[17%_15%_25%_18%_15%_10%]">
             <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
               <h5 className="font-inter font-normal text-[14px] text-[#A5A6A7]">
                 Name
@@ -43,22 +43,22 @@ function Mentorship() {
             </span>
             <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
               <h5 className="font-inter font-normal text-[14px] text-[#A5A6A7]">
-                Email
+                Company
               </h5>
             </span>
             <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
               <h5 className="font-inter font-normal text-[14px] text-[#A5A6A7]">
-                Course
+                Project Type
               </h5>
             </span>
             <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
               <h5 className="font-inter font-normal text-[14px] text-[#A5A6A7]">
-                Date
+                Budget
               </h5>
             </span>
             <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
               <h5 className="font-inter font-normal text-[14px] text-[#A5A6A7]">
-                Payment Status
+                Status
               </h5>
             </span>
             <span className="pl-2.5 pr-2.5  flex justify-start items-center">
@@ -68,7 +68,7 @@ function Mentorship() {
             </span>
           </div>
           {/**grid body content */}
-          <MentorshipTable />
+          <JobInquiresTable />
           {/**end body content control */}
           <div className="w-full h-18 pl-2.5 pr-2.5 flex items-center">
             <span className="p-2.5 mr-auto">
@@ -97,4 +97,4 @@ function Mentorship() {
     </div>
   );
 }
-export default Mentorship;
+export default JobInquires;
