@@ -4,7 +4,7 @@ function Alert() {
       <span>
         <h5 className="font-inter font-medium min18pxMax20px">Alerts</h5>
       </span>
-      <div className="mt-3.75 flex flex-col h-49.5 overflow-y-auto scroll-container">
+      <div className="mt-3.75 flex flex-col h-49.5 ">
         {/**content */}
         <div className="border-b border-gray-500 flex pb-2 pt-2">
           <span className="mr-2 w-10 h-10 rounded-2xl bg-[#FFF9E5] text-[#D4AF37] flex justify-center items-center ">

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import LogoImg from "/images/logo.png";
 type NavigationControl = {
   toDashboard: () => void;

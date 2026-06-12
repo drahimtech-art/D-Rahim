@@ -6,7 +6,9 @@ function RecentActivities() {
           Recent Activities
         </h5>
       </span>
-      <div className="mt-3.75 flex flex-col h-49.5 overflow-y-auto scroll-container">
+      <div className="mt-3.75 flex flex-col h-49.5">
+        {" "}
+        {/**overflow-y-auto scroll-container */}
         {/**content */}
         <div className="border-b border-gray-500 flex pb-2 pt-2">
           <span className="mr-2 text-gray-500 mt-1">
