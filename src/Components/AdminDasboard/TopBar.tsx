@@ -6,11 +6,11 @@ type Heading = {
 function TopBar(props: Heading) {
   return (
     <div className="w-full flex p-2.5 pl-4 pr-4 bg-[#FFFFFF] h-25 items-center rounded-[10px]">
-      <span className="flex min22Max26px gap-1 items-center mr-auto">
+      <span className="flex min22Max26px gap-1 items-center  mr-auto overflow-hidden">
         <h5 className="font-inter font-semibold text-[26px] ">
           {props.heading}
+          {props.subHeading && " 👋"}
         </h5>
-        {props.subHeading && <h5 className="-mt-0.5">👋</h5>}
       </span>
       {/**search bar */}
       <div className="flex gap-8 items-center">

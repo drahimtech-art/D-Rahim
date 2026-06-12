@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { lazy } from "react";
 import LeftNevBar from "./LeftNevBar";
-import Dashboard from "./Navigation/Dashboard/Dashboard";
-import Bookings from "./Navigation/Booking/Bookings";
+const Dashboard = lazy(() => import("./Navigation/Dashboard/Dashboard"));
+const Bookings = lazy(() => import("./Navigation/Booking/Bookings"));
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
