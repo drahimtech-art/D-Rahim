@@ -85,7 +85,7 @@ function LeftNevBar(props: NavigationControl) {
     bookingsRef.current.classList.add("text-white");
     //func call
     props.toBooking();
-    setSearchParems({ page: "booking" });
+    setSearchParems({ page: "bookings" });
   }
   function toMentorship() {
     if (
