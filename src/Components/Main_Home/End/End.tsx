@@ -18,14 +18,14 @@ function End() {
           </span>
           <div className="flex flex-row  gap-6.25 items-center mt-5 font-inter ourWorkHeadMenu">
             <span
-              className="w-fit min-[1000px]:w-full  max-w-40.25 h-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 border-2  border-gray-200 text-gray-200 rounded-full "
+              className="w-fit min-[1000px]:w-full pointer  max-w-40.25 h-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 border-2  border-gray-200 text-gray-200 rounded-full "
               onClick={contact}
             >
               <h5>Write Us</h5>
             </span>
             <h5 className="text-gray-200 ">Or</h5>
             <span
-              className="flex gap-2 w-fit min-[1000px]:w-full max-w-[167.96px] h-[47.96]  pt-2.5 pb-2.5  text-gray-200 border-b"
+              className="flex gap-2 pointer w-fit min-[1000px]:w-full max-w-[167.96px] h-[47.96]  pt-2.5 pb-2.5  text-gray-200 border-b"
               onClick={bookACall}
             >
               <h5>Book A Call</h5>

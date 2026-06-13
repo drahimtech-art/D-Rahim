@@ -44,6 +44,8 @@ const ConceptSpring = lazy(
 );
 //ourwork page
 import AdminDasboard from "./Components/AdminDasboard/AdminDasbord";
+//access student page
+import AccessStudentPage from "./Components/AccessStudentPage/AccessStudentPage";
 
 function App() {
   const routes = createHashRouter([
