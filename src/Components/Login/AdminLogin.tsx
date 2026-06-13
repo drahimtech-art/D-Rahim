@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { createSearchParams } from "react-router-dom";
 import LoginLogo from "/images/loginLogo.png";
 function AdminLogin() {
   const urlNavigator = useNavigate();
   function toAdminDasbord() {
     const url = "/devmode/admin/dashboard";
-    urlNavigator(url, { replace: false });
+    urlNavigator({
+      pathname: url,
+      search: `?${createSearchParams({
+        page: "overview",
+      })}`,
+    });
   }
   return (
     <div className="w-full h-screen bg-primary-green text-gray-200 flex justify-center items-center">
