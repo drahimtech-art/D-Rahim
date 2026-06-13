@@ -6,6 +6,7 @@ const Bookings = lazy(() => import("./Navigation/Booking/Bookings"));
 const Mentorship = lazy(() => import("./Navigation/Mentorship/Mentorship"));
 const JobInquires = lazy(() => import("./Navigation/JobInquires/JobInquires"));
 const Content = lazy(() => import("./Navigation/Content/Content"));
+const Settings = lazy(() => import("./Navigation/Settings/Settings"));
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
@@ -85,6 +86,7 @@ function AdminDasboard() {
         {renderMentorship && <Mentorship />}
         {renderJobInquires && <JobInquires />}
         {renderContent && <Content />}
+        {renderSettings && <Settings />}
       </div>
     </div>
   );
