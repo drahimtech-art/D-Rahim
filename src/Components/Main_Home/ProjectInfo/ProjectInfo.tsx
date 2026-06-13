@@ -1,4 +1,4 @@
-import Top from "../Top/Top";
+import Top from "../Main_Home/Top/Top";
 import ProjectCard from "./ProjectCard";
 import End from "../End/End";
 import FAQ from "./FAQ";

@@ -12,10 +12,9 @@ function Mentorship() {
       <MentorshipHeadText />
       <OurStudents />
       <MentorshipPlan />
-      <div className="sm:block hidden w-full">
+      <div className="sm:block hidden w-full ">
         <EnterDetails />
       </div>
-
       <End />
     </>
   );

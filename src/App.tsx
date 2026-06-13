@@ -1,32 +1,46 @@
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
-import Home from "./Components/Home/Home";
+import Home from "./Components/Main_Home/Home/Home";
 import AdminLogin from "./Components/Login/AdminLogin";
-const Service = lazy(() => import("./Components/Services/Service"));
-const About = lazy(() => import("./Components/About/About"));
-const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
-const GetInTouch = lazy(() => import("./Components/GetInTouch/GetInTouch"));
-const BookACall = lazy(() => import("./Components/BookACall/BookACall"));
-const ProjectInfo = lazy(() => import("./Components/ProjectInfo/ProjectInfo"));
+const Service = lazy(() => import("./Components/Main_Home/Services/Service"));
+const About = lazy(() => import("./Components/Main_Home/About/About"));
+const Mentorship = lazy(
+  () => import("./Components/Main_Home/Mentorship/Mentorship"),
+);
+const GetInTouch = lazy(
+  () => import("./Components/Main_Home/GetInTouch/GetInTouch"),
+);
+const BookACall = lazy(
+  () => import("./Components/Main_Home/BookACall/BookACall"),
+);
+const ProjectInfo = lazy(
+  () => import("./Components/Main_Home/ProjectInfo/ProjectInfo"),
+);
 const DiscoverAllServices = lazy(
-  () => import("./Components/Services/DiscoverAllServices/DiscoverAllServices"),
+  () =>
+    import("./Components/Main_Home/Services/DiscoverAllServices/DiscoverAllServices"),
 );
 const ExploreProjects = lazy(
   () =>
-    import("./Components/Services/DiscoverAllServices/ExploreProjects/ExploreProjects") as Promise<{
+    import("./Components/Main_Home/Services/DiscoverAllServices/ExploreProjects/ExploreProjects") as Promise<{
       default: ComponentType<any>;
     }>,
 );
-const UiUx = lazy(() => import("./Components/Services/ServicesCardInfo/UiUx"));
+const UiUx = lazy(
+  () => import("./Components/Main_Home/Services/ServicesCardInfo/UiUx"),
+);
 const SimpleBranding = lazy(
-  () => import("./Components/Services/ServicesCardInfo/SimpleBranding"),
+  () =>
+    import("./Components/Main_Home/Services/ServicesCardInfo/SimpleBranding"),
 );
 const DesignWorkShop = lazy(
-  () => import("./Components/Services/ServicesCardInfo/DesignWorkShop"),
+  () =>
+    import("./Components/Main_Home/Services/ServicesCardInfo/DesignWorkShop"),
 );
 const ConceptSpring = lazy(
-  () => import("./Components/Services/ServicesCardInfo/ConceptSpring"),
+  () =>
+    import("./Components/Main_Home/Services/ServicesCardInfo/ConceptSpring"),
 );
 //ourwork page
 import AdminDasboard from "./Components/AdminDasboard/AdminDasbord";

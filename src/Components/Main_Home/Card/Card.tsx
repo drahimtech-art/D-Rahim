@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
-import { AppDataContext } from "../ContextApi/ContextApi";
+import { AppDataContext } from "../../ContextApi/ContextApi";
 type ImageData = {
   image: string;
   text: string;
