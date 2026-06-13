@@ -5,6 +5,7 @@ import Dashboard from "./Navigation/Dashboard/Dashboard";
 const Bookings = lazy(() => import("./Navigation/Booking/Bookings"));
 const Mentorship = lazy(() => import("./Navigation/Mentorship/Mentorship"));
 const JobInquires = lazy(() => import("./Navigation/JobInquires/JobInquires"));
+const Content = lazy(() => import("./Navigation/Content/Content"));
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
@@ -62,20 +63,20 @@ function AdminDasboard() {
   }
   function logout() {}
   return (
-    <div className=" p-10 max-w-full min-w-fit  h-full bg-[#f8ffff] ">
+    <div className=" p-10 max-w-full min-w-fit min-h-screen max-h-fit bg-[#f8ffff] ">
       <div className="flex gap-10 h-fit w-full ">
         <div className="w-[25%] min-w-73.5 ">
           <div className="fixed">
             {/**sideber left*/}
-        <LeftNevBar
-          toDashboard={toDashboard}
-          toBooking={toBooking}
-          toContent={toContent}
-          toJobinquires={toJobinquires}
-          toMentorship={toMentorship}
-          toSettings={toSettings}
-          logout={logout}
-        />
+            <LeftNevBar
+              toDashboard={toDashboard}
+              toBooking={toBooking}
+              toContent={toContent}
+              toJobinquires={toJobinquires}
+              toMentorship={toMentorship}
+              toSettings={toSettings}
+              logout={logout}
+            />
           </div>
         </div>
         {/**center content*/}
@@ -83,6 +84,7 @@ function AdminDasboard() {
         {renderBooking && <Bookings />}
         {renderMentorship && <Mentorship />}
         {renderJobInquires && <JobInquires />}
+        {renderContent && <Content />}
       </div>
     </div>
   );
