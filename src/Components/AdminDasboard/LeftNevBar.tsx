@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import LogoImg from "/images/logo.png";
 type NavigationControl = {
   toDashboard: () => void;
@@ -10,12 +11,14 @@ type NavigationControl = {
   logout: () => void;
 };
 function LeftNevBar(props: NavigationControl) {
+  const [searchParems, setSearchParems] = useSearchParams();
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
   const bookingsRef = useRef<HTMLButtonElement | null>(null);
   const mentorshipRef = useRef<HTMLButtonElement | null>(null);
   const jobInquiresRef = useRef<HTMLButtonElement | null>(null);
   const contentRef = useRef<HTMLButtonElement | null>(null);
   const settingsRef = useRef<HTMLButtonElement | null>(null);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   function toDashboard() {
     if (
       !dashboardRef.current ||
@@ -48,6 +51,7 @@ function LeftNevBar(props: NavigationControl) {
     dashboardRef.current.classList.add("text-white");
     //func call
     props.toDashboard();
+    setSearchParems({ page: "overview" });
   }
   function toBooking() {
     if (
@@ -81,6 +85,7 @@ function LeftNevBar(props: NavigationControl) {
     bookingsRef.current.classList.add("text-white");
     //func call
     props.toBooking();
+    setSearchParems({ page: "booking" });
   }
   function toMentorship() {
     if (
@@ -114,6 +119,7 @@ function LeftNevBar(props: NavigationControl) {
     mentorshipRef.current.classList.add("text-white");
     //func call
     props.toMentorship();
+    setSearchParems({ page: "mentorship" });
   }
   function toJobinquires() {
     if (
@@ -146,6 +152,7 @@ function LeftNevBar(props: NavigationControl) {
     jobInquiresRef.current.classList.add("text-white");
     //func call
     props.toJobinquires();
+    setSearchParems({ page: "jobinquires" });
   }
   function toContent() {
     if (
@@ -178,6 +185,8 @@ function LeftNevBar(props: NavigationControl) {
     contentRef.current.classList.add("text-white");
     //func call
     props.toContent();
+    setSearchParems({ page: "content" });
+    console.log("1");
   }
   function toSettings() {
     if (
@@ -210,7 +219,42 @@ function LeftNevBar(props: NavigationControl) {
     settingsRef.current.classList.add("text-white");
     //func call
     props.toSettings();
+    setSearchParems({ page: "settings" });
   }
+  //save history on refresh and navigate to quary page
+  useEffect(() => {
+    const parems = searchParems.get("page");
+    if (!parems) return;
+    if (!isMounted) return;
+    switch (parems) {
+      case "overview":
+        toDashboard();
+        break;
+      case "bookings":
+        toBooking();
+        break;
+      case "mentorship":
+        toMentorship();
+        break;
+      case "jobinquires":
+        toJobinquires();
+        break;
+      case "content":
+        toContent();
+        break;
+      case "settings":
+        toSettings();
+        break;
+      default:
+        break;
+    }
+  }, [searchParems, isMounted]);
+  //mount the history controll
+  useEffect(() => {
+    (() => {
+      setIsMounted(true);
+    })();
+  }, []);
   return (
     <div className="w-[25%]  min-w-73.5 flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
       <div className="flex gap-2 items-center">

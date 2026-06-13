@@ -3,7 +3,7 @@ import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Home/Home";
 import AdminLogin from "./Components/Login/AdminLogin";
-const Service = lazy(()=> import("./Components/Services/Service"));
+const Service = lazy(() => import("./Components/Services/Service"));
 const About = lazy(() => import("./Components/About/About"));
 const Mentorship = lazy(() => import("./Components/Mentorship/Mentorship"));
 const GetInTouch = lazy(() => import("./Components/GetInTouch/GetInTouch"));
@@ -32,76 +32,76 @@ const ConceptSpring = lazy(
 import AdminDasboard from "./Components/AdminDasboard/AdminDasbord";
 
 function App() {
-  const routes = createHashRouter(
-    [
-      {
-        path: "/",
-        element: <ScrollToTop />,
-        children: [
-          {
-            path: "/",
-            element: <Home/>,
-          },
-          {
-            path: "/project/info",
-            element: <ProjectInfo />,
-          },
-          {
-            path: "/services",
-            element: <Service />,
-          },
-          {
-            path: "/uiux",
-            element: <UiUx />,
-          },
-          {
-            path: "/simplebranding",
-            element: <SimpleBranding />,
-          },
-          {
-            path: "/conceptspring",
-            element: <ConceptSpring />,
-          },
-          {
-            path: "/designworkshop",
-            element: <DesignWorkShop />,
-          },
-          {
-            path: "/discover/all/services",
-            element: <DiscoverAllServices />,
-          },
-          {
-            path: "/explore/projects",
-            element: <ExploreProjects />,
-          },
-          {
-            path: "/about",
-            element: <About />,
-          },
-          {
-            path: "/mentorship",
-            element: <Mentorship />,
-          },
-          {
-            path: "/contact",
-            element: <GetInTouch />,
-          },
-          {
-            path: "/book/call",
-            element: <BookACall />,
-          },
-          {//devmode
-            path: "/devmode/admin/login",
-            element: <AdminLogin />,
-          },
-          {//devmode
-            path: "/devmode/admin/dashboard",
-            element: <AdminDasboard />,
-          },
-        ],
-      },
-    ],
-  );
+  const routes = createHashRouter([
+    {
+      path: "/",
+      element: <ScrollToTop />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/project/info",
+          element: <ProjectInfo />,
+        },
+        {
+          path: "/services",
+          element: <Service />,
+        },
+        {
+          path: "/uiux",
+          element: <UiUx />,
+        },
+        {
+          path: "/simplebranding",
+          element: <SimpleBranding />,
+        },
+        {
+          path: "/conceptspring",
+          element: <ConceptSpring />,
+        },
+        {
+          path: "/designworkshop",
+          element: <DesignWorkShop />,
+        },
+        {
+          path: "/discover/all/services",
+          element: <DiscoverAllServices />,
+        },
+        {
+          path: "/explore/projects",
+          element: <ExploreProjects />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/mentorship",
+          element: <Mentorship />,
+        },
+        {
+          path: "/contact",
+          element: <GetInTouch />,
+        },
+        {
+          path: "/book/call",
+          element: <BookACall />,
+        },
+        {
+          //devmode
+          path: "/devmode/admin/login",
+          element: <AdminLogin />,
+        },
+        {
+          //devmode
+          path: "/devmode/admin/:id",
+          element: <AdminDasboard />,
+        },
+      ],
+    },
+  ]);
   return (
     <>
       <RouterProvider router={routes}></RouterProvider>
