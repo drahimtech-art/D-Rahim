@@ -63,8 +63,10 @@ function AdminDasboard() {
   function logout() {}
   return (
     <div className=" p-10 max-w-full min-w-fit  h-full bg-[#f8ffff] ">
-      <div className="flex gap-10 h-fit w-full">
-        {/**sideber left*/}
+      <div className="flex gap-10 h-fit w-full ">
+        <div className="w-[25%] min-w-73.5 ">
+          <div className="fixed">
+            {/**sideber left*/}
         <LeftNevBar
           toDashboard={toDashboard}
           toBooking={toBooking}
@@ -74,6 +76,8 @@ function AdminDasboard() {
           toSettings={toSettings}
           logout={logout}
         />
+          </div>
+        </div>
         {/**center content*/}
         {renderDashboard && <Dashboard />}
         {renderBooking && <Bookings />}
