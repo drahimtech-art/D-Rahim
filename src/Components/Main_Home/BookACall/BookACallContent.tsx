@@ -3,12 +3,16 @@ import Logo1 from "/images/logo1.png";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Calender.css";
+import type { Value } from "react-calendar/dist/shared/types.js";
 function BookACallContent() {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState<Date>(new Date());
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const currentDay = new Date().getDate();
   const minDate = new Date(currentYear, currentMonth, currentDay);
+  function handleDateChage(e: Value) {
+    setDate(e as Date);
+  }
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-20 mt-10 flex flex-col min-[1000px]:flex-row min-[1000px]:gap-10 gap-5 justify-around">
       <div className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
@@ -55,7 +59,8 @@ function BookACallContent() {
           <Calendar
             minDate={minDate}
             value={date}
-            onChange={(e) => setDate(e)}
+            selectRange={false}
+            onChange={handleDateChage}
           />
         </div>
       </div>
