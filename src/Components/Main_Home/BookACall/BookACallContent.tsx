@@ -1,5 +1,11 @@
+import { useState } from "react";
 import Logo1 from "/images/logo1.png";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./Calender.css";
 function BookACallContent() {
+  const [date, setDate] = useState(new Date());
+  console.log(setDate);
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-20 mt-10 flex flex-col min-[1000px]:flex-row min-[1000px]:gap-10 gap-5 justify-around">
       <div className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
@@ -36,13 +42,15 @@ function BookACallContent() {
         </div>
       </div>
       {/**calender */}
-      <div className="flex flex-col  min-[1000px]:w-[50%] min-[1000px]:mr-auto">
+      <div className="flex flex-col  min-[1000px]:w-[40%] min-[1000px]:mr-auto">
         <span>
           <h5 className="font-inter font-bold text-[24px]">
             Select a Date & Time
           </h5>
         </span>
-        <div className="min-[1000px]:mt-10 mt-5 w-full min-[1000px]:h-137.5 h-100 bg-gray-300 rounded-2xl"></div>
+        <div className="min-[1000px]:mt-10 mt-5 w-full min-[1000px]:h-137.5 h-fit ">
+          <Calendar value={date} onChange={(e) => setDate(e)} />
+        </div>
       </div>
       {/**time */}
       <div className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
