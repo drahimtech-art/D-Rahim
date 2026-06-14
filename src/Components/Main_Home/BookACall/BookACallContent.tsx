@@ -5,7 +5,10 @@ import "react-calendar/dist/Calendar.css";
 import "./Calender.css";
 function BookACallContent() {
   const [date, setDate] = useState(new Date());
-  console.log(setDate);
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const currentDay = new Date().getDate();
+  const minDate = new Date(currentYear, currentMonth, currentDay);
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-20 mt-10 flex flex-col min-[1000px]:flex-row min-[1000px]:gap-10 gap-5 justify-around">
       <div className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
@@ -49,7 +52,11 @@ function BookACallContent() {
           </h5>
         </span>
         <div className="min-[1000px]:mt-10 mt-5 w-full min-[1000px]:h-137.5 h-fit ">
-          <Calendar value={date} onChange={(e) => setDate(e)} />
+          <Calendar
+            minDate={minDate}
+            value={date}
+            onChange={(e) => setDate(e)}
+          />
         </div>
       </div>
       {/**time */}
