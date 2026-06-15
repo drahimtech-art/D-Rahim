@@ -25,8 +25,8 @@ function Content() {
           {/**sub content */}
           <div className="flex w-full items-center gap-3.25 grow">
             {/**image */}
-            <span className="w-20.5 h-16.75 grow">
-              <img className="ww-20.5 h-16.75 " src={classImge1}></img>
+            <span className="min-w-20.5 h-16.75 grow">
+              <img className="min-w-20.5 h-16.75 " src={classImge1}></img>
             </span>
             <div className="flex gap-3.25 w-full">
               {/**heading and progress bar */}
@@ -56,8 +56,8 @@ function Content() {
           {/**sub content */}
           <div className="flex w-full items-center gap-3.25 grow">
             {/**image */}
-            <span className="w-20.5 h-16.75 grow">
-              <img className="ww-20.5 h-16.75 " src={classImge2}></img>
+            <span className="min-w-20.5 h-16.75 grow">
+              <img className="min-w-20.5 h-16.75 " src={classImge2}></img>
             </span>
             <div className="flex gap-3.25 w-full">
               {/**heading and progress bar */}
@@ -87,8 +87,8 @@ function Content() {
           {/**sub content */}
           <div className="flex w-full items-center gap-3.25 grow">
             {/**image */}
-            <span className="w-20.5 h-16.75 grow">
-              <img className="ww-20.5 h-16.75 " src={classImge3}></img>
+            <span className="min-w-20.5 h-16.75 grow">
+              <img className="min-w-20.5 h-16.75 " src={classImge3}></img>
             </span>
             <div className="flex gap-3.25 w-full">
               {/**heading and progress bar */}
@@ -118,8 +118,8 @@ function Content() {
           {/**sub content */}
           <div className="flex w-full items-center gap-3.25 grow">
             {/**image */}
-            <span className="w-20.5 h-16.75 grow">
-              <img className="ww-20.5 h-16.75 " src={classImge4}></img>
+            <span className="min-w-20.5 h-16.75 grow">
+              <img className="min-w-20.5 h-16.75 " src={classImge4}></img>
             </span>
             <div className="flex gap-3.25 w-full ">
               {/**heading and progress bar */}
@@ -167,7 +167,7 @@ function Content() {
           <div className="mt-7.5 flex flex-col gap-6.25">
             {/**sub content */}
             <div className="flex items-center gap-3.25 grow">
-              <span className="w-20.5 h-16.75">
+              <span className="min-w-20.5 h-16.75">
                 <img className="w-full h-full" src={classImge5}></img>
               </span>
               <div className="flex items-center w-full">
@@ -182,7 +182,7 @@ function Content() {
                   </h5>
                 </div>
                 {/**action button */}
-                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto">
+                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto min-w-27">
                   <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                     Join Session
                   </h5>
@@ -191,7 +191,7 @@ function Content() {
             </div>
             {/**sub content */}
             <div className="flex items-center gap-3.25 grow">
-              <span className="w-20.5 h-16.75">
+              <span className="min-w-20.5 h-16.75">
                 <img className="w-full h-full" src={classImge6}></img>
               </span>
               <div className="flex items-center w-full">
@@ -206,7 +206,7 @@ function Content() {
                   </h5>
                 </div>
                 {/**action button */}
-                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto">
+                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto min-w-27">
                   <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                     Join Session
                   </h5>
@@ -215,7 +215,7 @@ function Content() {
             </div>
             {/**sub content */}
             <div className="flex items-center gap-3.25 grow">
-              <span className="w-20.5 h-16.75">
+              <span className="min-w-20.5 h-16.75">
                 <img className="w-full h-full" src={classImge7}></img>
               </span>
               <div className="flex items-center w-full">
@@ -230,7 +230,7 @@ function Content() {
                   </h5>
                 </div>
                 {/**action button */}
-                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto">
+                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto min-w-27">
                   <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                     Join Session
                   </h5>
