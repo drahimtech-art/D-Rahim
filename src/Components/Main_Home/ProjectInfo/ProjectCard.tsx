@@ -42,7 +42,7 @@ function ProjectCard() {
       <div className="flex flex-col gap-5 mt-5">
         <span>
           <h5 className="font-semibold min16Max24px">Capabilities</h5>
-          {projectInfo.capabilities.map((e, i) => {
+          {projectInfo.capabilities.map((e: String, i: number) => {
             return (
               <h5 className=" min16Max24px" key={`capabilities-key-${i}`}>
                 {e}
@@ -52,7 +52,7 @@ function ProjectCard() {
         </span>
         <span>
           <h5 className="font-semibold min16Max24px">Teams</h5>
-          {projectInfo.team.map((e, i) => {
+          {projectInfo.team.map((e: String, i: number) => {
             return (
               <h5 className=" min16Max24px" key={`capabilities-key-${i}`}>
                 {e}
@@ -62,7 +62,7 @@ function ProjectCard() {
         </span>
         <span>
           <h5 className="font-semibold min16Max24px">Industry</h5>
-          {projectInfo.industry.map((e, i) => {
+          {projectInfo.industry.map((e: String, i: number) => {
             return (
               <h5 className=" min16Max24px" key={`capabilities-key-${i}`}>
                 {e}

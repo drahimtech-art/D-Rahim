@@ -1,4 +1,10 @@
+import HeadContent from "./HeadContent";
 function Classes() {
-  return <></>;
+  return (
+    <div className="w-full h-full">
+      {/**head content */}
+      <HeadContent />
+    </div>
+  );
 }
 export default Classes;

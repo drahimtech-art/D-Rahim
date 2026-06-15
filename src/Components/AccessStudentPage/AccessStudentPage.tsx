@@ -53,8 +53,8 @@ function AccessStudentPage() {
         {/**content */}
         <div className="w-full max-w-full flex min-h-0 max-h-full gap-10 mt-10 ">
           {/**left navigation panel */}
-          <div className=" min-w-45 w-full max-w-80.75 h-full shrink-0 border-r border-gray-500 overflow-hidden">
-            <div className="w-full h-full max-w-68.5 pt-5">
+          <div className=" min-w-45 w-full max-w-73.5 h-full shrink-0 border-r border-gray-500 overflow-hidden">
+            <div className="w-full h-full max-w-57.25 pt-5">
               <LeftNevBar
                 toDashboard={toDashboard}
                 toClasses={toClasses}
