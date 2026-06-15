@@ -67,17 +67,21 @@ function AdminDasboard() {
     <div className=" p-10 max-w-full min-w-fit min-h-screen max-h-fit bg-[#f8ffff] ">
       <div className="flex gap-10 h-fit w-full ">
         <div className="w-[25%] min-w-73.5 ">
-          <div className="fixed">
-            {/**sideber left*/}
-            <LeftNevBar
-              toDashboard={toDashboard}
-              toBooking={toBooking}
-              toContent={toContent}
-              toJobinquires={toJobinquires}
-              toMentorship={toMentorship}
-              toSettings={toSettings}
-              logout={logout}
-            />
+          <div className="fixed ">
+            <div className="w-full h-full relative">
+              <div className="absolute min-w-73.5 ">
+                {/**sideber left*/}
+                <LeftNevBar
+                  toDashboard={toDashboard}
+                  toBooking={toBooking}
+                  toContent={toContent}
+                  toJobinquires={toJobinquires}
+                  toMentorship={toMentorship}
+                  toSettings={toSettings}
+                  logout={logout}
+                />
+              </div>
+            </div>
           </div>
         </div>
         {/**center content*/}
