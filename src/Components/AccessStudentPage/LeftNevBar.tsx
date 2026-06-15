@@ -1,15 +1,14 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import LogoImg from "/images/logo.png";
 type NavigationControl = {
-  toDashboard: () => void;
-  toClass: () => void;
-  toMessages: () => void;
-  toCummunity: () => void;
-  toSettings: () => void;
-  logout: () => void;
+  toDashboard?: () => void;
+  toClass?: () => void;
+  toMessages?: () => void;
+  toCummunity?: () => void;
+  toSettings?: () => void;
+  logout?: () => void;
 };
-function LeftNevBar(props: NavigationControl) {
+function LeftNevBar() {
   const [searchParems, setSearchParems] = useSearchParams();
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
   const classRef = useRef<HTMLButtonElement | null>(null);
@@ -44,7 +43,7 @@ function LeftNevBar(props: NavigationControl) {
     dashboardRef.current.classList.add("bg-primary-green");
     dashboardRef.current.classList.add("text-white");
     //func call
-    props.toDashboard();
+    //props.toDashboard();
     setSearchParems({ page: "overview" });
   }
   function toClass() {
@@ -74,7 +73,7 @@ function LeftNevBar(props: NavigationControl) {
     classRef.current.classList.add("bg-primary-green");
     classRef.current.classList.add("text-white");
     //func call
-    props.toClass();
+    //props.toClass();
     setSearchParems({ page: "class" });
   }
   function toMessages() {
@@ -104,7 +103,7 @@ function LeftNevBar(props: NavigationControl) {
     messagesRef.current.classList.add("bg-primary-green");
     messagesRef.current.classList.add("text-white");
     //func call
-    props.toMessages();
+    //props.toMessages();
     setSearchParems({ page: "messages" });
   }
 
@@ -134,7 +133,7 @@ function LeftNevBar(props: NavigationControl) {
     communityRef.current.classList.add("bg-primary-green");
     communityRef.current.classList.add("text-white");
     //func call
-    props.toCummunity();
+    //props.toCummunity();
     setSearchParems({ page: "community" });
     console.log("1");
   }
@@ -164,7 +163,7 @@ function LeftNevBar(props: NavigationControl) {
     settingsRef.current.classList.add("bg-primary-green");
     settingsRef.current.classList.add("text-white");
     //func call
-    props.toSettings();
+    //props.toSettings();
     setSearchParems({ page: "settings" });
   }
   //save history on refresh and navigate to quary page
