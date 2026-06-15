@@ -2,7 +2,6 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Main_Home/Home/Home";
-import AdminLogin from "./Components/Login/AdminLogin";
 const Service = lazy(() => import("./Components/Main_Home/Services/Service"));
 const About = lazy(() => import("./Components/Main_Home/About/About"));
 const Mentorship = lazy(
@@ -43,8 +42,12 @@ const ConceptSpring = lazy(
     import("./Components/Main_Home/Services/ServicesCardInfo/ConceptSpring"),
 );
 //ourwork page
-import AdminDasboard from "./Components/AdminDasboard/AdminDasbord";
+const AdminLogin = lazy(() => import("./Components/Login/AdminLogin"));
+const AdminDasboard = lazy(
+  () => import("./Components/AdminDasboard/AdminDasbord"),
+);
 //access student page
+const AccessLogin = lazy(() => import("./Components/Login/AccessLogin"));
 import AccessStudentPage from "./Components/AccessStudentPage/AccessStudentPage";
 
 function App() {
@@ -114,6 +117,16 @@ function App() {
           //devmode
           path: "/devmode/admin/:id",
           element: <AdminDasboard />,
+        },
+        {
+          //devmode
+          path: "/devmode/access/login",
+          element: <AccessLogin />,
+        },
+        {
+          //devmode
+          path: "/devmode/students",
+          element: <AccessStudentPage />,
         },
       ],
     },

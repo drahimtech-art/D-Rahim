@@ -256,7 +256,7 @@ function LeftNevBar(props: NavigationControl) {
     })();
   }, []);
   return (
-    <div className="w-[25%]  min-w-73.5 flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
+    <div className="w-full h-full flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
       <div className="flex gap-2 items-center">
         <span className="w-8 h-12.5">
           <img className="w-full h-full" src={LogoImg}></img>
