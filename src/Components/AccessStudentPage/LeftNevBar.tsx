@@ -222,7 +222,7 @@ function LeftNevBar(props: NavigationControl) {
   }, []);
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full h-full">
       {/**navber */}
       <div className=" flex flex-col gap-4">
         <button

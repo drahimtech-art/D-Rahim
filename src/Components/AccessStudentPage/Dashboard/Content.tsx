@@ -46,7 +46,7 @@ function Content() {
                 </div>
               </div>
               {/**action button */}
-              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px]">
+              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px]">
                 <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                   Continue
                 </h5>
@@ -77,7 +77,7 @@ function Content() {
                 </div>
               </div>
               {/**action button */}
-              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px]">
+              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px]">
                 <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                   Continue
                 </h5>
@@ -108,7 +108,7 @@ function Content() {
                 </div>
               </div>
               {/**action button */}
-              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px]">
+              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px]">
                 <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                   Continue
                 </h5>
@@ -139,7 +139,7 @@ function Content() {
                 </div>
               </div>
               {/**action button */}
-              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px]">
+              <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px]">
                 <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                   Continue
                 </h5>
@@ -182,7 +182,7 @@ function Content() {
                   </h5>
                 </div>
                 {/**action button */}
-                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px] ml-auto">
+                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto">
                   <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                     Join Session
                   </h5>
@@ -206,7 +206,7 @@ function Content() {
                   </h5>
                 </div>
                 {/**action button */}
-                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px] ml-auto">
+                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto">
                   <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                     Join Session
                   </h5>
@@ -230,7 +230,7 @@ function Content() {
                   </h5>
                 </div>
                 {/**action button */}
-                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[10px] ml-auto">
+                <button className="flex p-2.5 pointer justify-center items-center bg-[#11AC76] rounded-[30px] ml-auto">
                   <h5 className="font-sans text-[16px] font-normal text-[#FFFFFF]">
                     Join Session
                   </h5>
