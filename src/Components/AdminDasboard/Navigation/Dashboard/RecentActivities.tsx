@@ -1,3 +1,6 @@
+import calenderIcon from "/images/CalendarDotsLight_icon.png";
+import mentorshipIcon from "/images/StudentLight_icon.png";
+import jobInquiresIcon from "/images/BriefcaseLight_icon.png";
 function RecentActivities() {
   return (
     <div className="w-full h-full pl-5 pr-5 p-3.5 bg-[#FFFFFF] rounded-[20px] overflow-hidden">
@@ -12,7 +15,7 @@ function RecentActivities() {
         {/**content */}
         <div className="border-b border-gray-500 flex pb-2 pt-2">
           <span className="mr-2 text-gray-500 mt-1">
-            <i className="fas fa-user-graduate  text-[24px]"></i>
+            <img className="w-6 h-6" src={mentorshipIcon}></img>
           </span>
           <span className="flex flex-col gap-2.5 mr-auto ">
             <h5 className="font-inter font-medium text-[16px]">
@@ -29,7 +32,7 @@ function RecentActivities() {
         {/**content */}
         <div className="border-b border-gray-500 flex pb-2 pt-2">
           <span className="mr-2 text-gray-500 mt-1">
-            <i className="fas fa-calendar-alt  text-[24px]"></i>
+            <img className="w-6 h-6" src={calenderIcon}></img>
           </span>
           <span className="flex flex-col gap-2.5 mr-auto ">
             <h5 className="font-inter font-medium text-[16px]">
@@ -46,7 +49,7 @@ function RecentActivities() {
         {/**content */}
         <div className="border-b border-gray-500 flex pb-2 pt-2">
           <span className="mr-2 text-gray-500 mt-1">
-            <i className="fas fa-briefcase  text-[24px]"></i>
+            <img className="w-6 h-6" src={jobInquiresIcon}></img>
           </span>
           <span className="flex flex-col gap-2.5 mr-auto ">
             <h5 className="font-inter font-medium text-[16px]">
