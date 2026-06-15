@@ -62,6 +62,11 @@ function AccessStudentPage() {
                 toMessages={toMessage}
                 toSettings={toSettings}
                 logout={logout}
+                Dashboard={renderDashboard}
+                Messages={renderMessage}
+                Classes={renderClasses}
+                Cummunity={renderCummunity}
+                Settings={renderSettings}
               />
             </div>
           </div>
