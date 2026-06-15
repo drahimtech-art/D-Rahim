@@ -1,5 +1,15 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import homeIcon from "/images/HouseSimple_icon.png";
+import lightHomeIcon from "/images/House.png";
+import mentorshipIcon from "/images/StudentLight_icon.png";
+import lightMentorshipIcon from "/images/StudentLight_icon.png";
+import messagesIcon from "/images/Envelope_icon.png";
+import lightMessagesIcon from "/images/Envelope_icon.png";
+import cummunityIcon from "/images/UsersThree_icon.png";
+import lightcummunityIcon from "/images/UsersThree_icon.png";
+import settingsIcon from "/images/Sliders_icon.png";
+import lightSettingsIcon from "/images/Sliders_icon.png";
 type NavigationControl = {
   toDashboard: () => void;
   toClasses: () => void;
@@ -7,6 +17,12 @@ type NavigationControl = {
   toCummunity: () => void;
   toSettings: () => void;
   logout: () => void;
+  //
+  Dashboard: boolean;
+  Messages: boolean;
+  Classes: boolean;
+  Cummunity: boolean;
+  Settings: boolean;
 };
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
@@ -230,7 +246,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={dashboardRef}
           onClick={toDashboard}
         >
-          <i className="fa fa-home font-light text-[24px]"></i>
+          {props.Dashboard ? (
+            <img className=" w-6 h-6 " src={lightHomeIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={homeIcon}></img>
+          )}
           <h5 className="font-inter font-medium text-[18px]">Dashboard</h5>
         </button>
         <button
@@ -238,7 +258,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={classRef}
           onClick={toClass}
         >
-          <i className="fas fa-user-graduate  font-light text-[24px]"></i>
+          {props.Classes ? (
+            <img className=" w-6 h-6 " src={lightMentorshipIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={mentorshipIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">My Classes</h5>
         </button>
         <button
@@ -246,7 +270,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={messagesRef}
           onClick={toMessages}
         >
-          <i className="fas fa-envelope text-[24px]"></i>
+          {props.Messages ? (
+            <img className=" w-6 h-6 " src={messagesIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={lightMessagesIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Messages</h5>
         </button>
         <button
@@ -254,7 +282,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={communityRef}
           onClick={toCummunity}
         >
-          <i className="fas fa-users  text-[24px]"></i>
+          {props.Cummunity ? (
+            <img className=" w-6 h-6 " src={cummunityIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={lightcummunityIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">community</h5>
         </button>
         <button
@@ -262,7 +294,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={settingsRef}
           onClick={toSettings}
         >
-          <i className="fas fa-sliders  text-[24px] rotate-90"></i>
+          {props.Settings ? (
+            <img className=" w-6 h-6 " src={settingsIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={lightSettingsIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Settings</h5>
         </button>
       </div>
