@@ -79,6 +79,12 @@ function AdminDasboard() {
                   toMentorship={toMentorship}
                   toSettings={toSettings}
                   logout={logout}
+                  Dashboard={renderDashboard}
+                  Jobinquires={renderJobInquires}
+                  Booking={renderBooking}
+                  Mentorship={renderMentorship}
+                  Content={renderContent}
+                  Settings={renderSettings}
                 />
               </div>
             </div>

@@ -1,3 +1,7 @@
+import calenderIcon from "/images/CalendarDots_icon.png";
+import mentorshipIcon from "/images/Student_icon.png";
+import jobInquiresIcon from "/images/Briefcase_Icon.png";
+import totalUsersIcon from "/images/UsersLight_icon.png";
 function TopContent() {
   return (
     <div className="w-full h-fit grid grid-cols-4 gap-6.75">
@@ -9,7 +13,7 @@ function TopContent() {
           </h5>
         </span>
         <span className="flex w-full justify-end">
-          <i className="fa fa-calendar-alt text-[30px] text-[#11AC76]"></i>
+          <img className="w-10 h-10" src={calenderIcon}></img>
         </span>
         <span>
           <h5 className="font-inter font-semibold min28pxMax30 -mt-5">12</h5>
@@ -23,7 +27,7 @@ function TopContent() {
           </h5>
         </span>
         <span className="flex w-full justify-end">
-          <i className="fa fa-user-graduate text-[30px] text-[#11AC76]"></i>
+          <img className="w-10 h-10" src={mentorshipIcon}></img>
         </span>
         <span>
           <h5 className="font-inter font-semibold min28pxMax30 -mt-5">8</h5>
@@ -37,7 +41,7 @@ function TopContent() {
           </h5>
         </span>
         <span className="flex w-full justify-end">
-          <i className="fa fa-briefcase text-[30px] text-[#11AC76]"></i>
+          <img className="w-10 h-10" src={jobInquiresIcon}></img>
         </span>
         <span>
           <h5 className="font-inter font-semibold min28pxMax30 -mt-5">6</h5>
@@ -51,7 +55,7 @@ function TopContent() {
           </h5>
         </span>
         <span className="flex w-full justify-end">
-          <i className="fa fa-user-friends text-[30px] text-[#11AC76]"></i>
+          <img className="w-10 h-10" src={totalUsersIcon}></img>
         </span>
         <span>
           <h5 className="font-inter font-semibold min28pxMax30 -mt-5">20</h5>

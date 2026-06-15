@@ -1,6 +1,18 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import LogoImg from "/images/logo.png";
+import homeIcon from "/images/HouseSimple_icon.png";
+import lightHomeIcon from "/images/House.png";
+import calenderIcon from "/images/CalendarDotsLight_icon.png";
+import lightCalenderIcon from "/images/CalendarDotsLight_icon.png";
+import mentorshipIcon from "/images/StudentLight_icon.png";
+import lightMentorshipIcon from "/images/StudentLight_icon.png";
+import jobInquiresIcon from "/images/BriefcaseLight_icon.png";
+import lightJobInquiresIcon from "/images/BriefcaseLight_icon.png";
+import contentIcon from "/images/Package.png";
+import lightContentIcon from "/images/Package.png";
+import settingsIcon from "/images/Sliders_icon.png";
+import lightSettingsIcon from "/images/Sliders_icon.png";
 type NavigationControl = {
   toDashboard: () => void;
   toBooking: () => void;
@@ -9,6 +21,13 @@ type NavigationControl = {
   toContent: () => void;
   toSettings: () => void;
   logout: () => void;
+  //
+  Dashboard: boolean;
+  Booking: boolean;
+  Mentorship: boolean;
+  Jobinquires: boolean;
+  Content: boolean;
+  Settings: boolean;
 };
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
@@ -275,7 +294,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={dashboardRef}
           onClick={toDashboard}
         >
-          <i className="fa fa-home font-light text-[24px]"></i>
+          {props.Dashboard ? (
+            <img className=" w-6 h-6 " src={lightHomeIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={homeIcon}></img>
+          )}
           <h5 className="font-inter font-medium text-[18px]">Dashboard</h5>
         </button>
         <button
@@ -283,7 +306,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={bookingsRef}
           onClick={toBooking}
         >
-          <i className="fas fa-calendar-alt font-light text-[24px]"></i>
+          {props.Booking ? (
+            <img className=" w-6 h-6 " src={lightCalenderIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={calenderIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Bookings</h5>
         </button>
         <button
@@ -291,7 +318,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={mentorshipRef}
           onClick={toMentorship}
         >
-          <i className="fas fa-user-graduate  text-[24px]"></i>
+          {props.Mentorship ? (
+            <img className=" w-6 h-6 " src={lightMentorshipIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={mentorshipIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Mentorship</h5>
         </button>
         <button
@@ -299,7 +330,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={jobInquiresRef}
           onClick={toJobinquires}
         >
-          <i className="fas fa-briefcase  text-[24px]"></i>
+          {props.Jobinquires ? (
+            <img className=" w-6 h-6 " src={lightJobInquiresIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={jobInquiresIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Job inquires</h5>
         </button>
         <button
@@ -307,7 +342,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={contentRef}
           onClick={toContent}
         >
-          <i className="fas fa-cube  text-[24px]"></i>
+          {props.Content ? (
+            <img className=" w-6 h-6 " src={lightContentIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={contentIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Content</h5>
         </button>
         <button
@@ -315,7 +354,11 @@ function LeftNevBar(props: NavigationControl) {
           ref={settingsRef}
           onClick={toSettings}
         >
-          <i className="fas fa-sliders  text-[24px] rotate-90"></i>
+          {props.Settings ? (
+            <img className=" w-6 h-6 " src={lightSettingsIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={settingsIcon}></img>
+          )}
           <h5 className="font-inter font-normal text-[18px]">Settings</h5>
         </button>
       </div>
