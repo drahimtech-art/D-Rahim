@@ -125,7 +125,7 @@ function App() {
         },
         {
           //devmode
-          path: "/devmode/students",
+          path: "/devmode/:id",
           element: <AccessStudentPage />,
         },
       ],

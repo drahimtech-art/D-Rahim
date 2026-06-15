@@ -1,1 +1,0 @@
-var e=`/D-Rahim/images/2.png`,t=`/D-Rahim/images/11.png`;export{e as n,t};

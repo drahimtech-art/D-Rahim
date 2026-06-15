@@ -1,10 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import LoginLogo from "/images/loginLogo.png";
 function AccessLogin() {
   const urlNavigator = useNavigate();
   function toStudentsPage() {
     const url = "/devmode/students";
-    urlNavigator(url, { replace: false });
+    urlNavigator({
+      pathname: url,
+      search: `?${createSearchParams({
+        verifed: "true",
+        id: "8322z4t",
+        page: "overview",
+      })}`,
+    });
   }
   return (
     <div className="w-full h-screen bg-primary-green text-gray-200 flex justify-center items-center">

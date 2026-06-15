@@ -7,7 +7,7 @@ import classImge6 from "/images/class7.png";
 import classImge7 from "/images/class4.png";
 function Content() {
   return (
-    <div className="w-full h-full mt-7.5 flex gap-5.25">
+    <div className="w-full h-full mt-7.5 grid grid-cols-2 gap-5.25">
       {/**first content */}
       <div className="w-full   border border-[#9AA1A2] min-h-106 h-fit  bg-[#FFFFFF] rounded-[20px] p-5">
         <span className="flex">
