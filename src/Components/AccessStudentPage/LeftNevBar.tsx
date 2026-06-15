@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+/*
 type NavigationControl = {
   toDashboard?: () => void;
   toClass?: () => void;
@@ -8,6 +9,7 @@ type NavigationControl = {
   toSettings?: () => void;
   logout?: () => void;
 };
+*/
 function LeftNevBar() {
   const [searchParems, setSearchParems] = useSearchParams();
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
