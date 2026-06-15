@@ -1,17 +1,19 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-/*
 type NavigationControl = {
-  toDashboard?: () => void;
-  toClass?: () => void;
-  toMessages?: () => void;
-  toCummunity?: () => void;
-  toSettings?: () => void;
-  logout?: () => void;
+  toDashboard: () => void;
+  toClasses: () => void;
+  toMessages: () => void;
+  toCummunity: () => void;
+  toSettings: () => void;
+  logout: () => void;
 };
-*/
-function LeftNevBar() {
+function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
+  const isUserVerifed = searchParems.get("verifed");
+  const userId = searchParems.get("id");
+  const page = searchParems.get("page");
+  console.log(isUserVerifed, userId, page);
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
   const classRef = useRef<HTMLButtonElement | null>(null);
   const messagesRef = useRef<HTMLButtonElement | null>(null);
@@ -45,8 +47,12 @@ function LeftNevBar() {
     dashboardRef.current.classList.add("bg-primary-green");
     dashboardRef.current.classList.add("text-white");
     //func call
-    //props.toDashboard();
-    setSearchParems({ page: "overview" });
+    props.toDashboard();
+    setSearchParems({
+      verifed: `${isUserVerifed}`,
+      id: `${userId}`,
+      page: "overview",
+    });
   }
   function toClass() {
     if (
@@ -75,8 +81,12 @@ function LeftNevBar() {
     classRef.current.classList.add("bg-primary-green");
     classRef.current.classList.add("text-white");
     //func call
-    //props.toClass();
-    setSearchParems({ page: "class" });
+    props.toClasses();
+    setSearchParems({
+      verifed: `${isUserVerifed}`,
+      id: `${userId}`,
+      page: "classes",
+    });
   }
   function toMessages() {
     if (
@@ -106,7 +116,11 @@ function LeftNevBar() {
     messagesRef.current.classList.add("text-white");
     //func call
     //props.toMessages();
-    setSearchParems({ page: "messages" });
+    setSearchParems({
+      verifed: `${isUserVerifed}`,
+      id: `${userId}`,
+      page: "messages",
+    });
   }
 
   function toCummunity() {
@@ -135,9 +149,12 @@ function LeftNevBar() {
     communityRef.current.classList.add("bg-primary-green");
     communityRef.current.classList.add("text-white");
     //func call
-    //props.toCummunity();
-    setSearchParems({ page: "community" });
-    console.log("1");
+    props.toCummunity();
+    setSearchParems({
+      verifed: `${isUserVerifed}`,
+      id: `${userId}`,
+      page: "community",
+    });
   }
   function toSettings() {
     if (
@@ -165,10 +182,13 @@ function LeftNevBar() {
     settingsRef.current.classList.add("bg-primary-green");
     settingsRef.current.classList.add("text-white");
     //func call
-    //props.toSettings();
-    setSearchParems({ page: "settings" });
+    props.toSettings();
+    setSearchParems({
+      verifed: `${isUserVerifed}`,
+      id: `${userId}`,
+      page: "settings",
+    });
   }
-  //save history on refresh and navigate to quary page
   useEffect(() => {
     const parems = searchParems.get("page");
     if (!parems) return;
@@ -177,7 +197,7 @@ function LeftNevBar() {
       case "overview":
         toDashboard();
         break;
-      case "class":
+      case "classes":
         toClass();
         break;
       case "messages":
@@ -200,6 +220,7 @@ function LeftNevBar() {
       setIsMounted(true);
     })();
   }, []);
+
   return (
     <div className="flex flex-col w-full">
       {/**navber */}
@@ -218,7 +239,7 @@ function LeftNevBar() {
           onClick={toClass}
         >
           <i className="fas fa-user-graduate  font-light text-[24px]"></i>
-          <h5 className="font-inter font-normal text-[18px]">My Class</h5>
+          <h5 className="font-inter font-normal text-[18px]">My Classes</h5>
         </button>
         <button
           className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
