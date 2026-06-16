@@ -1,3 +1,4 @@
+import { useState, lazy } from "react";
 import HeadContent from "./HeadContent";
 //
 /*
@@ -9,27 +10,52 @@ import classImge5 from "/images/class3.png";
 import classImge6 from "/images/class7.png";
 import classImge7 from "/images/class4.png";
 */
-import ClassProgressBar from "./ClassProgressCard";
+import AllClasses from "./Navigation/AllClasses/AllClasses";
+const ActiveClass = lazy(
+  () => import("./Navigation/ActiveClasses/ActiveClass"),
+);
+import ClassContentCard from "./Navigation/ClassContentCard/ClassContentCard";
 function Classes() {
+  const [isClassActive, setIsClassActive] = useState<boolean>(false); // for testing am going to prop drill
+  const [renderAllClasses, setRenderAllClasses] = useState<boolean>(true);
+  const [renderActiveClasses, setRenderActiveClasses] =
+    useState<boolean>(false);
+  const [renderCompletedClasses, setRenderCompletedClasses] =
+    useState<boolean>(false);
+  function toAllClass() {
+    setRenderActiveClasses(false);
+    setRenderCompletedClasses(false);
+    setRenderAllClasses(true);
+  }
+  function toActiveClass() {
+    setRenderAllClasses(false);
+    setRenderCompletedClasses(false);
+    setRenderActiveClasses(true);
+  }
+  function toCompletedClass() {
+    setRenderAllClasses(false);
+    setRenderActiveClasses(false);
+    setRenderCompletedClasses(true);
+  }
   return (
-    <div className="w-full h-full">
+    <div className="min-w-full h-full">
       {/**head content */}
-      <HeadContent />
-      {/**content body*/}
-      <div className="flex flex-col gap-6.25">
-        {/**content */}
-        <ClassProgressBar />
-        {/**content */}
-        <ClassProgressBar />
-        {/**content */}
-        <ClassProgressBar />
-        {/**content */}
-        <ClassProgressBar />
-        {/**content */}
-        <ClassProgressBar />
-        {/**content */}
-        <ClassProgressBar />
-      </div>
+      {!isClassActive ? (
+        <>
+          <HeadContent
+            toAllClasses={toAllClass}
+            toActiveClasses={toActiveClass}
+            toCompletedClasses={toCompletedClass}
+          />
+          {/**content body*/}
+          {renderAllClasses && (
+            <AllClasses setIsClassActive={setIsClassActive} />
+          )}
+          {renderActiveClasses && <ActiveClass />}
+        </>
+      ) : (
+        <ClassContentCard />
+      )}
     </div>
   );
 }

@@ -1,5 +1,8 @@
 import classImge1 from "/images/class1.png";
-function ClassProgressBar() {
+type EnterClassControl = {
+  setIsClassActive?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+function ClassProgressBar(props: EnterClassControl) {
   return (
     <div className="flex items-center w-full gap-25.75">
       <div className="flex items-center gap-3.25 w-full">
@@ -29,7 +32,12 @@ function ClassProgressBar() {
         </div>
       </div>
       {/**action button */}
-      <button className="pointer p-2.5 min-w-26.75 flex justify-center items-center bg-[#11AC76] rounded-[30px]">
+      <button
+        className="pointer p-2.5 min-w-26.75 flex justify-center items-center bg-[#11AC76] rounded-[30px]"
+        onClick={() => {
+          if (props.setIsClassActive) return props.setIsClassActive(true);
+        }}
+      >
         <h5 className=" font-sans font-medium text-[16px] text-[#FFFFFF]">
           View Class
         </h5>
