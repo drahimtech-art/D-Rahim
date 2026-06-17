@@ -54,7 +54,7 @@ function Classes() {
           {renderActiveClasses && <ActiveClass />}
         </>
       ) : (
-        <ClassContentCard />
+        <ClassContentCard setIsClassActive={setIsClassActive} />
       )}
     </div>
   );
