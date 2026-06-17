@@ -19,13 +19,15 @@ function AccessStudentPage() {
     if (page == "overview" || page == "classes") {
       (() => {
         setBackgroundColour(
-          (prevBackgroundColor) => (prevBackgroundColor = "white"),
+          (prevBackgroundColor) =>
+            (prevBackgroundColor = prevBackgroundColor = "white"),
         );
       })();
     } else {
       (() => {
         setBackgroundColour(
-          (prevBackgroundColor) => (prevBackgroundColor = "#f8ffff"),
+          (prevBackgroundColor) =>
+            (prevBackgroundColor = prevBackgroundColor = "#f8ffff"),
         );
       })();
     }
@@ -75,7 +77,7 @@ function AccessStudentPage() {
         </div>
         {/**content */}
         <div
-          className="w-full pl-10 pr-10 max-w-full flex min-h-0 max-h-full gap-10 pt-10 pb-10"
+          className="w-full pl-10 pr-10 max-w-full flex min-h-0 max-h-full gap-10 pt-10 "
           style={{ backgroundColor: backgroundColor }}
         >
           {/**left navigation panel */}
