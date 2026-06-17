@@ -1,7 +1,7 @@
 import contactImg4 from "/images/contact_3.png";
 function GroupContactComponet() {
   return (
-    <div className="w-full h-fit p-2.5  flex items-center gap-2.5 rounded-2xl pointer">
+    <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5 rounded-2xl pointer">
       {/**profile image */}
       <span className="min-w-12.5 max-w-12.5 h-12.5">
         <img className="w-full h-full" src={contactImg4}></img>

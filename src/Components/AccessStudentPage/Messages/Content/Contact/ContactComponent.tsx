@@ -1,7 +1,7 @@
 import contactImg1 from "/images/contact.png";
 function ContactComponent() {
   return (
-    <div className="w-full h-fit p-2.5  flex items-center gap-2.5 bg-[#11AC76] rounded-2xl pointer">
+    <div className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5 bg-[#11AC76] rounded-2xl pointer">
       {/**profile image */}
       <span className="min-w-12.5 max-w-12.5 h-12.5">
         <img className="w-full h-full" src={contactImg1}></img>

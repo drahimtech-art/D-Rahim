@@ -6,13 +6,13 @@ import ContactComponent from "./ContactComponent";
 import GroupContactComponet from "./GroupContactComponet";
 function Contact() {
   return (
-    <div className="w-full h-full  bg-white  pl-2 pr-2 flex flex-col gap-7.5 overflow-y-scroll">
+    <div className="w-full h-full  bg-white  pl-2 pr-2 flex flex-col pb-20 gap-7.5 overflow-y-scroll">
       {/**contact components */}
       <ContactComponent />
       {/**Group contact componets */}
       <GroupContactComponet />
       {/**contact components */}
-      <div className="w-full h-fit p-2.5  flex items-center gap-2.5  rounded-2xl pointer ">
+      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer ">
         {/**profile image */}
         <span className="min-w-12.5 max-w-12.5 h-12.5">
           <img className="w-full h-full" src={contactImg2}></img>
@@ -39,7 +39,7 @@ function Contact() {
         </div>
       </div>
       {/**contact components */}
-      <div className="w-full h-fit p-2.5  flex items-center gap-2.5  rounded-2xl pointer">
+      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
         {/**profile image */}
         <span className="min-w-12.5 max-w-12.5 h-12.5">
           <img className="w-full h-full" src={contactImg1}></img>
@@ -66,7 +66,7 @@ function Contact() {
         </div>
       </div>
       {/**contact components */}
-      <div className="w-full h-fit p-2.5  flex items-center gap-2.5  rounded-2xl pointer">
+      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
         {/**profile image */}
         <span className="min-w-12.5 max-w-12.5 h-12.5">
           <img className="w-full h-full" src={contactImg3}></img>
@@ -93,7 +93,7 @@ function Contact() {
         </div>
       </div>
       {/**contact components */}
-      <div className="w-full h-fit p-2.5  flex items-center gap-2.5  rounded-2xl pointer">
+      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
         {/**profile image */}
         <span className="min-w-12.5 max-w-12.5 h-12.5">
           <img className="w-full h-full" src={contactImg4}></img>
@@ -108,7 +108,7 @@ function Contact() {
             </h5>
             {/**time */}
             <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              2m
+              1h
             </h5>
           </span>
           {/**message */}
@@ -120,7 +120,7 @@ function Contact() {
         </div>
       </div>
       {/**contact components */}
-      <div className="w-full h-fit p-2.5  flex items-center gap-2.5  rounded-2xl pointer">
+      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
         {/**profile image */}
         <span className="min-w-12.5 max-w-12.5 h-12.5">
           <img className="w-full h-full" src={contactImg2}></img>
@@ -135,7 +135,7 @@ function Contact() {
             </h5>
             {/**time */}
             <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              2m
+              2h
             </h5>
           </span>
           {/**message */}

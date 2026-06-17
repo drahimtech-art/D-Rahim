@@ -1,10 +1,15 @@
 import Contact from "./Contact/Contact";
+import MessageBox from "./MessageBox/MessageBox";
 function Content() {
   return (
-    <div className="mt-7.5 w-full h-full max-h-full overflow-hidden flex">
+    <div className="mt-7.5 w-full h-full max-h-full overflow-hidden flex gap-10 ">
       {/**left contact panel */}
-      <div className="w-[30%] h-full max-h-full overflow-y-auto max-w-80.25  border-r border-[#11AC76]">
+      <div className=" h-full max-h-full overflow-y-auto w-full max-w-80.25  border-r border-[#5DD963]">
         <Contact />
+      </div>
+      {/**Message box */}
+      <div className="w-full max-h-full pb-20">
+        <MessageBox />
       </div>
     </div>
   );
