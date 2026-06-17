@@ -1,9 +1,16 @@
-function Head() {
+import type { SetStateAction } from "react";
+type BackButtonControll = {
+  setIsClassActive: React.Dispatch<SetStateAction<boolean>>;
+};
+function Head(props: BackButtonControll) {
   return (
     <div className="w-full flex flex-col gap-10">
       {/**back button */}
       <span className="w-full flex items-center gap-2.5">
-        <i className="fa fa-arrow-left text-[24px]"></i>
+        <i
+          className="fa fa-arrow-left text-[24px] pointer"
+          onClick={() => props.setIsClassActive(false)}
+        ></i>
         <h5 className="font-sans text-[16px] font-medium">
           Back to My Classes
         </h5>
