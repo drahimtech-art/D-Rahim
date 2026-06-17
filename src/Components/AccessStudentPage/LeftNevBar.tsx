@@ -3,13 +3,13 @@ import { useSearchParams } from "react-router-dom";
 import homeIcon from "/images/HouseSimple_icon.png";
 import lightHomeIcon from "/images/House.png";
 import mentorshipIcon from "/images/StudentLight_icon.png";
-import lightMentorshipIcon from "/images/StudentLight_icon.png";
+import lightMentorshipIcon from "/images/Student.png";
 import messagesIcon from "/images/Envelope_icon.png";
-import lightMessagesIcon from "/images/Envelope_icon.png";
+import lightMessagesIcon from "/images/Envelope.png";
 import cummunityIcon from "/images/UsersThree_icon.png";
-import lightcummunityIcon from "/images/UsersThree_icon.png";
+import lightcummunityIcon from "/images/UsersThree.png";
 import settingsIcon from "/images/Sliders_icon.png";
-import lightSettingsIcon from "/images/Sliders_icon.png";
+import lightSettingsIcon from "/images/Sliders.png";
 type NavigationControl = {
   toDashboard: () => void;
   toClasses: () => void;
@@ -29,7 +29,6 @@ function LeftNevBar(props: NavigationControl) {
   const isUserVerifed = searchParems.get("verifed");
   const userId = searchParems.get("id");
   const page = searchParems.get("page");
-  console.log(isUserVerifed, userId, page);
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
   const classRef = useRef<HTMLButtonElement | null>(null);
   const messagesRef = useRef<HTMLButtonElement | null>(null);
@@ -64,6 +63,7 @@ function LeftNevBar(props: NavigationControl) {
     dashboardRef.current.classList.add("text-white");
     //func call
     props.toDashboard();
+    if (page == "overview") return;
     setSearchParems({
       verifed: `${isUserVerifed}`,
       id: `${userId}`,
@@ -98,6 +98,7 @@ function LeftNevBar(props: NavigationControl) {
     classRef.current.classList.add("text-white");
     //func call
     props.toClasses();
+    if (page == "classes") return;
     setSearchParems({
       verifed: `${isUserVerifed}`,
       id: `${userId}`,
@@ -131,7 +132,8 @@ function LeftNevBar(props: NavigationControl) {
     messagesRef.current.classList.add("bg-primary-green");
     messagesRef.current.classList.add("text-white");
     //func call
-    //props.toMessages();
+    props.toMessages();
+    if (page == "messages") return;
     setSearchParems({
       verifed: `${isUserVerifed}`,
       id: `${userId}`,
@@ -166,6 +168,7 @@ function LeftNevBar(props: NavigationControl) {
     communityRef.current.classList.add("text-white");
     //func call
     props.toCummunity();
+    if (page == "community") return;
     setSearchParems({
       verifed: `${isUserVerifed}`,
       id: `${userId}`,
@@ -199,6 +202,7 @@ function LeftNevBar(props: NavigationControl) {
     settingsRef.current.classList.add("text-white");
     //func call
     props.toSettings();
+    if (page == "settings") return;
     setSearchParems({
       verifed: `${isUserVerifed}`,
       id: `${userId}`,
@@ -206,10 +210,10 @@ function LeftNevBar(props: NavigationControl) {
     });
   }
   useEffect(() => {
-    const parems = searchParems.get("page");
-    if (!parems) return;
+    const paremsPage = searchParems.get("page");
+    if (!paremsPage) return;
     if (!isMounted) return;
-    switch (parems) {
+    switch (paremsPage) {
       case "overview":
         toDashboard();
         break;
@@ -229,13 +233,21 @@ function LeftNevBar(props: NavigationControl) {
       default:
         break;
     }
-  }, [searchParems, isMounted]);
+  }, [page, isMounted]);
   //mount the history controll
   useEffect(() => {
     (() => {
       setIsMounted(true);
     })();
   }, []);
+
+  console.log(
+    props.Dashboard,
+    props.Classes,
+    props.Messages,
+    props.Cummunity,
+    props.Settings,
+  );
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -271,9 +283,9 @@ function LeftNevBar(props: NavigationControl) {
           onClick={toMessages}
         >
           {props.Messages ? (
-            <img className=" w-6 h-6 " src={messagesIcon}></img>
-          ) : (
             <img className=" w-6 h-6 " src={lightMessagesIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={messagesIcon}></img>
           )}
           <h5 className="font-inter font-normal text-[18px]">Messages</h5>
         </button>
@@ -283,9 +295,9 @@ function LeftNevBar(props: NavigationControl) {
           onClick={toCummunity}
         >
           {props.Cummunity ? (
-            <img className=" w-6 h-6 " src={cummunityIcon}></img>
-          ) : (
             <img className=" w-6 h-6 " src={lightcummunityIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={cummunityIcon}></img>
           )}
           <h5 className="font-inter font-normal text-[18px]">community</h5>
         </button>
@@ -295,9 +307,9 @@ function LeftNevBar(props: NavigationControl) {
           onClick={toSettings}
         >
           {props.Settings ? (
-            <img className=" w-6 h-6 " src={settingsIcon}></img>
-          ) : (
             <img className=" w-6 h-6 " src={lightSettingsIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={settingsIcon}></img>
           )}
           <h5 className="font-inter font-normal text-[18px]">Settings</h5>
         </button>
