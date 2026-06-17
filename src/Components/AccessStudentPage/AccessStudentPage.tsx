@@ -4,6 +4,7 @@ import Top from "./Top";
 import LeftNevBar from "./LeftNevBar";
 import Dashboard from "./Dashboard/Dashboard";
 const Classes = lazy(() => import("./Classes/Classes"));
+const Messages = lazy(() => import("./Messages/Messages"));
 function AccessStudentPage() {
   const [searchParems] = useSearchParams();
   const page = searchParems.get("page");
@@ -100,6 +101,7 @@ function AccessStudentPage() {
             <div className="w-full h-full overflow-y-auto">
               {renderDashboard && <Dashboard />}
               {renderClasses && <Classes />}
+              {renderMessage && <Messages />}
             </div>
           </div>
         </div>
