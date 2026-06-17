@@ -31,6 +31,7 @@ type NavigationControl = {
 };
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
+  const page = searchParems.get("page");
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
   const bookingsRef = useRef<HTMLButtonElement | null>(null);
   const mentorshipRef = useRef<HTMLButtonElement | null>(null);
@@ -70,6 +71,7 @@ function LeftNevBar(props: NavigationControl) {
     dashboardRef.current.classList.add("text-white");
     //func call
     props.toDashboard();
+    if (page == "overview") return;
     setSearchParems({ page: "overview" });
   }
   function toBooking() {
@@ -104,6 +106,7 @@ function LeftNevBar(props: NavigationControl) {
     bookingsRef.current.classList.add("text-white");
     //func call
     props.toBooking();
+    if (page == "bookings") return;
     setSearchParems({ page: "bookings" });
   }
   function toMentorship() {
@@ -138,6 +141,7 @@ function LeftNevBar(props: NavigationControl) {
     mentorshipRef.current.classList.add("text-white");
     //func call
     props.toMentorship();
+    if (page == "mentorship") return;
     setSearchParems({ page: "mentorship" });
   }
   function toJobinquires() {
@@ -171,6 +175,7 @@ function LeftNevBar(props: NavigationControl) {
     jobInquiresRef.current.classList.add("text-white");
     //func call
     props.toJobinquires();
+    if (page == "jobinquires") return;
     setSearchParems({ page: "jobinquires" });
   }
   function toContent() {
@@ -204,8 +209,8 @@ function LeftNevBar(props: NavigationControl) {
     contentRef.current.classList.add("text-white");
     //func call
     props.toContent();
+    if (page == "content") return;
     setSearchParems({ page: "content" });
-    console.log("1");
   }
   function toSettings() {
     if (
@@ -238,14 +243,14 @@ function LeftNevBar(props: NavigationControl) {
     settingsRef.current.classList.add("text-white");
     //func call
     props.toSettings();
+    if (page == "settings") return;
     setSearchParems({ page: "settings" });
   }
   //save history on refresh and navigate to quary page
   useEffect(() => {
-    const parems = searchParems.get("page");
-    if (!parems) return;
+    if (!page) return;
     if (!isMounted) return;
-    switch (parems) {
+    switch (page) {
       case "overview":
         toDashboard();
         break;
@@ -267,7 +272,7 @@ function LeftNevBar(props: NavigationControl) {
       default:
         break;
     }
-  }, [searchParems, isMounted]);
+  }, [page, isMounted]);
   //mount the history controll
   useEffect(() => {
     (() => {
