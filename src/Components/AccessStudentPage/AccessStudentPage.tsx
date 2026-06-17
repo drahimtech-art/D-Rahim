@@ -69,7 +69,7 @@ function AccessStudentPage() {
   }
   function logout() {}
   return (
-    <div className="w-full min-w-300 h-screen  max-h-screen overflow-hidden   bg-white ">
+    <div className="w-full min-w-300 h-screen  max-h-screen    bg-white ">
       <div className="w-full h-full max-h-full flex flex-col ">
         {/**Top */}
         <div className="w-full p-10 pb-0">

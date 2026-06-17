@@ -6,7 +6,7 @@ import ContactComponent from "./ContactComponent";
 import GroupContactComponet from "./GroupContactComponet";
 function Contact() {
   return (
-    <div className="w-full h-full bg-white  pl-2 pr-2 flex flex-col gap-7.5 overflow-y-auto">
+    <div className="w-full h-full  bg-white  pl-2 pr-2 flex flex-col gap-7.5 overflow-y-scroll">
       {/**contact components */}
       <ContactComponent />
       {/**Group contact componets */}
