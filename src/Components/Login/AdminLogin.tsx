@@ -47,7 +47,7 @@ function AdminLogin() {
             <input className="w-full h-15 border-b-2 border-gray-200 pl-5 mt-0.75"></input>
           </div>
           <div className="flex flex-col mt-7.25">
-            <h5 className="font-inter font-medium min20Max24px">Password</h5>
+            <h5 className="font-inter font-medium min20Max24px">Email</h5>
             <input className="w-full h-15 border-b-2 border-gray-200 pl-5 mt-0.75"></input>
           </div>
           <div className="w-full h-full flex justify-end mt-4">

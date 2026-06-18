@@ -64,14 +64,12 @@ function CardPopUp(props: Body) {
                     <i className="fa fa-xmark text-[2rem] font-light pointer"></i>
                   </span>
                   <span
-                    className="absolute -ml-12 mt-7 opacity-0 hover:opacity-100 transition-all"
+                    className="absolute -ml-12 mt-5 opacity-0 hover:opacity-100 transition-all"
                     onClick={() =>
                       props.setIsPopUpVisible((prevSate) => !prevSate)
                     }
                   >
-                    <span>
-                      <h5 className="text-[20px] mt-2 font-inter">Close</h5>
-                    </span>
+                    <h5 className="text-[20px] mt-2 font-inter">Close</h5>
                   </span>
                 </div>
               </div>
