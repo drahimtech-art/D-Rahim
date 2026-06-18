@@ -26,7 +26,7 @@ type NavigationControl = {
 };
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
-  const isUserVerifed = searchParems.get("verifed");
+  const isUserVerified = searchParems.get("verified");
   const userId = searchParems.get("id");
   const page = searchParems.get("page");
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
@@ -65,7 +65,7 @@ function LeftNevBar(props: NavigationControl) {
     props.toDashboard();
     if (page == "overview") return;
     setSearchParems({
-      verifed: `${isUserVerifed}`,
+      verified: `${isUserVerified}`,
       id: `${userId}`,
       page: "overview",
     });
@@ -100,7 +100,7 @@ function LeftNevBar(props: NavigationControl) {
     props.toClasses();
     if (page == "classes") return;
     setSearchParems({
-      verifed: `${isUserVerifed}`,
+      verified: `${isUserVerified}`,
       id: `${userId}`,
       page: "classes",
     });
@@ -135,7 +135,7 @@ function LeftNevBar(props: NavigationControl) {
     props.toMessages();
     if (page == "messages") return;
     setSearchParems({
-      verifed: `${isUserVerifed}`,
+      verified: `${isUserVerified}`,
       id: `${userId}`,
       page: "messages",
     });
@@ -170,7 +170,7 @@ function LeftNevBar(props: NavigationControl) {
     props.toCummunity();
     if (page == "community") return;
     setSearchParems({
-      verifed: `${isUserVerifed}`,
+      verified: `${isUserVerified}`,
       id: `${userId}`,
       page: "community",
     });
@@ -204,7 +204,7 @@ function LeftNevBar(props: NavigationControl) {
     props.toSettings();
     if (page == "settings") return;
     setSearchParems({
-      verifed: `${isUserVerifed}`,
+      verified: `${isUserVerified}`,
       id: `${userId}`,
       page: "settings",
     });

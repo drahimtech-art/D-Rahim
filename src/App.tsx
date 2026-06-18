@@ -48,8 +48,11 @@ const AdminDasboard = lazy(
 );
 //access student page
 const AccessLogin = lazy(() => import("./Components/Login/AccessLogin"));
-import AccessStudentPage from "./Components/AccessStudentPage/AccessStudentPage";
-
+const AccessStudentPage = lazy(
+  () => import("./Components/AccessStudentPage/AccessStudentPage"),
+);
+//auth loaders //url delays
+import AccessAuth from "./Components/AccessStudentPage/AccessStudentsAuthMiddleware/AccesAuth";
 function App() {
   const routes = createHashRouter([
     {
@@ -120,13 +123,17 @@ function App() {
         },
         {
           //devmode
-          path: "/devmode/access/login",
+          path: "/students/access/login",
           element: <AccessLogin />,
         },
         {
           //devmode
-          path: "/devmode/:id",
-          element: <AccessStudentPage />,
+          path: "/access/:id",
+          element: (
+            <AccessAuth>
+              <AccessStudentPage />
+            </AccessAuth>
+          ),
         },
       ],
     },

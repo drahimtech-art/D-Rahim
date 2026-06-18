@@ -13,7 +13,7 @@ function AdminLogin() {
     });
   }
   return (
-    <div className="w-full h-screen bg-primary-green text-gray-200 flex justify-center items-center">
+    <div className="w-full h-full  min-h-screen bg-primary-green text-gray-200 flex justify-center items-center">
       <div className="w-full max-w-[810.5px] h-fit ">
         <div className="w-full h-full flex justify-center">
           <span className="flex gap-2 items-center">
