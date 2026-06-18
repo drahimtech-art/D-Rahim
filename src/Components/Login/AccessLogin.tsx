@@ -1,20 +1,56 @@
 import { useNavigate, createSearchParams } from "react-router-dom";
+import { useState, useRef, type ChangeEvent } from "react";
 import LoginLogo from "/images/loginLogo.png";
+
 function AccessLogin() {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userPassword, setUserPasword] = useState<string>("");
+  const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
+  function handleEmailChange(e: ChangeEvent<HTMLInputElement>): void {
+    const date = e.target.value;
+    setUserEmail(date);
+  }
+  function handlePasswordChange(e: ChangeEvent<HTMLInputElement>): void {
+    const date = e.target.value;
+    setUserPasword(date);
+  }
   const urlNavigator = useNavigate();
-  function toStudentsPage() {
-    const url = "/devmode/students";
-    urlNavigator({
-      pathname: url,
-      search: `?${createSearchParams({
-        verifed: "true",
-        id: "8322z4t",
-        page: "overview",
-      })}`,
-    });
+  async function toStudentsPage() {
+    if (!userEmail.trim() || !userPassword.trim()) return;
+    const data = {
+      email: userEmail,
+      password: userPassword,
+    };
+    try {
+      const validateUser = await fetch(`${serverPort}/signin/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const responds = await validateUser.json();
+      if (responds.ok) {
+        const userId = responds.userId;
+        const url = "/access/students";
+        urlNavigator({
+          pathname: url,
+          search: `?${createSearchParams({
+            verified: "true",
+            id: `${userId}`,
+            page: "overview",
+          })}`,
+        });
+      } else {
+        console.log("somthing went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
-    <div className="w-full h-screen bg-primary-green text-gray-200 flex justify-center items-center">
+    <div className="w-full h-full  min-h-screen bg-primary-green text-gray-200 flex justify-center items-center">
       <div className="w-full max-w-[810.5px] h-fit ">
         <div className="w-full h-full flex justify-center">
           <span className="flex gap-2 items-center">
@@ -45,12 +81,20 @@ function AccessLogin() {
         <div className="mt-12.5 ">
           <div className="flex flex-col ">
             <h5 className="font-inter font-medium min20Max24px">Email</h5>
-            <input className="w-full h-15 border-b-2 border-gray-200 pl-5 mt-0.75"></input>
+            <input
+              className="w-full h-15 border-b-2 border-gray-200 pl-5 mt-0.75"
+              value={userEmail}
+              onChange={handleEmailChange}
+            ></input>
           </div>
           <div className="flex flex-col mt-7.25">
             <h5 className="font-inter font-medium min20Max24px">Password</h5>
             <span className="mt-0.75 relative ">
-              <input className="w-full h-15 border-b-2 border-gray-200 pl-5 "></input>
+              <input
+                className="w-full h-15 border-b-2 border-gray-200 pl-5 "
+                value={userPassword}
+                onChange={handlePasswordChange}
+              ></input>
               <span className="absolute right-0  w-fit top-0 flex items-center pl-5 pr-2 h-full">
                 <i className="fa fa-eye-slash  font-light"></i>
               </span>
@@ -69,6 +113,7 @@ function AccessLogin() {
           <span
             className="w-50.5 h-12.5 rounded-full bg-[#11AC76] flex justify-center items-center pointer"
             onClick={toStudentsPage}
+            ref={loginControlFuncRef}
           >
             <h5 className="font-medium font-inter min20Max24px">Login</h5>
           </span>
