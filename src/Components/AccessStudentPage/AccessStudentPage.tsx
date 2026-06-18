@@ -5,6 +5,7 @@ import LeftNevBar from "./LeftNevBar";
 import Dashboard from "./Dashboard/Dashboard";
 const Classes = lazy(() => import("./Classes/Classes"));
 const Messages = lazy(() => import("./Messages/Messages"));
+import Settings from "./Settings/Settings";
 function AccessStudentPage() {
   const [searchParems] = useSearchParams();
   const page = searchParems.get("page");
@@ -18,17 +19,15 @@ function AccessStudentPage() {
   useEffect(() => {
     if (page == "overview" || page == "classes") {
       (() => {
-        setBackgroundColour(
-          (prevBackgroundColor) =>
-            (prevBackgroundColor = prevBackgroundColor = "white"),
-        );
+        setBackgroundColour((prevBackgroundColor) => {
+          return (prevBackgroundColor = "white");
+        });
       })();
     } else {
       (() => {
-        setBackgroundColour(
-          (prevBackgroundColor) =>
-            (prevBackgroundColor = prevBackgroundColor = "#f8ffff"),
-        );
+        setBackgroundColour((prevBackgroundColor) => {
+          return (prevBackgroundColor = "#f8ffff");
+        });
       })();
     }
   }, [page]);
@@ -77,7 +76,7 @@ function AccessStudentPage() {
         </div>
         {/**content */}
         <div
-          className="w-full pl-10 pr-10 max-w-full flex min-h-0 max-h-full gap-10 pt-10 "
+          className="w-full pl-10 pr-10 max-w-full h-full flex min-h-0 max-h-full gap-10 pt-10 "
           style={{ backgroundColor: backgroundColor }}
         >
           {/**left navigation panel */}
@@ -104,6 +103,7 @@ function AccessStudentPage() {
               {renderDashboard && <Dashboard />}
               {renderClasses && <Classes />}
               {renderMessage && <Messages />}
+              {renderSettings && <Settings />}
             </div>
           </div>
         </div>
