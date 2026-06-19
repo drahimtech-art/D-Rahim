@@ -7,6 +7,7 @@ function AccessLogin() {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPasword] = useState<string>("");
   const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   function handleEmailChange(e: ChangeEvent<HTMLInputElement>): void {
     const date = e.target.value;
     setUserEmail(date);
@@ -17,7 +18,16 @@ function AccessLogin() {
   }
   const urlNavigator = useNavigate();
   async function toStudentsPage() {
-    if (!userEmail.trim() || !userPassword.trim()) return;
+    if (
+      !userEmail.trim() ||
+      !userPassword.trim() ||
+      !loginControlFuncRef.current ||
+      isLoading
+    )
+      return;
+    setIsLoading(true);
+    loginControlFuncRef.current.classList.remove("AllowedPointerForButton");
+    loginControlFuncRef.current.classList.add("notallowedPointerForButton");
     const data = {
       email: userEmail,
       password: userPassword,
@@ -31,7 +41,13 @@ function AccessLogin() {
         body: JSON.stringify(data),
       });
       const responds = await validateUser.json();
+      setIsLoading(false);
+      loginControlFuncRef.current.classList.remove(
+        "notallowedPointerForButton",
+      );
+      loginControlFuncRef.current.classList.add("AllowedPointerForButton");
       if (responds.ok) {
+        alert(responds.message);
         const userId = responds.userId;
         const url = "/access/students";
         urlNavigator({
@@ -43,9 +59,15 @@ function AccessLogin() {
           })}`,
         });
       } else {
+        alert(responds.message);
         console.log("somthing went wrong");
       }
     } catch (error) {
+      setIsLoading(false);
+      loginControlFuncRef.current.classList.remove(
+        "notallowedPointerForButton",
+      );
+      loginControlFuncRef.current.classList.add("AllowedPointerForButton");
       console.log(error);
     }
   }
@@ -111,7 +133,7 @@ function AccessLogin() {
         {/**login btn */}
         <div className="w-full h-full flex justify-center mt-12.5">
           <span
-            className="w-50.5 h-12.5 rounded-full bg-[#11AC76] flex justify-center items-center pointer"
+            className="w-50.5 h-12.5 rounded-full bg-[#11AC76] flex justify-center items-center AllowedPointerForButton "
             onClick={toStudentsPage}
             ref={loginControlFuncRef}
           >

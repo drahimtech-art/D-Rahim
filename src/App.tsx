@@ -123,7 +123,7 @@ function App() {
         },
         {
           //devmode
-          path: "/students/access/login",
+          path: "/students/login/access",
           element: <AccessLogin />,
         },
         {
