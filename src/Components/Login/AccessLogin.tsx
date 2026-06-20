@@ -35,6 +35,7 @@ function AccessLogin() {
     try {
       const validateUser = await fetch(`${serverPort}/signin/user`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -48,13 +49,11 @@ function AccessLogin() {
       loginControlFuncRef.current.classList.add("AllowedPointerForButton");
       if (responds.ok) {
         alert(responds.message);
-        const userId = responds.userId;
         const url = "/access/students";
         urlNavigator({
           pathname: url,
           search: `?${createSearchParams({
             verified: "true",
-            id: `${userId}`,
             page: "overview",
           })}`,
         });
