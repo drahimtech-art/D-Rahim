@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import LogoImg from "/images/logo.png";
 import testImage from "/images/testimage.png";
 function Top() {
-  const [searchParems, setSearchParems] = useSearchParams();
+  const [searchParems] = useSearchParams();
   const page = searchParems.get("page");
   const renderSearchIcon = page == "overview" ? true : false;
   return (
