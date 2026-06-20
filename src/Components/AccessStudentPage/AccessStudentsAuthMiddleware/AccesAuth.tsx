@@ -6,19 +6,19 @@ function AccessAuth({ children }: { children: ReactNode }) {
   const [isUserValidated, setIsUserValidated] = useState<boolean>(false);
   const urlNavigator = useNavigate();
   const isVerified = searchParams.get("verified");
-  const userId: string | null = searchParams.get("id");
   const page = searchParams.get("page");
-  if (!userId || !isVerified || !page) {
+  if (!isVerified || !page) {
     // first validation url part
     const url = "/students/login/access";
     urlNavigator(url, { replace: true });
   }
   useEffect(() => {
     //second validate user based on user id if record is in database & role is student
-    const validateUser = async (id: string) => {
+    const validateUser = async () => {
       try {
-        const requst = await fetch(`${serverPort}/signin/user/validate/${id}`, {
+        const requst = await fetch(`${serverPort}/signin/user/validate/`, {
           method: "GET",
+          credentials: "include",
         });
         const responds = await requst.json();
         if (responds.ok) {
@@ -34,7 +34,7 @@ function AccessAuth({ children }: { children: ReactNode }) {
         urlNavigator(url, { replace: true });
       }
     };
-    if (userId) validateUser(userId);
+    if (isVerified) validateUser();
   }, []);
   try {
     return <>{isUserValidated ? children : <h1>loding...</h1>}</>;

@@ -27,7 +27,6 @@ type NavigationControl = {
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
   const isUserVerified = searchParems.get("verified");
-  const userId = searchParems.get("id");
   const page = searchParems.get("page");
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
   const classRef = useRef<HTMLButtonElement | null>(null);
@@ -66,7 +65,6 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "overview") return;
     setSearchParems({
       verified: `${isUserVerified}`,
-      id: `${userId}`,
       page: "overview",
     });
   }
@@ -101,7 +99,6 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "classes") return;
     setSearchParems({
       verified: `${isUserVerified}`,
-      id: `${userId}`,
       page: "classes",
     });
   }
@@ -136,7 +133,6 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "messages") return;
     setSearchParems({
       verified: `${isUserVerified}`,
-      id: `${userId}`,
       page: "messages",
     });
   }
@@ -171,7 +167,6 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "community") return;
     setSearchParems({
       verified: `${isUserVerified}`,
-      id: `${userId}`,
       page: "community",
     });
   }
@@ -205,7 +200,6 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "settings") return;
     setSearchParems({
       verified: `${isUserVerified}`,
-      id: `${userId}`,
       page: "settings",
     });
   }
@@ -240,14 +234,6 @@ function LeftNevBar(props: NavigationControl) {
       setIsMounted(true);
     })();
   }, []);
-
-  console.log(
-    props.Dashboard,
-    props.Classes,
-    props.Messages,
-    props.Cummunity,
-    props.Settings,
-  );
 
   return (
     <div className="flex flex-col w-full h-full">

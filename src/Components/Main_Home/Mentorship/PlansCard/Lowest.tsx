@@ -78,13 +78,23 @@ function Lowest() {
     };
     handlePayment();
   }
-  function handlePayClick() {
+  async function handlePayClick() {
+    const email= prompt("Enter your email:")?.trim();
+    const password= prompt("Enter your password:")?.trim();
+    if(email === "" || password === "") return;
+    try{
+      console.log(email, password)
+    }catch(error){
+      console.log(error);
+    }
+    /*
     const data = {
       email: "nwanoruovictory87@gmail.com",
       amount: 50000,
       orderId: "4352",
     };
     MakePayment(data);
+    */
   }
   return (
     <div className=" flex flex-col p-10 gap-3 w-full h-full bg-[#F8FAFC]  rounded-2xl paymentCardShadow border-2 border-[black]">
