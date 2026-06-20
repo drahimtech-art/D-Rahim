@@ -19,15 +19,15 @@ function AccessStudentPage() {
   useEffect(() => {
     if (page == "overview" || page == "classes") {
       (() => {
-        setBackgroundColour((prevBackgroundColor) => {
-          return (prevBackgroundColor = "white");
-        });
+        setBackgroundColour("white");
       })();
-    } else {
+    } else if (
+      page == "messages" ||
+      page == "community" ||
+      page == "settings"
+    ) {
       (() => {
-        setBackgroundColour((prevBackgroundColor) => {
-          return (prevBackgroundColor = "#f8ffff");
-        });
+        setBackgroundColour("#f8ffff");
       })();
     }
   }, [page]);
