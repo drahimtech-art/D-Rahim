@@ -86,8 +86,9 @@ function Settings() {
         alert(responds.message);
         const userData: UserData = responds.userInfo;
         setUserInfo(userData);
+      } else {
+        throw new Error(responds.message);
       }
-      throw new Error(responds.message);
     } catch (error) {
       setIsRequstSent(false);
       saveButtonRef.current.classList.remove("notallowedPointerForButton");
