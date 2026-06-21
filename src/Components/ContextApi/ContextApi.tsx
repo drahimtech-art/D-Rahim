@@ -31,6 +31,8 @@ type UserData = {
   lastName: string;
   email: string;
   dateOfBirth: string;
+  phoneNumber: string;
+  bio: string;
 };
 type Messages = {
   from: string;
@@ -66,6 +68,8 @@ export const DataContextProvider = ({ children }: { children: ReactNode }) => {
     lastName: "",
     email: "",
     dateOfBirth: "",
+    phoneNumber: "",
+    bio: "",
   });
   const [contactMessages, setContactMessages] = useState<ContactMessages>({
     userId: "",

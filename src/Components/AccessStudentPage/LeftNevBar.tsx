@@ -246,7 +246,7 @@ function LeftNevBar(props: NavigationControl) {
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
     try {
-      if (!data) throw new Error("Access key not found");
+      if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
       const requst = await fetch(`${serverPort}/signin/user/logout`, {
         method: "GET",
@@ -258,6 +258,8 @@ function LeftNevBar(props: NavigationControl) {
       });
       const responds = await requst.json();
       if (responds.ok) {
+        const CLIENT_KEY = "CLIENT_KEY";
+        localStorage.setItem(CLIENT_KEY, JSON.stringify(null));
         setIsLogedOut(false);
         logoutControlFuncRef.current.classList.remove(
           "notallowedPointerForButton",
