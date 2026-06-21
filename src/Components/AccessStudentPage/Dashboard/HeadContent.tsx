@@ -1,10 +1,14 @@
+import { AppDataContext } from "../../ContextApi/ContextApi";
 function HeadContent() {
+  const userDetails = AppDataContext();
+  if (!userDetails) return;
+  const { userInfo } = userDetails;
   return (
     <div className="w-full ">
       {/**head welcome text */}
       <div className="w-full h-fit flex flex-col gap-2.5">
         <h5 className="font-sans font-semibold min22Max26px ">
-          Welcome back, Abdulbasit👋
+          Welcome back, {userInfo.firstName}👋
         </h5>
         <h5 className="font-normal font-[sans text-[16px]">
           Here’s what’s happening with your learning journey.

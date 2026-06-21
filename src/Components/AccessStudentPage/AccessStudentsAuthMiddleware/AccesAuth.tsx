@@ -1,8 +1,18 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { AppDataContext } from "../../ContextApi/ContextApi";
+type UserData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  dateOfBirth: string;
+};
 function AccessAuth({ children }: { children: ReactNode }) {
   const [searchParams] = useSearchParams();
   const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const userDetails = AppDataContext();
+  if (!userDetails) return;
+  const { setUserInfo } = userDetails;
   const [isUserValidated, setIsUserValidated] = useState<boolean>(false);
   const urlNavigator = useNavigate();
   const isVerified = searchParams.get("verified");
@@ -15,14 +25,22 @@ function AccessAuth({ children }: { children: ReactNode }) {
   useEffect(() => {
     //second validate user based on user id if record is in database & role is student
     const validateUser = async () => {
+      const CLIENT_KEY = "CLIENT_KEY";
+      const data = localStorage.getItem(CLIENT_KEY);
       try {
+        if (!data) throw new Error("Access key not found");
+        const key = JSON.parse(data);
         const requst = await fetch(`${serverPort}/signin/user/validate/`, {
           method: "GET",
           credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+          },
         });
         const responds = await requst.json();
         if (responds.ok) {
-          console.log(responds.message);
+          const userData: UserData = responds.userInfo;
+          setUserInfo(userData);
           setIsUserValidated(true);
         } else {
           const url = "/students/login/access";
