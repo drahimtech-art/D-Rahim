@@ -6,6 +6,8 @@ type UserData = {
   lastName: string;
   email: string;
   dateOfBirth: string;
+  phoneNumber: string;
+  bio: string;
 };
 function AccessAuth({ children }: { children: ReactNode }) {
   const [searchParams] = useSearchParams();
@@ -28,7 +30,7 @@ function AccessAuth({ children }: { children: ReactNode }) {
       const CLIENT_KEY = "CLIENT_KEY";
       const data = localStorage.getItem(CLIENT_KEY);
       try {
-        if (!data) throw new Error("Access key not found");
+        if (!data || data === "null") throw new Error("Access key not found");
         const key = JSON.parse(data);
         const requst = await fetch(`${serverPort}/signin/user/validate/`, {
           method: "GET",
