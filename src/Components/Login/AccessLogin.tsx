@@ -39,6 +39,7 @@ function AccessLogin() {
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify(data),
       });
       const responds = await validateUser.json();
@@ -48,6 +49,8 @@ function AccessLogin() {
       );
       loginControlFuncRef.current.classList.add("AllowedPointerForButton");
       if (responds.ok) {
+        const CLIENT_KEY = "CLIENT_KEY";
+        localStorage.setItem(CLIENT_KEY, JSON.stringify(responds.clientKey));
         alert(responds.message);
         const url = "/access/students";
         urlNavigator({
