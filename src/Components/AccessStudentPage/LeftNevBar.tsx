@@ -34,6 +34,9 @@ function LeftNevBar(props: NavigationControl) {
   const communityRef = useRef<HTMLButtonElement | null>(null);
   const settingsRef = useRef<HTMLButtonElement | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const logoutControlFuncRef = useRef<HTMLButtonElement | null>(null);
+  const [isLogedOut, setIsLogedOut] = useState<boolean>(false);
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
   function toDashboard() {
     if (
       !dashboardRef.current ||
@@ -234,6 +237,43 @@ function LeftNevBar(props: NavigationControl) {
       setIsMounted(true);
     })();
   }, []);
+  //
+  async function logout() {
+    if (!logoutControlFuncRef.current || isLogedOut) return;
+    setIsLogedOut(true);
+    logoutControlFuncRef.current.classList.remove("AllowedPointerForButton");
+    logoutControlFuncRef.current.classList.add("notallowedPointerForButton");
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data) throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const requst = await fetch(`${serverPort}/signin/user/logout`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "X-Frontend-Key": `${key}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const responds = await requst.json();
+      if (responds.ok) {
+        setIsLogedOut(false);
+        logoutControlFuncRef.current.classList.remove(
+          "notallowedPointerForButton",
+        );
+        logoutControlFuncRef.current.classList.add("AllowedPointerForButton");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLogedOut(false);
+      logoutControlFuncRef.current.classList.remove(
+        "notallowedPointerForButton",
+      );
+      logoutControlFuncRef.current.classList.add("AllowedPointerForButton");
+    }
+  }
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -301,7 +341,11 @@ function LeftNevBar(props: NavigationControl) {
         </button>
       </div>
       <div className="mt-22.5">
-        <button className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl ">
+        <button
+          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl AllowedPointerForButton"
+          onClick={logout}
+          ref={logoutControlFuncRef}
+        >
           <i className="fas fa-right-from-bracket font-extralight  text-[24px]"></i>
           <h5 className="font-inter font-normal text-[18px]">Logout</h5>
         </button>
