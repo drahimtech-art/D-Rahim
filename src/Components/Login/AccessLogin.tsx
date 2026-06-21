@@ -1,5 +1,5 @@
 import { useNavigate, createSearchParams } from "react-router-dom";
-import { useState, useRef, type ChangeEvent } from "react";
+import { useState, useRef, useEffect, type ChangeEvent } from "react";
 import LoginLogo from "/images/loginLogo.png";
 
 function AccessLogin() {
@@ -25,12 +25,19 @@ function AccessLogin() {
       isLoading
     )
       return;
+    function validateEmail(e: string) {
+      if (typeof e !== "string") return false;
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(e.trim());
+    }
+    const isEmailValid = validateEmail(userEmail);
+    if (!isEmailValid) return alert("Please enter in a valid email");
     setIsLoading(true);
     loginControlFuncRef.current.classList.remove("AllowedPointerForButton");
     loginControlFuncRef.current.classList.add("notallowedPointerForButton");
     const data = {
-      email: userEmail,
-      password: userPassword,
+      email: userEmail.trim(),
+      password: userPassword.trim(),
     };
     try {
       const validateUser = await fetch(`${serverPort}/signin/user`, {
@@ -73,6 +80,18 @@ function AccessLogin() {
       console.log(error);
     }
   }
+  //listen on enter key
+  useEffect(() => {
+    const handleKeyPresss = (e: KeyboardEvent) => {
+      const key = e.key;
+      if (key === "Enter") {
+        e.preventDefault();
+        toStudentsPage();
+      }
+    };
+    document.addEventListener("keydown", handleKeyPresss);
+    return () => document.removeEventListener("keydown", handleKeyPresss);
+  }, [userEmail, userPassword]);
   return (
     <div className="w-full h-full  min-h-screen bg-primary-green text-gray-200 flex justify-center items-center">
       <div className="w-full max-w-[810.5px] h-fit ">
