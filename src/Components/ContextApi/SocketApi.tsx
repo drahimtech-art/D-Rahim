@@ -53,6 +53,7 @@ export const SocketProviderContext = ({
       const key = JSON.parse(data);
       const newSocket: AppSocket = io(serverPort, {
         autoConnect: false,
+        withCredentials: true,
         auth: { token },
         extraHeaders: {
           "X-Frontend-Key": `${key}`,
