@@ -1,6 +1,6 @@
-import { AppDataContext } from "../../ContextApi/ContextApi";
+import { StudentsAppData } from "../../ContextApi/StudentsApi";
 function HeadContent() {
-  const userDetails = AppDataContext();
+  const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { userInfo } = userDetails;
   return (

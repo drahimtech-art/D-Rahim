@@ -8,10 +8,6 @@ import {
 type Data = {
   projectInfo: OurWorkData;
   setProjectInfo: React.Dispatch<SetStateAction<OurWorkData>>;
-  userInfo: UserData;
-  setUserInfo: React.Dispatch<SetStateAction<UserData>>;
-  contactMessages: ContactMessages;
-  setContactMessages: React.Dispatch<SetStateAction<ContactMessages>>;
 };
 type OurWorkData = {
   imageUrl: string;
@@ -26,28 +22,7 @@ type OurWorkData = {
   industry: string[];
   endText: string;
 };
-type UserData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateOfBirth: string;
-  phoneNumber: string;
-  bio: string;
-};
-type Messages = {
-  from: string;
-  to: string;
-  type: string;
-  imgUrl: string;
-  date: string;
-  time: string;
-  text: string;
-};
-type ContactMessages = {
-  userId: string;
-  contactId: string;
-  messages: Messages[];
-};
+
 const DataContext = createContext<Data | null>(null);
 export const DataContextProvider = ({ children }: { children: ReactNode }) => {
   const [projectInfo, setProjectInfo] = useState<OurWorkData>({
@@ -63,28 +38,12 @@ export const DataContextProvider = ({ children }: { children: ReactNode }) => {
     industry: [],
     endText: "",
   });
-  const [userInfo, setUserInfo] = useState<UserData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    dateOfBirth: "",
-    phoneNumber: "",
-    bio: "",
-  });
-  const [contactMessages, setContactMessages] = useState<ContactMessages>({
-    userId: "",
-    contactId: "",
-    messages: [],
-  });
+
   return (
     <DataContext.Provider
       value={{
         projectInfo,
         setProjectInfo,
-        userInfo,
-        setUserInfo,
-        contactMessages,
-        setContactMessages,
       }}
     >
       {children}
