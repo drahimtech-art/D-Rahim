@@ -1,6 +1,7 @@
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, type ComponentType } from "react";
 import { StudentsContextProvider } from "./Components/ContextApi/StudentsApi";
+import { SocketProviderContext } from "./Components/ContextApi/SocketApi";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Main_Home/Home/Home";
 const Service = lazy(() => import("./Components/Main_Home/Services/Service"));
@@ -131,11 +132,13 @@ function App() {
           //devmode
           path: "/access/:id",
           element: (
-            <AccessAuth>
-              <StudentsContextProvider>
-                <AccessStudentPage />
-              </StudentsContextProvider>
-            </AccessAuth>
+            <StudentsContextProvider>
+              <SocketProviderContext>
+                <AccessAuth>
+                  <AccessStudentPage />
+                </AccessAuth>
+              </SocketProviderContext>
+            </StudentsContextProvider>
           ),
         },
       ],
