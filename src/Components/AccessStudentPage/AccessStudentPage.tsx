@@ -6,9 +6,6 @@ import Dashboard from "./Dashboard/Dashboard";
 const Classes = lazy(() => import("./Classes/Classes"));
 const Messages = lazy(() => import("./Messages/Messages"));
 import Settings from "./Settings/Settings";
-import { io } from "socket.io-client";
-const server = import.meta.env.VITE_SERVER_PORT;
-const socket = io(server);
 function AccessStudentPage() {
   const [searchParems] = useSearchParams();
   const page = searchParems.get("page");

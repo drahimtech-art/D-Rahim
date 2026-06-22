@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { StudentsAppData } from "../../ContextApi/StudentsApi";
+import { SocketApi } from "../../ContextApi/SocketApi";
 type UserData = {
   firstName: string;
   lastName: string;
@@ -15,6 +16,8 @@ function AccessAuth({ children }: { children: ReactNode }) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
+  const socket = SocketApi();
+  const { connectsocket, disConnectSocket } = socket;
   const { setUserInfo } = userDetails;
   const [isUserValidated, setIsUserValidated] = useState<boolean>(false);
   const urlNavigator = useNavigate();
@@ -42,10 +45,12 @@ function AccessAuth({ children }: { children: ReactNode }) {
         });
         const responds = await requst.json();
         if (responds.ok) {
+          connectsocket();
           const userData: UserData = responds.userInfo;
           setUserInfo(userData);
           setIsUserValidated(true);
         } else {
+          disConnectSocket();
           const url = "/students/login/access";
           urlNavigator(url, { replace: true });
         }

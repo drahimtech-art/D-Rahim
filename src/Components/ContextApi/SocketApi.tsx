@@ -26,7 +26,7 @@ type AppSocket = Socket<ServerToClient, ClientToServer>;
 type SocketContextType = {
   socket: AppSocket | null;
   isConnected: boolean;
-  connectsocket: (token: string) => void;
+  connectsocket: () => void;
   disConnectSocket: () => void;
 };
 const socketData = createContext<SocketContextType>({
@@ -44,7 +44,8 @@ export const SocketProviderContext = ({
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const [socket, setSocket] = useState<AppSocket | null>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const connectsocket = async (token: string) => {
+  //
+  const connectsocket = async () => {
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
     if (socket?.connected) return;
@@ -54,7 +55,6 @@ export const SocketProviderContext = ({
       const newSocket: AppSocket = io(serverPort, {
         autoConnect: false,
         withCredentials: true,
-        auth: { token },
         extraHeaders: {
           "X-Frontend-Key": `${key}`,
         },
@@ -85,7 +85,11 @@ export const SocketProviderContext = ({
       setIsConnected(false);
     }
   };
-  useEffect(() => {});
+  useEffect(() => {
+    return () => {
+      socket?.disconnect();
+    };
+  }, [socket]);
 
   return (
     <socketData.Provider
