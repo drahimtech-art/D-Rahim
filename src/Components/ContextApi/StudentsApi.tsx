@@ -11,6 +11,8 @@ type StudentsAppData = {
   setUserInfo: React.Dispatch<SetStateAction<UserData>>;
   contactMessages: ContactMessages;
   setContactMessages: React.Dispatch<SetStateAction<ContactMessages>>;
+  conections: Connections[];
+  setConections: React.Dispatch<SetStateAction<Connections[]>>;
 };
 type UserData = {
   firstName: string;
@@ -35,6 +37,13 @@ type ContactMessages = {
   contactId: string;
   messages: Messages[];
 };
+type Connections = {
+  userId: string;
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string;
+};
 const studentsData = createContext<StudentsAppData | null>(null);
 export const StudentsContextProvider = ({
   children,
@@ -55,7 +64,7 @@ export const StudentsContextProvider = ({
     contactId: "",
     messages: [],
   });
-
+  const [conections, setConections] = useState<Connections[]>([]);
   return (
     <studentsData.Provider
       value={{
@@ -63,6 +72,8 @@ export const StudentsContextProvider = ({
         setUserInfo,
         contactMessages,
         setContactMessages,
+        conections,
+        setConections,
       }}
     >
       {children}

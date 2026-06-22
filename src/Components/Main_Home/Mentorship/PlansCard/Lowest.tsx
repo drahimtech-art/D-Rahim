@@ -56,6 +56,7 @@ function Lowest() {
     const handlePayment = async () => {
       setLoading(true);
       try {
+        /*
         const res = await fetch(`${serverUrl}/payment/paystack/init`, {
           method: "POST",
           headers: {
@@ -64,7 +65,8 @@ function Lowest() {
           body: JSON.stringify({ email, amount, metadata: { orderId } }),
         });
         const data = await res.json();
-        setReference(data.reference); // reference sent from backend
+        setReference(data.reference);
+        */ // reference sent from backend
 
         //
         setTimeout(() => {
@@ -79,6 +81,7 @@ function Lowest() {
     handlePayment();
   }
   async function handlePayClick() {
+    /*
     const email= prompt("Enter your email:")?.trim();
     const password= prompt("Enter your password:")?.trim();
     if(email === "" || password === "") return;
@@ -87,14 +90,13 @@ function Lowest() {
     }catch(error){
       console.log(error);
     }
-    /*
+    */
     const data = {
       email: "nwanoruovictory87@gmail.com",
       amount: 50000,
       orderId: "4352",
     };
     MakePayment(data);
-    */
   }
   return (
     <div className=" flex flex-col p-10 gap-3 w-full h-full bg-[#F8FAFC]  rounded-2xl paymentCardShadow border-2 border-[black]">

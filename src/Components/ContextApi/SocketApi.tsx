@@ -60,15 +60,15 @@ export const SocketProviderContext = ({
         },
       });
       newSocket.on("connect", () => {
-        alert("Socket conected");
+        console.log("Socket conected");
         setIsConnected(true);
       });
       newSocket.on("disconnect", () => {
-        alert("Socket disconnected");
+        console.log("Socket disconnected");
         setIsConnected(false);
       });
       newSocket.on("connect_error", (error) => {
-        alert(`Socket error:  ${error}`);
+        console.log(`Socket error:  ${error}`);
         setIsConnected(false);
       });
       newSocket.connect();
