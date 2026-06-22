@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { AppDataContext } from "../../ContextApi/ContextApi";
+import { StudentsAppData } from "../../ContextApi/StudentsApi";
 type UserData = {
   firstName: string;
   lastName: string;
@@ -8,11 +8,12 @@ type UserData = {
   dateOfBirth: string;
   phoneNumber: string;
   bio: string;
+  connectionId: string;
 };
 function AccessAuth({ children }: { children: ReactNode }) {
   const [searchParams] = useSearchParams();
   const serverPort = import.meta.env.VITE_SERVER_PORT;
-  const userDetails = AppDataContext();
+  const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { setUserInfo } = userDetails;
   const [isUserValidated, setIsUserValidated] = useState<boolean>(false);

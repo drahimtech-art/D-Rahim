@@ -1,4 +1,4 @@
-import { AppDataContext } from "../../ContextApi/ContextApi";
+import { StudentsAppData } from "../../ContextApi/StudentsApi";
 import { useState, useRef, useEffect, type ChangeEvent } from "react";
 import userProfile from "/images/userImg.png";
 import pencil from "/images/pencil.png";
@@ -10,9 +10,10 @@ type UserData = {
   dateOfBirth: string;
   phoneNumber: string;
   bio: string;
+  connectionId: string;
 };
 function Settings() {
-  const userDetails = AppDataContext();
+  const userDetails = StudentsAppData();
   if (!userDetails) return;
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const { userInfo, setUserInfo } = userDetails;
