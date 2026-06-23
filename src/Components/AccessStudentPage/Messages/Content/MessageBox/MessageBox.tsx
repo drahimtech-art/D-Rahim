@@ -40,10 +40,15 @@ function MessageBox() {
   useEffect(() => {
     if (!socket) return;
     console.log("receive message mount");
-    socket.on("receive-message", (message) => saveChat(message));
+    function handleNewMessage(message: Messages) {
+      if (!chatContact) return;
+      if (message.from !== chatContact.contactId) return;
+      saveChat(message);
+    }
+    socket.on("receive-message", (message) => handleNewMessage(message));
     //
     return () => {
-      socket.off("receive-message");
+      socket.off("receive-message", (message) => handleNewMessage(message));
       console.log("receive message clean up");
     };
   }, [socket, chatContact]);
