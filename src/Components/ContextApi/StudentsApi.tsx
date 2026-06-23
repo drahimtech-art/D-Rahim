@@ -9,10 +9,12 @@ import {
 type StudentsAppData = {
   userInfo: UserData;
   setUserInfo: React.Dispatch<SetStateAction<UserData>>;
-  contactMessages: ContactMessages;
-  setContactMessages: React.Dispatch<SetStateAction<ContactMessages>>;
+  contactMessages: ContactMessages[];
+  setContactMessages: React.Dispatch<SetStateAction<ContactMessages[]>>;
   conections: Connections[];
   setConections: React.Dispatch<SetStateAction<Connections[]>>;
+  chatContact: ChatContact | null;
+  setChatContact: React.Dispatch<SetStateAction<ChatContact | null>>;
 };
 type UserData = {
   firstName: string;
@@ -22,6 +24,7 @@ type UserData = {
   phoneNumber: string;
   bio: string;
   connectionId: string;
+  imageUrl: string | null;
 };
 type Messages = {
   from: string;
@@ -33,16 +36,20 @@ type Messages = {
   text: string;
 };
 type ContactMessages = {
-  userId: string;
   contactId: string;
   messages: Messages[];
 };
 type Connections = {
-  userId: string;
   contactFirstName: string;
   contactLastName: string;
   contactId: string;
   contactImage: string;
+};
+type ChatContact = {
+  contactId: string;
+  contactFirstName: string;
+  contactLastName: string;
+  messages: Messages[];
 };
 const studentsData = createContext<StudentsAppData | null>(null);
 export const StudentsContextProvider = ({
@@ -58,13 +65,16 @@ export const StudentsContextProvider = ({
     phoneNumber: "",
     bio: "",
     connectionId: "",
+    imageUrl: null,
   });
-  const [contactMessages, setContactMessages] = useState<ContactMessages>({
-    userId: "",
-    contactId: "",
-    messages: [],
-  });
+  const [contactMessages, setContactMessages] = useState<ContactMessages[]>([
+    {
+      contactId: "",
+      messages: [],
+    },
+  ]);
   const [conections, setConections] = useState<Connections[]>([]);
+  const [chatContact, setChatContact] = useState<ChatContact | null>(null);
   return (
     <studentsData.Provider
       value={{
@@ -74,6 +84,8 @@ export const StudentsContextProvider = ({
         setContactMessages,
         conections,
         setConections,
+        chatContact,
+        setChatContact,
       }}
     >
       {children}

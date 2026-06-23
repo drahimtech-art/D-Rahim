@@ -1,6 +1,10 @@
+import { StudentsAppData } from "../../../ContextApi/StudentsApi";
 import Contact from "./Contact/Contact";
 import MessageBox from "./MessageBox/MessageBox";
 function Content() {
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { chatContact } = userDetails;
   return (
     <div className="mt-7.5 w-full h-full max-h-full overflow-hidden flex gap-10 ">
       {/**left contact panel */}
@@ -8,9 +12,11 @@ function Content() {
         <Contact />
       </div>
       {/**Message box */}
-      <div className="w-full max-h-full pb-20">
-        <MessageBox />
-      </div>
+      {chatContact && (
+        <div className="w-full max-h-full pb-20">
+          <MessageBox />
+        </div>
+      )}
     </div>
   );
 }

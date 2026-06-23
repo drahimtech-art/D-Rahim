@@ -1,151 +1,67 @@
-import contactImg1 from "/images/contact.png";
-import contactImg2 from "/images/contact_1.png";
-import contactImg3 from "/images/contact_2.png";
-import contactImg4 from "/images/contact_3.png";
+import { useState, useEffect } from "react";
+import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+//import contactImg1 from "/images/contact.png";
+//import contactImg2 from "/images/contact_1.png";
+//import contactImg3 from "/images/contact_2.png";
+//import contactImg4 from "/images/contact_3.png";
 import ContactComponent from "./ContactComponent";
-import GroupContactComponet from "./GroupContactComponet";
+//import GroupContactComponet from "./GroupContactComponet";
+type Connections = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string;
+};
 function Contact() {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { conections, setConections } = userDetails;
+  const [connnectionList, setConectionList] =
+    useState<Connections[]>(conections);
+  console.log(connnectionList);
+  //getConnections
+  useEffect(() => {
+    //update temb list if main list change
+    setConectionList(conections);
+  }, [conections]);
+  useEffect(() => {
+    async function getConnectionsList() {
+      const CLIENT_KEY = "CLIENT_KEY";
+      const data = localStorage.getItem(CLIENT_KEY);
+      try {
+        if (!data || data === "null") throw new Error("Access key not found");
+        const key = JSON.parse(data);
+        const requst = await fetch(`${serverPort}/connection/user/contacts`, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+          },
+        });
+        const responds = await requst.json();
+        if (responds.ok) {
+          const data: Connections[] = responds.connections;
+          setConections(data);
+        } else {
+          console.log(responds.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getConnectionsList();
+  }, []);
   return (
     <div className="w-full h-full  bg-white  pl-2 pr-2 flex flex-col pb-20 gap-7.5 overflow-y-scroll">
-      {/**contact components */}
-      <ContactComponent />
-      {/**Group contact componets */}
-      <GroupContactComponet />
-      {/**contact components */}
-      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer ">
-        {/**profile image */}
-        <span className="min-w-12.5 max-w-12.5 h-12.5">
-          <img className="w-full h-full" src={contactImg2}></img>
-        </span>
-        {/**name, message & time */}
-        <div className="w-full flex flex-col gap-1.25">
-          {/**name & time */}
-          <span className="flex items-center">
-            {/**name */}
-            <h5 className="font-sans font-bold text-[16px] text-black line-clamp-1">
-              Mentor Support
-            </h5>
-            {/**time */}
-            <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              2m
-            </h5>
-          </span>
-          {/**message */}
-          <span>
-            <h5 className="font-sans font-normal text-[16px] text-black line-clamp-1">
-              Hi Abdulbasit, how can I...
-            </h5>
-          </span>
-        </div>
-      </div>
-      {/**contact components */}
-      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
-        {/**profile image */}
-        <span className="min-w-12.5 max-w-12.5 h-12.5">
-          <img className="w-full h-full" src={contactImg1}></img>
-        </span>
-        {/**name, message & time */}
-        <div className="w-full flex flex-col gap-1.25">
-          {/**name & time */}
-          <span className="flex items-center">
-            {/**name */}
-            <h5 className="font-sans font-bold text-[16px] text-black line-clamp-1">
-              Product Design Group
-            </h5>
-            {/**time */}
-            <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              2m
-            </h5>
-          </span>
-          {/**message */}
-          <span>
-            <h5 className="font-sans font-normal text-[16px] text-black line-clamp-1">
-              Tolu: Thanks for the upd....
-            </h5>
-          </span>
-        </div>
-      </div>
-      {/**contact components */}
-      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
-        {/**profile image */}
-        <span className="min-w-12.5 max-w-12.5 h-12.5">
-          <img className="w-full h-full" src={contactImg3}></img>
-        </span>
-        {/**name, message & time */}
-        <div className="w-full flex flex-col gap-1.25">
-          {/**name & time */}
-          <span className="flex items-center">
-            {/**name */}
-            <h5 className="font-sans font-bold text-[16px] text-black line-clamp-1">
-              Mentor Support
-            </h5>
-            {/**time */}
-            <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              2m
-            </h5>
-          </span>
-          {/**message */}
-          <span>
-            <h5 className="font-sans font-normal text-[16px] text-black line-clamp-1">
-              Hi Abdulbasit, how can I...
-            </h5>
-          </span>
-        </div>
-      </div>
-      {/**contact components */}
-      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
-        {/**profile image */}
-        <span className="min-w-12.5 max-w-12.5 h-12.5">
-          <img className="w-full h-full" src={contactImg4}></img>
-        </span>
-        {/**name, message & time */}
-        <div className="w-full flex flex-col gap-1.25">
-          {/**name & time */}
-          <span className="flex items-center">
-            {/**name */}
-            <h5 className="font-sans font-bold text-[16px] text-black line-clamp-1">
-              Mentor Support
-            </h5>
-            {/**time */}
-            <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              1h
-            </h5>
-          </span>
-          {/**message */}
-          <span>
-            <h5 className="font-sans font-normal text-[16px] text-black line-clamp-1">
-              Hi Abdulbasit, how can I...
-            </h5>
-          </span>
-        </div>
-      </div>
-      {/**contact components */}
-      <div className="w-full h-fit p-2.5 pr-5.5  flex items-center gap-2.5  rounded-2xl pointer">
-        {/**profile image */}
-        <span className="min-w-12.5 max-w-12.5 h-12.5">
-          <img className="w-full h-full" src={contactImg2}></img>
-        </span>
-        {/**name, message & time */}
-        <div className="w-full flex flex-col gap-1.25">
-          {/**name & time */}
-          <span className="flex items-center">
-            {/**name */}
-            <h5 className="font-sans font-bold text-[16px] text-black line-clamp-1">
-              Mentor Support
-            </h5>
-            {/**time */}
-            <h5 className="ml-auto font-normal font-sans text-[13px] text-black">
-              2h
-            </h5>
-          </span>
-          {/**message */}
-          <span>
-            <h5 className="font-sans font-normal text-[16px] text-black line-clamp-1">
-              Hi Abdulbasit, how can I...
-            </h5>
-          </span>
-        </div>
-      </div>
+      {connnectionList.map((e: Connections, i: number) => {
+        return (
+          <ContactComponent
+            connectionInfo={e}
+            key={`connection-index-key-${i}`}
+          />
+        );
+      })}
     </div>
   );
 }

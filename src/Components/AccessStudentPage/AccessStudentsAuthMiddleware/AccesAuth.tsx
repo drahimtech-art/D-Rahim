@@ -10,6 +10,7 @@ type UserData = {
   phoneNumber: string;
   bio: string;
   connectionId: string;
+  imageUrl: string | null;
 };
 function AccessAuth({ children }: { children: ReactNode }) {
   const [searchParams] = useSearchParams();
