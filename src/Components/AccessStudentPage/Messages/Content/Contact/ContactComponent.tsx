@@ -1,6 +1,6 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { SocketApi } from "../../../../ContextApi/SocketApi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import contactImg1 from "/images/contact.png";
 type Connections = {
   contactFirstName: string;
@@ -23,6 +23,10 @@ type ChatContact = {
   contactLastName: string;
   messages: Messages[];
 };
+type ContactMessages = {
+  contactId: string;
+  messages: Messages[];
+};
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
@@ -30,12 +34,19 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const socketApi = SocketApi();
   const { socket } = socketApi;
   const { setChatContact, chatContact, userInfo } = userDetails;
+  const [contactMessages, setContactMessages] = useState<ContactMessages>({
+    contactId: "",
+    messages: [],
+  });
+  //
+  const lastMessageIndex = contactMessages.messages.length;
+  //start chat with contact
   function obenChatBox() {
     const data: ChatContact = {
       contactId: connectionInfo.contactId,
       contactFirstName: connectionInfo.contactFirstName,
       contactLastName: connectionInfo.contactLastName,
-      messages: [],
+      messages: [...contactMessages.messages],
     };
     setChatContact(data);
   }
@@ -71,10 +82,12 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       try {
         if (!data || data === "null") throw new Error("Access key not found");
         const key = JSON.parse(data);
+
         const requstBody = {
           connectionId: connectionId,
           contactId: contactId,
         };
+        console.log(JSON.stringify(requstBody));
         const requst = await fetch(
           `${serverPort}/connection/contact/messages`,
           {
@@ -82,13 +95,14 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
             credentials: "include",
             headers: {
               "X-Frontend-Key": `${key}`,
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(requstBody),
           },
         );
         const responds = await requst.json();
         if (responds.ok) {
-          console.log(responds.chatHistory);
+          setContactMessages(responds.chatHistory);
         } else {
           console.log(responds.message);
         }
@@ -98,6 +112,27 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     };
     getContactChatHistory(userInfo.connectionId, connectionInfo.contactId);
   }, [connectionInfo.contactId, userInfo.connectionId]);
+  // update chatHistory
+  function saveChat(message: Messages) {
+    const from = message.from;
+    if (from !== connectionInfo.contactId) return;
+    const newData = {
+      contactId: contactMessages.contactId,
+      messages: [...contactMessages.messages, message],
+    };
+    setContactMessages(newData);
+  }
+  // listion on new message
+  useEffect(() => {
+    if (!socket) return;
+    console.log("receive message mount");
+    socket.on("receive-message", (message) => saveChat(message));
+    //
+    return () => {
+      socket.off("receive-message", (message) => saveChat(message));
+      console.log("receive message clean up");
+    };
+  }, [socket, chatContact, contactMessages]);
   return (
     <div
       className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5  rounded-2xl pointer transition-all"
@@ -122,7 +157,9 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         {/**message */}
         <span>
           <h5 className="font-sans font-normal text-[16px]  line-clamp-1">
-            Hi Abdulbasit, how can I...
+            {lastMessageIndex !== 0
+              ? contactMessages.messages[lastMessageIndex - 1].text
+              : "..."}
           </h5>
         </span>
       </div>
