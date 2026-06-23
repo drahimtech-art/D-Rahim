@@ -130,7 +130,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     //
     return () => {
       socket.off("receive-message", (message) => saveChat(message));
-      console.log("receive message clean up");
     };
   }, [socket, chatContact, contactMessages]);
   return (

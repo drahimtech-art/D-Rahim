@@ -28,6 +28,9 @@ function AccessStudentPage() {
     if (!socket) return;
     const roomId = userInfo.connectionId;
     socket.emit("join-room", roomId);
+    return () => {
+      socket.emit("leave-room", roomId);
+    };
   }, []);
   useEffect(() => {
     if (page == "overview" || page == "classes") {
