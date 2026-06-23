@@ -27,7 +27,7 @@ function MessageBox() {
   const { socket } = socketApi;
   const { chatContact, userInfo, setChatContact } = userDetails;
   const [scrollToLastMessage, setScrollToLastMessage] = useState<boolean>(true);
-  const [input, inputChange] = useState<string>("");
+  const [input, setInput] = useState<string>("");
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
     const container = scrollDiv.current;
@@ -38,14 +38,25 @@ function MessageBox() {
   useEffect(() => {
     controlScroll();
   }, []);
+  //reacive message logic
+  useEffect(() => {
+    if (!socket) return;
+    console.log("receive message mount");
+    socket.on("receive-message", (message) => saveChat(message));
+    //
+    return () => {
+      socket.off("receive-message");
+      console.log("receive message clean up");
+    };
+  }, [socket, chatContact]);
   //send message logic
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const data: string = e.target.value;
-    inputChange(data);
+    setInput(data);
   }
-  function sendChat(message: Messages) {
+  function sendChat(message: Messages, room: string) {
     if (!socket) return;
-    socket.emit("send-message", message);
+    socket.emit("send-message", message, room);
   }
   function saveChat(message: Messages) {
     if (!chatContact) return;
@@ -58,10 +69,10 @@ function MessageBox() {
       contactId: contactId,
       contactFirstName: contactFirstName,
       contactLastName: contactLastName,
-      messages: newChat,
+      messages: [...newChat],
     };
     setChatContact(newChatInfo);
-    sendChat(message);
+    setInput("");
   }
   function sendMessageAndFiles() {
     if (!chatContact) return;
@@ -79,7 +90,6 @@ function MessageBox() {
     const minites =
       date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
     const timeFomart = `${hour}:${minites}`;
-    console.log(userInfo);
     const messageFomart: Messages = {
       from: userInfo.connectionId,
       to: chatContact.contactId,
@@ -90,6 +100,7 @@ function MessageBox() {
       text: input,
     };
     saveChat(messageFomart);
+    sendChat(messageFomart, chatContact.contactId);
   }
   return (
     <div className="w-full flex flex-col p-1.25 h-full bg-[#DBFFDF] rounded-2xl overflow-hidden">
