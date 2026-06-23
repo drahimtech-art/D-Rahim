@@ -1,4 +1,5 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { SocketApi } from "../../../../ContextApi/SocketApi";
 import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import Head from "./Head";
 import MessageContent from "./Content/MessageContent";
@@ -22,6 +23,8 @@ type ChatContact = {
 function MessageBox() {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
   const { chatContact, userInfo, setChatContact } = userDetails;
   const [scrollToLastMessage, setScrollToLastMessage] = useState<boolean>(true);
   const [input, inputChange] = useState<string>("");
@@ -40,6 +43,10 @@ function MessageBox() {
     const data: string = e.target.value;
     inputChange(data);
   }
+  function sendChat(message: Messages) {
+    if (!socket) return;
+    socket.emit("send-message", message);
+  }
   function saveChat(message: Messages) {
     if (!chatContact) return;
     const contactFirstName = chatContact.contactFirstName;
@@ -54,6 +61,7 @@ function MessageBox() {
       messages: newChat,
     };
     setChatContact(newChatInfo);
+    sendChat(message);
   }
   function sendMessageAndFiles() {
     if (!chatContact) return;
