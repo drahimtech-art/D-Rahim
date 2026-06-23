@@ -18,7 +18,7 @@ function AccessAuth({ children }: { children: ReactNode }) {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const socketApi = SocketApi();
-  const { connectsocket, disConnectSocket, socket } = socketApi;
+  const { connectsocket, disConnectSocket } = socketApi;
   const { setUserInfo } = userDetails;
   const [isUserValidated, setIsUserValidated] = useState<boolean>(false);
   const urlNavigator = useNavigate();

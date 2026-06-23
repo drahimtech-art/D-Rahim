@@ -19,7 +19,7 @@ type ServerToClient = {
   "receive-message": (message: Message, contactId: string) => void;
 };
 type ClientToServer = {
-  "send-message": (message: Message) => void;
+  "send-message": (message: Message, room: string) => void;
   "join-room": (connectionId: string) => void;
 };
 type AppSocket = Socket<ServerToClient, ClientToServer>;
