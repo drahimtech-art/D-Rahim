@@ -26,14 +26,12 @@ function MessageBox() {
   const socketApi = SocketApi();
   const { socket } = socketApi;
   const { chatContact, userInfo, setChatContact } = userDetails;
-  const [scrollToLastMessage, setScrollToLastMessage] = useState<boolean>(true);
   const [input, setInput] = useState<string>("");
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
     const container = scrollDiv.current;
-    if (!container || !scrollToLastMessage) return;
+    if (!container) return;
     container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
-    setScrollToLastMessage(!scrollToLastMessage);
   }
   useEffect(() => {
     controlScroll();
@@ -73,6 +71,9 @@ function MessageBox() {
     };
     setChatContact(newChatInfo);
     setInput("");
+    setTimeout(() => {
+      controlScroll();
+    }, 300);
   }
   function sendMessageAndFiles() {
     if (!chatContact) return;
