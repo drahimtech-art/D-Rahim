@@ -1,7 +1,45 @@
+import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import contactImg1 from "/images/contact.png";
-function ContactComponent() {
+type Connections = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string;
+};
+type Messages = {
+  from: string;
+  to: string;
+  type: string;
+  imgUrl: string;
+  date: string;
+  time: string;
+  text: string;
+};
+type ChatContact = {
+  contactId: string;
+  contactFirstName: string;
+  contactLastName: string;
+  messages: Messages[];
+};
+function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { setChatContact } = userDetails;
+  function obenChatBox() {
+    const data: ChatContact = {
+      contactId: connectionInfo.contactId,
+      contactFirstName: connectionInfo.contactFirstName,
+      contactLastName: connectionInfo.contactLastName,
+      messages: [],
+    };
+    setChatContact(data);
+  }
+
   return (
-    <div className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5 bg-[#11AC76] rounded-2xl pointer">
+    <div
+      className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5 bg-[#11AC76] rounded-2xl pointer"
+      onClick={obenChatBox}
+    >
       {/**profile image */}
       <span className="min-w-12.5 max-w-12.5 h-12.5">
         <img className="w-full h-full" src={contactImg1}></img>
@@ -12,7 +50,7 @@ function ContactComponent() {
         <span className="flex items-center">
           {/**name */}
           <h5 className="font-sans font-bold text-[16px] text-[#FFFFFF] line-clamp-1">
-            Mentor Support
+            {connectionInfo.contactFirstName} {connectionInfo.contactLastName}
           </h5>
           {/**time */}
           <h5 className="ml-auto font-normal font-sans text-[13px] text-[#FFFFFF]">
