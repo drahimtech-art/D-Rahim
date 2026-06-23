@@ -13,7 +13,6 @@ function MessageBox() {
     const container = scrollDiv.current;
     if (!container || !scrollToLastMessage) return;
     container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
-    console.log(container.scrollHeight);
     setScrollToLastMessage(!scrollToLastMessage);
   }
   useEffect(() => {
