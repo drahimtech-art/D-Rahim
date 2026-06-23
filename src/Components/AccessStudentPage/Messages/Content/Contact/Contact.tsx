@@ -19,7 +19,6 @@ function Contact() {
   const { conections, setConections } = userDetails;
   const [connnectionList, setConectionList] =
     useState<Connections[]>(conections);
-  console.log(connnectionList);
   //getConnections
   useEffect(() => {
     //update temb list if main list change
