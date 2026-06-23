@@ -1,13 +1,30 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import Head from "./Head";
 import MessageContent from "./Content/MessageContent";
 import SendMessageAndFiles from "./SendMessageAndFiles";
+
+type Messages = {
+  from: string;
+  to: string;
+  type: string;
+  imgUrl: string;
+  date: string;
+  time: string;
+  text: string;
+};
+type ChatContact = {
+  contactId: string;
+  contactFirstName: string;
+  contactLastName: string;
+  messages: Messages[];
+};
 function MessageBox() {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const { chatContact } = userDetails;
+  const { chatContact, userInfo, setChatContact } = userDetails;
   const [scrollToLastMessage, setScrollToLastMessage] = useState<boolean>(true);
+  const [input, inputChange] = useState<string>("");
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
     const container = scrollDiv.current;
@@ -18,6 +35,54 @@ function MessageBox() {
   useEffect(() => {
     controlScroll();
   }, []);
+  //send message logic
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    const data: string = e.target.value;
+    inputChange(data);
+  }
+  function saveChat(message: Messages) {
+    if (!chatContact) return;
+    const contactFirstName = chatContact.contactFirstName;
+    const contactLastName = chatContact.contactLastName;
+    const contactId = chatContact.contactId;
+    const oldChat = chatContact.messages;
+    const newChat = [...oldChat, message];
+    const newChatInfo: ChatContact = {
+      contactId: contactId,
+      contactFirstName: contactFirstName,
+      contactLastName: contactLastName,
+      messages: newChat,
+    };
+    setChatContact(newChatInfo);
+  }
+  function sendMessageAndFiles() {
+    if (!chatContact) return;
+    if (input.trim() === "") return;
+    const date = new Date();
+    const month =
+      date.getMonth() + 1 >= 10
+        ? date.getMonth() + 1
+        : `0${date.getMonth() + 1}`;
+    const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
+    const year = date.getFullYear();
+    const dateFomart = `${month}/${day}/${year}`;
+    const hour =
+      date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
+    const minites =
+      date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
+    const timeFomart = `${hour}:${minites}`;
+    console.log(userInfo);
+    const messageFomart: Messages = {
+      from: userInfo.connectionId,
+      to: chatContact.contactId,
+      type: "text",
+      imgUrl: "",
+      date: dateFomart,
+      time: timeFomart,
+      text: input,
+    };
+    saveChat(messageFomart);
+  }
   return (
     <div className="w-full flex flex-col p-1.25 h-full bg-[#DBFFDF] rounded-2xl overflow-hidden">
       {/**head */}
@@ -33,7 +98,11 @@ function MessageBox() {
         </div>
       </div>
       {/**end/ send message & files action buttion */}
-      <SendMessageAndFiles />
+      <SendMessageAndFiles
+        input={input}
+        inputChange={handleInputChange}
+        sendMessageAndFiles={sendMessageAndFiles}
+      />
     </div>
   );
 }
