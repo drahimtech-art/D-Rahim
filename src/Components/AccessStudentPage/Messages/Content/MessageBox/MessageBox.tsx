@@ -39,7 +39,6 @@ function MessageBox() {
   //reacive message logic
   useEffect(() => {
     if (!socket) return;
-    console.log("receive message mount");
     function handleNewMessage(message: Messages) {
       if (!chatContact) return;
       if (message.from !== chatContact.contactId) return;
@@ -49,7 +48,6 @@ function MessageBox() {
     //
     return () => {
       socket.off("receive-message", (message) => handleNewMessage(message));
-      console.log("receive message clean up");
     };
   }, [socket, chatContact]);
   //send message logic

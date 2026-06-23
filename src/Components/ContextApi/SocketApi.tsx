@@ -21,6 +21,7 @@ type ServerToClient = {
 type ClientToServer = {
   "send-message": (message: Message, room: string) => void;
   "join-room": (connectionId: string) => void;
+  "leave-room": (connectionId: string) => void;
 };
 type AppSocket = Socket<ServerToClient, ClientToServer>;
 type SocketContextType = {
