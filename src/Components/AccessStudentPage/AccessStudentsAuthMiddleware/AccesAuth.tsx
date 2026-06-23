@@ -17,8 +17,8 @@ function AccessAuth({ children }: { children: ReactNode }) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const socket = SocketApi();
-  const { connectsocket, disConnectSocket } = socket;
+  const socketApi = SocketApi();
+  const { connectsocket, disConnectSocket, socket } = socketApi;
   const { setUserInfo } = userDetails;
   const [isUserValidated, setIsUserValidated] = useState<boolean>(false);
   const urlNavigator = useNavigate();

@@ -1,5 +1,7 @@
 import { lazy, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { SocketApi } from "../ContextApi/SocketApi";
+import { StudentsAppData } from "../ContextApi/StudentsApi";
 import Top from "./Top";
 import LeftNevBar from "./LeftNevBar";
 import Dashboard from "./Dashboard/Dashboard";
@@ -8,6 +10,11 @@ const Messages = lazy(() => import("./Messages/Messages"));
 import Settings from "./Settings/Settings";
 function AccessStudentPage() {
   const [searchParems] = useSearchParams();
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { userInfo } = userDetails;
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
   const page = searchParems.get("page");
   const [backgroundColor, setBackgroundColour] = useState<string>("white");
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
@@ -16,6 +23,12 @@ function AccessStudentPage() {
   const [renderCummunity, setRenderCummunity] = useState<boolean>(false);
   const [renderSettings, setRenderSettings] = useState<boolean>(false);
   //background content color control
+  //join room with user connection id once on mount
+  useEffect(() => {
+    if (!socket) return;
+    const roomId = userInfo.connectionId;
+    socket.emit("join-room", roomId);
+  }, []);
   useEffect(() => {
     if (page == "overview" || page == "classes") {
       (() => {
