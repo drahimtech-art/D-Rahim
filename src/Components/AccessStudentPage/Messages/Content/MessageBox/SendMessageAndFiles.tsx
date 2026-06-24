@@ -6,6 +6,10 @@ type SendMessageAndFilesControl = {
   sendMessageAndFiles: () => void;
 };
 function SendMessageAndFiles(props: SendMessageAndFilesControl) {
+  function HandleKeyDown(e: React.KeyboardEvent) {
+    const key = e.key;
+    if (key === "Enter") return props.sendMessageAndFiles();
+  }
   return (
     <div className="flex  w-full h-fit items-center pl-1.5 pr-1.5 ">
       {/**input box */}
@@ -17,6 +21,7 @@ function SendMessageAndFiles(props: SendMessageAndFilesControl) {
           placeholder="Type a Message..."
           value={props.input}
           onChange={props.inputChange}
+          onKeyDown={HandleKeyDown}
         ></input>
       </span>
       {/**action button */}
