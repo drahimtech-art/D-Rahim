@@ -41,6 +41,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const [contactMessagesTemb, setContactMessagesTemb] = useState<Messages[]>(
     [],
   );
+  const [lastMessageTime, setLastMessageTime] = useState<string>("");
   //
   const lastMessageIndex = contactMessagesTemb.length;
   //start chat with contact
@@ -139,12 +140,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     if (!chatContact) return;
     setContactMessagesTemb([...contactMessagesTemb, message]);
     setInputMessage("");
-    /*
-    setInput("");
-    setTimeout(() => {
-      controlScroll();
-    }, 300);
-    */
   }
   function sendMessageAndFiles() {
     if (!chatContact) return;
@@ -192,6 +187,76 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     if (chatContact.contactId !== connectionInfo.contactId) return;
     setContactMessages([...contactMessagesTemb]);
   }, [chatContact, contactMessagesTemb]);
+  //lastmessageTime logic
+  function getLastMessageTime(time: string, date: string) {
+    const newDate = new Date();
+    const newHour = Number(newDate.getHours());
+    const newMinites = Number(newDate.getMinutes());
+    const newMonth = Number(newDate.getMonth() + 1);
+    const newDay = Number(newDate.getDate());
+    const newYear = newDate.getFullYear().toString();
+    //
+    const oldMonth = Number(date.split("/")[0]);
+    const oldDay = Number(date.split("/")[1]);
+    const oldYear = date.split("/")[2];
+    let oldHour = Number(time.split(":")[0]);
+    let oldMinites = Number(time.split(":")[1]);
+    let timePassed;
+    //minites passed
+    if (
+      oldHour === newHour &&
+      oldMonth === newMonth &&
+      oldDay === newDay &&
+      oldYear === newYear
+    ) {
+      timePassed = newMinites - oldMinites;
+      return `${timePassed}m`;
+    }
+    //hours passed
+    if (
+      oldHour !== newHour &&
+      oldMonth === newMonth &&
+      oldDay === newDay &&
+      oldYear === newYear
+    ) {
+      timePassed = newHour - oldHour;
+      return `${timePassed}h`;
+    }
+    //days passed
+    if (oldMonth === newMonth && oldYear === newYear && oldDay !== newDay) {
+      timePassed = newDay - oldDay;
+      return `${timePassed}d`;
+    }
+    //months passed
+    if (oldMonth !== newMonth && oldYear === newYear) {
+      timePassed = newMonth - oldMonth;
+      return `${timePassed}M`;
+    }
+    //years
+    if (oldYear !== newYear) {
+      timePassed = newMonth - oldMonth;
+      return `>0y`;
+    }
+    console.log(timePassed);
+  }
+  //last message time control logic
+  useEffect(() => {
+    const updateTimeEverMinites = setInterval(() => {
+      if (lastMessageIndex === 0) return;
+      const timeStap = getLastMessageTime(
+        contactMessagesTemb[lastMessageIndex - 1].time,
+        contactMessagesTemb[lastMessageIndex - 1].date,
+      );
+      setLastMessageTime(timeStap ? timeStap : "");
+    }, 10000);
+    if (lastMessageIndex === 0) return;
+    const timeStap = getLastMessageTime(
+      contactMessagesTemb[lastMessageIndex - 1].time,
+      contactMessagesTemb[lastMessageIndex - 1].date,
+    );
+    setLastMessageTime(timeStap ? timeStap : "");
+    return () => clearInterval(updateTimeEverMinites);
+  }, [lastMessageIndex, contactMessagesTemb]);
   return (
     <div
       className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5  rounded-2xl pointer transition-all"
@@ -211,7 +276,9 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
             {connectionInfo.contactFirstName} {connectionInfo.contactLastName}
           </h5>
           {/**time */}
-          <h5 className="ml-auto font-normal font-sans text-[13px] ">2m</h5>
+          <h5 className="ml-auto font-normal font-sans text-[13px] ">
+            {lastMessageTime}
+          </h5>
         </span>
         {/**message */}
         <span>
