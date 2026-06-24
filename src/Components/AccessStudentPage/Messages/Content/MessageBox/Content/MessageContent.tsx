@@ -1,15 +1,25 @@
-import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import MessageMe from "./MessageMe";
 import MessageFrom from "./MessageFrom";
-
-function MessageContent() {
-  const userDetails = StudentsAppData();
-  if (!userDetails) return;
-  const { chatContact } = userDetails;
+type Messages = {
+  from: string;
+  to: string;
+  type: string;
+  imgUrl: string;
+  date: string;
+  time: string;
+  text: string;
+};
+function MessageContent({
+  messages,
+  contactId,
+}: {
+  messages: Messages[];
+  contactId: string;
+}) {
   return (
     <div className="pt-7.5 pb-7.5 w-full h-full flex flex-col gap-7.5 ">
-      {chatContact?.messages.map((e, i) => {
-        if (chatContact.contactId !== e.from)
+      {messages.map((e, i) => {
+        if (contactId !== e.from)
           return (
             <MessageMe
               text={e.text}
