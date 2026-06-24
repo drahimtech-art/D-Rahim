@@ -21,11 +21,6 @@ type ChatContact = {
   contactId: string;
   contactFirstName: string;
   contactLastName: string;
-  messages: Messages[];
-};
-type ContactMessages = {
-  contactId: string;
-  messages: Messages[];
 };
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
@@ -33,20 +28,27 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   if (!userDetails) return;
   const socketApi = SocketApi();
   const { socket } = socketApi;
-  const { setChatContact, chatContact, userInfo } = userDetails;
-  const [contactMessages, setContactMessages] = useState<ContactMessages>({
-    contactId: "",
-    messages: [],
-  });
+  const {
+    setChatContact,
+    chatContact,
+    userInfo,
+    inputMessage,
+    setInputMessage,
+    sendMessage,
+    setSendMessage,
+    setContactMessages,
+  } = userDetails;
+  const [contactMessagesTemb, setContactMessagesTemb] = useState<Messages[]>(
+    [],
+  );
   //
-  const lastMessageIndex = contactMessages.messages.length;
+  const lastMessageIndex = contactMessagesTemb.length;
   //start chat with contact
   function obenChatBox() {
     const data: ChatContact = {
       contactId: connectionInfo.contactId,
       contactFirstName: connectionInfo.contactFirstName,
       contactLastName: connectionInfo.contactLastName,
-      messages: [...contactMessages.messages],
     };
     setChatContact(data);
   }
@@ -87,7 +89,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
           connectionId: connectionId,
           contactId: contactId,
         };
-        console.log(JSON.stringify(requstBody));
         const requst = await fetch(
           `${serverPort}/connection/contact/messages`,
           {
@@ -102,7 +103,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         );
         const responds = await requst.json();
         if (responds.ok) {
-          setContactMessages(responds.chatHistory);
+          setContactMessagesTemb(responds.chatHistory);
         } else {
           console.log(responds.message);
         }
@@ -113,25 +114,84 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     getContactChatHistory(userInfo.connectionId, connectionInfo.contactId);
   }, [connectionInfo.contactId, userInfo.connectionId]);
   // update chatHistory
-  function saveChat(message: Messages) {
+  function saveNewChat(message: Messages) {
     const from = message.from;
     if (from !== connectionInfo.contactId) return;
-    const newData = {
-      contactId: contactMessages.contactId,
-      messages: [...contactMessages.messages, message],
-    };
-    setContactMessages(newData);
+
+    setContactMessagesTemb([...contactMessagesTemb, message]);
   }
   // listion on new message
   useEffect(() => {
     if (!socket) return;
     console.log("receive message mount");
-    socket.on("receive-message", (message) => saveChat(message));
+    socket.on("receive-message", (message) => saveNewChat(message));
     //
     return () => {
-      socket.off("receive-message", (message) => saveChat(message));
+      socket.off("receive-message", (message) => saveNewChat(message));
     };
-  }, [socket, chatContact, contactMessages]);
+  }, [socket, chatContact, contactMessagesTemb]);
+  //send message
+  function sendChat(message: Messages, room: string) {
+    if (!socket) return;
+    socket.emit("send-message", message, room);
+  }
+  function saveChat(message: Messages) {
+    if (!chatContact) return;
+    setContactMessagesTemb([...contactMessagesTemb, message]);
+    setInputMessage("");
+    /*
+    setInput("");
+    setTimeout(() => {
+      controlScroll();
+    }, 300);
+    */
+  }
+  function sendMessageAndFiles() {
+    if (!chatContact) return;
+    if (inputMessage.trim() === "") return;
+    const date = new Date();
+    const month =
+      date.getMonth() + 1 >= 10
+        ? date.getMonth() + 1
+        : `0${date.getMonth() + 1}`;
+    const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
+    const year = date.getFullYear();
+    const dateFomart = `${month}/${day}/${year}`;
+    const hour =
+      date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
+    const minites =
+      date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
+    const timeFomart = `${hour}:${minites}`;
+    const messageFomart: Messages = {
+      from: userInfo.connectionId,
+      to: chatContact.contactId,
+      type: "text",
+      imgUrl: "",
+      date: dateFomart,
+      time: timeFomart,
+      text: inputMessage,
+    };
+    console.log("typing");
+    saveChat(messageFomart);
+    sendChat(messageFomart, chatContact.contactId);
+  }
+  //sendMessage
+  useEffect(() => {
+    if (!chatContact) return;
+    if (
+      sendMessage === true &&
+      connectionInfo.contactId === chatContact.contactId
+    ) {
+      sendMessageAndFiles();
+      setSendMessage(false);
+    }
+  }, [sendMessage, chatContact]);
+  //add data to chat box
+  useEffect(() => {
+    if (!chatContact) return;
+    if (chatContact.contactId !== connectionInfo.contactId) return;
+    setContactMessages([...contactMessagesTemb]);
+  }, [chatContact, contactMessagesTemb]);
   return (
     <div
       className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5  rounded-2xl pointer transition-all"
@@ -157,7 +217,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         <span>
           <h5 className="font-sans font-normal text-[16px]  line-clamp-1">
             {lastMessageIndex !== 0
-              ? contactMessages.messages[lastMessageIndex - 1].text
+              ? contactMessagesTemb[lastMessageIndex - 1].text
               : "..."}
           </h5>
         </span>
