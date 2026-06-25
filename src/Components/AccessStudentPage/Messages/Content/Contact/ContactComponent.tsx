@@ -210,6 +210,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       oldYear === newYear
     ) {
       timePassed = newMinites - oldMinites;
+      if (timePassed === 0) return "just now";
       return `${timePassed}m`;
     }
     //hours passed

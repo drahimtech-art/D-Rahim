@@ -38,6 +38,7 @@ type Messages = {
   date: string;
   time: string;
   text: string;
+  _id?: string;
 };
 type Connections = {
   contactFirstName: string;
