@@ -37,6 +37,10 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     sendMessage,
     setSendMessage,
     setContactMessages,
+    files,
+    setFiles,
+    isFiles,
+    setIsFiles,
   } = userDetails;
   const [contactMessagesTemb, setContactMessagesTemb] = useState<Messages[]>(
     [],
@@ -118,7 +122,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   function saveNewChat(message: Messages) {
     const from = message.from;
     if (from !== connectionInfo.contactId) return;
-
     setContactMessagesTemb([...contactMessagesTemb, message]);
   }
   // listion on new message
@@ -131,6 +134,14 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       socket.off("receive-message", (message) => saveNewChat(message));
     };
   }, [socket, chatContact, contactMessagesTemb]);
+  //send files(images);
+  async function sendFiles(message: Messages, room: string) {
+    console.log(message, room);
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  }
   //send message
   function sendChat(message: Messages, room: string) {
     if (!socket) return;
@@ -143,7 +154,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   }
   function sendMessageAndFiles() {
     if (!chatContact) return;
-    if (inputMessage.trim() === "") return;
+    if (inputMessage.trim() === "" && !isFiles) return;
     const date = new Date();
     const month =
       date.getMonth() + 1 >= 10
@@ -160,14 +171,15 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     const messageFomart: Messages = {
       from: userInfo.connectionId,
       to: chatContact.contactId,
-      type: "text",
-      imgUrl: "",
+      type: isFiles ? "image" : "text",
+      imgUrl: isFiles ? files : "",
       date: dateFomart,
       time: timeFomart,
       text: inputMessage,
     };
     console.log("typing");
     saveChat(messageFomart);
+    if (isFiles) return sendFiles(messageFomart, chatContact.contactId);
     sendChat(messageFomart, chatContact.contactId);
   }
   //sendMessage
@@ -285,7 +297,9 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         <span>
           <h5 className="font-sans font-normal text-[16px]  line-clamp-1">
             {lastMessageIndex !== 0
-              ? contactMessagesTemb[lastMessageIndex - 1].text
+              ? contactMessagesTemb[lastMessageIndex - 1].type === "text"
+                ? contactMessagesTemb[lastMessageIndex - 1].text
+                : "image"
               : "..."}
           </h5>
         </span>
