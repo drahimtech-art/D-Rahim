@@ -12,7 +12,6 @@ function MessageBox() {
     setInputMessage,
     contactMessages,
     setSendMessage,
-    files,
     setFiles,
     isFiles,
     setIsFiles,
@@ -20,6 +19,7 @@ function MessageBox() {
   if (!chatContact) return;
   const [parentHeight, setPrarentHeight] = useState<number>(0);
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
+  const [displayImage, setDisplayImage] = useState<string>("");
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
     const container = scrollDiv.current;
@@ -41,12 +41,19 @@ function MessageBox() {
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) return;
     const file = e.target.files[0];
+    console.log(typeof file);
     const url = URL.createObjectURL(file);
-    setFiles(url);
+    console.log(file);
+    file.arrayBuffer().then((e) => {
+      console.log(encodeURI(url));
+    });
+    setDisplayImage(url);
+    setFiles(file);
     setIsFiles(true);
   }
   function canculeFileInput() {
-    setFiles("");
+    setDisplayImage("");
+    setFiles(undefined);
     setIsFiles(false);
   }
   //set image max height
@@ -81,14 +88,14 @@ function MessageBox() {
         </div>
       )}
       {/**image view */}
-      {files && (
+      {isFiles && (
         <div className="w-full relative h-full bg-[#DBFFDF] ">
           <img
             className=" w-fit h-fit rounded-2xl"
             style={{
               maxHeight: parentHeight - 140,
             }}
-            src={files}
+            src={displayImage}
           ></img>
         </div>
       )}

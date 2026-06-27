@@ -19,8 +19,8 @@ type StudentsAppData = {
   setInputMessage: React.Dispatch<SetStateAction<string>>;
   sendMessage: boolean;
   setSendMessage: React.Dispatch<SetStateAction<boolean>>;
-  files: string;
-  setFiles: React.Dispatch<SetStateAction<string>>;
+  files: Blob | undefined;
+  setFiles: React.Dispatch<SetStateAction<Blob | undefined>>;
   isFiles: boolean;
   setIsFiles: React.Dispatch<SetStateAction<boolean>>;
 };
@@ -76,7 +76,7 @@ export const StudentsContextProvider = ({
   const [chatContact, setChatContact] = useState<ChatContact | null>(null);
   const [inputMessage, setInputMessage] = useState<string>("");
   const [sendMessage, setSendMessage] = useState<boolean>(false);
-  const [files, setFiles] = useState<string>("");
+  const [files, setFiles] = useState<Blob | undefined>(undefined);
   const [isFiles, setIsFiles] = useState<boolean>(false);
   return (
     <studentsData.Provider
