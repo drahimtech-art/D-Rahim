@@ -25,6 +25,8 @@ function MessageContent({
               text={e.text}
               date={e.date}
               time={e.time}
+              type={e.type}
+              imgUrl={e.imgUrl}
               key={`messages-key-${i}`}
             />
           );
@@ -33,6 +35,8 @@ function MessageContent({
             text={e.text}
             date={e.date}
             time={e.time}
+            type={e.type}
+            imgUrl={e.imgUrl}
             key={`messages-key-${i}`}
           />
         );

@@ -12,11 +12,13 @@ function MessageBox() {
     setInputMessage,
     contactMessages,
     setSendMessage,
+    files,
+    setFiles,
+    isFiles,
+    setIsFiles,
   } = userDetails;
   if (!chatContact) return;
-  const [files, setFiles] = useState<string>("");
-  const [isFiles, setIsFiles] = useState<boolean>(false);
-  const [parentHeight, setprarentHeight] = useState<number>(0);
+  const [parentHeight, setPrarentHeight] = useState<number>(0);
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
@@ -50,7 +52,7 @@ function MessageBox() {
   //set image max height
   useEffect(() => {
     if (!parentContainerRef.current) return;
-    setprarentHeight(parentContainerRef.current.scrollHeight);
+    setPrarentHeight(parentContainerRef.current.scrollHeight);
   }, [parentContainerRef.current?.scrollHeight]);
   //remove image if contact change
   useEffect(() => {
