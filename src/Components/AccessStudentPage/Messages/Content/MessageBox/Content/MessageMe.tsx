@@ -15,7 +15,7 @@ function MessageMe(props: Messages) {
               {props.text}
             </h5>
           ) : (
-            <img className="w-full h-fit" src={props.imgUrl}></img>
+            <img className="w-full h-fit rounded-2xl" src={props.imgUrl}></img>
           )}
           {/**time */}
           <h5 className="font-normal text-[12px] font-sans text-[#FFFFFF]">

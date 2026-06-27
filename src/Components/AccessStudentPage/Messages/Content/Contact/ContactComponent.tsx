@@ -1,6 +1,6 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { SocketApi } from "../../../../ContextApi/SocketApi";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import contactImg1 from "/images/contact.png";
 type Connections = {
   contactFirstName: string;
@@ -136,8 +136,40 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   }, [socket, chatContact, contactMessagesTemb]);
   //send files(images);
   async function sendFiles(message: Messages, room: string) {
-    console.log(message, room);
+    if (!files) return;
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
     try {
+      const newFile = files;
+      const body = {
+        message: {
+          from: message.from,
+          to: message.to,
+          type: message.type,
+          imgUrl: "",
+          date: message.date,
+          time: message.time,
+          text: "",
+        },
+        room: room,
+      };
+      setFiles(undefined);
+      setIsFiles(false);
+      const formData = new FormData();
+      formData.append("image", newFile);
+      formData.append("message", JSON.stringify(body));
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const requst = await fetch(`${serverPort}/connection/upload/file`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "X-Frontend-Key": `${key}`,
+        },
+        body: formData,
+      });
+      const responds = await requst.json();
+      console.log(responds);
     } catch (error) {
       console.log(error);
     }
@@ -147,6 +179,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     if (!socket) return;
     socket.emit("send-message", message, room);
   }
+  //save message
   function saveChat(message: Messages) {
     if (!chatContact) return;
     setContactMessagesTemb([...contactMessagesTemb, message]);
@@ -172,7 +205,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       from: userInfo.connectionId,
       to: chatContact.contactId,
       type: isFiles ? "image" : "text",
-      imgUrl: isFiles ? files : "",
+      imgUrl: isFiles ? (files ? URL.createObjectURL(files as Blob) : "") : "",
       date: dateFomart,
       time: timeFomart,
       text: inputMessage,
@@ -299,7 +332,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
             {lastMessageIndex !== 0
               ? contactMessagesTemb[lastMessageIndex - 1].type === "text"
                 ? contactMessagesTemb[lastMessageIndex - 1].text
-                : "image"
+                : "photo"
               : "..."}
           </h5>
         </span>
