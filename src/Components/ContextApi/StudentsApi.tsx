@@ -19,6 +19,10 @@ type StudentsAppData = {
   setInputMessage: React.Dispatch<SetStateAction<string>>;
   sendMessage: boolean;
   setSendMessage: React.Dispatch<SetStateAction<boolean>>;
+  files: string;
+  setFiles: React.Dispatch<SetStateAction<string>>;
+  isFiles: boolean;
+  setIsFiles: React.Dispatch<SetStateAction<boolean>>;
 };
 type UserData = {
   firstName: string;
@@ -72,6 +76,8 @@ export const StudentsContextProvider = ({
   const [chatContact, setChatContact] = useState<ChatContact | null>(null);
   const [inputMessage, setInputMessage] = useState<string>("");
   const [sendMessage, setSendMessage] = useState<boolean>(false);
+  const [files, setFiles] = useState<string>("");
+  const [isFiles, setIsFiles] = useState<boolean>(false);
   return (
     <studentsData.Provider
       value={{
@@ -87,6 +93,10 @@ export const StudentsContextProvider = ({
         setInputMessage,
         sendMessage,
         setSendMessage,
+        files,
+        setFiles,
+        isFiles,
+        setIsFiles,
       }}
     >
       {children}
