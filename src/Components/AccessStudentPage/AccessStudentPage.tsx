@@ -26,12 +26,15 @@ function AccessStudentPage() {
   //join room with user connection id once on mount
   useEffect(() => {
     if (!socket) return;
+    console.log("join room");
+    console.log(socket.connected);
     const roomId = userInfo.connectionId;
     socket.emit("join-room", roomId);
     return () => {
+      console.log("leave room");
       socket.emit("leave-room", roomId);
     };
-  }, []);
+  }, [socket?.connected]);
   useEffect(() => {
     if (page == "overview" || page == "classes") {
       (() => {
