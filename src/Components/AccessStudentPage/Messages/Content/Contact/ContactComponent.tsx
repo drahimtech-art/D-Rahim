@@ -194,7 +194,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         : `0${date.getMonth() + 1}`;
     const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
     const year = date.getFullYear();
-    const dateFomart = `${year}-${month}-${day}`;
+    const dateFomart = `${month}/${day}/${year}`;
     const hour =
       date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
     const minites =
