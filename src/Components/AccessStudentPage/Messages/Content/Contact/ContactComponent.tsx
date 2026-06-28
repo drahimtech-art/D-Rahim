@@ -1,6 +1,6 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { SocketApi } from "../../../../ContextApi/SocketApi";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import contactImg1 from "/images/contact.png";
 type Connections = {
   contactFirstName: string;
@@ -127,7 +127,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   // listion on new message
   useEffect(() => {
     if (!socket) return;
-    console.log("receive message mount");
     socket.on("receive-message", (message) => saveNewChat(message));
     //
     return () => {
@@ -195,7 +194,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         : `0${date.getMonth() + 1}`;
     const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
     const year = date.getFullYear();
-    const dateFomart = `${month}/${day}/${year}`;
+    const dateFomart = `${year}-${month}-${day}`;
     const hour =
       date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
     const minites =
@@ -210,7 +209,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       time: timeFomart,
       text: inputMessage,
     };
-    console.log("typing");
     saveChat(messageFomart);
     if (isFiles) return sendFiles(messageFomart, chatContact.contactId);
     sendChat(messageFomart, chatContact.contactId);
