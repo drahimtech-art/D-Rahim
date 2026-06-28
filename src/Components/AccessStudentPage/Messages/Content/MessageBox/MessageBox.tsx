@@ -17,17 +17,18 @@ function MessageBox() {
     setIsFiles,
   } = userDetails;
   if (!chatContact) return;
-  const [parentHeight, setPrarentHeight] = useState<number>(0);
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
   const [displayImage, setDisplayImage] = useState<string>("");
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
     const container = scrollDiv.current;
     if (!container) return;
-    container.scrollTo({
-      top: container.scrollHeight + 20,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      container.scrollTo({
+        top: container.scrollHeight + 20,
+        behavior: "smooth",
+      });
+    }, 500);
   }
   useEffect(() => {
     controlScroll();
@@ -46,10 +47,6 @@ function MessageBox() {
     const file = e.target.files[0];
     console.log(typeof file);
     const url = URL.createObjectURL(file);
-    console.log(file);
-    file.arrayBuffer().then((e) => {
-      console.log(encodeURI(url));
-    });
     setDisplayImage(url);
     setFiles(file);
     setIsFiles(true);
@@ -59,11 +56,6 @@ function MessageBox() {
     setFiles(undefined);
     setIsFiles(false);
   }
-  //set image max height
-  useEffect(() => {
-    if (!parentContainerRef.current) return;
-    setPrarentHeight(parentContainerRef.current.scrollHeight);
-  }, [parentContainerRef.current?.scrollHeight]);
   //remove image if contact change
   useEffect(() => {
     canculeFileInput();
