@@ -24,7 +24,10 @@ function MessageBox() {
   function controlScroll() {
     const container = scrollDiv.current;
     if (!container) return;
-    container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+    container.scrollTo({
+      top: container.scrollHeight + 20,
+      behavior: "smooth",
+    });
   }
   useEffect(() => {
     controlScroll();
@@ -67,7 +70,7 @@ function MessageBox() {
   }, [chatContact.contactId]);
   return (
     <div
-      className="w-full flex flex-col p-1.25 h-full bg-[#DBFFDF] rounded-2xl overflow-hidden"
+      className="w-full flex flex-col relative p-1.25 h-full bg-[#DBFFDF] rounded-2xl overflow-hidden"
       ref={parentContainerRef}
     >
       {/**head */}
@@ -77,26 +80,21 @@ function MessageBox() {
         status={"online"}
       />
       {/**content */}
-      {!isFiles && (
-        <div className="w-full h-full  overflow-y-auto" ref={scrollDiv}>
-          <div className=" max-h-full">
-            <MessageContent
-              messages={contactMessages}
-              contactId={chatContact.contactId}
-            />
-          </div>
+
+      <div className="w-full h-full  overflow-y-auto" ref={scrollDiv}>
+        <div className=" max-h-full">
+          <MessageContent
+            messages={contactMessages}
+            contactId={chatContact.contactId}
+          />
         </div>
-      )}
+      </div>
       {/**image view */}
       {isFiles && (
-        <div className="w-full relative h-full bg-[#DBFFDF] ">
-          <img
-            className=" w-fit h-fit rounded-2xl"
-            style={{
-              maxHeight: parentHeight - 140,
-            }}
-            src={displayImage}
-          ></img>
+        <div className="w-full -m-1.25 absolute h-full bg-[#000000] ">
+          <div className="flex w-full h-full justify-center p-10 pt-20 pb-20">
+            <img className=" w-fit h-full  " src={displayImage}></img>
+          </div>
         </div>
       )}
       {/**end/ send message & files action buttion */}
