@@ -7,67 +7,92 @@ export function newMessageToTop() {
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc11",
       date: "06/28/2026",
-      time: "07:55",
+      time: "07:52",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc6648",
       date: "06/11/2020",
-      time: "06:55",
+      time: "06:15",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c88f83cc6648",
-      date: "11/09/2020",
+      date: "06/09/2020",
       time: "06:55",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1144",
       date: "05/15/2026",
-      time: "08:55",
+      time: "08:43",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc6642",
-      date: "06/11/2025",
-      time: "06:55",
+      date: "06/07/2025",
+      time: "06:59",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc6641",
       date: "06/11/2025",
-      time: "06:55",
+      time: "01:22",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1145",
       date: "12/10/2026",
-      time: "08:55",
+      time: "12:44",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc4325",
       date: "06/10/2012",
-      time: "08:55",
+      time: "15:26",
+    },
+    {
+      contactId: "8531f3d4-ff8c-49dd-a17757-115c9f83cc4325",
+      date: "06/01/2012",
+      time: "09:32",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc6681",
       date: "06/11/2027",
-      time: "06:55",
+      time: "06:10",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc115",
-      date: "10/07/2028",
-      time: "08:55",
+      date: "07/07/2028",
+      time: "14:55",
     },
     {
       contactId: "8531f3d4-ff8c77-49dd-a157-115c9f83cc175",
       date: "02/10/2010",
-      time: "08:55",
+      time: "06:55",
+    },
+    {
+      contactId: "8531fpoihhiu3d4-fiibf8c-49dd-a157-115c9f83cc175",
+      date: "02/07/2028",
+      time: "12:55",
     },
     {
       contactId: "8531f3d4-fiibf8c-49dd-a157-115c9f83cc175",
-      date: "2/7/2028",
-      time: "08:55",
+      date: "02/07/2028",
+      time: "22:55",
+    },
+    {
+      contactId: "8531f3uibuid4-fiibf8c-49dd-a157-115c9f83cc175",
+      date: "02/07/2028",
+      time: "22:35",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc175",
       date: "04/11/2026",
-      time: "08:55",
+      time: "13:55",
+    },
+    {
+      contactId: "8531f3d4vbuyb-ff8c-49dd-a157-115c9f83cc175",
+      date: "04/11/2026",
+      time: "10:55",
+    },
+    {
+      contactId: "8531f3doubu4vbuyb-ff8c-49dd-a157-115c9f83cc175",
+      date: "04/11/2026",
+      time: "10:25",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc175",
@@ -75,24 +100,29 @@ export function newMessageToTop() {
       time: "08:55",
     },
     {
+      contactId: "8531f3d4-ff8cuu-49dd-a157-115c9f83cc175",
+      date: "06/10/2028",
+      time: "06:55",
+    },
+    {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1325",
       date: "08/10/2018",
-      time: "08:55",
+      time: "07:12",
     },
     {
       contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1325",
       date: "05/10/2018",
-      time: "08:55",
+      time: "02:35",
     },
     {
-      contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1325",
-      date: "09/10/2018",
-      time: "08:55",
+      contactId: "8531f3d4-ff8c-49dd-a157-115c999f83cc1325",
+      date: "05/05/2018",
+      time: "04:48",
     },
     {
-      contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1325",
-      date: "0/10/2018",
-      time: "08:55",
+      contactId: "8531f3d4-ff8c-49dd-a157-115c9f83cc1uu325",
+      date: "01/10/2018",
+      time: "01:33",
     },
   ];
   function filterDublicate(list: any) {
@@ -138,8 +168,8 @@ export function newMessageToTop() {
         let currentItem = item; // current item inlist
         for (const subItem of contactList) {
           // compare all item to current item
-          const [subMonth, subDay, subYear] = subItem.date.split("/");
-          const [cMonth, cDay, cYear] = currentItem.date.split("/");
+          const [_, __, subYear] = subItem.date.split("/");
+          const [___, ____, cYear] = currentItem.date.split("/");
           if (
             Number(subYear) < Number(cYear) &&
             !storedListId.includes(subItem.contactId)
@@ -155,54 +185,30 @@ export function newMessageToTop() {
         }
       }
     }
-    console.log("year filter");
+    console.log("years filter");
     console.log(sortedList);
-    filterByMonthDayandTime([...sortedList]);
+    filterByMonthInYearLowsetFirst([...sortedList]);
   }
   //filterDublicate(expectedData);
   console.log(filterByYearLowestFirst(expectedData));
-  function filterByMonthDayandTime(list: any[]) {
+  function filterByMonthInYearLowsetFirst(list: any[]) {
     /*
-    step1: get array list 
-    step2: create sorted empty array 
-    step3: create a while loop with condition if sorted array is < less then array list loop else break
-    step4: create month empty array
-    step5: create a month and year validation varible and give it undefind
-    step6: first loop. loop all array list
-    step7: for the first value in step 6 loop set it as a value to be compaired 
-    bonus: if step 7 value condition is same as step 5 value skip rest line of code and continue loop5tr
-    step8: creat a nested loop to compare month and year to step 7 value
-    step9: if step 8 compare value macth step 7 condition  push step 8 compairing value to step 4 array
-    step10: if step 8 compire value did not macth then it hits our break point and continue to the next block of code
-    step11: create a tembMonth empty array
-    step12: create a tembMonthId empty array
-    step13: create a whileLoop with condition if step 11 length is < less then step 4 array loop else break
-    step14: loop step 4 array 
-    step15: create a varable timeMonthDay
-    step16: for first loop in step 14 asign step 15 its value 
-    step17: create a nested  loop to compare with step 15
-    step18: create a compara varible and asign it step 17 value
-    step19: if month < less then step 18 month and day is < less then step 18 day and hour is < less then step 18 hour  and miniutes is < less the step 18 minitue and step 18 contactId does not include in step 12 asign step 15 step 19 value
-    step20: if step 17 has run/looped finsih and set the lowst value to step 15 check if value id already exsit step 12 array if not push step 15 to step 11 and push step 15 contact id to step 12
-    step21: continue with step 14 loop
-    step22: if step 14 has complited continue with step 13 loop chek its condition if not meat repeat step 13 to step 22 else if meat continue to next block of code
-    step23: if step 13  is resolved set  step 5 varible value to step 7 compaired value 
-    step24: copy step 11 array to step 2 sorted array exp step2 =[...step 11];
-    step25: continue step 6 loop and repeat code blocks
+    
     */
+    //sort by months in year lowest first
     const clonedList = [...list];
-    let sortedList: any = [];
+    let sortedListByMonths: any = [];
     let monthList = []; //month array
     let validatedMonthAndYear = undefined;
     //first loop
     for (const data of clonedList) {
       const dataValue = data; // data value
-      const [dM, _, dY] = dataValue.date.split("/");
-      if (`${dM}/${dY}` === validatedMonthAndYear) continue;
+      const [__, _, dY] = dataValue.date.split("/");
+      if (`${dY}` === validatedMonthAndYear) continue;
       //nested array to compire all value to datavalue
       for (const dataCompare of clonedList) {
-        const [dcM, dcD, dcY] = dataCompare.date.split("/");
-        if (`${dM}/${dY}` === `${dcM}/${dcY}`) {
+        const [_, __, dcY] = dataCompare.date.split("/");
+        if (Number(dY) === Number(dcY)) {
           monthList.push(dataCompare); // push to month array
         }
       }
@@ -214,16 +220,73 @@ export function newMessageToTop() {
         //new block first loop
         for (const newDataValue of monthList) {
           let timeMonthDay = newDataValue; // new block loop value
-          const [newTM, newTD, _] = timeMonthDay.date.split("/");
-          const [newTH, newTMn] = timeMonthDay.time.split(":");
+          const [newTM, __, _] = timeMonthDay.date.split("/");
           //nested loop
           for (const newDataCompare of monthList) {
             const newTimeMonthDay = newDataCompare;
-            const [newTCM, newTCD, _] = newTimeMonthDay.date.split("/");
-            const [newTCH, newTCMn] = newTimeMonthDay.time.split("/");
+            const [newTCM, __, _] = newTimeMonthDay.date.split("/");
             if (
-              Number(newTCM) == Number(newTM) &&
-              Number(newTCD) < Number(newTD) &&
+              Number(newTCM) < Number(newTM) && // sort by month lowest month in same year
+              !tembMonthId.includes(newTimeMonthDay.contactId)
+            ) {
+              //console.log(`${newTCM} < ${newTM}`);
+              timeMonthDay = newTimeMonthDay; // asign lowest value in list
+            }
+          }
+          //when nested loop is done comparing  if timeMonthDay at current newDataValue index is not already added add it
+          if (!tembMonthId.includes(timeMonthDay.contactId)) {
+            tembMonth.push(timeMonthDay);
+            tembMonthId.push(timeMonthDay.contactId);
+          }
+        }
+        if (tembMonth.length === monthList.length) {
+          // set validatedMonth and year  to already calculated logic for months
+          monthList = [];
+          validatedMonthAndYear = `${dY}`;
+          //push to sortedlist
+          for (const fliterList of tembMonth) {
+            sortedListByMonths.push(fliterList);
+          }
+        }
+      } //end of new bloock code/logic
+    }
+    console.log("months in year filter");
+    console.log(sortedListByMonths);
+    filterByDaysInMonthLowestFirst(sortedListByMonths);
+  }
+  function filterByDaysInMonthLowestFirst(list: any) {
+    //sort by days in months lowest first
+    const clonedMonthList = [...list];
+    let sortedListByDay: any = [];
+    let dayList = []; //month array
+    let validatedDayMonthAndYear = undefined;
+    //first loop
+    for (const data of clonedMonthList) {
+      const dataValue = data; // data value
+      const [dM, _, dY] = dataValue.date.split("/");
+      if (`${dM}${dY}` === validatedDayMonthAndYear) continue;
+      //nested array to compire all value to datavalue
+      for (const dataCompare of clonedMonthList) {
+        const [dcM, _, dcY] = dataCompare.date.split("/");
+        if (Number(dY) === Number(dcY) && Number(dM) === Number(dcM)) {
+          dayList.push(dataCompare); // push to month array
+        }
+      }
+      //new block of code (filter stored dayList data lowest first)
+      const tembMonth = [];
+      const tembMonthId: string[] = [];
+      while (tembMonth.length < dayList.length) {
+        // while tembMonth is less the month array
+        //new block first loop
+        for (const newDataValue of dayList) {
+          let timeMonthDay = newDataValue; // new block loop value
+          const [__, newTD, _] = timeMonthDay.date.split("/");
+          //nested loop
+          for (const newDataCompare of dayList) {
+            const newTimeMonthDay = newDataCompare;
+            const [__, newTCD, _] = newTimeMonthDay.date.split("/");
+            if (
+              Number(newTCD) < Number(newTD) && /// sort by day lowest day in same month
               !tembMonthId.includes(newTimeMonthDay.contactId)
             ) {
               timeMonthDay = newTimeMonthDay; // asign lowest value in list
@@ -235,19 +298,147 @@ export function newMessageToTop() {
             tembMonthId.push(timeMonthDay.contactId);
           }
         }
-        if (tembMonth.length === monthList.length) {
-          // set validatedMonth and year  to already calculated logic
-          monthList = [];
-          validatedMonthAndYear = `${dM}/${dY}`;
-          //push to sortedlist
+        if (tembMonth.length === dayList.length) {
+          // set validatedMonth month and year  to already calculated logic
+          dayList = [];
+          validatedDayMonthAndYear = `${dM}${dY}`;
+          //push to sortedListByDay
           for (const fliterList of tembMonth) {
-            sortedList.push(fliterList);
+            sortedListByDay.push(fliterList);
           }
         }
       } //end of new bloock code/logic
     }
-    console.log("total filter");
-    console.log(sortedList);
+    console.log("days in month filter");
+    console.log(sortedListByDay);
+    filterByHoursInDays(sortedListByDay);
+  }
+  function filterByHoursInDays(list: any) {
+    //sort by days in months lowest first
+    const clonedList = [...list];
+    let sortedListByHours: any = [];
+    let dayList = []; //month array
+    let validatedDayMonthAndYear = undefined;
+    //first loop
+    for (const data of clonedList) {
+      const dataValue = data; // data value
+      const [dM, dD, dY] = dataValue.date.split("/");
+      if (`${dM}${dD}${dY}` === validatedDayMonthAndYear) continue;
+      //nested array to compire all value to datavalue
+      for (const dataCompare of clonedList) {
+        const [dcM, dcD, dcY] = dataCompare.date.split("/");
+        if (
+          Number(dY) === Number(dcY) &&
+          Number(dM) === Number(dcM) &&
+          Number(dD) === Number(dcD)
+        ) {
+          dayList.push(dataCompare); // push to month array
+        }
+      }
+      //new block of code (filter stored dayList data lowest first)
+      const tembHour = [];
+      const tembHourId: string[] = [];
+      while (tembHour.length < dayList.length) {
+        // while tembHour is less the month array
+        //new block first loop
+        for (const newDataValue of dayList) {
+          let timeMonthDay = newDataValue; // new block loop value
+          const [newTH, _] = timeMonthDay.time.split(":");
+          //nested loop
+          for (const newDataCompare of dayList) {
+            const newTimeMonthDay = newDataCompare;
+            const [newTCH, _] = newTimeMonthDay.time.split(":");
+            if (
+              Number(newTCH) < Number(newTH) && /// sort by day lowest day in same month
+              !tembHourId.includes(newTimeMonthDay.contactId)
+            ) {
+              timeMonthDay = newTimeMonthDay; // asign lowest value in list
+            }
+          }
+          //when nested loop is done comparing  if timeMonthDay at current newDataValue index is not already added add it
+          if (!tembHourId.includes(timeMonthDay.contactId)) {
+            tembHour.push(timeMonthDay);
+            tembHourId.push(timeMonthDay.contactId);
+          }
+        }
+        if (tembHour.length === dayList.length) {
+          // set validatedMonth month and year  to already calculated logic
+          dayList = [];
+          validatedDayMonthAndYear = `${dM}${dD}${dY}`;
+          //push to sortedListByHours
+          for (const fliterList of tembHour) {
+            sortedListByHours.push(fliterList);
+          }
+        }
+      } //end of new bloock code/logic
+    }
+    console.log("hours in days filter");
+    console.log(sortedListByHours);
+    filterByMinituesInHours(sortedListByHours);
+  }
+  function filterByMinituesInHours(list: any) {
+    const clonedList = [...list];
+    let sortedListByMinites: any = [];
+    let dayList = []; //month array
+    let validatedDayMonthAndYear = undefined;
+    //first loop
+    for (const data of clonedList) {
+      const dataValue = data; // data value
+      const [dM, dD, dY] = dataValue.date.split("/");
+      const [dH, _] = dataValue.time.split(":");
+      if (`${dM}${dD}${dY}${dH}` === validatedDayMonthAndYear) continue;
+      //nested array to compire all value to datavalue
+      for (const dataCompare of clonedList) {
+        const [dcM, dcD, dcY] = dataCompare.date.split("/");
+        const [dcH, _] = dataCompare.time.split(":");
+        if (
+          Number(dY) === Number(dcY) &&
+          Number(dM) === Number(dcM) &&
+          Number(dD) === Number(dcD) &&
+          Number(dH) === Number(dcH)
+        ) {
+          dayList.push(dataCompare); // push to month array
+        }
+      }
+      //new block of code (filter stored dayList data lowest first)
+      const tembHour = [];
+      const tembHourId: string[] = [];
+      while (tembHour.length < dayList.length) {
+        // while tembHour is less the month array
+        //new block first loop
+        for (const newDataValue of dayList) {
+          let timeMonthDay = newDataValue; // new block loop value
+          const [_, newTMn] = timeMonthDay.time.split(":");
+          //nested loop
+          for (const newDataCompare of dayList) {
+            const newTimeMonthDay = newDataCompare;
+            const [_, newTCMn] = newTimeMonthDay.time.split(":");
+            if (
+              Number(newTCMn) < Number(newTMn) && /// sort by day lowest day in same month
+              !tembHourId.includes(newTimeMonthDay.contactId)
+            ) {
+              timeMonthDay = newTimeMonthDay; // asign lowest value in list
+            }
+          }
+          //when nested loop is done comparing  if timeMonthDay at current newDataValue index is not already added add it
+          if (!tembHourId.includes(timeMonthDay.contactId)) {
+            tembHour.push(timeMonthDay);
+            tembHourId.push(timeMonthDay.contactId);
+          }
+        }
+        if (tembHour.length === dayList.length) {
+          // set validatedMonth month and year  to already calculated logic
+          dayList = [];
+          validatedDayMonthAndYear = `${dM}${dD}${dY}${dH}`;
+          //push to sortedListByMinites
+          for (const fliterList of tembHour) {
+            sortedListByMinites.push(fliterList);
+          }
+        }
+      } //end of new bloock code/logic
+    }
+    console.log("minites in hours filter");
+    console.log(sortedListByMinites);
   }
   //doSomeLogic();
 }
