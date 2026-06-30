@@ -7,6 +7,16 @@ type Connections = {
   contactLastName: string;
   contactId: string;
   contactImage: string;
+  date?: string;
+  time?: string;
+};
+type SortingData = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string;
+  date: string;
+  time: string;
 };
 type Messages = {
   from: string;
@@ -41,6 +51,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     setFiles,
     isFiles,
     setIsFiles,
+    setConectionsWithTimeStap,
   } = userDetails;
   const [contactMessagesTemb, setContactMessagesTemb] = useState<Messages[]>(
     [],
@@ -48,6 +59,10 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const [lastMessageTime, setLastMessageTime] = useState<string>("");
   //
   const lastMessageIndex = contactMessagesTemb.length;
+  const [lastMessageTimeAndDate, setLastMessageTimeAndDate] = useState({
+    date: "",
+    time: "",
+  });
   //start chat with contact
   function obenChatBox() {
     const data: ChatContact = {
@@ -77,6 +92,50 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         color: "black",
         backgroundColor: "transparent",
       };
+  //update connections with dataAndTime and move latest time and date to top
+  function updateMoveContactToTop() {
+    const lastTimeStap = { ...lastMessageTimeAndDate };
+    const contactInfor = { ...connectionInfo };
+    if (lastTimeStap.date.trim() === "" || lastTimeStap.time.trim() === "")
+      return;
+    //contact info with new timeStap
+    const replaceData: SortingData = {
+      contactFirstName: contactInfor.contactFirstName,
+      contactLastName: contactInfor.contactLastName,
+      contactId: contactInfor.contactId,
+      contactImage: contactInfor.contactImage,
+      date: lastTimeStap.date,
+      time: lastTimeStap.time,
+    };
+    //filter and replace list with replace data
+    setConectionsWithTimeStap((prevConnections) => {
+      const contactId = [];
+      const newUpdatedLIstData: Connections[] = [];
+      for (const contact of prevConnections) {
+        //check if connection is in list and update it with new infor
+        if (contact.contactId === replaceData.contactId) {
+          //this only run if connection alredy esist
+          newUpdatedLIstData.push(replaceData);
+          contactId.push(replaceData.contactId);
+        } else {
+          // add everthing else
+          newUpdatedLIstData.push(contact);
+          contactId.push(contact.contactId);
+        }
+        if (newUpdatedLIstData.length === prevConnections.length) {
+          //check if connection is not in list add
+          if (!contactId.includes(replaceData.contactId)) {
+            // this run if connection is not in list
+            newUpdatedLIstData.push(replaceData);
+            contactId.push(replaceData.contactId);
+          }
+        }
+      }
+      return [...newUpdatedLIstData];
+    });
+  }
+  //call to top funtion if hole list is updated
+
   //get messages on mount
   useEffect(() => {
     if (!userInfo.connectionId || !connectionInfo.contactId) return;
@@ -285,6 +344,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   }
   //last message time control logic
   useEffect(() => {
+    //call back to update last message time ux every 1min
     const updateTimeEverMinites = setInterval(() => {
       if (lastMessageIndex === 0) return;
       const timeStap = getLastMessageTime(
@@ -293,14 +353,21 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       );
       setLastMessageTime(timeStap ? timeStap : "");
     }, 10000);
+    //on change message funtion
     if (lastMessageIndex === 0) return;
-    const timeStap = getLastMessageTime(
-      contactMessagesTemb[lastMessageIndex - 1].time,
-      contactMessagesTemb[lastMessageIndex - 1].date,
-    );
+    const date = contactMessagesTemb[lastMessageIndex - 1].date;
+    const time = contactMessagesTemb[lastMessageIndex - 1].time;
+    const timeStap = getLastMessageTime(time, date);
     setLastMessageTime(timeStap ? timeStap : "");
+    setLastMessageTimeAndDate({ date: date, time: time });
+    //
     return () => clearInterval(updateTimeEverMinites);
   }, [lastMessageIndex, contactMessagesTemb]);
+  //call message to top if lastMessage time and date changes
+  useEffect(() => {
+    updateMoveContactToTop();
+    console.log("function called for ", connectionInfo, lastMessageTimeAndDate);
+  }, [lastMessageTimeAndDate]);
   return (
     <div
       className="w-full h-fit p-2.5 pr-5.5 flex items-center gap-2.5  rounded-2xl pointer transition-all"

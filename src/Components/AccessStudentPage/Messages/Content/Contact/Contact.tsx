@@ -6,24 +6,67 @@ import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 //import contactImg4 from "/images/contact_3.png";
 import ContactComponent from "./ContactComponent";
 //import GroupContactComponet from "./GroupContactComponet";
+import { newMessageToTop } from "./newMessageToTop/newMessageToTop";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;
   contactId: string;
   contactImage: string;
+  date?: string;
+  time?: string;
+};
+type SortingData = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string;
+  date: string;
+  time: string;
 };
 function Contact() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const { conections, setConections } = userDetails;
+  const {
+    conections,
+    setConections,
+    conectionsWithTimeStap,
+    setConectionsWithTimeStap,
+  } = userDetails;
   const [connnectionList, setConectionList] =
     useState<Connections[]>(conections);
   //getConnections
   useEffect(() => {
     //update temb list if main list change
     setConectionList(conections);
+    //add to connections to be updated array/
+    setConectionsWithTimeStap(conections);
   }, [conections]);
+  useEffect(() => {
+    console.log(conectionsWithTimeStap);
+    //check if all connections info has a last message time and date stap
+    function validateAllTimeStapHasBeenCollected() {
+      let pass = true;
+      console.log("list");
+      console.log(conectionsWithTimeStap);
+      for (const data of conectionsWithTimeStap) {
+        console.log(data.date);
+        if (!data.date || data.date.trim() === "") {
+          pass = false;
+          console.log("failed");
+        }
+      }
+      if (pass) {
+        const sortedConnectionsList = newMessageToTop({
+          connections: conectionsWithTimeStap as SortingData[],
+        });
+        if (sortedConnectionsList) {
+          setConectionList(sortedConnectionsList);
+        }
+      }
+    }
+    validateAllTimeStapHasBeenCollected();
+  }, [conectionsWithTimeStap]);
   useEffect(() => {
     async function getConnectionsList() {
       const CLIENT_KEY = "CLIENT_KEY";
