@@ -32,6 +32,7 @@ type ChatContact = {
   contactFirstName: string;
   contactLastName: string;
 };
+
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
@@ -63,6 +64,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     date: "",
     time: "",
   });
+  //
   //start chat with contact
   function obenChatBox() {
     const data: ChatContact = {
@@ -135,7 +137,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     });
   }
   //call to top funtion if hole list is updated
-
   //get messages on mount
   useEffect(() => {
     if (!userInfo.connectionId || !connectionInfo.contactId) return;
@@ -181,6 +182,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   function saveNewChat(message: Messages) {
     const from = message.from;
     if (from !== connectionInfo.contactId) return;
+    console.log(`from ${from}`, `to ${connectionInfo.contactId}`);
     setContactMessagesTemb([...contactMessagesTemb, message]);
   }
   // listion on new message
@@ -190,8 +192,9 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     //
     return () => {
       socket.off("receive-message", (message) => saveNewChat(message));
+      console.log("clean up");
     };
-  }, [socket, chatContact, contactMessagesTemb]);
+  }, [socket, chatContact, contactMessagesTemb, connectionInfo]);
   //send files(images);
   async function sendFiles(message: Messages, room: string) {
     if (!files) return;
@@ -366,7 +369,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   //call message to top if lastMessage time and date changes
   useEffect(() => {
     updateMoveContactToTop();
-    console.log("function called for ", connectionInfo, lastMessageTimeAndDate);
   }, [lastMessageTimeAndDate]);
   return (
     <div

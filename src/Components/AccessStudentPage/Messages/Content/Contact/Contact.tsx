@@ -33,7 +33,7 @@ function Contact() {
     conectionsWithTimeStap,
     setConectionsWithTimeStap,
   } = userDetails;
-  const [connnectionList, setConectionList] =
+  const [connectionList, setConectionList] =
     useState<Connections[]>(conections);
   //getConnections
   useEffect(() => {
@@ -43,17 +43,13 @@ function Contact() {
     setConectionsWithTimeStap(conections);
   }, [conections]);
   useEffect(() => {
-    console.log(conectionsWithTimeStap);
     //check if all connections info has a last message time and date stap
     function validateAllTimeStapHasBeenCollected() {
       let pass = true;
-      console.log("list");
-      console.log(conectionsWithTimeStap);
       for (const data of conectionsWithTimeStap) {
         console.log(data.date);
         if (!data.date || data.date.trim() === "") {
           pass = false;
-          console.log("failed");
         }
       }
       if (pass) {
@@ -61,6 +57,7 @@ function Contact() {
           connections: conectionsWithTimeStap as SortingData[],
         });
         if (sortedConnectionsList) {
+          console.log(sortedConnectionsList);
           setConectionList(sortedConnectionsList);
         }
       }
@@ -96,11 +93,11 @@ function Contact() {
   }, []);
   return (
     <div className="w-full h-full  bg-white  pl-2 pr-2 flex flex-col pb-20 gap-7.5 overflow-y-scroll">
-      {connnectionList.map((e: Connections, i: number) => {
+      {connectionList.map((e: Connections) => {
         return (
           <ContactComponent
             connectionInfo={e}
-            key={`connection-index-key-${i}`}
+            key={`connection-index-key-${e.contactId}`}
           />
         );
       })}
