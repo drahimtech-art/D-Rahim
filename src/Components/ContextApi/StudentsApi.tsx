@@ -23,6 +23,8 @@ type StudentsAppData = {
   setFiles: React.Dispatch<SetStateAction<Blob | undefined>>;
   isFiles: boolean;
   setIsFiles: React.Dispatch<SetStateAction<boolean>>;
+  conectionsWithTimeStap: Connections[];
+  setConectionsWithTimeStap: React.Dispatch<SetStateAction<Connections[]>>;
 };
 type UserData = {
   firstName: string;
@@ -49,11 +51,21 @@ type Connections = {
   contactLastName: string;
   contactId: string;
   contactImage: string;
+  date?: string;
+  time?: string;
 };
 type ChatContact = {
   contactId: string;
   contactFirstName: string;
   contactLastName: string;
+};
+type SortingData = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string;
+  date: string;
+  time: string;
 };
 const studentsData = createContext<StudentsAppData | null>(null);
 export const StudentsContextProvider = ({
@@ -73,6 +85,9 @@ export const StudentsContextProvider = ({
   });
   const [contactMessages, setContactMessages] = useState<Messages[]>([]);
   const [conections, setConections] = useState<Connections[]>([]);
+  const [conectionsWithTimeStap, setConectionsWithTimeStap] = useState<
+    Connections[]
+  >([]);
   const [chatContact, setChatContact] = useState<ChatContact | null>(null);
   const [inputMessage, setInputMessage] = useState<string>("");
   const [sendMessage, setSendMessage] = useState<boolean>(false);
@@ -97,6 +112,8 @@ export const StudentsContextProvider = ({
         setFiles,
         isFiles,
         setIsFiles,
+        conectionsWithTimeStap,
+        setConectionsWithTimeStap,
       }}
     >
       {children}

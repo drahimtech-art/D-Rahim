@@ -71,7 +71,7 @@ function Settings() {
         bio: bio,
       };
       const requst = await fetch(`${serverPort}/students/update/user/info`, {
-        method: "POST",
+        method: "PUT",
         credentials: "include",
         headers: {
           "X-Frontend-Key": `${key}`,
