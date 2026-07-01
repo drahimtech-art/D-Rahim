@@ -50,7 +50,7 @@ type Connections = {
   contactFirstName: string;
   contactLastName: string;
   contactId: string;
-  contactImage: string;
+  contactImage: string | null;
   date?: string;
   time?: string;
 };
@@ -63,7 +63,7 @@ type SortingData = {
   contactFirstName: string;
   contactLastName: string;
   contactId: string;
-  contactImage: string;
+  contactImage: string | null;
   date: string;
   time: string;
 };
