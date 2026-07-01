@@ -16,7 +16,7 @@ type Message = {
   text: string;
 };
 type ServerToClient = {
-  "receive-message": (message: Message, contactId: string) => void;
+  "receive-message": (message: Message) => void;
 };
 type ClientToServer = {
   "send-message": (message: Message, room: string) => void;
@@ -29,12 +29,14 @@ type SocketContextType = {
   isConnected: boolean;
   connectsocket: () => void;
   disConnectSocket: () => void;
+  receiveMessage: Message | undefined;
 };
 const socketData = createContext<SocketContextType>({
   socket: null,
   isConnected: false,
   connectsocket: () => {},
   disConnectSocket: () => {},
+  receiveMessage: undefined,
 });
 
 export const SocketProviderContext = ({
@@ -45,6 +47,7 @@ export const SocketProviderContext = ({
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const [socket, setSocket] = useState<AppSocket | null>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
+  const [receiveMessage, setReceiveMessage] = useState<Message | undefined>();
   //
   const connectsocket = async () => {
     const CLIENT_KEY = "CLIENT_KEY";
@@ -87,6 +90,16 @@ export const SocketProviderContext = ({
     }
   };
   useEffect(() => {
+    if (!socket) return;
+    console.log("mount");
+    socket.on("receive-message", (message) => setReceiveMessage(message));
+    //
+    return () => {
+      socket.off("receive-message", (message) => setReceiveMessage(message));
+      console.log("clean up");
+    };
+  }, [isConnected]);
+  useEffect(() => {
     return () => {
       socket?.disconnect();
     };
@@ -99,6 +112,7 @@ export const SocketProviderContext = ({
         isConnected,
         connectsocket,
         disConnectSocket,
+        receiveMessage,
       }}
     >
       {children}

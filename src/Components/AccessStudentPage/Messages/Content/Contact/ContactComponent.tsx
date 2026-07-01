@@ -39,7 +39,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const socketApi = SocketApi();
-  const { socket } = socketApi;
+  const { socket, receiveMessage } = socketApi;
   const {
     setChatContact,
     chatContact,
@@ -179,24 +179,21 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       }
     };
     getContactChatHistory(userInfo.connectionId, connectionInfo.contactId);
-  }, [connectionInfo.contactId, userInfo.connectionId]);
+  }, []);
   // update chatHistory
   function saveNewChat(message: Messages) {
     const from = message.from;
     if (from !== connectionInfo.contactId) return;
     console.log(`from ${from}`, `to ${connectionInfo.contactId}`);
-    setContactMessagesTemb([...contactMessagesTemb, message]);
+    setContactMessagesTemb((prevMessages) => {
+      return [...prevMessages, message];
+    });
   }
   // listion on new message
   useEffect(() => {
-    if (!socket) return;
-    socket.on("receive-message", (message) => saveNewChat(message));
-    //
-    return () => {
-      socket.off("receive-message", (message) => saveNewChat(message));
-      console.log("clean up");
-    };
-  }, [socket, chatContact, contactMessagesTemb, connectionInfo]);
+    if (!receiveMessage) return;
+    saveNewChat(receiveMessage);
+  }, [receiveMessage]);
   //send files(images);
   async function sendFiles(message: Messages, room: string) {
     if (!files) return;
@@ -371,6 +368,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   //call message to top if lastMessage time and date changes
   useEffect(() => {
     updateMoveContactToTop();
+    console.log("moved called");
   }, [lastMessageTimeAndDate]);
   return (
     <div
