@@ -1,5 +1,5 @@
 import { StudentsAppData } from "../../ContextApi/StudentsApi";
-import { useState, useRef, useEffect, type ChangeEvent } from "react";
+import { useState, useRef, type ChangeEvent } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import pencil from "/images/pencil.png";
 import RightPanel from "./RightPanel";
