@@ -1,12 +1,12 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { SocketApi } from "../../../../ContextApi/SocketApi";
 import { useEffect, useState } from "react";
-import contactImg1 from "/images/contact.png";
+import noProfileImg from "/images/noProfileImage.jpeg";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;
   contactId: string;
-  contactImage: string;
+  contactImage: string | null;
   date?: string;
   time?: string;
 };
@@ -14,7 +14,7 @@ type SortingData = {
   contactFirstName: string;
   contactLastName: string;
   contactId: string;
-  contactImage: string;
+  contactImage: string | null;
   date: string;
   time: string;
 };
@@ -31,6 +31,7 @@ type ChatContact = {
   contactId: string;
   contactFirstName: string;
   contactLastName: string;
+  contactImage: string | null;
 };
 
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
@@ -71,6 +72,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       contactId: connectionInfo.contactId,
       contactFirstName: connectionInfo.contactFirstName,
       contactLastName: connectionInfo.contactLastName,
+      contactImage: connectionInfo.contactImage,
     };
     setChatContact(data);
   }
@@ -378,7 +380,14 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     >
       {/**profile image */}
       <span className="min-w-12.5 max-w-12.5 h-12.5">
-        <img className="w-full h-full" src={contactImg1}></img>
+        <img
+          className="w-full h-full rounded-full"
+          src={
+            connectionInfo.contactImage
+              ? connectionInfo.contactImage
+              : noProfileImg
+          }
+        ></img>
       </span>
       {/**name, message & time */}
       <div className="w-full flex flex-col gap-1.25">
