@@ -1,7 +1,12 @@
 import { useSearchParams } from "react-router-dom";
+import { StudentsAppData } from "../ContextApi/StudentsApi";
 import LogoImg from "/images/logo.png";
-import testImage from "/images/testimage.png";
+import noProfileImg from "/images/noProfileImage.jpeg";
 function Top() {
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { userInfo } = userDetails;
+  const profileImage = userInfo.imageUrl;
   const [searchParems] = useSearchParams();
   const page = searchParems.get("page");
   const renderSearchIcon = page == "overview" ? true : false;
@@ -34,8 +39,11 @@ function Top() {
             <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-gray-500 rounded-full">
               <i className="fa fa-bell text-2xl text-gray-500"></i>
             </span>
-            <span className="block mr-5  w-12.5 h-12.5 border border-gray-500 rounded-full">
-              <img className="w-full h-full" src={testImage}></img>
+            <span className="block mr-5  w-12.5 h-12.5   rounded-full">
+              <img
+                className="w-full h-full rounded-full"
+                src={profileImage ? profileImage : noProfileImg}
+              ></img>
             </span>
           </span>
         </div>
