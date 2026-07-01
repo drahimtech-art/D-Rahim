@@ -1,6 +1,6 @@
 import { StudentsAppData } from "../../ContextApi/StudentsApi";
 import { useState, useRef, useEffect, type ChangeEvent } from "react";
-import userProfile from "/images/userImg.png";
+import noProfileImg from "/images/noProfileImage.jpeg";
 import pencil from "/images/pencil.png";
 import RightPanel from "./RightPanel";
 type UserData = {
@@ -11,6 +11,7 @@ type UserData = {
   phoneNumber: string;
   bio: string;
   connectionId: string;
+  imageUrl: string | null;
 };
 function Settings() {
   const userDetails = StudentsAppData();
@@ -23,7 +24,14 @@ function Settings() {
   const [phoneNumber, setPhoneNumber] = useState<string>(userInfo.phoneNumber);
   const [dateOfBirth, setDateOfBirth] = useState<string>(userInfo.dateOfBirth);
   const [bio, setBio] = useState<string>(userInfo.bio);
-  const email = userInfo.email;
+  const [profileImage, setProfileImage] = useState<string | null>(
+    userInfo.imageUrl,
+  );
+  const [updateProfileImage, setUpdateProfileImage] = useState<Blob | null>(
+    null,
+  );
+  const profileImageInputRef = useRef<HTMLInputElement | null>(null);
+  //const email = userInfo.email;
   const saveButtonRef = useRef<HTMLButtonElement | null>(null);
   //
   function handleFirstNameChange(e: ChangeEvent<HTMLInputElement>) {
@@ -46,6 +54,17 @@ function Settings() {
     const value = e.target.value;
     setBio(value);
   }
+  function handleChangePictureChangeButton() {
+    if (!profileImageInputRef.current) return;
+    profileImageInputRef.current.click();
+  }
+  function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) return;
+    const file = e.target.files[0];
+    const image = URL.createObjectURL(file);
+    setProfileImage(image);
+    setUpdateProfileImage(file);
+  }
   async function updateUserDetails() {
     if (!saveButtonRef.current || isRequstSent) return;
     if (firstName.trim() === "") return alert("First Name can't be empty");
@@ -63,6 +82,7 @@ function Settings() {
     try {
       if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
+      const formData = new FormData();
       const requstData = {
         firstName: firstName,
         lastName: lastName,
@@ -70,14 +90,17 @@ function Settings() {
         phoneNumber: phoneNumber,
         bio: bio,
       };
+      if (updateProfileImage) {
+        formData.append("profile-image", updateProfileImage);
+      }
+      formData.append("data", JSON.stringify(requstData));
       const requst = await fetch(`${serverPort}/students/update/user/info`, {
         method: "PUT",
         credentials: "include",
         headers: {
           "X-Frontend-Key": `${key}`,
-          "Content-Type": "application/json",
         },
-        body: JSON.stringify(requstData),
+        body: formData,
       });
       const responds = await requst.json();
       if (responds.ok) {
@@ -107,12 +130,26 @@ function Settings() {
       <div className="mt-7.5 flex gap-22.75">
         {/**profile image */}
         <div className="flex  w-fit flex-col gap-2">
-          <span className="block w-35 h-35 rounded-full">
-            <img className="w-full h-full" src={userProfile}></img>
+          <span className="block w-35 h-35 rounded-full test">
+            <img
+              className="w-full h-full rounded-full"
+              src={profileImage ? profileImage : noProfileImg}
+            ></img>
           </span>
-          <h5 className="text-[16px] text-center font-normal font-sans">
+          <h5
+            className="text-[16px] text-center font-normal font-sans pointer"
+            onClick={handleChangePictureChangeButton}
+          >
             Edit profile photo
           </h5>
+          <span>
+            <input
+              className="absolute w-0 h-0 hidden"
+              type="file"
+              ref={profileImageInputRef}
+              onChange={handleProfilePictureChange}
+            ></input>
+          </span>
         </div>
         {/**edit content and options */}
         <div className="w-full min-w-86.5 max-w-121 flex flex-col gap-5">
