@@ -7,6 +7,7 @@ import LeftNevBar from "./LeftNevBar";
 import Dashboard from "./Dashboard/Dashboard";
 const Classes = lazy(() => import("./Classes/Classes"));
 const Messages = lazy(() => import("./Messages/Messages"));
+const Community = lazy(() => import("./Community/Community"));
 import Settings from "./Settings/Settings";
 function AccessStudentPage() {
   const [searchParems] = useSearchParams();
@@ -123,6 +124,7 @@ function AccessStudentPage() {
               {renderClasses && <Classes />}
               {renderMessage && <Messages />}
               {renderSettings && <Settings />}
+              {renderCummunity && <Community />}
             </div>
           </div>
         </div>
