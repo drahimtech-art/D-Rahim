@@ -2,6 +2,7 @@ import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { SocketApi } from "../../../../ContextApi/SocketApi";
 import { useEffect, useState } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
+import { newMessageToTopMultipleTimes } from "./newMessageToTop/newMessageToTop";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;
@@ -39,7 +40,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const socketApi = SocketApi();
-  const { socket, receiveMessage } = socketApi;
+  const { socket, receiveMessage, setReceiveMessage } = socketApi;
   const {
     setChatContact,
     chatContact,
@@ -53,6 +54,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     setFiles,
     isFiles,
     setIsFiles,
+    setSortedConections,
     setConectionsWithTimeStap,
   } = userDetails;
   const [contactMessagesTemb, setContactMessagesTemb] = useState<Messages[]>(
@@ -65,6 +67,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     date: "",
     time: "",
   });
+  const [isMessagesLoaded, setIsMessagesLoaded] = useState<boolean>(false);
   //
   //start chat with contact
   function obenChatBox() {
@@ -97,11 +100,16 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         backgroundColor: "transparent",
       };
   //update connections with dataAndTime and move latest time and date to top
-  function updateMoveContactToTop() {
+  function updateMoveContactToTopOnce() {
     const lastTimeStap = { ...lastMessageTimeAndDate };
     const contactInfor = { ...connectionInfo };
-    if (lastTimeStap.date.trim() === "" || lastTimeStap.time.trim() === "")
+    if (
+      lastTimeStap.date.trim() === "" ||
+      lastTimeStap.time.trim() === "" ||
+      isMessagesLoaded
+    )
       return;
+    setIsMessagesLoaded(true);
     //contact info with new timeStap
     const replaceData: SortingData = {
       contactFirstName: contactInfor.contactFirstName,
@@ -180,6 +188,16 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     };
     getContactChatHistory(userInfo.connectionId, connectionInfo.contactId);
   }, []);
+  //move contact to top on new message
+  async function updateMoveContactToTopMulitipleTimes(
+    contactInfo: Connections,
+  ) {
+    console.log("called");
+    newMessageToTopMultipleTimes({
+      contactInfo: contactInfo,
+      setSortedConections: setSortedConections,
+    });
+  }
   // update chatHistory
   function saveNewChat(message: Messages) {
     const from = message.from;
@@ -188,6 +206,10 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     setContactMessagesTemb((prevMessages) => {
       return [...prevMessages, message];
     });
+    setReceiveMessage((prevMessage) => {
+      return (prevMessage = undefined);
+    });
+    updateMoveContactToTopMulitipleTimes(connectionInfo);
   }
   // listion on new message
   useEffect(() => {
@@ -244,6 +266,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     if (!chatContact) return;
     setContactMessagesTemb([...contactMessagesTemb, message]);
     setInputMessage("");
+    updateMoveContactToTopMulitipleTimes(connectionInfo);
   }
   function sendMessageAndFiles() {
     if (!chatContact) return;
@@ -270,6 +293,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       time: timeFomart,
       text: inputMessage,
     };
+    if (chatContact.contactId !== connectionInfo.contactId) return;
     saveChat(messageFomart);
     if (isFiles) return sendFiles(messageFomart, chatContact.contactId);
     sendChat(messageFomart, chatContact.contactId);
@@ -367,8 +391,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   }, [lastMessageIndex, contactMessagesTemb]);
   //call message to top if lastMessage time and date changes
   useEffect(() => {
-    updateMoveContactToTop();
-    console.log("moved called");
+    updateMoveContactToTopOnce();
   }, [lastMessageTimeAndDate]);
   return (
     <div

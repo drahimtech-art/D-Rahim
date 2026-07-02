@@ -6,7 +6,7 @@ import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 //import contactImg4 from "/images/contact_3.png";
 import ContactComponent from "./ContactComponent";
 //import GroupContactComponet from "./GroupContactComponet";
-import { newMessageToTop } from "./newMessageToTop/newMessageToTop";
+import { newMessageToTopOnce } from "./newMessageToTop/newMessageToTop";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;
@@ -32,6 +32,8 @@ function Contact() {
     setConections,
     conectionsWithTimeStap,
     setConectionsWithTimeStap,
+    sortedConections,
+    setSortedConections,
   } = userDetails;
   const [connectionList, setConectionList] =
     useState<Connections[]>(conections);
@@ -44,26 +46,30 @@ function Contact() {
   }, [conections]);
   useEffect(() => {
     //check if all connections info has a last message time and date stap
+    if (conectionsWithTimeStap.length === 0) return;
     function validateAllTimeStapHasBeenCollected() {
       let pass = true;
       for (const data of conectionsWithTimeStap) {
-        console.log(data.date);
         if (!data.date || data.date.trim() === "") {
           pass = false;
         }
       }
       if (pass) {
-        const sortedConnectionsList = newMessageToTop({
+        const sortedConnectionsList = newMessageToTopOnce({
           connections: conectionsWithTimeStap as SortingData[],
         });
         if (sortedConnectionsList) {
-          console.log(sortedConnectionsList);
-          setConectionList(sortedConnectionsList);
+          setSortedConections(sortedConnectionsList);
         }
       }
     }
     validateAllTimeStapHasBeenCollected();
   }, [conectionsWithTimeStap]);
+  //
+  useEffect(() => {
+    setConectionList(sortedConections);
+  }, [sortedConections]);
+  //
   useEffect(() => {
     async function getConnectionsList() {
       const CLIENT_KEY = "CLIENT_KEY";

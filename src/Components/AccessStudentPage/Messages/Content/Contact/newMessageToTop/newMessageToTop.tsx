@@ -1,3 +1,5 @@
+import type { SetStateAction } from "react";
+
 type SortingData = {
   contactFirstName: string;
   contactLastName: string;
@@ -6,8 +8,15 @@ type SortingData = {
   date: string;
   time: string;
 };
-
-export function newMessageToTop({
+type Connections = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string | null;
+  date?: string;
+  time?: string;
+};
+export function newMessageToTopOnce({
   connections,
 }: {
   connections: SortingData[];
@@ -43,4 +52,23 @@ export function newMessageToTop({
   };
   const sortedList = sortByDataAndTime(filterDublicate(connections));
   return [...sortedList].reverse();
+}
+//
+export function newMessageToTopMultipleTimes({
+  contactInfo,
+  setSortedConections,
+}: {
+  contactInfo: Connections;
+  setSortedConections: React.Dispatch<SetStateAction<Connections[]>>;
+}) {
+  if (!contactInfo) return;
+  setSortedConections((prevConnections) => {
+    if (prevConnections[0].contactId === contactInfo.contactId)
+      return [...prevConnections];
+    const removeContactFromList = [...prevConnections].filter(
+      (e: Connections) => e.contactId !== contactInfo.contactId,
+    );
+    const newList = [contactInfo, ...removeContactFromList];
+    return [...newList];
+  });
 }
