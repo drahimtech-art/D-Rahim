@@ -60,6 +60,7 @@ type ChatContact = {
   contactId: string;
   contactFirstName: string;
   contactLastName: string;
+  contactImage: string | null;
 };
 type SortingData = {
   contactFirstName: string;

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import Head from "./Head";
 import MessageContent from "./Content/MessageContent";
 import SendMessageAndFiles from "./SendMessageAndFiles";
+import noProfileImg from "/images/noProfileImage.jpeg";
 function MessageBox() {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
@@ -69,6 +70,7 @@ function MessageBox() {
       <Head
         firstName={chatContact?.contactFirstName}
         lastName={chatContact?.contactLastName}
+        imageUrl={chatContact.contactImage}
         status={"online"}
       />
       {/**content */}

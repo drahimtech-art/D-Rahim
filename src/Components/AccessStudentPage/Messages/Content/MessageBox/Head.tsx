@@ -1,20 +1,24 @@
-import contactImg1 from "/images/contact.png";
 import threeDotsMenu from "/images/ThreeDots.png";
-
+import noProfileImg from "/images/noProfileImage.jpeg";
 function Head({
   firstName,
   lastName,
+  imageUrl,
   status,
 }: {
   firstName?: string;
   lastName?: string;
   status: string;
+  imageUrl: string | null;
 }) {
   return (
     <div className="w-full p-2.5 flex gap-2.5 items-center bg-[#DBFFDF] rounded-2xl">
       {/**profile img */}
       <span className="max-w-12.5 max-h-12.5 w-full h-full">
-        <img className="w-full h-full" src={contactImg1}></img>
+        <img
+          className="w-full h-full rounded-full"
+          src={imageUrl ? imageUrl : noProfileImg}
+        ></img>
       </span>
       {/**name & active status */}
       <div className="flex flex-col gap-1.25 max-w-58 w-full">

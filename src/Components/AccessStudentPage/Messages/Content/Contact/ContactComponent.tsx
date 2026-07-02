@@ -192,7 +192,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   async function updateMoveContactToTopMulitipleTimes(
     contactInfo: Connections,
   ) {
-    console.log("called");
     newMessageToTopMultipleTimes({
       contactInfo: contactInfo,
       setSortedConections: setSortedConections,
