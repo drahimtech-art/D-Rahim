@@ -9,7 +9,7 @@ function PostTypePhoto() {
       <div className="w-full flex">
         <div className="flex gap-4.25 mr-auto items-center max-w-75">
           {/**image */}
-          <span className="w-12.5 h-12.5 bg-gray-400 rounded-full"></span>
+          <span className="min-w-12.5 min-h-12.5 bg-gray-400 rounded-full"></span>
           {/**heading */}
           <span className="fle flex-col gap-1.25">
             {/**full name */}
@@ -18,7 +18,8 @@ function PostTypePhoto() {
             </h5>
             {/**bio */}
             <h5 className="font-sans font-medium text-[16px] line-clamp-1 text-gray-500">
-              A Ui/Ux Designer in the...
+              A Full-stack web developer focused on building high perfomace
+              scalable apps
             </h5>
             {/**post time */}
             <h5 className="font-sans font-normal text-[16px] line-clamp-1 text-gray-500">
