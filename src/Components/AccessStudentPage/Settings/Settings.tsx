@@ -128,6 +128,10 @@ function Settings() {
       </span>
       {/**content */}
       <div className="mt-7.5 flex gap-22.75">
+        {/**end right panel*/}
+        <div className="w-full max-w-60.5 mr-auto">
+          <RightPanel />
+        </div>
         {/**profile image */}
         <div className="flex  w-fit flex-col gap-2">
           <span className="block w-35 h-35 rounded-full test">
@@ -236,10 +240,6 @@ function Settings() {
               </h5>
             </button>
           </div>
-        </div>
-        {/**end right panel*/}
-        <div className="w-full max-w-60.5 ml-auto">
-          <RightPanel />
         </div>
       </div>
     </div>
