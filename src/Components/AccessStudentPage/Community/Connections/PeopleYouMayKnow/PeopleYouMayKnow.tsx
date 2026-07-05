@@ -16,7 +16,7 @@ function PeopleYouMayKnow() {
             <h5 className="text-[14px]">Batch 2025, Lagos State</h5>
           </span>
           {/**action button */}
-          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76]">
+          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76] pointer">
             <h5 className="text-gray-100 text-[14px]">Connect</h5>
           </button>
         </div>
@@ -30,7 +30,7 @@ function PeopleYouMayKnow() {
             <h5 className="text-[14px]">Batch 2025, Lagos State</h5>
           </span>
           {/**action button */}
-          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76]">
+          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76] pointer">
             <h5 className="text-gray-100 text-[14px]">Connect</h5>
           </button>
         </div>
@@ -44,7 +44,7 @@ function PeopleYouMayKnow() {
             <h5 className="text-[14px]">Batch 2025, Lagos State</h5>
           </span>
           {/**action button */}
-          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76]">
+          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76] pointer">
             <h5 className="text-gray-100 text-[14px]">Connect</h5>
           </button>
         </div>
@@ -58,7 +58,7 @@ function PeopleYouMayKnow() {
             <h5 className="text-[14px]">Batch 2025, Lagos State</h5>
           </span>
           {/**action button */}
-          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76]">
+          <button className="flex justify-center items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5 mr-1.5 rounded-full bg-[#11AC76] pointer">
             <h5 className="text-gray-100 text-[14px]">Connect</h5>
           </button>
         </div>

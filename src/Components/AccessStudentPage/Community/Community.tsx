@@ -4,7 +4,7 @@ function Community() {
   return (
     <div className="w-full max-h-full flex overflow-hidden gap-10">
       {/**content */}
-      <div className="mr-auto w-full">
+      <div className="mr-auto w-full ">
         <Content />
       </div>
       {/**connections */}

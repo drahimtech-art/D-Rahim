@@ -3,7 +3,7 @@ import UserPost from "./UserPost";
 import Feed from "./Feed/Feed";
 function Content() {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full h-full overflow-y-auto">
       {/**head  */}
       <Head />
       <div className="mt-7.5 flex flex-col gap-3.75">
