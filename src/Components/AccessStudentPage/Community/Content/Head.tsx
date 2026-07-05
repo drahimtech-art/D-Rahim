@@ -6,15 +6,17 @@ function Head() {
         <h5 className="font-medium font-sans min20Max24px">Community</h5>
       </span>
       {/**feed group and connections naviagtion */}
-      <div className="flex gap-12">
+      <div className="flex mt-7.5 gap-12">
         <span className="w-fit border-b border-[#11AC76] text-[#11AC76]">
-          <h5 className="text-[20px] font-normal font-sans">Feed</h5>
+          <h5 className="text-[20px] font-normal font-sans pointer">Feed</h5>
         </span>
         <span className="">
-          <h5 className="text-[20px] font-normal font-sans">Groups</h5>
+          <h5 className="text-[20px] font-normal font-sans pointer">Groups</h5>
         </span>
         <span className="">
-          <h5 className="text-[20px] font-normal font-sans">Connections</h5>
+          <h5 className="text-[20px] font-normal font-sans pointer">
+            Connections
+          </h5>
         </span>
       </div>
     </div>

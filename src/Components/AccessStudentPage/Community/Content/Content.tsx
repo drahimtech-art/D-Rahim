@@ -5,7 +5,7 @@ function Content() {
     <div className="flex flex-col w-full">
       {/**head  */}
       <Head />
-      <div className="mt-7 flex flex-col gap-5">
+      <div className="mt-7.5 flex flex-col gap-5">
         <UserPost />
       </div>
     </div>

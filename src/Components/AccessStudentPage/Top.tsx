@@ -7,15 +7,22 @@ function Top() {
   if (!userDetails) return;
   const { userInfo } = userDetails;
   const profileImage = userInfo.imageUrl;
-  const [searchParems] = useSearchParams();
+  const [searchParems, setSearchParems] = useSearchParams();
   const page = searchParems.get("page");
   const renderSearchIcon = page == "overview" ? true : false;
+  const isUserVerified = searchParems.get("verified");
+  function toSettings() {
+    setSearchParems({
+      verified: `${isUserVerified}`,
+      page: "settings",
+    });
+  }
   return (
     <div className="">
       <div className="flex w-full h-25 pt-2.5 pb-2.5 items-center  border-b border-gray-500">
         <div className="flex gap-2  items-center mr-auto">
           <span className="w-8 h-12.5">
-            <img className="w-full h-full" src={LogoImg}></img>
+            <img className="w-full h-full " src={LogoImg}></img>
           </span>
           <span>
             <h5 className="font-semibold font-inter min18pxMax20px">D’RAHIM</h5>
@@ -39,9 +46,10 @@ function Top() {
             <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-gray-500 rounded-full">
               <i className="fa fa-bell text-2xl text-gray-500"></i>
             </span>
-            <span className="block mr-5  w-12.5 h-12.5   rounded-full">
+            <span className="block mr-5  w-12.5 h-12.5   rounded-full ">
               <img
-                className="w-full h-full rounded-full"
+                className="w-full h-full rounded-full pointer"
+                onClick={toSettings}
                 src={profileImage ? profileImage : noProfileImg}
               ></img>
             </span>

@@ -29,16 +29,16 @@ function UserPost() {
         {/**upload action button */}
         <div className="grid grid-cols-3">
           <span className="flex gap-2 items-center">
-            <img className="w-fit h-fit" src={videoIcon}></img>
-            <h5>Video</h5>
+            <img className="w-fit h-fit pointer" src={videoIcon}></img>
+            <h5 className="pointer">Video</h5>
           </span>
           <span className="flex gap-2 items-center">
-            <img className="w-fit h-fit" src={photoIcon}></img>
-            <h5>Photo</h5>
+            <img className="w-fit h-fit pointer" src={photoIcon}></img>
+            <h5 className="pointer">Photo</h5>
           </span>
           <span className="flex gap-2 items-center">
-            <img className="w-fit h-fit" src={writeIcon}></img>
-            <h5>Write</h5>
+            <img className="w-fit h-fit pointer" src={writeIcon}></img>
+            <h5 className="pointer">Write</h5>
           </span>
         </div>
       </div>
