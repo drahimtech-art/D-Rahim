@@ -9,11 +9,11 @@ function UserPost() {
   const { userInfo } = userDetails;
   const profileImage = userInfo.imageUrl;
   return (
-    <div className="w-full flex gap-5  h-fit pl-5 pt-5 pb-5 pr-2.5 border-[1.5px] border-[#11AC76] rounded-2xl">
+    <div className="w-full flex gap-5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
       {/**profile image */}
       <span className="w-full flex  max-w-12.5 h-12.5  ">
         <img
-          className="max-w-12.5 h-12.5    rounded-full"
+          className="max-w-15 h-15    rounded-full"
           src={profileImage ? profileImage : noProfileImg}
         ></img>
       </span>

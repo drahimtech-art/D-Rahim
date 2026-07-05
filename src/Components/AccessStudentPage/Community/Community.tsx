@@ -8,7 +8,7 @@ function Community() {
         <Content />
       </div>
       {/**connections */}
-      <div className=" w-fit">
+      <div className="min-w-fit">
         <Connections />
       </div>
     </div>
