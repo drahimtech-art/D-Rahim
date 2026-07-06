@@ -80,7 +80,22 @@ function Feed() {
                 key={e.postId}
               />
             );
-          if (e.content.type === "text") return <PostTypeText key={e.postId} />;
+          if (e.content.type === "text")
+            return (
+              <PostTypeText
+                author={e.connectionId}
+                engament={e.engament}
+                engamentStates={e.engamentStates}
+                caption={e.content.caption}
+                content={e.content.content}
+                postId={e.postId}
+                date={e.date}
+                time={e.time}
+                hashTages={e.hashTages}
+                createdAt={e.createdAt}
+                key={e.postId}
+              />
+            );
         })}
     </div>
   );

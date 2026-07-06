@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import likeIcon from "/images/like_icon.png";
 import commentIcon from "/images/comment_icon.png";
 import shareIcon from "/images/share_icon.png";
@@ -31,6 +32,9 @@ type AuthorInfo = {
 };
 function PostTypePhoto(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { userInfo } = userDetails;
   const [authorInfo, setAuthorInfo] = useState<AuthorInfo | undefined>();
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
@@ -114,7 +118,7 @@ function PostTypePhoto(props: PostData) {
         <div className="w-fit flex h-fit ">
           <span className="w-26.25 h-6">
             <h5 className="font-sans text-[14px] pointer font-medium text-[#11AC76]">
-              Connect
+              {props.author === userInfo.connectionId ? "view post" : "Connect"}
             </h5>
           </span>
         </div>
@@ -126,7 +130,7 @@ function PostTypePhoto(props: PostData) {
           {props.caption}
         </h5>
         <span className="w-full h-fit">
-          <img className="w-full h-fit" src={postImage}></img>
+          <img className="w-full h-fit" src={props.content}></img>
         </span>
       </div>
       {/***like comment and share button */}
