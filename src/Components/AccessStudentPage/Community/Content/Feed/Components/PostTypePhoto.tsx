@@ -74,7 +74,7 @@ function PostTypePhoto(props: PostData) {
   return (
     <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
       {/**image heading and connect action button */}
-      <div className="w-full flex">
+      <div className="w-full flex ">
         <div className="flex gap-4.25 mr-auto items-center max-w-75">
           {/**image */}
           <span className="min-w-12.5 max-w-12.5 min-h-12.5 max-h-12.5">
