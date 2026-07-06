@@ -1,13 +1,105 @@
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
+import { useState, type ChangeEvent } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/video_icon.png";
 import photoIcon from "/images/photo_icon.png";
 import writeIcon from "/images/write_icon.png";
+type FeedsData = {
+  connectionId: string;
+  engament: {
+    likes: number;
+    comments: number;
+    shares: number;
+  };
+  content: {
+    type: string;
+    caption: string;
+    content: string;
+  };
+  engamentStates: {
+    likesId: string[];
+    comments: string[];
+  };
+  postId: string;
+  hashTages: string[];
+  date: string;
+  time: string;
+  createdAt: Date;
+};
 function UserPost() {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { userInfo } = userDetails;
   const profileImage = userInfo.imageUrl;
+  const [postText, setPostText] = useState<string>("");
+  const [hashTages, setHashTags] = useState<string[]>([]);
+  const [photoMedia, setPhotoMedia] = useState<Blob | undefined>();
+  const [videoMedia, setVideoMedia] = useState<Blob | undefined>();
+  //upload photo post
+  function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files;
+    if (!file) return;
+    console.log(file[0]);
+  }
+  //write a post
+  function handlePostTextChange(e: ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setPostText(value);
+    //get hastages
+    const hashTagesInPost = value.split("#");
+    if (hashTagesInPost.length > 1) {
+      const Tages = [];
+      for (let i = 1; i < hashTagesInPost.length; i++) {
+        const tages = `#${hashTagesInPost[i].split(" ")[0]}`;
+        Tages.push(tages);
+      }
+      setHashTags(Tages);
+    } else {
+      setHashTags([]);
+    }
+  }
+  //upload post
+  async function uploadPost(key: KeyboardEvent) {
+    const enterKey = key.key;
+    if (enterKey !== "Enter" || postText.trim() === "") return;
+    key.preventDefault();
+    console.log("upload data");
+    try {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const formatedDate = `${year}/${month > 10 ? month : `0${month}`}/${day > 10 ? day : `0${day}`}`;
+      const time = `${date.getHours()}:${date.getMinutes()}`;
+      const postTextData = {
+        connectionId: userInfo.connectionId,
+        hashTages: hashTages,
+        caption: postText,
+        type: "text",
+        date: formatedDate,
+        time: time,
+      };
+      const formData = new FormData();
+      formData.append("postContent", JSON.stringify(postTextData));
+      const CLIENT_KEY = "CLIENT_KEY";
+      const data = localStorage.getItem(CLIENT_KEY);
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const requst = await fetch(`${serverPort}/feeds/upload/content`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "X-Frontend-Key": `${key}`,
+        },
+        body: formData,
+      });
+      const responds = await requst.json();
+      console.log(postTextData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="w-full flex gap-5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
       {/**profile image */}
@@ -17,12 +109,15 @@ function UserPost() {
           src={profileImage ? profileImage : noProfileImg}
         ></img>
       </span>
-      {/**search bar and upload actions button */}
+      {/**post text and upload actions button */}
       <div className="w-full h-full flex flex-col gap-2">
-        {/**seacrh bar */}
+        {/**post text*/}
         <span className="w-full h-10">
           <input
             className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
+            value={postText}
+            onChange={handlePostTextChange}
+            onKeyDown={uploadPost}
             placeholder="Start a post"
           ></input>
         </span>
@@ -32,9 +127,15 @@ function UserPost() {
             <img className="w-fit h-fit pointer" src={videoIcon}></img>
             <h5 className="pointer">Video</h5>
           </span>
-          <span className="flex gap-2 items-center">
+          <span className="flex gap-2 relative items-center">
             <img className="w-fit h-fit pointer" src={photoIcon}></img>
             <h5 className="pointer">Photo</h5>
+
+            <input
+              className="w-0 h-0 absolute"
+              type="file"
+              onChange={handleImagePost}
+            ></input>
           </span>
           <span className="flex gap-2 items-center">
             <img className="w-fit h-fit pointer" src={writeIcon}></img>
