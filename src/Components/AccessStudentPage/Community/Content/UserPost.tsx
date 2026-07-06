@@ -1,5 +1,5 @@
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
-import { useState, type ChangeEvent } from "react";
+import { useState, useRef, type ChangeEvent } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/video_icon.png";
 import photoIcon from "/images/photo_icon.png";
@@ -36,11 +36,18 @@ function UserPost() {
   const [hashTages, setHashTags] = useState<string[]>([]);
   const [photoMedia, setPhotoMedia] = useState<Blob | undefined>();
   const [videoMedia, setVideoMedia] = useState<Blob | undefined>();
+  const photoRef = useRef<HTMLInputElement | null>(null);
+  const videoRef = useRef<HTMLInputElement | null>(null);
   //upload photo post
   function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files;
     if (!file) return;
-    console.log(file[0]);
+    setPhotoMedia(file[0]);
+  }
+  //handle upload photo click
+  function handlePhotoButtonClick() {
+    if (!photoRef.current) return;
+    photoRef.current.click();
   }
   //write a post
   function handlePostTextChange(e: ChangeEvent<HTMLInputElement>) {
@@ -72,16 +79,31 @@ function UserPost() {
       const day = date.getDate();
       const formatedDate = `${year}/${month > 10 ? month : `0${month}`}/${day > 10 ? day : `0${day}`}`;
       const time = `${date.getHours()}:${date.getMinutes()}`;
+      let contentType;
+      if (photoMedia) {
+        contentType = "image";
+      } else if (videoMedia) {
+        contentType = "video";
+      } else {
+        contentType = "text";
+      }
       const postTextData = {
         connectionId: userInfo.connectionId,
         hashTages: hashTages,
         caption: postText,
-        type: "text",
+        type: contentType,
         date: formatedDate,
         time: time,
       };
       const formData = new FormData();
+      if (photoMedia) {
+        formData.append("media", photoMedia);
+      }
       formData.append("postContent", JSON.stringify(postTextData));
+      setPostText("");
+      setHashTags([]);
+      setPhotoMedia(undefined);
+      setVideoMedia(undefined);
       const CLIENT_KEY = "CLIENT_KEY";
       const data = localStorage.getItem(CLIENT_KEY);
       if (!data || data === "null") throw new Error("Access key not found");
@@ -95,6 +117,10 @@ function UserPost() {
         body: formData,
       });
       const responds = await requst.json();
+      if (responds.ok) {
+        alert(responds.message);
+        console.log(responds.post);
+      }
       console.log(postTextData);
     } catch (error) {
       console.log(error);
@@ -128,13 +154,19 @@ function UserPost() {
             <h5 className="pointer">Video</h5>
           </span>
           <span className="flex gap-2 relative items-center">
-            <img className="w-fit h-fit pointer" src={photoIcon}></img>
-            <h5 className="pointer">Photo</h5>
-
+            <img
+              className="w-fit h-fit pointer"
+              src={photoIcon}
+              onClick={handlePhotoButtonClick}
+            ></img>
+            <h5 className="pointer" onClick={handlePhotoButtonClick}>
+              Photo
+            </h5>
             <input
               className="w-0 h-0 absolute"
               type="file"
               onChange={handleImagePost}
+              ref={photoRef}
             ></input>
           </span>
           <span className="flex gap-2 items-center">
