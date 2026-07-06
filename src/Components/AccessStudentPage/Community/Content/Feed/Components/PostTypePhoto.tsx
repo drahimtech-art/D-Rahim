@@ -157,7 +157,10 @@ function PostTypePhoto(props: PostData) {
           </span>
         )}
         <span className="w-full h-fit">
-          <img className="w-full h-fit" src={props.content}></img>
+          <img
+            className="w-full h-fit rounded-[20px]"
+            src={props.content}
+          ></img>
         </span>
       </div>
       {/***like comment and share button */}
