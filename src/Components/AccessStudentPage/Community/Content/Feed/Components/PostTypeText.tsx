@@ -40,6 +40,7 @@ function PostTypeText(props: PostData) {
   const [commentsCount, setCommentsCount] = useState<number>(
     props.engament.comments,
   );
+  const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
   useEffect(() => {
     async function getAuthorInfo() {
       const authorId = props.author;
@@ -73,7 +74,9 @@ function PostTypeText(props: PostData) {
     setIsPostLiked(true);
     setLikes((prevCount) => (prevCount += 1));
   }
-
+  function handleViewMoreCaption() {
+    setViewMoreCaption((prevState) => !prevState);
+  }
   return (
     <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
       {/**image heading and connect action button */}
@@ -125,9 +128,25 @@ function PostTypeText(props: PostData) {
       {/**caption and hastages */}
       <div className="mt-3 flex flex-col gap-5 w-full">
         {/**caption */}
-        <h5 className="line-clamp-1 font-sans font-medium text-[16px] max-w-[70%]">
-          {props.caption}
-        </h5>
+        {viewMoreCaption ? (
+          <div className="w-full  pointer" onClick={handleViewMoreCaption}>
+            <h5 className=" font-sans font-medium text-[16px] max-w-[70%]">
+              {props.caption}
+            </h5>
+          </div>
+        ) : (
+          <span className="w-full flex items-center ">
+            <h5 className="line-clamp-1 font-sans font-medium text-[16px] max-w-[70%] mr-auto">
+              {props.caption}
+            </h5>
+            <h5
+              className="font-sans font-medium text-[16px] pointer"
+              onClick={handleViewMoreCaption}
+            >
+              see more
+            </h5>
+          </span>
+        )}
         {/**hashtag */}
         <span className="flex gap-2 font-sans font-medium text-[16px] items-center text-[#505AE2]">
           {props.hashTages.map((e, i) => {

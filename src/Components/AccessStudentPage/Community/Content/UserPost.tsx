@@ -4,6 +4,7 @@ import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/video_icon.png";
 import photoIcon from "/images/photo_icon.png";
 import writeIcon from "/images/write_icon.png";
+/*
 type FeedsData = {
   connectionId: string;
   engament: {
@@ -26,6 +27,7 @@ type FeedsData = {
   time: string;
   createdAt: Date;
 };
+*/
 function UserPost() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
@@ -37,7 +39,7 @@ function UserPost() {
   const [photoMedia, setPhotoMedia] = useState<Blob | undefined>();
   const [videoMedia, setVideoMedia] = useState<Blob | undefined>();
   const photoRef = useRef<HTMLInputElement | null>(null);
-  const videoRef = useRef<HTMLInputElement | null>(null);
+  //const videoRef = useRef<HTMLInputElement | null>(null);
   //upload photo post
   function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files;
