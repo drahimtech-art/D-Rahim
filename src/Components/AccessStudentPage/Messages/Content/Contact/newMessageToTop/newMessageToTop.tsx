@@ -63,7 +63,7 @@ export function newMessageToTopMultipleTimes({
 }) {
   if (!contactInfo) return;
   setSortedConections((prevConnections) => {
-    if (!prevConnections[0].contactId) return [...prevConnections];
+    if (prevConnections.length === 1) return [...prevConnections];
     if (prevConnections[0].contactId === contactInfo.contactId)
       return [...prevConnections];
     const removeContactFromList = [...prevConnections].filter(
