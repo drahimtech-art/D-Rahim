@@ -4,7 +4,6 @@ import {
   useState,
   useEffect,
   type ReactNode,
-  type SetStateAction,
 } from "react";
 import { io, Socket } from "socket.io-client";
 type Message = {
@@ -31,7 +30,7 @@ type SocketContextType = {
   connectsocket: () => void;
   disConnectSocket: () => void;
   receiveMessage: Message | undefined;
-  setReceiveMessage: React.Dispatch<SetStateAction<Message | undefined>>;
+  clearRecivedMessage: () => void;
 };
 const socketData = createContext<SocketContextType>({
   socket: null,
@@ -39,7 +38,7 @@ const socketData = createContext<SocketContextType>({
   connectsocket: () => {},
   disConnectSocket: () => {},
   receiveMessage: undefined,
-  setReceiveMessage: () => {},
+  clearRecivedMessage: () => {},
 });
 
 export const SocketProviderContext = ({
@@ -92,25 +91,29 @@ export const SocketProviderContext = ({
       setIsConnected(false);
     }
   };
+  //
   useEffect(() => {
     if (!socket) return;
     console.log("mount");
-    socket.on("receive-message", (message) =>
-      setReceiveMessage((prevMessage) => (prevMessage = message)),
-    );
+    socket.on("receive-message", (message: Message) => {
+      setReceiveMessage(message);
+    });
     //
     return () => {
-      socket.off("receive-message", (message) =>
-        setReceiveMessage((prevMessage) => (prevMessage = message)),
-      );
+      socket.off("receive-message", (message: Message) => {
+        setReceiveMessage(message);
+      });
       console.log("clean up");
     };
   }, [isConnected]);
+  //
   useEffect(() => {
     return () => {
-      socket?.disconnect();
+      if (socket) {
+        socket?.disconnect();
+      }
     };
-  }, [socket]);
+  }, [isConnected]);
 
   return (
     <socketData.Provider
@@ -120,7 +123,7 @@ export const SocketProviderContext = ({
         connectsocket,
         disConnectSocket,
         receiveMessage,
-        setReceiveMessage,
+        clearRecivedMessage: () => setReceiveMessage(undefined),
       }}
     >
       {children}
