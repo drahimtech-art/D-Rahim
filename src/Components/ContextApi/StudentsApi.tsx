@@ -37,6 +37,8 @@ type StudentsAppData = {
   setPostPhotoMedia: React.Dispatch<SetStateAction<Blob | undefined>>;
   postVideoMedia: Blob | undefined;
   setPostVideoMedia: React.Dispatch<SetStateAction<Blob | undefined>>;
+  uploadPost: boolean;
+  setUploadPost: React.Dispatch<SetStateAction<boolean>>;
 };
 type UserData = {
   firstName: string;
@@ -112,6 +114,7 @@ export const StudentsContextProvider = ({
   const [postText, setPostText] = useState<string>("");
   const [postPhotoMedia, setPostPhotoMedia] = useState<Blob | undefined>();
   const [postVideoMedia, setPostVideoMedia] = useState<Blob | undefined>();
+  const [uploadPost, setUploadPost] = useState<boolean>(false);
   return (
     <studentsData.Provider
       value={{
@@ -145,6 +148,8 @@ export const StudentsContextProvider = ({
         setPostPhotoMedia,
         postVideoMedia,
         setPostVideoMedia,
+        uploadPost,
+        setUploadPost,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
-import { useState, useRef, type ChangeEvent } from "react";
+import { useState, useEffect } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/video_icon.png";
 import photoIcon from "/images/photo_icon.png";
@@ -43,45 +43,40 @@ function UserPost() {
     setPostPhotoMedia,
     postVideoMedia,
     setPostVideoMedia,
+    uploadPost,
+    setUploadPost,
   } = userDetails;
   const profileImage = userInfo.imageUrl;
   const [hashTages, setHashTags] = useState<string[]>([]);
-  const photoRef = useRef<HTMLInputElement | null>(null);
+  const [textToPost, setTextToPost] = useState<string>("");
   //const videoRef = useRef<HTMLInputElement | null>(null);
-
-  //upload photo post
-  function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files;
-    if (!file) return;
-    if (file[0].type.split("/")[0] !== "image")
-      return alert("Only upload image in photo section");
-    setPostPhotoMedia(file[0]);
-  }
-  //handle upload photo click
-  function handlePhotoButtonClick() {
-    if (!photoRef.current) return;
-    photoRef.current.click();
-  }
-  //write a post
-  function handlePostTextChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    const value = e.target.value;
-    setPostText(value);
-    //get hastages
-    const hashTagesInPost = value.split("#");
-    if (hashTagesInPost.length > 1) {
-      const Tages = [];
-      for (let i = 1; i < hashTagesInPost.length; i++) {
-        const tages = `#${hashTagesInPost[i].split(" ")[0]}`;
-        Tages.push(tages);
+  useEffect(() => {
+    (() => {
+      setTextToPost(postText);
+      //get hastages
+      const hashTagesInPost = postText.split("#");
+      if (hashTagesInPost.length > 1) {
+        const Tages: string[] = [];
+        for (let i = 1; i < hashTagesInPost.length; i++) {
+          const tages = `#${hashTagesInPost[i].split(" ")[0]}`;
+          Tages.push(tages);
+        }
+        console.log(`tages: ${Tages}`);
+        setHashTags(Tages);
+      } else {
+        setHashTags([]);
       }
-      setHashTags(Tages);
-    } else {
-      setHashTags([]);
-    }
-  }
+    })();
+  }, [postText]);
   //upload post
-  async function uploadPost() {
-    console.log("upload data");
+  useEffect(() => {
+    if (!uploadPost) return;
+    uploadPostFunc();
+  }, [uploadPost]);
+  async function uploadPostFunc() {
+    console.log(textToPost);
+    if (textToPost.trim() === "") return setUploadPost(false);
+    setPopUpControl(false);
     try {
       const date = new Date();
       const year = date.getFullYear();
@@ -100,7 +95,7 @@ function UserPost() {
       const postTextData = {
         connectionId: userInfo.connectionId,
         hashTages: hashTages,
-        caption: postText,
+        caption: textToPost,
         type: contentType,
         date: formatedDate,
         time: time,
@@ -130,24 +125,21 @@ function UserPost() {
       if (responds.ok) {
         alert(responds.message);
         console.log(responds.post);
+      } else {
+        alert(responds.message);
       }
-      console.log(postTextData);
+      setUploadPost(false);
     } catch (error) {
+      alert(error);
       console.log(error);
+      setUploadPost(false);
+      setPopUpControl(false);
     }
   }
   //postPopUp control
   function handlePostPopUp() {
     setPopUpControl(true);
-    setPopUpCard(
-      <PostPopUp
-        handleImagePost={handleImagePost}
-        handlePhotoButtonClick={handlePhotoButtonClick}
-        photoRef={photoRef}
-        handlePostTextChange={handlePostTextChange}
-        uploadPost={uploadPost}
-      />,
-    );
+    setPopUpCard(<PostPopUp />);
   }
   return (
     <>

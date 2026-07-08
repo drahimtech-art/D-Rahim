@@ -1,30 +1,27 @@
-import { useState, useEffect, type ChangeEvent } from "react";
+import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import canculeIcon from "/images/proicons_cancel.png";
 import videoIcon from "/images/video_icon.png";
 import photoIcon from "/images/photo_icon.png";
 import writeIcon from "/images/write_icon.png";
-type PostControl = {
-  handlePhotoButtonClick: () => void;
-  handleImagePost: (e: ChangeEvent<HTMLInputElement>) => void;
-  photoRef: React.RefObject<HTMLInputElement | null>;
-  handlePostTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  uploadPost: () => void;
-};
-function PostPopUp(props: PostControl) {
+
+function PostPopUp() {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const {
     userInfo,
     setPopUpControl,
     postText,
+    setPostText,
     postPhotoMedia,
     postVideoMedia,
     setPostPhotoMedia,
     setPostVideoMedia,
+    setUploadPost,
   } = userDetails;
   const [photoDisplay, setPhotoDisplay] = useState<string | undefined>();
+  const photoRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     if (!postPhotoMedia) return;
     (() => {
@@ -37,6 +34,24 @@ function PostPopUp(props: PostControl) {
       setPostPhotoMedia(undefined);
       setPhotoDisplay(undefined);
     }
+  }
+  //upload photo post
+  function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files;
+    if (!file) return;
+    if (file[0].type.split("/")[0] !== "image")
+      return alert("Only upload image in photo section");
+    setPostPhotoMedia(file[0]);
+  }
+  //handle upload photo click
+  function handlePhotoButtonClick() {
+    if (!photoRef.current) return;
+    photoRef.current.click();
+  }
+  //write a post
+  function handlePostTextChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    const value = e.target.value;
+    setPostText(value);
   }
   return (
     <div className="w-[60%] max-w-219.75 h-[80%] relative max-h-145.5 p-10 border border-[#56D566] bg-white rounded-2xl">
@@ -83,7 +98,7 @@ function PostPopUp(props: PostControl) {
             className="w-full resize-none  h-full postPopUpPlacholder placeholder:text-gray-500 placeholder:font-sans placeholder:font-medium"
             placeholder="What do you want  to talk about?"
             value={postText}
-            onChange={props.handlePostTextChange}
+            onChange={handlePostTextChange}
           ></textarea>
         </div>
         {/**photo and image display */}
@@ -115,19 +130,19 @@ function PostPopUp(props: PostControl) {
             <img
               className="w-fit h-fit pointer"
               src={photoIcon}
-              onClick={props.handlePhotoButtonClick}
+              onClick={handlePhotoButtonClick}
             ></img>
             <h5
               className="pointer font-sans font-normal min18pxMax20px"
-              onClick={props.handlePhotoButtonClick}
+              onClick={handlePhotoButtonClick}
             >
               Photo
             </h5>
             <input
               className="w-0 h-0 absolute"
               type="file"
-              onChange={props.handleImagePost}
-              ref={props.photoRef}
+              onChange={handleImagePost}
+              ref={photoRef}
             ></input>
           </span>
           <span className="flex gap-2 justify-end items-center">
@@ -140,7 +155,7 @@ function PostPopUp(props: PostControl) {
           <span className="w-full flex justify-end">
             <button
               className="w-25 h-fit pl-2.5 pr-2.5 pt-1.5 pb-1.5 flex justify-center items-center pointer rounded-2xl bg-[#11AC76]"
-              onClick={props.uploadPost}
+              onClick={() => setUploadPost(true)}
             >
               <h5 className="text-white font-sans text-[14px] font-medium">
                 Post
