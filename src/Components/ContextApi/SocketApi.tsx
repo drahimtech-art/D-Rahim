@@ -102,8 +102,7 @@ export const SocketProviderContext = ({
         socketRef.current.disconnect();
       }
     };
-  }, [isConnected]);
-
+  }, []);
   return (
     <socketData.Provider
       value={{

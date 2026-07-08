@@ -46,6 +46,7 @@ function AccessAuth({ children }: { children: ReactNode }) {
         });
         const responds = await requst.json();
         if (responds.ok) {
+          console.log("soccest connected");
           connectsocket();
           const userData: UserData = responds.userInfo;
           setUserInfo(userData);
