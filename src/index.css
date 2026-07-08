@@ -277,9 +277,7 @@
 .min28pxMax32px {
   font-size: clamp(28px, 5vw, 32px);
 }
-.min18pxMax20px {
-  font-size: clamp(18px, 5vw, 20.09px);
-}
+
 .min22Max26px {
   font-size: clamp(22px, 5vw, 26px);
 }
@@ -305,4 +303,7 @@ input:focus {
 }
 textarea:focus {
   outline: none;
+}
+.postPopUpPlacholder::placeholder {
+  font-size: clamp(18px, 5vw, 20px);
 }

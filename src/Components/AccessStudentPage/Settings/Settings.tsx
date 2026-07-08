@@ -2,7 +2,7 @@ import { StudentsAppData } from "../../ContextApi/StudentsApi";
 import { useState, useRef, type ChangeEvent } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import pencil from "/images/pencil.png";
-import RightPanel from "./RightPanel";
+import LeftPanel from "./LeftPanel";
 type UserData = {
   firstName: string;
   lastName: string;
@@ -61,6 +61,8 @@ function Settings() {
   function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) return;
     const file = e.target.files[0];
+    if (file.type.split("/")[0] !== "image")
+      return alert("Only upload image file");
     const image = URL.createObjectURL(file);
     setProfileImage(image);
     setUpdateProfileImage(file);
@@ -130,7 +132,7 @@ function Settings() {
       <div className="mt-7.5 flex gap-22.75">
         {/**end right panel*/}
         <div className="w-full max-w-60.5 mr-auto">
-          <RightPanel />
+          <LeftPanel />
         </div>
         {/**profile image */}
         <div className="flex  w-fit flex-col gap-2">
@@ -141,7 +143,7 @@ function Settings() {
             ></img>
           </span>
           <h5
-            className="text-[16px] text-center font-normal font-sans pointer"
+            className="text-[16px] hover:transition-all hover:text-blue-400 text-center font-normal font-sans pointer"
             onClick={handleChangePictureChangeButton}
           >
             Edit profile photo
@@ -221,7 +223,7 @@ function Settings() {
               <h5 className="font-normal font-sans text-[16px]">Bio</h5>
               <span className="w-full h-full  p-2.5 border border-gray-500 rounded-lg ">
                 <textarea
-                  className="w-full max-w-115 h-full pl-2"
+                  className="w-full max-w-115 h-full pl-2 resize-none"
                   value={bio}
                   onChange={handleBioChange}
                 ></textarea>

@@ -33,20 +33,29 @@ function UserPost() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const { userInfo } = userDetails;
+  const {
+    userInfo,
+    setPopUpCard,
+    setPopUpControl,
+    postText,
+    setPostText,
+    postPhotoMedia,
+    setPostPhotoMedia,
+    postVideoMedia,
+    setPostVideoMedia,
+  } = userDetails;
   const profileImage = userInfo.imageUrl;
-  const [postText, setPostText] = useState<string>("");
   const [hashTages, setHashTags] = useState<string[]>([]);
-  const [photoMedia, setPhotoMedia] = useState<Blob | undefined>();
-  const [videoMedia, setVideoMedia] = useState<Blob | undefined>();
   const photoRef = useRef<HTMLInputElement | null>(null);
   //const videoRef = useRef<HTMLInputElement | null>(null);
-  const postPopUp = useRef<HTMLDivElement | null>(null);
+
   //upload photo post
   function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files;
     if (!file) return;
-    setPhotoMedia(file[0]);
+    if (file[0].type.split("/")[0] !== "image")
+      return alert("Only upload image in photo section");
+    setPostPhotoMedia(file[0]);
   }
   //handle upload photo click
   function handlePhotoButtonClick() {
@@ -54,7 +63,7 @@ function UserPost() {
     photoRef.current.click();
   }
   //write a post
-  function handlePostTextChange(e: ChangeEvent<HTMLInputElement>) {
+  function handlePostTextChange(e: ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
     setPostText(value);
     //get hastages
@@ -71,10 +80,7 @@ function UserPost() {
     }
   }
   //upload post
-  async function uploadPost(key: KeyboardEvent) {
-    const enterKey = key.key;
-    if (enterKey !== "Enter" || postText.trim() === "") return;
-    key.preventDefault();
+  async function uploadPost() {
     console.log("upload data");
     try {
       const date = new Date();
@@ -84,9 +90,9 @@ function UserPost() {
       const formatedDate = `${year}/${month > 10 ? month : `0${month}`}/${day > 10 ? day : `0${day}`}`;
       const time = `${date.getHours()}:${date.getMinutes()}`;
       let contentType;
-      if (photoMedia) {
+      if (postPhotoMedia) {
         contentType = "image";
-      } else if (videoMedia) {
+      } else if (postVideoMedia) {
         contentType = "video";
       } else {
         contentType = "text";
@@ -100,14 +106,14 @@ function UserPost() {
         time: time,
       };
       const formData = new FormData();
-      if (photoMedia) {
-        formData.append("media", photoMedia);
+      if (postPhotoMedia) {
+        formData.append("media", postPhotoMedia);
       }
       formData.append("postContent", JSON.stringify(postTextData));
       setPostText("");
       setHashTags([]);
-      setPhotoMedia(undefined);
-      setVideoMedia(undefined);
+      setPostPhotoMedia(undefined);
+      setPostVideoMedia(undefined);
       const CLIENT_KEY = "CLIENT_KEY";
       const data = localStorage.getItem(CLIENT_KEY);
       if (!data || data === "null") throw new Error("Access key not found");
@@ -130,6 +136,19 @@ function UserPost() {
       console.log(error);
     }
   }
+  //postPopUp control
+  function handlePostPopUp() {
+    setPopUpControl(true);
+    setPopUpCard(
+      <PostPopUp
+        handleImagePost={handleImagePost}
+        handlePhotoButtonClick={handlePhotoButtonClick}
+        photoRef={photoRef}
+        handlePostTextChange={handlePostTextChange}
+        uploadPost={uploadPost}
+      />,
+    );
+  }
   return (
     <>
       <div className="w-full flex gap-5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
@@ -146,37 +165,41 @@ function UserPost() {
           <span className="w-full h-10">
             <input
               className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
-              value={postText}
-              onChange={handlePostTextChange}
-              onKeyDown={uploadPost}
               placeholder="Start a post"
+              onClick={handlePostPopUp}
             ></input>
           </span>
           {/**upload action button */}
           <div className="grid grid-cols-3">
             <span className="flex gap-2 items-center">
-              <img className="w-fit h-fit pointer" src={videoIcon}></img>
-              <h5 className="pointer">Video</h5>
+              <img
+                className="w-fit h-fit pointer"
+                src={videoIcon}
+                onClick={handlePostPopUp}
+              ></img>
+              <h5 className="pointer" onClick={handlePostPopUp}>
+                Video
+              </h5>
             </span>
             <span className="flex gap-2 relative items-center">
               <img
                 className="w-fit h-fit pointer"
                 src={photoIcon}
-                onClick={handlePhotoButtonClick}
+                onClick={handlePostPopUp}
               ></img>
-              <h5 className="pointer" onClick={handlePhotoButtonClick}>
+              <h5 className="pointer" onClick={handlePostPopUp}>
                 Photo
               </h5>
-              <input
-                className="w-0 h-0 absolute"
-                type="file"
-                onChange={handleImagePost}
-                ref={photoRef}
-              ></input>
             </span>
             <span className="flex gap-2 items-center">
-              <img className="w-fit h-fit pointer" src={writeIcon}></img>
-              <h5 className="pointer">Write</h5>
+              <img
+                className="w-fit h-fit pointer"
+                src={writeIcon}
+                onClick={handlePostPopUp}
+              ></img>
+              <h5 className="pointer" onClick={handlePostPopUp}>
+                Write
+              </h5>
             </span>
           </div>
         </div>

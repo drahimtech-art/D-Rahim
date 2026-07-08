@@ -1,8 +1,13 @@
-import lockKeyImg from "/images/LockKey.png";
+import mentorshipIconLight from "/images/StudentLight_icon.png";
+import lockKeyImgLight from "/images/LockKey.png";
+import bellImgLight from "/images/Bell.png";
+import dollarCircleLight from "/images/CurrencyDollar.png";
+import lockKeyImg from "/images/LockKey_darkIcon.png";
+import bellImg from "/images/Bell_darkIcon.png";
+import dollarCircle from "/images/CurrencyCircleDollar_darkIcon.png";
+import mentorshipIcon from "/images/Student_darkIcon.png";
 import logoutImg from "/images/SignOut.png";
-import bellImg from "/images/Bell.png";
-import dollarCircle from "/images/CurrencyDollar.png";
-function RightPanel() {
+function LeftPanel() {
   return (
     <div className="w-full h-fit bg-[#FFFFFF]">
       {/**head content */}
@@ -12,29 +17,36 @@ function RightPanel() {
       {/**content */}
       <div className="mt-5 flex flex-col gap-2.5">
         <span className="flex items-center pt-2.5 pb-2.5 pl-0.75 pr-0.75 gap-4 pointer">
+          <img className="w-6 h-6" src={mentorshipIcon}></img>
+          <h5 className="font-normal font-sans text-[16px] text-black line-clamp-1">
+            My Profile
+          </h5>
+        </span>
+        {/**content */}
+        <span className="flex items-center pt-2.5 pb-2.5 pl-0.75 pr-0.75 gap-4 pointer">
           <img className="w-6 h-6" src={lockKeyImg}></img>
-          <h5 className="font-normal font-sans text-[16px] line-clamp-1">
+          <h5 className="font-normal font-sans text-[16px] text-gray-600 line-clamp-1">
             Change Password
           </h5>
         </span>
         {/**content */}
         <span className="flex items-center pt-2.5 pb-2.5 pl-0.75 pr-0.75 gap-4 pointer">
           <img className="w-6 h-6" src={bellImg}></img>
-          <h5 className="font-normal font-sans text-[16px] line-clamp-1">
+          <h5 className="font-normal font-sans text-[16px] text-gray-600 line-clamp-1">
             Billing History
           </h5>
         </span>
         {/**content */}
         <span className="flex items-center pt-2.5 pb-2.5 pl-0.75 pr-0.75 gap-4 pointer">
           <img className="w-6 h-6" src={dollarCircle}></img>
-          <h5 className="font-normal font-sans text-[16px] line-clamp-1">
+          <h5 className="font-normal font-sans text-[16px] text-gray-600 line-clamp-1">
             Notification Settings
           </h5>
         </span>
         {/**logout */}
         <span className="flex items-center pt-2.5 pb-2.5 pl-0.75 pr-0.75 gap-4 pointer">
           <img className="w-6 h-6" src={logoutImg}></img>
-          <h5 className="font-normal font-sans text-[16px] line-clamp-1">
+          <h5 className="font-normal font-sans text-[16px]  line-clamp-1">
             Logout
           </h5>
         </span>
@@ -42,4 +54,4 @@ function RightPanel() {
     </div>
   );
 }
-export default RightPanel;
+export default LeftPanel;

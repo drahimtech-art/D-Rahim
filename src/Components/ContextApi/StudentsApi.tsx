@@ -31,6 +31,12 @@ type StudentsAppData = {
   setPopUpControl: React.Dispatch<SetStateAction<boolean>>;
   popUpCard: ReactNode;
   setPopUpCard: React.Dispatch<SetStateAction<ReactNode>>;
+  postText: string;
+  setPostText: React.Dispatch<SetStateAction<string>>;
+  postPhotoMedia: Blob | undefined;
+  setPostPhotoMedia: React.Dispatch<SetStateAction<Blob | undefined>>;
+  postVideoMedia: Blob | undefined;
+  setPostVideoMedia: React.Dispatch<SetStateAction<Blob | undefined>>;
 };
 type UserData = {
   firstName: string;
@@ -103,6 +109,9 @@ export const StudentsContextProvider = ({
   const [isFiles, setIsFiles] = useState<boolean>(false);
   const [popUpControl, setPopUpControl] = useState<boolean>(false);
   const [popUpCard, setPopUpCard] = useState<ReactNode | undefined>();
+  const [postText, setPostText] = useState<string>("");
+  const [postPhotoMedia, setPostPhotoMedia] = useState<Blob | undefined>();
+  const [postVideoMedia, setPostVideoMedia] = useState<Blob | undefined>();
   return (
     <studentsData.Provider
       value={{
@@ -130,6 +139,12 @@ export const StudentsContextProvider = ({
         setPopUpControl,
         popUpCard,
         setPopUpCard,
+        postText,
+        setPostText,
+        postPhotoMedia,
+        setPostPhotoMedia,
+        postVideoMedia,
+        setPostVideoMedia,
       }}
     >
       {children}

@@ -9,7 +9,6 @@ const Classes = lazy(() => import("./Classes/Classes"));
 const Messages = lazy(() => import("./Messages/Messages"));
 const Community = lazy(() => import("./Community/Community"));
 import Settings from "./Settings/Settings";
-import PostPopUp from "./Community/Content/PostPopUp";
 function AccessStudentPage() {
   const [searchParems] = useSearchParams();
   const userDetails = StudentsAppData();
@@ -134,9 +133,11 @@ function AccessStudentPage() {
       </div>
       {/***post popup card */}
       <div className="w-full h-0 z-10 top-0 fixed  ">
-        <div className="w-full h-screen bg-[#5756562d] flex justify-center items-center ">
-          <PostPopUp />
-        </div>
+        {popUpControl && (
+          <div className="w-full h-screen bg-[#5756562d] relative flex justify-center items-center ">
+            {popUpCard}
+          </div>
+        )}
       </div>
     </>
   );
