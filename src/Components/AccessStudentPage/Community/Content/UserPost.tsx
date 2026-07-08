@@ -1,4 +1,5 @@
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
+import { FeedContextApi } from "../../../ContextApi/FeedsContext";
 import { useState, useEffect } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/video_icon.png";
@@ -32,11 +33,10 @@ type FeedsData = {
 function UserPost() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
-  if (!userDetails) return;
+  const feedsContext = FeedContextApi();
+  if (!userDetails || !feedsContext) return;
+  const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
   const {
-    userInfo,
-    setPopUpCard,
-    setPopUpControl,
     postText,
     setPostText,
     postPhotoMedia,
@@ -45,7 +45,7 @@ function UserPost() {
     setPostVideoMedia,
     uploadPost,
     setUploadPost,
-  } = userDetails;
+  } = feedsContext;
   const profileImage = userInfo.imageUrl;
   const [hashTages, setHashTags] = useState<string[]>([]);
   const [textToPost, setTextToPost] = useState<string>("");

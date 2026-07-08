@@ -1,4 +1,4 @@
-import { lazy, useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SocketApi } from "../ContextApi/SocketApi";
 import { StudentsAppData } from "../ContextApi/StudentsApi";
@@ -121,11 +121,19 @@ function AccessStudentPage() {
             {/**main content */}
             <div className="w-full  h-full ">
               <div className="w-full h-full overflow-y-auto">
-                {renderDashboard && <Dashboard />}
-                {renderClasses && <Classes />}
-                {renderMessage && <Messages />}
-                {renderSettings && <Settings />}
-                {renderCummunity && <Community />}
+                <Suspense
+                  fallback={
+                    <div className="w-full h-full bg-green-500 font-bold text-2xl">
+                      Loading....
+                    </div>
+                  }
+                >
+                  {renderDashboard && <Dashboard />}
+                  {renderClasses && <Classes />}
+                  {renderMessage && <Messages />}
+                  {renderSettings && <Settings />}
+                  {renderCummunity && <Community />}
+                </Suspense>
               </div>
             </div>
           </div>

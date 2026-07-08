@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
+import { FeedContextApi } from "../../../ContextApi/FeedsContext";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import canculeIcon from "/images/proicons_cancel.png";
 import videoIcon from "/images/video_icon.png";
@@ -8,18 +9,18 @@ import writeIcon from "/images/write_icon.png";
 
 function PostPopUp() {
   const userDetails = StudentsAppData();
+  const feedsContext = FeedContextApi();
   if (!userDetails) return;
+  const { userInfo, setPopUpControl } = userDetails;
   const {
-    userInfo,
-    setPopUpControl,
     postText,
     setPostText,
     postPhotoMedia,
-    postVideoMedia,
     setPostPhotoMedia,
+    postVideoMedia,
     setPostVideoMedia,
     setUploadPost,
-  } = userDetails;
+  } = feedsContext;
   const [photoDisplay, setPhotoDisplay] = useState<string | undefined>();
   const photoRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
