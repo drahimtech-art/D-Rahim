@@ -4,6 +4,7 @@ import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/video_icon.png";
 import photoIcon from "/images/photo_icon.png";
 import writeIcon from "/images/write_icon.png";
+import PostPopUp from "./PostPopUp";
 /*
 type FeedsData = {
   connectionId: string;
@@ -40,6 +41,7 @@ function UserPost() {
   const [videoMedia, setVideoMedia] = useState<Blob | undefined>();
   const photoRef = useRef<HTMLInputElement | null>(null);
   //const videoRef = useRef<HTMLInputElement | null>(null);
+  const postPopUp = useRef<HTMLDivElement | null>(null);
   //upload photo post
   function handleImagePost(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files;
@@ -129,55 +131,57 @@ function UserPost() {
     }
   }
   return (
-    <div className="w-full flex gap-5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
-      {/**profile image */}
-      <span className="w-full flex  max-w-12.5 h-12.5  ">
-        <img
-          className="max-w-15 h-15    rounded-full"
-          src={profileImage ? profileImage : noProfileImg}
-        ></img>
-      </span>
-      {/**post text and upload actions button */}
-      <div className="w-full h-full flex flex-col gap-2">
-        {/**post text*/}
-        <span className="w-full h-10">
-          <input
-            className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
-            value={postText}
-            onChange={handlePostTextChange}
-            onKeyDown={uploadPost}
-            placeholder="Start a post"
-          ></input>
+    <>
+      <div className="w-full flex gap-5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
+        {/**profile image */}
+        <span className="w-full flex  max-w-12.5 h-12.5  ">
+          <img
+            className="max-w-15 h-15    rounded-full"
+            src={profileImage ? profileImage : noProfileImg}
+          ></img>
         </span>
-        {/**upload action button */}
-        <div className="grid grid-cols-3">
-          <span className="flex gap-2 items-center">
-            <img className="w-fit h-fit pointer" src={videoIcon}></img>
-            <h5 className="pointer">Video</h5>
-          </span>
-          <span className="flex gap-2 relative items-center">
-            <img
-              className="w-fit h-fit pointer"
-              src={photoIcon}
-              onClick={handlePhotoButtonClick}
-            ></img>
-            <h5 className="pointer" onClick={handlePhotoButtonClick}>
-              Photo
-            </h5>
+        {/**post text and upload actions button */}
+        <div className="w-full h-full flex flex-col gap-2">
+          {/**post text*/}
+          <span className="w-full h-10">
             <input
-              className="w-0 h-0 absolute"
-              type="file"
-              onChange={handleImagePost}
-              ref={photoRef}
+              className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
+              value={postText}
+              onChange={handlePostTextChange}
+              onKeyDown={uploadPost}
+              placeholder="Start a post"
             ></input>
           </span>
-          <span className="flex gap-2 items-center">
-            <img className="w-fit h-fit pointer" src={writeIcon}></img>
-            <h5 className="pointer">Write</h5>
-          </span>
+          {/**upload action button */}
+          <div className="grid grid-cols-3">
+            <span className="flex gap-2 items-center">
+              <img className="w-fit h-fit pointer" src={videoIcon}></img>
+              <h5 className="pointer">Video</h5>
+            </span>
+            <span className="flex gap-2 relative items-center">
+              <img
+                className="w-fit h-fit pointer"
+                src={photoIcon}
+                onClick={handlePhotoButtonClick}
+              ></img>
+              <h5 className="pointer" onClick={handlePhotoButtonClick}>
+                Photo
+              </h5>
+              <input
+                className="w-0 h-0 absolute"
+                type="file"
+                onChange={handleImagePost}
+                ref={photoRef}
+              ></input>
+            </span>
+            <span className="flex gap-2 items-center">
+              <img className="w-fit h-fit pointer" src={writeIcon}></img>
+              <h5 className="pointer">Write</h5>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default UserPost;

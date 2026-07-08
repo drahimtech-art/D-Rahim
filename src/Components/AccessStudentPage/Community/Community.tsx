@@ -1,5 +1,6 @@
 import Content from "./Content/Content";
 import Connections from "./Connections/Connections";
+
 function Community() {
   return (
     <div className="w-full max-h-full flex overflow-hidden gap-10">

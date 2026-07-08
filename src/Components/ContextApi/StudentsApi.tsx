@@ -27,6 +27,10 @@ type StudentsAppData = {
   setConectionsWithTimeStap: React.Dispatch<SetStateAction<Connections[]>>;
   sortedConections: Connections[];
   setSortedConections: React.Dispatch<SetStateAction<Connections[]>>;
+  popUpControl: boolean;
+  setPopUpControl: React.Dispatch<SetStateAction<boolean>>;
+  popUpCard: ReactNode;
+  setPopUpCard: React.Dispatch<SetStateAction<ReactNode>>;
 };
 type UserData = {
   firstName: string;
@@ -97,6 +101,8 @@ export const StudentsContextProvider = ({
   const [sendMessage, setSendMessage] = useState<boolean>(false);
   const [files, setFiles] = useState<Blob | undefined>(undefined);
   const [isFiles, setIsFiles] = useState<boolean>(false);
+  const [popUpControl, setPopUpControl] = useState<boolean>(false);
+  const [popUpCard, setPopUpCard] = useState<ReactNode | undefined>();
   return (
     <studentsData.Provider
       value={{
@@ -120,6 +126,10 @@ export const StudentsContextProvider = ({
         setConectionsWithTimeStap,
         sortedConections,
         setSortedConections,
+        popUpControl,
+        setPopUpControl,
+        popUpCard,
+        setPopUpCard,
       }}
     >
       {children}
