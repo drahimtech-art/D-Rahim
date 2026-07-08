@@ -40,7 +40,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const socketApi = SocketApi();
-  const { socket, receiveMessage, setReceiveMessage } = socketApi;
+  const { socket, receiveMessage, clearRecivedMessage } = socketApi;
   const {
     setChatContact,
     chatContact,
@@ -205,9 +205,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     setContactMessagesTemb((prevMessages) => {
       return [...prevMessages, message];
     });
-    setReceiveMessage((prevMessage) => {
-      return (prevMessage = undefined);
-    });
+    clearRecivedMessage();
     updateMoveContactToTopMulitipleTimes(connectionInfo);
   }
   // listion on new message
