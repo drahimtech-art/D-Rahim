@@ -1,5 +1,5 @@
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import { lazy, type ComponentType } from "react";
+import { lazy, Suspense, type ComponentType } from "react";
 import { StudentsContextProvider } from "./Components/ContextApi/StudentsApi";
 import { SocketProviderContext } from "./Components/ContextApi/SocketApi";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -146,7 +146,9 @@ function App() {
   ]);
   return (
     <>
-      <RouterProvider router={routes}></RouterProvider>
+      <Suspense>
+        <RouterProvider router={routes}></RouterProvider>
+      </Suspense>
     </>
   );
 }
