@@ -3,6 +3,7 @@ import {
   useContext,
   useState,
   useEffect,
+  useRef,
   type ReactNode,
 } from "react";
 import { io, Socket } from "socket.io-client";
@@ -46,15 +47,15 @@ export const SocketProviderContext = ({
 }: {
   children: ReactNode;
 }) => {
+  const socketRef = useRef<AppSocket | null>(null);
   const serverPort = import.meta.env.VITE_SERVER_PORT;
-  const [socket, setSocket] = useState<AppSocket | null>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [receiveMessage, setReceiveMessage] = useState<Message | undefined>();
   //
   const connectsocket = async () => {
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
-    if (socket?.connected) return;
+    if (socketRef.current?.connected) return;
     try {
       if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
@@ -77,40 +78,28 @@ export const SocketProviderContext = ({
         console.log(`Socket error:  ${error}`);
         setIsConnected(false);
       });
+      newSocket.on("receive-message", (message: Message) => {
+        setReceiveMessage(message);
+      });
       newSocket.connect();
-      setSocket(newSocket);
+      socketRef.current = newSocket;
     } catch (error) {
       console.log(error);
     }
   };
   //
   const disConnectSocket = () => {
-    if (socket) {
-      socket.disconnect();
-      setSocket(null);
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+      socketRef.current = null;
       setIsConnected(false);
     }
   };
   //
   useEffect(() => {
-    if (!socket) return;
-    console.log("mount");
-    socket.on("receive-message", (message: Message) => {
-      setReceiveMessage(message);
-    });
-    //
     return () => {
-      socket.off("receive-message", (message: Message) => {
-        setReceiveMessage(message);
-      });
-      console.log("clean up");
-    };
-  }, [isConnected]);
-  //
-  useEffect(() => {
-    return () => {
-      if (socket) {
-        socket?.disconnect();
+      if (socketRef.current) {
+        socketRef.current.disconnect();
       }
     };
   }, [isConnected]);
@@ -118,7 +107,7 @@ export const SocketProviderContext = ({
   return (
     <socketData.Provider
       value={{
-        socket,
+        socket: socketRef.current,
         isConnected,
         connectsocket,
         disConnectSocket,
