@@ -41,6 +41,8 @@ function PostTypeText(props: PostData) {
     props.engament.comments,
   );
   const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
+  const [postDate, setPostDate] = useState<string>("");
+  //
   useEffect(() => {
     async function getAuthorInfo() {
       const authorId = props.author;
@@ -77,6 +79,76 @@ function PostTypeText(props: PostData) {
   function handleViewMoreCaption() {
     setViewMoreCaption((prevState) => !prevState);
   }
+  //get post upload time
+  function getPostUpLoadTime(time: string, date: string) {
+    const newDate = new Date();
+    const newHour = Number(newDate.getHours());
+    const newMinites = Number(newDate.getMinutes());
+    const newMonth = Number(newDate.getMonth() + 1);
+    const newDay = Number(newDate.getDate());
+    const newYear = newDate.getFullYear().toString();
+    //
+    const oldMonth = Number(date.split("/")[1]);
+    const oldDay = Number(date.split("/")[2]);
+    const oldYear = date.split("/")[0];
+    let oldHour = Number(time.split(":")[0]);
+    let oldMinites = Number(time.split(":")[1]);
+    let timePassed;
+    //minites passed
+    if (
+      oldHour === newHour &&
+      oldMonth === newMonth &&
+      oldDay === newDay &&
+      oldYear === newYear
+    ) {
+      timePassed = newMinites - oldMinites;
+      return timePassed > 1 ? `${timePassed}minutes` : `${timePassed}minute`;
+    }
+    //hours passed
+    if (
+      oldHour !== newHour &&
+      oldMonth === newMonth &&
+      oldDay === newDay &&
+      oldYear === newYear
+    ) {
+      timePassed = newHour - oldHour;
+      return timePassed > 1 ? `${timePassed}hours` : `${timePassed}hour`;
+    }
+    //days passed
+    if (oldMonth === newMonth && oldYear === newYear && oldDay !== newDay) {
+      timePassed = newDay - oldDay;
+      return timePassed > 1 ? `${timePassed}days` : `${timePassed}day`;
+    }
+    //months passed
+    if (oldMonth !== newMonth && oldYear === newYear) {
+      timePassed = newMonth - oldMonth;
+      return timePassed > 1 ? `${timePassed}months` : `${timePassed}month`;
+    }
+    //years
+    if (oldYear !== newYear) {
+      timePassed = newMonth - oldMonth;
+      return `>0years`;
+    }
+  }
+  //get update feed of post upload time every minite
+  useEffect(() => {
+    if (!props) return;
+    const postTime = props.time;
+    const postDate = props.date;
+    const timer = setInterval(() => {
+      const timePassed = getPostUpLoadTime(postTime, postDate);
+      if (timePassed) {
+        setPostDate(timePassed);
+      }
+    }, 10000);
+    (() => {
+      const timePassed = getPostUpLoadTime(postTime, postDate);
+      if (timePassed) {
+        setPostDate(timePassed);
+      }
+    })();
+    return () => clearInterval(timer);
+  }, []);
   return (
     <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
       {/**image heading and connect action button */}
@@ -112,7 +184,7 @@ function PostTypeText(props: PostData) {
             </h5>
             {/**post time */}
             <h5 className="font-sans font-normal text-[16px] line-clamp-1 text-gray-500">
-              1hour ago
+              {postDate} ago
             </h5>
           </span>
         </div>

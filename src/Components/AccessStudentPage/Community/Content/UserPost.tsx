@@ -82,8 +82,8 @@ function UserPost() {
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
       const day = date.getDate();
-      const formatedDate = `${year}/${month > 10 ? month : `0${month}`}/${day > 10 ? day : `0${day}`}`;
-      const time = `${date.getHours()}:${date.getMinutes()}`;
+      const formatedDate = `${year}/${month >= 10 ? month : `0${month}`}/${day >= 10 ? day : `0${day}`}`;
+      const time = `${date.getHours() >= 10 ? `${date.getHours()}` : `0${date.getHours()}`}:${date.getMinutes() > 10 ? `${date.getMinutes()}` : `0${date.getMinutes()}`}`;
       let contentType;
       if (postPhotoMedia) {
         contentType = "image";
