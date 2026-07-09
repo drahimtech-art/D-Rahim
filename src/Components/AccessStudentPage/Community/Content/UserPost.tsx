@@ -75,7 +75,7 @@ function UserPost() {
   async function uploadPostFunc() {
     if (textToPost.trim() === "") return setUploadPost(false);
     const hashTagesInPost = textToPost.split("#");
-    let filtedPostText;
+    let filtedPostText = textToPost;
     if (hashTagesInPost.length > 1) {
       const textWithOutHashTages = hashTagesInPost[0];
       filtedPostText = textWithOutHashTages;
