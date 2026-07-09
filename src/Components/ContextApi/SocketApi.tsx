@@ -20,7 +20,10 @@ type ServerToClient = {
   "receive-message": (message: Message) => void;
 };
 type ClientToServer = {
-  "send-message": (message: Message, room: string) => void;
+  "send-message": (
+    message: Message,
+    room: { chatId: string; connection: string },
+  ) => void;
   "join-room": (connectionId: string) => void;
   "leave-room": (connectionId: string) => void;
 };

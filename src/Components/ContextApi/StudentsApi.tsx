@@ -57,6 +57,7 @@ type Connections = {
   contactLastName: string;
   contactId: string;
   contactImage: string | null;
+  chatGroupId: string;
   date?: string;
   time?: string;
 };
@@ -65,6 +66,7 @@ type ChatContact = {
   contactFirstName: string;
   contactLastName: string;
   contactImage: string | null;
+  chatGroupId: string;
 };
 type SortingData = {
   contactFirstName: string;

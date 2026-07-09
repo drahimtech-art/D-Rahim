@@ -8,6 +8,7 @@ type Connections = {
   contactLastName: string;
   contactId: string;
   contactImage: string | null;
+  chatGroupId: string;
   date?: string;
   time?: string;
 };
@@ -16,6 +17,7 @@ type SortingData = {
   contactLastName: string;
   contactId: string;
   contactImage: string | null;
+  chatGroupId: string;
   date: string;
   time: string;
 };
@@ -33,6 +35,7 @@ type ChatContact = {
   contactFirstName: string;
   contactLastName: string;
   contactImage: string | null;
+  chatGroupId: string;
 };
 
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
@@ -76,6 +79,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       contactFirstName: connectionInfo.contactFirstName,
       contactLastName: connectionInfo.contactLastName,
       contactImage: connectionInfo.contactImage,
+      chatGroupId: connectionInfo.chatGroupId,
     };
     setChatContact(data);
   }
@@ -116,6 +120,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       contactLastName: contactInfor.contactLastName,
       contactId: contactInfor.contactId,
       contactImage: contactInfor.contactImage,
+      chatGroupId: contactInfor.chatGroupId,
       date: lastTimeStap.date,
       time: lastTimeStap.time,
     };
@@ -149,11 +154,8 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   //call to top funtion if hole list is updated
   //get messages on mount
   useEffect(() => {
-    if (!userInfo.connectionId || !connectionInfo.contactId) return;
-    const getContactChatHistory = async (
-      connectionId: string,
-      contactId: string,
-    ) => {
+    if (!connectionInfo.chatGroupId) return;
+    const getContactChatHistory = async (groupId: string) => {
       const CLIENT_KEY = "CLIENT_KEY";
       const data = localStorage.getItem(CLIENT_KEY);
       try {
@@ -161,8 +163,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         const key = JSON.parse(data);
 
         const requstBody = {
-          connectionId: connectionId,
-          contactId: contactId,
+          groupId: groupId,
         };
         const requst = await fetch(
           `${serverPort}/connection/contact/messages`,
@@ -178,6 +179,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         );
         const responds = await requst.json();
         if (responds.ok) {
+          console.log(responds.chatHistory);
           setContactMessagesTemb(responds.chatHistory);
         } else {
           console.log(responds.message);
@@ -186,7 +188,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         console.log(error);
       }
     };
-    getContactChatHistory(userInfo.connectionId, connectionInfo.contactId);
+    getContactChatHistory(connectionInfo.chatGroupId);
   }, []);
   //move contact to top on new message
   async function updateMoveContactToTopMulitipleTimes(
@@ -254,7 +256,10 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     }
   }
   //send message
-  function sendChat(message: Messages, room: string) {
+  function sendChat(
+    message: Messages,
+    room: { chatId: string; connection: string },
+  ) {
     if (!socket) return;
     socket.emit("send-message", message, room);
   }
@@ -293,7 +298,10 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     if (chatContact.contactId !== connectionInfo.contactId) return;
     saveChat(messageFomart);
     if (isFiles) return sendFiles(messageFomart, chatContact.contactId);
-    sendChat(messageFomart, chatContact.contactId);
+    sendChat(messageFomart, {
+      chatId: chatContact.chatGroupId,
+      connection: chatContact.contactId,
+    });
   }
   //sendMessage
   useEffect(() => {
