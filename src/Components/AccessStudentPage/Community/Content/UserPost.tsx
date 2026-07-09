@@ -61,7 +61,6 @@ function UserPost() {
           const tages = `#${hashTagesInPost[i].split(" ")[0]}`;
           Tages.push(tages);
         }
-        console.log(`tages: ${Tages}`);
         setHashTags(Tages);
       } else {
         setHashTags([]);
@@ -74,8 +73,14 @@ function UserPost() {
     uploadPostFunc();
   }, [uploadPost]);
   async function uploadPostFunc() {
-    console.log(textToPost);
     if (textToPost.trim() === "") return setUploadPost(false);
+    const hashTagesInPost = textToPost.split("#");
+    let filtedPostText;
+    if (hashTagesInPost.length > 1) {
+      const textWithOutHashTages = hashTagesInPost[0];
+      filtedPostText = textWithOutHashTages;
+    }
+    if (!filtedPostText) return;
     setPopUpControl(false);
     try {
       const date = new Date();
@@ -95,7 +100,7 @@ function UserPost() {
       const postTextData = {
         connectionId: userInfo.connectionId,
         hashTages: hashTages,
-        caption: textToPost,
+        caption: filtedPostText,
         type: contentType,
         date: formatedDate,
         time: time,
