@@ -163,6 +163,7 @@ function UserPost() {
             <input
               className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
               placeholder="Start a post"
+              value={""}
               onClick={handlePostPopUp}
             ></input>
           </span>

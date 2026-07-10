@@ -58,6 +58,7 @@ function PostTypePhoto(props: PostData) {
             credentials: "include",
             headers: {
               "X-Frontend-Key": `${key}`,
+              "Content-Type": "application/json",
             },
           },
         );
@@ -71,10 +72,33 @@ function PostTypePhoto(props: PostData) {
     }
     getAuthorInfo();
   }, []);
-  function addLike() {
+  async function addLike() {
     if (isPostLiked) return;
     setIsPostLiked(true);
     setLikes((prevCount) => (prevCount += 1));
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const postId = props.postId;
+      const requst = await fetch(
+        `${serverPort}/feeds/intaraction/like/post/${postId}`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ connectionId: userInfo.connectionId }),
+        },
+      );
+      const responds = await requst.json();
+      console.log(responds);
+    } catch (error) {
+      console.log(error);
+    }
   }
   function handleViewMoreCaption() {
     setViewMoreCaption((prevState) => !prevState);
