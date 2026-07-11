@@ -9,6 +9,7 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  bio: string;
   date?: string;
   time?: string;
 };
@@ -18,6 +19,7 @@ type SortingData = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  bio: string;
   date: string;
   time: string;
 };
@@ -121,6 +123,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       contactId: contactInfor.contactId,
       contactImage: contactInfor.contactImage,
       chatGroupId: contactInfor.chatGroupId,
+      bio: contactInfor.bio,
       date: lastTimeStap.date,
       time: lastTimeStap.time,
     };

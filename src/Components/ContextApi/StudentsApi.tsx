@@ -58,6 +58,7 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  bio: string;
   date?: string;
   time?: string;
 };

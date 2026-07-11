@@ -13,6 +13,7 @@ type Connections = {
   contactId: string;
   chatGroupId: string;
   contactImage: string | null;
+  bio: string;
   date?: string;
   time?: string;
 };
@@ -22,6 +23,7 @@ type SortingData = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  bio: string;
   date: string;
   time: string;
 };
@@ -69,10 +71,12 @@ function Contact() {
   }, [conectionsWithTimeStap]);
   //
   useEffect(() => {
+    if (sortedConections.length === 0) return;
     setConectionList(sortedConections);
   }, [sortedConections]);
   //
   useEffect(() => {
+    if (conections.length !== 0) return;
     async function getConnectionsList() {
       const CLIENT_KEY = "CLIENT_KEY";
       const data = localStorage.getItem(CLIENT_KEY);
@@ -98,7 +102,7 @@ function Contact() {
       }
     }
     getConnectionsList();
-  }, []);
+  }, [conections]);
   return (
     <div className="w-full h-full  bg-white  pl-2 pr-2 flex flex-col pb-20 gap-7.5 overflow-y-scroll">
       {connectionList.map((e: Connections) => {
