@@ -179,7 +179,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         );
         const responds = await requst.json();
         if (responds.ok) {
-          console.log(responds.chatHistory);
           setContactMessagesTemb(responds.chatHistory);
         } else {
           console.log(responds.message);
@@ -216,7 +215,10 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     saveNewChat(receiveMessage);
   }, [receiveMessage]);
   //send files(images);
-  async function sendFiles(message: Messages, room: string) {
+  async function sendFiles(
+    message: Messages,
+    room: { chatId: string; connection: string },
+  ) {
     if (!files) return;
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
@@ -297,7 +299,11 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     };
     if (chatContact.contactId !== connectionInfo.contactId) return;
     saveChat(messageFomart);
-    if (isFiles) return sendFiles(messageFomart, chatContact.contactId);
+    if (isFiles)
+      return sendFiles(messageFomart, {
+        chatId: chatContact.chatGroupId,
+        connection: chatContact.contactId,
+      });
     sendChat(messageFomart, {
       chatId: chatContact.chatGroupId,
       connection: chatContact.contactId,
