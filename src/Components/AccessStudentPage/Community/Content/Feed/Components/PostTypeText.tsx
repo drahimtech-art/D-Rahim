@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import likeIcon from "/images/like_icon.png";
 import commentIcon from "/images/comment_icon.png";
@@ -42,6 +42,22 @@ function PostTypeText(props: PostData) {
   );
   const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
   const [postDate, setPostDate] = useState<string>("");
+  const postLikesId = useRef(props.engamentStates.likesId);
+  const postLikeRef = useRef<HTMLHeadingElement | null>(null);
+  //check if userHasAlready liked post
+  useEffect(() => {
+    const userConnectionId = userInfo.connectionId;
+    if (!postLikesId.current) return;
+    if (postLikesId.current.includes(userConnectionId)) {
+      setIsPostLiked(true);
+    }
+  }, [postLikesId]);
+  //update post liked buttion ux
+  useEffect(() => {
+    if (!isPostLiked || !postLikeRef.current) return;
+    postLikeRef.current.classList.remove("font-normal");
+    postLikeRef.current.classList.add("font-medium");
+  }, [isPostLiked]);
   //
   useEffect(() => {
     async function getAuthorInfo() {
@@ -150,7 +166,7 @@ function PostTypeText(props: PostData) {
     //years
     if (oldYear !== newYear) {
       timePassed = newMonth - oldMonth;
-      return `>0years`;
+      return `${timePassed}years`;
     }
   }
   //get update feed of post upload time every minite
@@ -261,6 +277,7 @@ function PostTypeText(props: PostData) {
           <h5
             className="font-sans font-normal text-[16px] pointer"
             onClick={addLike}
+            ref={postLikeRef}
           >
             {likes} Likes
           </h5>
