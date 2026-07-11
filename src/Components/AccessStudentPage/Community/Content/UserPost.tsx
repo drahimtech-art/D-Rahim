@@ -45,6 +45,7 @@ function UserPost() {
     setPostVideoMedia,
     uploadPost,
     setUploadPost,
+    setFeedsPost,
   } = feedsContext;
   const profileImage = userInfo.imageUrl;
   const [hashTages, setHashTags] = useState<string[]>([]);
@@ -130,6 +131,11 @@ function UserPost() {
       if (responds.ok) {
         alert(responds.message);
         console.log(responds.post);
+        const postMedia = responds.post;
+        setFeedsPost((prevsPosts) => {
+          if (!prevsPosts) return [postMedia];
+          return [postMedia, ...prevsPosts];
+        });
       } else {
         alert(responds.message);
       }

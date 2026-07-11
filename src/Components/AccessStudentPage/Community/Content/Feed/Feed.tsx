@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { FeedContextApi } from "../../../../ContextApi/FeedsContext";
 import PostTypeText from "./Components/PostTypeText";
 import PostTypePhoto from "./Components/PostTypePhoto";
 type FeedsData = {
@@ -27,11 +28,22 @@ type FeedsData = {
 function Feed() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
-  if (!userDetails) return;
+  const feedsMediaData = FeedContextApi();
+  if (!userDetails || !feedsMediaData) return;
   const { userInfo } = userDetails;
-  const [feedsPost, setFeedsPost] = useState<FeedsData[] | undefined>();
+  const { feedsPost, setFeedsPost } = feedsMediaData;
+  const [feedsPostStore, setFeedsPostStore] = useState<
+    FeedsData[] | undefined
+  >();
+  //listen on feeds post media change to add it to sate to be rendered
+  useEffect(() => {
+    if (feedsPost && feedsPost.length !== 0) {
+      setFeedsPostStore(feedsPost);
+    }
+  }, [feedsPost]);
   //get posts
   useEffect(() => {
+    if (feedsPost) if (feedsPost.length !== 0) return; // get post once and only once on this section
     async function getFeed() {
       const connectionId = userInfo.connectionId;
       const CLIENT_KEY = "CLIENT_KEY";
@@ -58,12 +70,12 @@ function Feed() {
       }
     }
     getFeed();
-  }, []);
+  }, [feedsPost]);
   return (
     <div className="flex flex-col gap-3.5 w-full h-fit">
       {/**post card */}
-      {feedsPost &&
-        feedsPost.map((e, _) => {
+      {feedsPostStore &&
+        feedsPostStore.map((e, _) => {
           if (e.content.type === "image")
             return (
               <PostTypePhoto
