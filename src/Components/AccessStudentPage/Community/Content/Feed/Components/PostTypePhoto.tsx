@@ -246,7 +246,7 @@ function PostTypePhoto(props: PostData) {
             className="w-full flex flex-col gap-2 -mb-5 pointer"
             onClick={handleViewMoreCaption}
           >
-            <h5 className=" font-sans font-medium text-[16px] max-w-[70%]">
+            <h5 className=" font-sans font-medium text-[16px] max-w-[95%]">
               {props.caption}
             </h5>
             <span className="flex gap-2 font-sans font-medium text-[16px] items-center text-[#505AE2]">
@@ -261,7 +261,7 @@ function PostTypePhoto(props: PostData) {
               {props.caption}
             </h5>
             <h5
-              className="font-sans font-medium text-[16px] pointer"
+              className="font-sans font-medium text-[16px]  pointer"
               onClick={handleViewMoreCaption}
             >
               see more

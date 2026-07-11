@@ -241,7 +241,7 @@ function PostTypeText(props: PostData) {
         {/**caption */}
         {viewMoreCaption ? (
           <div className="w-full  pointer" onClick={handleViewMoreCaption}>
-            <h5 className=" font-sans font-medium text-[16px] max-w-[70%]">
+            <h5 className=" font-sans font-medium text-[16px] max-w-[95%]">
               {props.caption}
             </h5>
           </div>
