@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { StudentsAppData } from "../ContextApi/StudentsApi";
 import homeIcon from "/images/HouseSimple_icon.png";
 import lightHomeIcon from "/images/House.png";
 import mentorshipIcon from "/images/StudentLight_icon.png";
@@ -10,6 +11,7 @@ import cummunityIcon from "/images/UsersThree_icon.png";
 import lightcummunityIcon from "/images/UsersThree.png";
 import settingsIcon from "/images/Sliders_icon.png";
 import lightSettingsIcon from "/images/Sliders.png";
+import LogoutPopUpCard from "./LogoutPopUpCard";
 type NavigationControl = {
   toDashboard: () => void;
   toClasses: () => void;
@@ -26,6 +28,9 @@ type NavigationControl = {
 };
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
+  const userDetails = StudentsAppData();
+  if (!userDetails) return;
+  const { setPopUpCard, setPopUpControl } = userDetails;
   const isUserVerified = searchParems.get("verified");
   const page = searchParems.get("page");
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
@@ -34,9 +39,7 @@ function LeftNevBar(props: NavigationControl) {
   const communityRef = useRef<HTMLButtonElement | null>(null);
   const settingsRef = useRef<HTMLButtonElement | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const logoutControlFuncRef = useRef<HTMLButtonElement | null>(null);
-  const [isLogedOut, setIsLogedOut] = useState<boolean>(false);
-  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  //const serverPort = import.meta.env.VITE_SERVER_PORT;
   function toDashboard() {
     if (
       !dashboardRef.current ||
@@ -238,43 +241,9 @@ function LeftNevBar(props: NavigationControl) {
     })();
   }, []);
   //
-  async function logout() {
-    if (!logoutControlFuncRef.current || isLogedOut) return;
-    setIsLogedOut(true);
-    logoutControlFuncRef.current.classList.remove("AllowedPointerForButton");
-    logoutControlFuncRef.current.classList.add("notallowedPointerForButton");
-    const CLIENT_KEY = "CLIENT_KEY";
-    const data = localStorage.getItem(CLIENT_KEY);
-    try {
-      if (!data || data === "null") throw new Error("Access key not found");
-      const key = JSON.parse(data);
-      const requst = await fetch(`${serverPort}/signin/user/logout`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "X-Frontend-Key": `${key}`,
-          "Content-Type": "application/json",
-        },
-      });
-      const responds = await requst.json();
-      if (responds.ok) {
-        const CLIENT_KEY = "CLIENT_KEY";
-        localStorage.setItem(CLIENT_KEY, JSON.stringify(null));
-        setIsLogedOut(false);
-        logoutControlFuncRef.current.classList.remove(
-          "notallowedPointerForButton",
-        );
-        logoutControlFuncRef.current.classList.add("AllowedPointerForButton");
-        window.location.reload();
-      }
-    } catch (error) {
-      console.log(error);
-      setIsLogedOut(false);
-      logoutControlFuncRef.current.classList.remove(
-        "notallowedPointerForButton",
-      );
-      logoutControlFuncRef.current.classList.add("AllowedPointerForButton");
-    }
+  function logout() {
+    setPopUpCard(<LogoutPopUpCard />);
+    setPopUpControl(true);
   }
 
   return (
@@ -346,7 +315,6 @@ function LeftNevBar(props: NavigationControl) {
         <button
           className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl AllowedPointerForButton"
           onClick={logout}
-          ref={logoutControlFuncRef}
         >
           <i className="fas fa-right-from-bracket font-extralight  text-[24px]"></i>
           <h5 className="font-inter font-normal text-[18px]">Logout</h5>
