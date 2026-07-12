@@ -1,38 +1,28 @@
-import { useState, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import Head from "./Head";
 import UserPost from "./UserPost";
 import Feed from "./Feed/Feed";
 const Group = lazy(() => import("./Groups/Group"));
 const Connections = lazy(() => import("./Connections/Connections"));
-function Content() {
-  const [feedState, setFeedState] = useState<boolean>(true);
-  const [groupState, setGroupState] = useState<boolean>(false);
-  const [connectionsState, setConnectionsSate] = useState<boolean>(false);
-  function toFeedsPage() {
-    setConnectionsSate(false);
-    setGroupState(false);
-    setFeedState(true);
-  }
-  function toGroupsPage() {
-    setConnectionsSate(false);
-    setFeedState(false);
-    setGroupState(true);
-  }
-  function toConnectionsPage() {
-    setFeedState(false);
-    setGroupState(false);
-    setConnectionsSate(true);
-  }
+type CommunityPagesControl = {
+  feedsState: boolean;
+  groupState: boolean;
+  connectionsState: boolean;
+  toFeedsPage: () => void;
+  toGroupsPage: () => void;
+  toConnectionsPage: () => void;
+};
+function Content(props: CommunityPagesControl) {
   return (
     <div className="flex flex-col w-full h-full overflow-y-auto">
       {/**head  */}
       <Head
-        feedsSate={feedState}
-        groupState={groupState}
-        connectionsState={connectionsState}
-        toFeedsPage={toFeedsPage}
-        toGroupsPage={toGroupsPage}
-        toConnectionsPage={toConnectionsPage}
+        feedsSate={props.feedsState}
+        groupState={props.groupState}
+        connectionsState={props.connectionsState}
+        toFeedsPage={props.toFeedsPage}
+        toGroupsPage={props.toGroupsPage}
+        toConnectionsPage={props.toConnectionsPage}
       />
       <div className="mt-7.5 flex flex-col gap-3.75">
         {/**content */}
@@ -43,13 +33,13 @@ function Content() {
             </div>
           }
         >
-          {feedState && (
+          {props.feedsState && (
             <>
               <UserPost /> <Feed />
             </>
           )}
-          {groupState && <Group />}
-          {connectionsState && <Connections />}
+          {props.groupState && <Group />}
+          {props.connectionsState && <Connections />}
         </Suspense>
       </div>
     </div>

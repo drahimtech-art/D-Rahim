@@ -10,9 +10,9 @@ const Messages = lazy(() => import("./Messages/Messages"));
 const Community = lazy(() => import("./Community/Community"));
 import Settings from "./Settings/Settings";
 function AccessStudentPage() {
-  const [searchParems] = useSearchParams();
   const userDetails = StudentsAppData();
   if (!userDetails) return;
+  const [searchParems] = useSearchParams();
   const { userInfo, popUpCard, popUpControl } = userDetails;
   const socketApi = SocketApi();
   const { socket } = socketApi;
