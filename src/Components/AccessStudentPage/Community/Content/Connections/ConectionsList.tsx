@@ -1,5 +1,3 @@
-import { useState, useEffect, type ChangeEvent } from "react";
-import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import ConnectionsCard from "./ConnectionsCard";
 type Connections = {
   contactFirstName: string;
@@ -7,17 +5,13 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date?: string;
   time?: string;
 };
-type ChatContact = {
-  contactId: string;
-  contactFirstName: string;
-  contactLastName: string;
-  contactImage: string | null;
-  chatGroupId: string;
-};
+
 function ConectionsList({ connectionList }: { connectionList: Connections[] }) {
   return (
     <div className="mt-4.5">
@@ -44,6 +38,8 @@ function ConectionsList({ connectionList }: { connectionList: Connections[] }) {
               chatGroupId={e.chatGroupId}
               contactImage={e.contactImage}
               bio={e.bio}
+              invite={e.invite}
+              isConnected={e.isConnected}
               key={`connection-key-${e.contactId}`}
             />
           );

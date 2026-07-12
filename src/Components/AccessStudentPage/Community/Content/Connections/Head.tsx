@@ -17,8 +17,8 @@ function Head(props: SeachControl) {
         ></input>
       </span>
       {/**filter bar */}
-      <span className="pl-1.25 pr-1.25 pt-2.5 pb-2.5 flex w-fit h-fit gap-1.5 justify-center items-center border border-[#11AC76] rounded-[30px]">
-        <h5 className="font-sans font-medium text-[16px] text-[#11AC76]">
+      <span className="pl-1.25 pr-1.25 pt-2.5 pb-2.5 flex w-fit h-10 overflow-hidden gap-1.5 justify-center items-center border border-[#11AC76] rounded-[30px]">
+        <h5 className="font-sans font-medium text-[16px] text-[#11AC76] line-clamp-1">
           Recently added
         </h5>
         <i className="fa fa-angle-down text-[#11AC76]"></i>

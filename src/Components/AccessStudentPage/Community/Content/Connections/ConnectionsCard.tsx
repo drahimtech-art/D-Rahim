@@ -7,6 +7,8 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date?: string;
   time?: string;
@@ -17,6 +19,8 @@ type ChatContact = {
   contactLastName: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
 };
 function ConnectionsCard(props: Connections) {
   const [searchParems, setSearchParems] = useSearchParams();
@@ -31,6 +35,8 @@ function ConnectionsCard(props: Connections) {
       contactLastName: props.contactLastName,
       contactImage: props.contactImage,
       chatGroupId: props.chatGroupId,
+      invite: props.invite,
+      isConnected: props.isConnected,
     };
     setChatContact(data);
   }

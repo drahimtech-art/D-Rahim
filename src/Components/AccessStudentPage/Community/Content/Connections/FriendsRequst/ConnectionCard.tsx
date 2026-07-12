@@ -1,13 +1,30 @@
-function ConnectionCard() {
+import noProfileImg from "/images/noProfileImage.jpeg";
+type RequstInfo = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  bio: string;
+  contactId: string;
+  isConnected: boolean;
+};
+function ConnectionCard(props: RequstInfo) {
   return (
     <div className="flex items-center gap-4.25 pb-1 border-b border-gray-500">
       {/**profileImage */}
-      <span className="w-10 h-10 mr-auto ml-1.5 rounded-full bg-gray-300"></span>
+      <span className="w-10 h-10 mr-auto ml-1.5">
+        <img
+          className="min-w-10 max-w-10 min-h-10 max-h-10 rounded-full"
+          src={props.imageUrl ? props.imageUrl : noProfileImg}
+        ></img>
+      </span>
       {/**name and info */}
       <span className="flex flex-col  mr-auto">
-        <h5 className="font-medium text-[20px]">David Abiodun</h5>
+        <h5 className="font-medium text-[20px]">
+          {props.firstName}
+          {props.lastName}
+        </h5>
         <h5 className="font-medium text-[16px] line-clamp-1 text-gray-500">
-          Batch 2025, Lagos State
+          {props.bio}
         </h5>
       </span>
       {/**action button */}
