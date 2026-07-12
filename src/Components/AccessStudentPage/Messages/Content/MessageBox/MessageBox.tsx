@@ -70,7 +70,7 @@ function MessageBox() {
         firstName={chatContact?.contactFirstName}
         lastName={chatContact?.contactLastName}
         imageUrl={chatContact.contactImage}
-        status={"online"}
+        status={chatContact.isConnected ? "online" : "offline"}
       />
       {/**content */}
 

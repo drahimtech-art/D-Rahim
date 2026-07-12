@@ -6,6 +6,8 @@ type SortingData = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date: string;
   time: string;
@@ -16,6 +18,8 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date?: string;
   time?: string;

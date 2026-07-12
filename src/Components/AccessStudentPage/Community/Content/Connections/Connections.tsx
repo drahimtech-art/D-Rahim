@@ -8,6 +8,8 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date?: string;
   time?: string;
@@ -26,8 +28,12 @@ function Connections() {
     setSearch(value);
     const filtedConnection = conections.filter((e) => {
       if (
-        e.contactFirstName.includes(value) ||
-        e.contactLastName.includes(value)
+        e.contactFirstName
+          .toLocaleLowerCase()
+          .includes(value.toLocaleLowerCase()) ||
+        e.contactLastName
+          .toLocaleLowerCase()
+          .includes(value.toLocaleLowerCase())
       ) {
         return e;
       }

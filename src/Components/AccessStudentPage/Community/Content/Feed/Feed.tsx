@@ -25,16 +25,57 @@ type FeedsData = {
   time: string;
   createdAt: Date;
 };
+type Connections = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string | null;
+  chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
+  bio: string;
+  date?: string;
+  time?: string;
+};
 function Feed() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   const feedsMediaData = FeedContextApi();
   if (!userDetails || !feedsMediaData) return;
-  const { userInfo } = userDetails;
+  const { userInfo, conections, setConections } = userDetails;
   const { feedsPost, setFeedsPost } = feedsMediaData;
   const [feedsPostStore, setFeedsPostStore] = useState<
     FeedsData[] | undefined
   >();
+  //get userConnections list
+  useEffect(() => {
+    if (conections.length !== 0) return;
+    async function getConnectionsList() {
+      const CLIENT_KEY = "CLIENT_KEY";
+      const data = localStorage.getItem(CLIENT_KEY);
+      try {
+        if (!data || data === "null") throw new Error("Access key not found");
+        const key = JSON.parse(data);
+        const requst = await fetch(`${serverPort}/connection/user/contacts`, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+          },
+        });
+        const responds = await requst.json();
+        if (responds.ok) {
+          const data: Connections[] = responds.connections;
+          setConections(data);
+        } else {
+          console.log(responds.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getConnectionsList();
+  }, [conections]);
   //listen on feeds post media change to add it to sate to be rendered
   useEffect(() => {
     if (feedsPost && feedsPost.length !== 0) {

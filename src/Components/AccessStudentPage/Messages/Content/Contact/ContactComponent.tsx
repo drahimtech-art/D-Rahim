@@ -9,6 +9,8 @@ type Connections = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date?: string;
   time?: string;
@@ -19,6 +21,8 @@ type SortingData = {
   contactId: string;
   contactImage: string | null;
   chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
   bio: string;
   date: string;
   time: string;
@@ -38,6 +42,7 @@ type ChatContact = {
   contactLastName: string;
   contactImage: string | null;
   chatGroupId: string;
+  isConnected: boolean;
 };
 
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
@@ -82,6 +87,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       contactLastName: connectionInfo.contactLastName,
       contactImage: connectionInfo.contactImage,
       chatGroupId: connectionInfo.chatGroupId,
+      isConnected: connectionInfo.isConnected,
     };
     setChatContact(data);
   }
@@ -123,6 +129,8 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       contactId: contactInfor.contactId,
       contactImage: contactInfor.contactImage,
       chatGroupId: contactInfor.chatGroupId,
+      invite: contactInfor.invite,
+      isConnected: contactInfor.isConnected,
       bio: contactInfor.bio,
       date: lastTimeStap.date,
       time: lastTimeStap.time,

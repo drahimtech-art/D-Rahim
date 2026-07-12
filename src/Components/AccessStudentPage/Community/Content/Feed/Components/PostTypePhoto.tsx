@@ -33,7 +33,7 @@ function PostTypePhoto(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const { userInfo } = userDetails;
+  const { userInfo, conections } = userDetails;
   const [authorInfo, setAuthorInfo] = useState<AuthorInfo | undefined>();
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
@@ -44,6 +44,28 @@ function PostTypePhoto(props: PostData) {
   const [postDate, setPostDate] = useState<string>("");
   const postLikesId = useRef(props.engamentStates.likesId);
   const postLikeRef = useRef<HTMLHeadingElement | null>(null);
+  const [sendConectionRequst, setSendConectionRequst] =
+    useState<boolean>(false);
+  const contectionSate = useRef<string>("Connect");
+  //check post author connections state
+  useEffect(() => {
+    if (conections.length === 0) return;
+    for (const contact of conections) {
+      const authorId = props.author;
+      if (contact.contactId === authorId && contact.invite) {
+        if (contact.isConnected) {
+          contectionSate.current = "Connected";
+          setSendConectionRequst(true);
+        } else {
+          contectionSate.current = "Requst Sent";
+          setSendConectionRequst(true);
+        }
+      } else if (userInfo.connectionId === authorId) {
+        contectionSate.current = "View Post";
+        setSendConectionRequst(true);
+      }
+    }
+  }, [conections]);
   //check if userHasAlready liked post
   useEffect(() => {
     const userConnectionId = userInfo.connectionId;
@@ -190,6 +212,37 @@ function PostTypePhoto(props: PostData) {
     })();
     return () => clearInterval(timer);
   }, []);
+  //send post author connection requst
+  async function addConnection() {
+    if (sendConectionRequst) return;
+    contectionSate.current = "Requst Sent";
+    setSendConectionRequst(true);
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const author = props.author;
+      const requst = await fetch(
+        `${serverPort}/connection/user/add/${author}`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ connectionId: userInfo.connectionId }),
+        },
+      );
+      const responds = await requst.json();
+      if (responds.ok) {
+        console.log(responds);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
       {/**image heading and connect action button */}
@@ -232,8 +285,11 @@ function PostTypePhoto(props: PostData) {
         {/**connnections and menu */}
         <div className="w-fit flex h-fit ">
           <span className="w-26.25 h-6">
-            <h5 className="font-sans text-[14px] pointer font-medium text-[#11AC76]">
-              {props.author === userInfo.connectionId ? "view post" : "Connect"}
+            <h5
+              className="font-sans text-[14px] pointer font-medium text-[#11AC76]"
+              onClick={addConnection}
+            >
+              {contectionSate.current}
             </h5>
           </span>
         </div>
