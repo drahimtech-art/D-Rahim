@@ -65,6 +65,27 @@ function FriendsRequst() {
     setDisplayConnectionList(allRequst);
     setSeeMore(true);
   }
+  //remove requst from display list after been validated on the backend
+  function removeRequst(requstId: string) {
+    const mainList = [...connectionsRequstList];
+    const isFullDisplay = displayConnectionList.length > 4 ? true : false;
+    const filtedList = mainList.filter((e) => {
+      if (e.contactId !== requstId) return e;
+    });
+    setConnectionsRequstList(filtedList);
+    if (isFullDisplay) {
+      setDisplayConnectionList(filtedList);
+    } else {
+      const listLimit4 = [];
+      for (let i = 0; i < filtedList.length; i++) {
+        const data = filtedList[i];
+        if (i <= 4) {
+          listLimit4.push(data);
+        }
+      }
+      setDisplayConnectionList(listLimit4);
+    }
+  }
   return (
     <div className="w-full h-full max-h-fit min-w-65   bg-[#FFFFFF] overflow-y-auto">
       <span>
@@ -88,6 +109,7 @@ function FriendsRequst() {
                   bio={e.bio}
                   isConnected={e.isConnected}
                   imageUrl={e.imageUrl}
+                  removeRequst={removeRequst}
                   key={`connection-requst-key-${e.contactId}`}
                 />
               );
