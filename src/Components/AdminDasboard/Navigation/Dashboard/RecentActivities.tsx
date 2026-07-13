@@ -1,6 +1,6 @@
-import calenderIcon from "/images/CalendarDotsLight_icon.png";
-import mentorshipIcon from "/images/StudentLight_icon.png";
-import jobInquiresIcon from "/images/BriefcaseLight_icon.png";
+import calenderIcon from "/images/icons/CalendarDotsLight_icon.png";
+import mentorshipIcon from "/images/icons/StudentLight_icon.png";
+import jobInquiresIcon from "/images/icons/BriefcaseLight_icon.png";
 function RecentActivities() {
   return (
     <div className="w-full h-full pl-5 pr-5 p-3.5 bg-[#FFFFFF] rounded-[20px] overflow-hidden">

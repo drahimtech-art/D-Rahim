@@ -1,7 +1,7 @@
-import calenderIcon from "/images/CalendarDots_icon.png";
-import mentorshipIcon from "/images/Student_icon.png";
-import jobInquiresIcon from "/images/Briefcase_Icon.png";
-import totalUsersIcon from "/images/UsersLight_icon.png";
+import calenderIcon from "/images/icons/CalendarDots_icon.png";
+import mentorshipIcon from "/images/icons/Student_icon.png";
+import jobInquiresIcon from "/images/icons/Briefcase_Icon.png";
+import totalUsersIcon from "/images/icons/UsersLight_icon.png";
 function TopContent() {
   return (
     <div className="w-full h-fit grid grid-cols-4 gap-6.75">

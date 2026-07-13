@@ -1,16 +1,16 @@
 import { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { StudentsAppData } from "../ContextApi/StudentsApi";
-import homeIcon from "/images/HouseSimple_icon.png";
-import lightHomeIcon from "/images/House.png";
-import mentorshipIcon from "/images/StudentLight_icon.png";
-import lightMentorshipIcon from "/images/Student.png";
-import messagesIcon from "/images/Envelope_icon.png";
-import lightMessagesIcon from "/images/Envelope.png";
-import cummunityIcon from "/images/UsersThree_icon.png";
-import lightcummunityIcon from "/images/UsersThree.png";
-import settingsIcon from "/images/Sliders_icon.png";
-import lightSettingsIcon from "/images/Sliders.png";
+import homeIcon from "/images/icons/HouseSimple_icon.png";
+import lightHomeIcon from "/images/icons/House.png";
+import mentorshipIcon from "/images/icons/StudentLight_icon.png";
+import lightMentorshipIcon from "/images/icons/Student.png";
+import messagesIcon from "/images/icons/Envelope_icon.png";
+import lightMessagesIcon from "/images/icons/Envelope.png";
+import cummunityIcon from "/images/icons/UsersThree_icon.png";
+import lightcummunityIcon from "/images/icons/UsersThree.png";
+import settingsIcon from "/images/icons/Sliders_icon.png";
+import lightSettingsIcon from "/images/icons/Sliders.png";
 import LogoutPopUpCard from "./LogoutPopUpCard";
 type NavigationControl = {
   toDashboard: () => void;

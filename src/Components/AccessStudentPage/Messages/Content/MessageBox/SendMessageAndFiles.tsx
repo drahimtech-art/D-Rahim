@@ -1,5 +1,5 @@
 import { useRef, type ChangeEvent } from "react";
-import paperPlane from "/images/PaperPlane.png";
+import paperPlane from "/images/icons/PaperPlane.png";
 type SendMessageAndFilesControl = {
   input: string;
   inputChange: (e: ChangeEvent<HTMLInputElement>) => void;

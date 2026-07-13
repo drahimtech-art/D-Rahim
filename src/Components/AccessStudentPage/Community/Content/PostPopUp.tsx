@@ -2,11 +2,10 @@ import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
 import { FeedContextApi } from "../../../ContextApi/FeedsContext";
 import noProfileImg from "/images/noProfileImage.jpeg";
-import canculeIcon from "/images/proicons_cancel.png";
-import videoIcon from "/images/video_icon.png";
-import photoIcon from "/images/photo_icon.png";
-import writeIcon from "/images/write_icon.png";
-
+import canculeIcon from "/images/icons/proicons_cancel.png";
+import videoIcon from "/images/icons/video_icon.png";
+import photoIcon from "/images/icons/photo_icon.png";
+import writeIcon from "/images/icons/write_icon.png";
 function PostPopUp() {
   const userDetails = StudentsAppData();
   const feedsContext = FeedContextApi();

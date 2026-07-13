@@ -1,4 +1,4 @@
-import threeDotsMenu from "/images/ThreeDots.png";
+import threeDotsMenu from "/images/icons/ThreeDots.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 function Head({
   firstName,

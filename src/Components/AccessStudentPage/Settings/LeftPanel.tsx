@@ -1,12 +1,12 @@
-import mentorshipIconLight from "/images/StudentLight_icon.png";
-import lockKeyImgLight from "/images/LockKey.png";
-import bellImgLight from "/images/Bell.png";
-import dollarCircleLight from "/images/CurrencyDollar.png";
-import lockKeyImg from "/images/LockKey_darkIcon.png";
-import bellImg from "/images/Bell_darkIcon.png";
-import dollarCircle from "/images/CurrencyCircleDollar_darkIcon.png";
-import mentorshipIcon from "/images/Student_darkIcon.png";
-import logoutImg from "/images/SignOut.png";
+import mentorshipIconLight from "/images/icons/StudentLight_icon.png";
+import lockKeyImgLight from "/images/icons/LockKey.png";
+import bellImgLight from "/images/icons/Bell.png";
+import dollarCircleLight from "/images/icons/CurrencyDollar.png";
+import lockKeyImg from "/images/icons/LockKey_darkIcon.png";
+import bellImg from "/images/icons/Bell_darkIcon.png";
+import dollarCircle from "/images/icons/CurrencyCircleDollar_darkIcon.png";
+import mentorshipIcon from "/images/icons/Student_darkIcon.png";
+import logoutImg from "/images/icons/SignOut.png";
 function LeftPanel() {
   return (
     <div className="w-full h-fit bg-[#FFFFFF]">

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
-import likeIcon from "/images/like_icon.png";
-import commentIcon from "/images/comment_icon.png";
-import shareIcon from "/images/share_icon.png";
+import likeIcon from "/images/icons/like_icon.png";
+import commentIcon from "/images/icons/comment_icon.png";
+import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
 type PostData = {

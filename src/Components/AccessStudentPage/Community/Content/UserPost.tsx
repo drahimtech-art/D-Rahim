@@ -2,9 +2,9 @@ import { StudentsAppData } from "../../../ContextApi/StudentsApi";
 import { FeedContextApi } from "../../../ContextApi/FeedsContext";
 import { useState, useEffect } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
-import videoIcon from "/images/video_icon.png";
-import photoIcon from "/images/photo_icon.png";
-import writeIcon from "/images/write_icon.png";
+import videoIcon from "/images/icons/video_icon.png";
+import photoIcon from "/images/icons/photo_icon.png";
+import writeIcon from "/images/icons/write_icon.png";
 import PostPopUp from "./PostPopUp";
 /*
 type FeedsData = {

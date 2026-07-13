@@ -1,7 +1,7 @@
 import { StudentsAppData } from "../../ContextApi/StudentsApi";
 import { useState, useRef, type ChangeEvent } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
-import pencil from "/images/pencil.png";
+import pencil from "/images/icons/pencil.png";
 import LeftPanel from "./LeftPanel";
 type UserData = {
   firstName: string;
