@@ -23,7 +23,7 @@ type ChatContact = {
   isConnected: boolean;
 };
 function ConnectionsCard(props: Connections) {
-  const [searchParems, setSearchParems] = useSearchParams();
+  const [_, setSearchParems] = useSearchParams();
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { setChatContact } = userDetails;
