@@ -4,6 +4,7 @@ import likeIcon from "/images/like_icon.png";
 import commentIcon from "/images/comment_icon.png";
 import shareIcon from "/images/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
+import CommentsPopUp from "../Comments/CommentsPopUp";
 type PostData = {
   author: string;
   engament: {
@@ -33,10 +34,11 @@ function PostTypeText(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const { userInfo, conections } = userDetails;
+  const { userInfo, conections, setPopUpCard, setPopUpControl } = userDetails;
   const [authorInfo, setAuthorInfo] = useState<AuthorInfo | undefined>();
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
+  const [addComments, setAddComments] = useState<boolean>(false);
   const [commentsCount, setCommentsCount] = useState<number>(
     props.engament.comments,
   );
@@ -241,6 +243,11 @@ function PostTypeText(props: PostData) {
       console.log(error);
     }
   }
+  //add comments
+  function handleAddComments() {
+    setPopUpCard(<CommentsPopUp />);
+    setPopUpControl(true);
+  }
   return (
     <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
       {/**image heading and connect action button */}
@@ -340,8 +347,15 @@ function PostTypeText(props: PostData) {
         </span>
         {/**comment */}
         <span className="flex gap-2 items-center justify-center">
-          <img className="w-10.75 h-8 pointer" src={commentIcon}></img>
-          <h5 className="font-sans font-normal text-[16px] pointer line-clamp-1">
+          <img
+            className="w-10.75 h-8 pointer"
+            src={commentIcon}
+            onClick={handleAddComments}
+          ></img>
+          <h5
+            className="font-sans font-normal text-[16px] pointer line-clamp-1"
+            onClick={handleAddComments}
+          >
             {commentsCount} Comments
           </h5>
         </span>
