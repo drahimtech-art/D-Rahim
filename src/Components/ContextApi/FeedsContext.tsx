@@ -6,6 +6,10 @@ import {
   type SetStateAction,
 } from "react";
 type FeedsPostData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  bio: string;
   connectionId: string;
   engament: {
     likes: number;

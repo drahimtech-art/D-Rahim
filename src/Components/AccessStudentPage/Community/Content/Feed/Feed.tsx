@@ -4,6 +4,10 @@ import { FeedContextApi } from "../../../../ContextApi/FeedsContext";
 import PostTypeText from "./Components/PostTypeText";
 import PostTypePhoto from "./Components/PostTypePhoto";
 type FeedsData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  bio: string;
   connectionId: string;
   engament: {
     likes: number;
@@ -120,7 +124,11 @@ function Feed() {
           if (e.content.type === "image")
             return (
               <PostTypePhoto
-                author={e.connectionId}
+                firstName={e.firstName}
+                lastName={e.lastName}
+                profileImg={e.imageUrl}
+                bio={e.bio}
+                connectionId={e.connectionId}
                 engament={e.engament}
                 engamentStates={e.engamentStates}
                 caption={e.content.caption}
@@ -136,7 +144,11 @@ function Feed() {
           if (e.content.type === "text")
             return (
               <PostTypeText
-                author={e.connectionId}
+                firstName={e.firstName}
+                lastName={e.lastName}
+                profileImg={e.imageUrl}
+                bio={e.bio}
+                connectionId={e.connectionId}
                 engament={e.engament}
                 engamentStates={e.engamentStates}
                 caption={e.content.caption}

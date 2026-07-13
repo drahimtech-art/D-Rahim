@@ -5,7 +5,11 @@ import commentIcon from "/images/comment_icon.png";
 import shareIcon from "/images/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 type PostData = {
-  author: string;
+  firstName: string;
+  lastName: string;
+  profileImg: string | null;
+  bio: string;
+  connectionId: string;
   engament: {
     likes: number;
     comments: number;
@@ -23,18 +27,11 @@ type PostData = {
   time: string;
   createdAt: Date;
 };
-type AuthorInfo = {
-  firstName: string;
-  lastName: string;
-  profileImg: string | null;
-  bio: string;
-};
 function PostTypePhoto(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { userInfo, conections } = userDetails;
-  const [authorInfo, setAuthorInfo] = useState<AuthorInfo | undefined>();
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
   const [commentsCount, setCommentsCount] = useState<number>(
@@ -51,7 +48,7 @@ function PostTypePhoto(props: PostData) {
   useEffect(() => {
     if (conections.length === 0) return;
     for (const contact of conections) {
-      const authorId = props.author;
+      const authorId = props.connectionId;
       if (contact.contactId === authorId && contact.invite) {
         if (contact.isConnected) {
           contectionSate.current = "Connected";
@@ -81,36 +78,6 @@ function PostTypePhoto(props: PostData) {
     postLikeRef.current.classList.add("font-medium");
   }, [isPostLiked]);
   //
-  //get post auto info
-  useEffect(() => {
-    async function getAuthorInfo() {
-      const authorId = props.author;
-      const CLIENT_KEY = "CLIENT_KEY";
-      const data = localStorage.getItem(CLIENT_KEY);
-      try {
-        if (!data || data === "null") throw new Error("Access key not found");
-        const key = JSON.parse(data);
-        const requst = await fetch(
-          `${serverPort}/feeds/get/author/info/${authorId}`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "X-Frontend-Key": `${key}`,
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        const responds = await requst.json();
-        if (responds.ok) {
-          setAuthorInfo(responds.author);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getAuthorInfo();
-  }, []);
   async function addLike() {
     if (isPostLiked) return;
     setIsPostLiked(true);
@@ -222,7 +189,7 @@ function PostTypePhoto(props: PostData) {
     try {
       if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
-      const author = props.author;
+      const author = props.connectionId;
       const requst = await fetch(
         `${serverPort}/connection/user/add/${author}`,
         {
@@ -250,31 +217,22 @@ function PostTypePhoto(props: PostData) {
         <div className="flex gap-4.25 mr-auto items-center max-w-75">
           {/**image */}
           <span className="min-w-12.5 max-w-12.5 min-h-12.5 max-h-12.5">
-            {authorInfo ? (
+            {
               <img
                 className="rounded-full w-full h-full"
-                src={
-                  authorInfo.profileImg ? authorInfo.profileImg : noProfileImg
-                }
+                src={props.profileImg ? props.profileImg : noProfileImg}
               ></img>
-            ) : (
-              <img
-                className="rounded-full w-full h-full"
-                src={noProfileImg}
-              ></img>
-            )}
+            }
           </span>
           {/**heading */}
           <span className="fle flex-col gap-1.25">
             {/**full name */}
             <h5 className="font-sans font-medium text-[20px] line-clamp-1">
-              {authorInfo
-                ? `${authorInfo.firstName} ${authorInfo.lastName}`
-                : "....."}
+              {`${props.firstName} ${props.lastName}`}
             </h5>
             {/**bio */}
             <h5 className="font-sans font-medium text-[16px] line-clamp-1 text-gray-500">
-              {authorInfo ? authorInfo.bio : "...."}
+              {props.bio}
             </h5>
             {/**post time */}
             <h5 className="font-sans font-normal text-[16px] line-clamp-1 text-gray-500">
