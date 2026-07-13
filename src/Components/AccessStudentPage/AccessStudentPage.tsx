@@ -148,7 +148,7 @@ function AccessStudentPage() {
         </div>
       </div>
       {/***post popup card */}
-      <div className="w-full h-0 z-10 top-0 fixed  ">
+      <div className="w-full h-0 z-10 top-0 fixed  bodyMaxSizing">
         {popUpControl && (
           <div className="w-full h-screen bg-[#5756562d] relative flex justify-center items-center ">
             {popUpCard}
