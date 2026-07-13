@@ -13,7 +13,7 @@ function CommentsPopUp() {
     setPopUpControl(false);
   }
   return (
-    <div className="w-[60%] max-w-219.75 h-[80%] relative max-h-145.5 pl-7 pr-7 pb-7 pt-4  bg-white rounded-[20px]">
+    <div className="w-[60%] max-w-219.75 h-[80%] relative max-h-145.5 pl-7 pr-7 pb-7 pt-4  bg-white rounded-[20px] overflow-hidden">
       <div className="w-full h-fit flex flex-col overflow-hidden  relative">
         <span className="flex w-full justify-end">
           <img
@@ -48,8 +48,14 @@ function CommentsPopUp() {
         </div>
       </div>
       {/*comments body */}
-      <div className="w-full max-h-full overflow-hidden mt-7 border-t-[1.5px] border-t-gray-400">
+      <div className="w-full  h-full max-h-[55%] overflow-hidden border-t-[1.5px] border-t-gray-400 mt-7">
         <CommentsComponets />
+      </div>
+      {/**end action button */}
+      <div className="flex h-fit  justify-center items-center mt-4">
+        <h5 className="font-sans text-[12px] font-normal font-gray-400 pointer">
+          -view more comments-
+        </h5>
       </div>
     </div>
   );

@@ -9,13 +9,11 @@ const Classes = lazy(() => import("./Classes/Classes"));
 const Messages = lazy(() => import("./Messages/Messages"));
 const Community = lazy(() => import("./Community/Community"));
 import Settings from "./Settings/Settings";
-import CommentsPopUp from "./Community/Content/Feed/Comments/CommentsPopUp";
 function AccessStudentPage() {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const [searchParems] = useSearchParams();
-  const { userInfo, popUpCard, popUpControl, setPopUpCard, setPopUpControl } =
-    userDetails;
+  const { userInfo, popUpCard, popUpControl } = userDetails;
   const socketApi = SocketApi();
   const { socket } = socketApi;
   const page = searchParems.get("page");
@@ -25,12 +23,6 @@ function AccessStudentPage() {
   const [renderMessage, setRenderMessage] = useState<boolean>(false);
   const [renderCummunity, setRenderCummunity] = useState<boolean>(false);
   const [renderSettings, setRenderSettings] = useState<boolean>(false);
-
-  //devmode
-  useEffect(() => {
-    setPopUpCard(<CommentsPopUp />);
-    setPopUpControl(true);
-  }, []);
   //join room with user connection id once on mount
   useEffect(() => {
     if (!socket) return;
