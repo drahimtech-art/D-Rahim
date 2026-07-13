@@ -67,10 +67,14 @@ function ConnectionsCard(props: Connections) {
         </span>
         {/**info */}
         <span>
-          <h5 className="font-sans min18pxMax20px font-medium mr-auto">
-            {props.contactFirstName}
-            {props.contactLastName}
-          </h5>
+          <span className="flex w-fit gap-1.5 items-center">
+            <h5 className="font-sans min18pxMax20px font-medium mr-auto">
+              {props.contactFirstName}
+            </h5>
+            <h5 className="font-sans min18pxMax20px font-medium mr-auto">
+              {props.contactLastName}
+            </h5>
+          </span>
           <h5 className=" font-medium text-[16px] text-gray-500 line-clamp-2">
             {props.bio}
           </h5>

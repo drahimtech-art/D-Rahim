@@ -27,13 +27,15 @@ function Connections() {
     const value = e.target.value;
     setSearch(value);
     const filtedConnection = conections.filter((e) => {
+      const fullName = `${e.contactFirstName} ${e.contactLastName}`;
       if (
         e.contactFirstName
           .toLocaleLowerCase()
           .includes(value.toLocaleLowerCase()) ||
         e.contactLastName
           .toLocaleLowerCase()
-          .includes(value.toLocaleLowerCase())
+          .includes(value.toLocaleLowerCase()) ||
+        fullName.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       ) {
         return e;
       }
