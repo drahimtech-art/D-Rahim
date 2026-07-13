@@ -55,11 +55,11 @@ export function newMessageToTopOnce({
         const [hour, miniute] = m.time.split(":").map(Number);
         return new Date(year, month - 1, day, hour, miniute).getTime();
       };
-      return getTime(a) - getTime(b);
+      return getTime(b) - getTime(a);
     });
   };
   const sortedList = sortByDataAndTime(filterDublicate(connections));
-  return [...sortedList].reverse();
+  return [...sortedList];
 }
 //
 export function newMessageToTopMultipleTimes({

@@ -69,6 +69,8 @@ function Contact() {
         if (sortedConnectionsList) {
           setSortedConections(sortedConnectionsList);
         }
+      } else {
+        setSortedConections(conectionsWithTimeStap);
       }
     }
     validateAllTimeStapHasBeenCollected();
