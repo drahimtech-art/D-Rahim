@@ -5,6 +5,26 @@ import {
   type ReactNode,
   type SetStateAction,
 } from "react";
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: object[] | [];
+};
+type CommentsData = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: PostCommets[] | [];
+};
 type FeedsPostData = {
   firstName: string;
   lastName: string;
@@ -23,7 +43,7 @@ type FeedsPostData = {
   };
   engamentStates: {
     likesId: string[];
-    comments: string[];
+    comments: CommentsData[] | [];
   };
   postId: string;
   hashTages: string[];

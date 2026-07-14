@@ -1,8 +1,10 @@
+import { lazy, Suspense, useState } from "react";
 import thumpsDownIcon from "/images/icons/thumbs-down.png";
 import thumpsUpIcon from "/images/icons/thumbs-up.png";
 import commentsIcon from "/images/icons/comment-1.png";
 import moreIcon from "/images/icons/moreIcon.png";
-import CommentCard from "./CommentCard";
+import noProfileImg from "/images/noProfileImage.jpeg";
+const CommentCard = lazy(() => import("./CommentCard"));
 function SubComments() {
   return (
     <div className="w-full h-full flex flex-col gap-2 ">

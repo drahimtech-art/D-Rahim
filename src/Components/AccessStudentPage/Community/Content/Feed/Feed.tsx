@@ -3,6 +3,26 @@ import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { FeedContextApi } from "../../../../ContextApi/FeedsContext";
 import PostTypeText from "./Components/PostTypeText";
 import PostTypePhoto from "./Components/PostTypePhoto";
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: object[] | [];
+};
+type CommentsData = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: PostCommets[] | [];
+};
 type FeedsData = {
   firstName: string;
   lastName: string;
@@ -21,7 +41,7 @@ type FeedsData = {
   };
   engamentStates: {
     likesId: string[];
-    comments: string[];
+    comments: CommentsData[] | [];
   };
   postId: string;
   hashTages: string[];
