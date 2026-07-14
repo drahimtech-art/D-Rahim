@@ -65,7 +65,6 @@ function CommentsPopUp(props: CommentsData) {
         const responds = await requst.json();
         if (responds.ok) {
           const authors: CommentsAuthors[] = responds.author;
-          console.log(authors);
           setCommentsAuthors(authors);
         }
       } catch (error) {
@@ -142,6 +141,8 @@ function CommentsPopUp(props: CommentsData) {
         props.body.length > 0
           ? [upLoadedComment, ...props.body]
           : [upLoadedComment];
+      console.log(postComments);
+      console.log(upDatedComments);
       setComment("");
       setIsCommentsSent(false);
       setPostComments(upDatedComments);

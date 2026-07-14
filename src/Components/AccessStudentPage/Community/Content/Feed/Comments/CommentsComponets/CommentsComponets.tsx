@@ -38,6 +38,7 @@ function CommentsComponets(props: CommentsData) {
   const [comments, setComments] = useState<FormatedPostComments[]>([]);
   //order post with authors infor
   useEffect(() => {
+    if (props.body.length === comments.length) return;
     const allComments = props.body;
     const allAuthors = props.authorsInfor;
     const orderedComments = [];
@@ -56,17 +57,20 @@ function CommentsComponets(props: CommentsData) {
             ...comment,
           };
           orderedComments.push(formatedComment);
+          break;
         }
       }
     }
+    console.log(orderedComments);
     setComments(orderedComments);
-  }, []);
+  }, [props.body, props.authorsInfor]);
   return (
-    <div className="w-full  max-h-full overflow-y-auto">
+    <div className="w-full  max-h-full overflow-y-auto pb-20">
       {/***contents */}
       <div className="p-2.5 h-full w-full flex flex-col gap-4 ">
         {/*comments card*/}
-        {comments.map((e, i) => {
+        {comments.map((e) => {
+          const id = crypto.randomUUID();
           return (
             <CommentCard
               connectionId={e.connectionId}
@@ -79,7 +83,7 @@ function CommentsComponets(props: CommentsData) {
               firstName={e.firstName}
               lastName={e.lastName}
               imageUrl={e.imageUrl}
-              key={`comments-key-${e.connectionId}-${i}`}
+              key={`comments-key-${e.connectionId}-${id}`}
             />
           );
         })}

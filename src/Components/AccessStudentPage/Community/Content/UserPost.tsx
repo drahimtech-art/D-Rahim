@@ -6,8 +6,31 @@ import videoIcon from "/images/icons/video_icon.png";
 import photoIcon from "/images/icons/photo_icon.png";
 import writeIcon from "/images/icons/write_icon.png";
 import PostPopUp from "./PostPopUp";
-/*
-type FeedsData = {
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: object[] | [];
+};
+type CommentsData = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: PostCommets[] | [];
+};
+type FeedsPostData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  bio: string;
   connectionId: string;
   engament: {
     likes: number;
@@ -21,7 +44,7 @@ type FeedsData = {
   };
   engamentStates: {
     likesId: string[];
-    comments: string[];
+    comments: CommentsData[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -29,7 +52,7 @@ type FeedsData = {
   time: string;
   createdAt: Date;
 };
-*/
+
 function UserPost() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
@@ -131,7 +154,14 @@ function UserPost() {
       if (responds.ok) {
         alert(responds.message);
         console.log(responds.post);
-        const postMedia = responds.post;
+
+        const postMedia: FeedsPostData = {
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          imageUrl: userInfo.imageUrl,
+          bio: userInfo.bio,
+          ...responds.post,
+        };
         setFeedsPost((prevsPosts) => {
           if (!prevsPosts) return [postMedia];
           return [postMedia, ...prevsPosts];

@@ -57,7 +57,7 @@ function ConnectionCard(props: RequstInfo) {
     }
   }
   return (
-    <div className="flex items-center gap-4.25 pb-1 border-b border-gray-500">
+    <div className="flex items-center gap-4.25 ma pb-1 border-b border-gray-500">
       {/**profileImage */}
       <span className="w-10 h-10 mr-auto ml-1.5">
         <img
@@ -71,7 +71,7 @@ function ConnectionCard(props: RequstInfo) {
           {props.firstName}
           {props.lastName}
         </h5>
-        <h5 className="font-medium text-[16px] line-clamp-1 text-gray-500">
+        <h5 className="font-medium  text-[16px] line-clamp-1 text-gray-500">
           {props.bio}
         </h5>
       </span>

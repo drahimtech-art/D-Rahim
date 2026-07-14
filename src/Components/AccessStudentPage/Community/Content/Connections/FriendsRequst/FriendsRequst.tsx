@@ -87,7 +87,7 @@ function FriendsRequst() {
     }
   }
   return (
-    <div className="w-full h-full max-h-fit min-w-65   bg-[#FFFFFF] overflow-y-auto">
+    <div className="w-full h-full max-h-fit min-w-65 max-w-87.5   bg-[#FFFFFF] overflow-y-auto">
       <span>
         <h5 className="font-medium font-sans min20Max24px">Friend Request</h5>
       </span>

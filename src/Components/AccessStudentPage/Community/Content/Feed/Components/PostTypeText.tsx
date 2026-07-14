@@ -248,7 +248,7 @@ function PostTypeText(props: PostData) {
           <span className="min-w-12.5 max-w-12.5 min-h-12.5 max-h-12.5 ">
             {
               <img
-                className="rounded-full w-full h-full"
+                className="rounded-full min-w-12.5 max-w-12.5 min-h-12.5 max-h-12.5"
                 src={props.profileImg ? props.profileImg : noProfileImg}
               ></img>
             }
