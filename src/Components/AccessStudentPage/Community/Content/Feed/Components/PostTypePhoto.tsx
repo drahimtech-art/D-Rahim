@@ -4,6 +4,27 @@ import likeIcon from "/images/icons/like_icon.png";
 import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
+import CommentsPopUp from "../Comments/CommentsPopUp";
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: object[] | [];
+};
+type CommentsData = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: PostCommets[] | [];
+};
 type PostData = {
   firstName: string;
   lastName: string;
@@ -19,7 +40,7 @@ type PostData = {
   content: string;
   engamentStates: {
     likesId: string[];
-    comments: string[];
+    comments: CommentsData[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -31,12 +52,10 @@ function PostTypePhoto(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
-  const { userInfo, conections } = userDetails;
+  const { userInfo, conections, setPopUpCard, setPopUpControl } = userDetails;
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
-  const [commentsCount, setCommentsCount] = useState<number>(
-    props.engament.comments,
-  );
+  const [commentsCount, _] = useState<number>(props.engament.comments);
   const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
   const [postDate, setPostDate] = useState<string>("");
   const postLikesId = useRef(props.engamentStates.likesId);
@@ -210,6 +229,16 @@ function PostTypePhoto(props: PostData) {
       console.log(error);
     }
   }
+  //add comments
+  function handleAddComments() {
+    setPopUpCard(
+      <CommentsPopUp
+        postId={props.postId}
+        body={props.engamentStates.comments}
+      />,
+    );
+    setPopUpControl(true);
+  }
   return (
     <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
       {/**image heading and connect action button */}
@@ -308,8 +337,15 @@ function PostTypePhoto(props: PostData) {
         </span>
         {/**comment */}
         <span className="flex gap-2 items-center justify-center">
-          <img className="w-10.75 h-8 pointer" src={commentIcon}></img>
-          <h5 className="font-sans font-normal text-[16px] pointer line-clamp-1">
+          <img
+            className="w-10.75 h-8 pointer"
+            src={commentIcon}
+            onClick={handleAddComments}
+          ></img>
+          <h5
+            className="font-sans font-normal text-[16px] pointer line-clamp-1"
+            onClick={handleAddComments}
+          >
             {commentsCount} Comments
           </h5>
         </span>
