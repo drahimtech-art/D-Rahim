@@ -33,6 +33,9 @@ function CommentsPopUp(props: CommentsData) {
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
+  const [postComments, setPostComments] = useState<PostCommets[] | []>(
+    props.body,
+  );
   const [comment, setComment] = useState<string>("");
   const [isCommentsSent, setIsCommentsSent] = useState<boolean>(false);
   const [commentsAuthors, setCommentsAuthors] = useState<CommentsAuthors[]>([]);
@@ -125,8 +128,24 @@ function CommentsPopUp(props: CommentsData) {
       );
       const responds = await requst.json();
       alert(responds.message);
+      const author = {
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName,
+        bio: userInfo.bio,
+        connectionId: userInfo.connectionId,
+        imageUrl: userInfo.imageUrl,
+      };
+      const upLoadedComment = { ...responds.comment };
+      const updatedAuthorsInfo =
+        commentsAuthors.length > 0 ? [author, ...commentsAuthors] : [author];
+      const upDatedComments =
+        props.body.length > 0
+          ? [upLoadedComment, ...props.body]
+          : [upLoadedComment];
       setComment("");
       setIsCommentsSent(false);
+      setPostComments(upDatedComments);
+      setCommentsAuthors(updatedAuthorsInfo);
     } catch (error) {
       console.log(error);
       setIsCommentsSent(false);
@@ -186,7 +205,7 @@ function CommentsPopUp(props: CommentsData) {
             {/**comments count */}
             <span className="w-9 h-5.5 bg-[#11AC76] pl-1 pr-1 pt-0.5 pb-0.5 rounded-[14px] text-gray-200 flex justify-center items-center">
               <h5 className="font-sans font-normal text-[16px]">
-                {props.body.length}
+                {postComments.length}
               </h5>
             </span>
           </span>
@@ -198,7 +217,10 @@ function CommentsPopUp(props: CommentsData) {
           </span>
         </div>
         {commentsAuthors.length !== 0 && (
-          <CommentsComponets body={props.body} authorsInfor={commentsAuthors} />
+          <CommentsComponets
+            body={postComments}
+            authorsInfor={commentsAuthors}
+          />
         )}
       </div>
       {/**end action button */}

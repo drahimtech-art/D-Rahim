@@ -55,10 +55,7 @@ function PostTypeText(props: PostData) {
   const { userInfo, conections, setPopUpCard, setPopUpControl } = userDetails;
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
-  const [addComments, setAddComments] = useState<boolean>(false);
-  const [commentsCount, setCommentsCount] = useState<number>(
-    props.engament.comments,
-  );
+  const [commentsCount, _] = useState<number>(props.engament.comments);
   const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
   const [postDate, setPostDate] = useState<string>("");
   const postLikesId = useRef(props.engamentStates.likesId);
