@@ -1,13 +1,134 @@
+import { useState, useEffect, type ChangeEvent } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import canculeIcon from "/images/icons/proicons_cancel.png";
 import attachment from "/images/icons/attachment.png";
 import album from "/images/icons/album.png";
 import emoji from "/images/icons/smile.png";
 import CommentsComponets from "./CommentsComponets/CommentsComponets";
-function CommentsPopUp() {
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: object[] | [];
+};
+type CommentsData = {
+  body: PostCommets[] | [];
+  postId: string;
+};
+type CommentsAuthors = {
+  firstName: string;
+  lastName: string;
+  bio: string;
+  connectionId: string;
+  imageUrl: string | null;
+};
+function CommentsPopUp(props: CommentsData) {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
   const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
+  const [comment, setComment] = useState<string>("");
+  const [isCommentsSent, setIsCommentsSent] = useState<boolean>(false);
+  const [commentsAuthors, setCommentsAuthors] = useState<CommentsAuthors[]>([]);
+  //get comments authors infor
+  useEffect(() => {
+    if (props.body.length === 0 || commentsAuthors.length > 0) return;
+    //get all top comments infor not nested
+    async function getAuthorsInfor(authorsId: string[]) {
+      const CLIENT_KEY = "CLIENT_KEY";
+      const data = localStorage.getItem(CLIENT_KEY);
+      try {
+        if (!data || data === "null") throw new Error("Access key not found");
+        const key = JSON.parse(data);
+        const authorsIds = [...authorsId];
+        const requst = await fetch(
+          `${serverPort}/feeds/intaraction/author/info`,
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "X-Frontend-Key": `${key}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(authorsIds),
+          },
+        );
+        const responds = await requst.json();
+        if (responds.ok) {
+          const authors: CommentsAuthors[] = responds.author;
+          console.log(authors);
+          setCommentsAuthors(authors);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    //loop all comments and get comment id
+    function handleAuthorsIds(comments: PostCommets[]) {
+      if (commentsAuthors.length > 0) return;
+      const authorIds: string[] = [];
+      const postComments = comments;
+      for (const comment of postComments) {
+        const id = comment.connectionId;
+        if (!authorIds.includes(id)) {
+          authorIds.push(id);
+        }
+      }
+      if (authorIds.length !== 0) return getAuthorsInfor(authorIds);
+    }
+    handleAuthorsIds(props.body);
+  }, []);
+  // handle type comment
+  function handleAddComments(e: ChangeEvent<HTMLTextAreaElement>) {
+    const value = e.target.value;
+    setComment(value);
+  }
+  //upload comment
+  async function handlePostComments() {
+    if (comment.length < 1 || isCommentsSent) return;
+    setIsCommentsSent(true);
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const formatedDate = `${year}/${month >= 10 ? month : `0${month}`}/${day >= 10 ? day : `0${day}`}`;
+    const time = `${date.getHours() >= 10 ? `${date.getHours()}` : `0${date.getHours()}`}:${date.getMinutes() > 10 ? `${date.getMinutes()}` : `0${date.getMinutes()}`}`;
+    const newComment = {
+      connectionId: userInfo.connectionId,
+      comment: comment,
+      date: formatedDate,
+      time: time,
+    };
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const postId = props.postId;
+      const requst = await fetch(
+        `${serverPort}/feeds/intaraction/comments/post/${postId}`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newComment),
+        },
+      );
+      const responds = await requst.json();
+      console.log(responds);
+      setIsCommentsSent(false);
+    } catch (error) {
+      console.log(error);
+      setIsCommentsSent(false);
+    }
+  }
   function canculeAddComments() {
     setPopUpCard(undefined);
     setPopUpControl(false);
@@ -29,6 +150,8 @@ function CommentsPopUp() {
             <textarea
               className="w-full h-full resize-none placeholder:text-[16px] placeholder:font-sans placeholder:font-normal placeholder:text-gray-300"
               placeholder="Add comment"
+              value={comment}
+              onChange={handleAddComments}
             ></textarea>
           </div>
           {/**upload action buttons */}
@@ -40,7 +163,10 @@ function CommentsPopUp() {
             </span>
             {/*post action*/}
             <span className="w-full h-fit pb-1.5">
-              <button className="ml-auto border-2  border-gray-500 rounded-[20px] w-13.5 h-9 flex justify-center items-center pointer">
+              <button
+                className="ml-auto border-2  border-gray-500 rounded-[20px] w-13.5 h-9 flex justify-center items-center pointer"
+                onClick={handlePostComments}
+              >
                 <i className="fa fa-arrow-up"></i>
               </button>
             </span>
@@ -49,7 +175,9 @@ function CommentsPopUp() {
       </div>
       {/*comments body */}
       <div className="w-full  h-full max-h-[55%] overflow-hidden border-t-[1.5px] border-t-gray-400 mt-7">
-        <CommentsComponets />
+        {commentsAuthors.length !== 0 && (
+          <CommentsComponets body={props.body} authorsInfor={commentsAuthors} />
+        )}
       </div>
       {/**end action button */}
       <div className="flex h-fit  justify-center items-center mt-4">

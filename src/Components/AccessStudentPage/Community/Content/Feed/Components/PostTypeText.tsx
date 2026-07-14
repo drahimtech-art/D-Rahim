@@ -5,6 +5,26 @@ import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: object[] | [];
+};
+type CommentsData = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: PostCommets[] | [];
+};
 type PostData = {
   firstName: string;
   lastName: string;
@@ -20,7 +40,7 @@ type PostData = {
   content: string;
   engamentStates: {
     likesId: string[];
-    comments: string[];
+    comments: CommentsData[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -214,7 +234,12 @@ function PostTypeText(props: PostData) {
   }
   //add comments
   function handleAddComments() {
-    setPopUpCard(<CommentsPopUp />);
+    setPopUpCard(
+      <CommentsPopUp
+        postId={props.postId}
+        body={props.engamentStates.comments}
+      />,
+    );
     setPopUpControl(true);
   }
   return (
