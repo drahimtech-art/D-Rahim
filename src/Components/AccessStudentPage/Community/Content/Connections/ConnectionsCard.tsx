@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
-import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+//import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import noProfileImg from "/images/noProfileImage.jpeg";
+import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;
@@ -24,9 +25,8 @@ type ChatContact = {
 };
 function ConnectionsCard(props: Connections) {
   const [_, setSearchParems] = useSearchParams();
-  const userDetails = StudentsAppData();
-  if (!userDetails) return;
-  const { setChatContact } = userDetails;
+  const messagesContextData = MessagesApi();
+  const { setChatContact } = messagesContextData;
   //start chat with contact
   function setChatBoxInfo() {
     const data: ChatContact = {

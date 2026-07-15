@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+//import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 //import contactImg1 from "/images/contact.png";
 //import contactImg2 from "/images/contact_1.png";
 //import contactImg3 from "/images/contact_2.png";
@@ -33,8 +34,7 @@ type SortingData = {
 };
 function Contact() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
-  const userDetails = StudentsAppData();
-  if (!userDetails) return;
+  const messagesContextData = MessagesApi();
   const {
     conections,
     setConections,
@@ -42,7 +42,7 @@ function Contact() {
     setConectionsWithTimeStap,
     sortedConections,
     setSortedConections,
-  } = userDetails;
+  } = messagesContextData;
   const [connectionList, setConectionList] =
     useState<Connections[]>(conections);
   //getConnections

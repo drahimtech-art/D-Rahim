@@ -1,11 +1,11 @@
-import { StudentsAppData } from "../../../ContextApi/StudentsApi";
+//import { StudentsAppData } from "../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../ContextApi/MessagesApi";
 import Contact from "./Contact/Contact";
 import MessageBox from "./MessageBox/MessageBox";
 
 function Content() {
-  const userDetails = StudentsAppData();
-  if (!userDetails) return;
-  const { chatContact } = userDetails;
+  const messagesContextData = MessagesApi();
+  const { chatContact } = messagesContextData;
 
   return (
     <div className="mt-7.5 w-full h-full max-h-full overflow-hidden flex gap-10 ">

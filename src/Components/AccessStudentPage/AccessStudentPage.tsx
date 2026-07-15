@@ -2,6 +2,8 @@ import { lazy, Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SocketApi } from "../ContextApi/SocketApi";
 import { StudentsAppData } from "../ContextApi/StudentsApi";
+import { FeedContextProvider } from "../ContextApi/FeedsContext";
+import { MessagesApiProvider } from "../ContextApi/MessagesApi";
 import Top from "./Top";
 import LeftNevBar from "./LeftNevBar";
 import Dashboard from "./Dashboard/Dashboard";
@@ -87,6 +89,7 @@ function AccessStudentPage() {
     setRenderSettings(true);
   }
   function logout() {}
+  console.log("full page rerender");
   return (
     <>
       <div className="w-full min-w-300 h-screen  max-h-screen    bg-white ">
@@ -130,9 +133,19 @@ function AccessStudentPage() {
                 >
                   {renderDashboard && <Dashboard />}
                   {renderClasses && <Classes />}
-                  {renderMessage && <Messages />}
+                  {renderMessage && (
+                    <MessagesApiProvider>
+                      <Messages />
+                    </MessagesApiProvider>
+                  )}
                   {renderSettings && <Settings />}
-                  {renderCummunity && <Community />}
+                  {renderCummunity && (
+                    <FeedContextProvider>
+                      <MessagesApiProvider>
+                        <Community />
+                      </MessagesApiProvider>
+                    </FeedContextProvider>
+                  )}
                 </Suspense>
               </div>
             </div>

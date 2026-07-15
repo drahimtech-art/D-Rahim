@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../../../ContextApi/MessagesApi";
 import likeIcon from "/images/icons/like_icon.png";
 import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";
@@ -27,16 +28,6 @@ type PostCommets = {
   subComments: CommentData[] | [];
   _id: string;
 };
-type CommentsData = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: PostCommets[] | [];
-};
 type PostData = {
   firstName: string;
   lastName: string;
@@ -63,8 +54,10 @@ type PostData = {
 function PostTypeText(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
+  const messagesContextData = MessagesApi();
   if (!userDetails) return;
-  const { userInfo, conections, setPopUpCard, setPopUpControl } = userDetails;
+  const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
+  const { conections } = messagesContextData;
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
   const [commentsCount, _] = useState<number>(props.engament.comments);
@@ -77,7 +70,7 @@ function PostTypeText(props: PostData) {
   const contectionSate = useRef<string>("Connect");
   //check post author connections state
   useEffect(() => {
-    if (conections.length === 0) return;
+    if (conections.length === 0 || !conections) return;
     for (const contact of conections) {
       const authorId = props.connectionId;
       if (contact.contactId === authorId && contact.invite) {

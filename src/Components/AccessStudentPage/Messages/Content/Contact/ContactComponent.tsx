@@ -1,4 +1,5 @@
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 import { SocketApi } from "../../../../ContextApi/SocketApi";
 import { useEffect, useState } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
@@ -47,14 +48,16 @@ type ChatContact = {
 
 function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const messagesContextData = MessagesApi();
   const userDetails = StudentsAppData();
   if (!userDetails) return;
+  const { userInfo } = userDetails;
   const socketApi = SocketApi();
   const { socket, receiveMessage, clearRecivedMessage } = socketApi;
   const {
     setChatContact,
     chatContact,
-    userInfo,
+
     inputMessage,
     setInputMessage,
     sendMessage,
@@ -66,7 +69,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     setIsFiles,
     setSortedConections,
     setConectionsWithTimeStap,
-  } = userDetails;
+  } = messagesContextData;
   const [contactMessagesTemb, setContactMessagesTemb] = useState<Messages[]>(
     [],
   );

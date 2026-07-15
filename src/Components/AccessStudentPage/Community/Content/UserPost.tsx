@@ -6,6 +6,17 @@ import videoIcon from "/images/icons/video_icon.png";
 import photoIcon from "/images/icons/photo_icon.png";
 import writeIcon from "/images/icons/write_icon.png";
 import PostPopUp from "./PostPopUp";
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -14,17 +25,8 @@ type PostCommets = {
   date: string;
   time: string;
   createdAt: string;
-  subComments: object[] | [];
-};
-type CommentsData = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: PostCommets[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
 };
 type FeedsPostData = {
   firstName: string;
@@ -44,7 +46,7 @@ type FeedsPostData = {
   };
   engamentStates: {
     likesId: string[];
-    comments: CommentsData[] | [];
+    comments: PostCommets[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -199,7 +201,7 @@ function UserPost() {
             <input
               className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
               placeholder="Start a post"
-              value=""
+              defaultValue={""}
               onClick={handlePostPopUp}
             ></input>
           </span>

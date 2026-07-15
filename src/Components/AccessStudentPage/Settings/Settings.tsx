@@ -18,7 +18,6 @@ function Settings() {
   if (!userDetails) return;
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const { userInfo, setUserInfo } = userDetails;
-  console.log(userInfo.imageUrl);
   const [isRequstSent, setIsRequstSent] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>(userInfo.firstName);
   const [lastName, setLastName] = useState<string>(userInfo.lastName);

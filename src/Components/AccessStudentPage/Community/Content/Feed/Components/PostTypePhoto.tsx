@@ -1,10 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../../../ContextApi/MessagesApi";
 import likeIcon from "/images/icons/like_icon.png";
 import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -13,17 +25,8 @@ type PostCommets = {
   date: string;
   time: string;
   createdAt: string;
-  subComments: object[] | [];
-};
-type CommentsData = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: PostCommets[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
 };
 type PostData = {
   firstName: string;
@@ -40,7 +43,7 @@ type PostData = {
   content: string;
   engamentStates: {
     likesId: string[];
-    comments: CommentsData[] | [];
+    comments: PostCommets[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -51,8 +54,10 @@ type PostData = {
 function PostTypePhoto(props: PostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
+  const messagesContextData = MessagesApi();
   if (!userDetails) return;
-  const { userInfo, conections, setPopUpCard, setPopUpControl } = userDetails;
+  const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
+  const { conections } = messagesContextData;
   const [likes, setLikes] = useState<number>(props.engament.likes);
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
   const [commentsCount, _] = useState<number>(props.engament.comments);
@@ -235,6 +240,7 @@ function PostTypePhoto(props: PostData) {
       <CommentsPopUp
         postId={props.postId}
         body={props.engamentStates.comments}
+        commentsCount={props.engament.comments}
       />,
     );
     setPopUpControl(true);

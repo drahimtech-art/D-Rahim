@@ -1,11 +1,12 @@
-import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+//import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import Head from "./Head";
 import MessageContent from "./Content/MessageContent";
 import SendMessageAndFiles from "./SendMessageAndFiles";
 function MessageBox() {
-  const userDetails = StudentsAppData();
-  if (!userDetails) return;
+  //const userDetails = StudentsAppData();
+  const messagesContextData = MessagesApi();
   const {
     chatContact,
     inputMessage,
@@ -15,7 +16,7 @@ function MessageBox() {
     setFiles,
     isFiles,
     setIsFiles,
-  } = userDetails;
+  } = messagesContextData;
   if (!chatContact) return;
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
   const [displayImage, setDisplayImage] = useState<string>("");

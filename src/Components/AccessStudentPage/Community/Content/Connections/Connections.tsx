@@ -1,5 +1,6 @@
 import { useState, useEffect, type ChangeEvent } from "react";
-import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+//import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 import Head from "./Head";
 import ConectionsList from "./ConectionsList";
 type Connections = {
@@ -16,9 +17,9 @@ type Connections = {
 };
 function Connections() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
-  const userDetails = StudentsAppData();
-  if (!userDetails) return;
-  const { conections, setConections } = userDetails;
+  //const userDetails = StudentsAppData();
+  const messagesContextData = MessagesApi();
+  const { conections, setConections } = messagesContextData;
   const [connectionList, setConectionList] =
     useState<Connections[]>(conections);
   const [search, setSearch] = useState<string>("");

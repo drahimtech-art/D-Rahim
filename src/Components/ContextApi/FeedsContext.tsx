@@ -5,6 +5,17 @@ import {
   type ReactNode,
   type SetStateAction,
 } from "react";
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -13,17 +24,8 @@ type PostCommets = {
   date: string;
   time: string;
   createdAt: string;
-  subComments: object[] | [];
-};
-type CommentsData = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: PostCommets[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
 };
 type FeedsPostData = {
   firstName: string;
@@ -43,7 +45,7 @@ type FeedsPostData = {
   };
   engamentStates: {
     likesId: string[];
-    comments: CommentsData[] | [];
+    comments: PostCommets[] | [];
   };
   postId: string;
   hashTages: string[];

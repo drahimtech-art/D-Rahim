@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { FeedContextApi } from "../../../../ContextApi/FeedsContext";
+import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 import PostTypeText from "./Components/PostTypeText";
 import PostTypePhoto from "./Components/PostTypePhoto";
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -11,17 +23,8 @@ type PostCommets = {
   date: string;
   time: string;
   createdAt: string;
-  subComments: object[] | [];
-};
-type CommentsData = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: PostCommets[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
 };
 type FeedsData = {
   firstName: string;
@@ -41,7 +44,7 @@ type FeedsData = {
   };
   engamentStates: {
     likesId: string[];
-    comments: CommentsData[] | [];
+    comments: PostCommets[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -65,14 +68,17 @@ function Feed() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   const feedsMediaData = FeedContextApi();
-  if (!userDetails || !feedsMediaData) return;
-  const { userInfo, conections, setConections } = userDetails;
+  const messagesContextData = MessagesApi();
+  if (!userDetails || !feedsMediaData || !messagesContextData) return;
+  const { userInfo } = userDetails;
+  const { conections, setConections } = messagesContextData;
   const { feedsPost, setFeedsPost } = feedsMediaData;
   const [feedsPostStore, setFeedsPostStore] = useState<
     FeedsData[] | undefined
   >();
   //get userConnections list
   useEffect(() => {
+    if (!conections) return;
     if (conections.length !== 0) return;
     async function getConnectionsList() {
       const CLIENT_KEY = "CLIENT_KEY";

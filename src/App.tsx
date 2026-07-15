@@ -2,7 +2,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense, type ComponentType } from "react";
 import { StudentsContextProvider } from "./Components/ContextApi/StudentsApi";
 import { SocketProviderContext } from "./Components/ContextApi/SocketApi";
-import { FeedContextProvider } from "./Components/ContextApi/FeedsContext";
+//import { FeedContextProvider } from "./Components/ContextApi/FeedsContext";
 import ScrollToTop from "./Components/ScrollToTop";
 import Home from "./Components/Main_Home/Home/Home";
 const Service = lazy(() => import("./Components/Main_Home/Services/Service"));
@@ -136,9 +136,7 @@ function App() {
             <StudentsContextProvider>
               <SocketProviderContext>
                 <AccessAuth>
-                  <FeedContextProvider>
-                    <AccessStudentPage />
-                  </FeedContextProvider>
+                  <AccessStudentPage />
                 </AccessAuth>
               </SocketProviderContext>
             </StudentsContextProvider>
