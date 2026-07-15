@@ -57,7 +57,7 @@ function AccessAuth({ children }: { children: ReactNode }) {
           urlNavigator(url, { replace: true });
         }
       } catch (error) {
-        alert(`somthing whent wrong: ${error}`);
+        //alert(`somthing whent wrong: ${error}`);
         const url = "/students/login/access";
         urlNavigator(url, { replace: true });
       }

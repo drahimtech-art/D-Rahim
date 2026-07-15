@@ -61,7 +61,6 @@ function CommentsComponets(props: CommentsData) {
         }
       }
     }
-    console.log(orderedComments);
     setComments(orderedComments);
   }, [props.body, props.authorsInfor]);
   return (

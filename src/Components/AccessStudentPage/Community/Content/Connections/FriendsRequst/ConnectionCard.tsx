@@ -57,32 +57,32 @@ function ConnectionCard(props: RequstInfo) {
     }
   }
   return (
-    <div className="flex items-center gap-4.25 ma pb-1 border-b border-gray-500">
+    <div className="w-full grid grid-cols-[15%_40%_45%] items-center   pb-1 border-b border-gray-500">
       {/**profileImage */}
-      <span className="w-10 h-10 mr-auto ml-1.5">
+      <span className="w-10 h-10 mr-auto ml-1.5 ">
         <img
           className="min-w-10 max-w-10 min-h-10 max-h-10 rounded-full"
           src={props.imageUrl ? props.imageUrl : noProfileImg}
         ></img>
       </span>
       {/**name and info */}
-      <span className="flex flex-col  mr-auto">
-        <h5 className="font-medium text-[20px]">
-          {props.firstName}
-          {props.lastName}
-        </h5>
+      <span className="flex flex-col  mr-auto  pr-2">
+        <span className="flex line-clamp-1 w-full">
+          <h5 className="font-medium text-[20px] ml-1 line-clamp-1 w-fit ">
+            {props.firstName} {props.lastName}
+          </h5>
+        </span>
         <h5 className="font-medium  text-[16px] line-clamp-1 text-gray-500">
           {props.bio}
         </h5>
       </span>
       {/**action button */}
-      <span className="flex gap-1.75 items-center">
+      <span className="flex gap-1.75 items-center ">
         <button className="flex h-8.75 justify-center items-center p-2 mr-1.5 rounded-full border border-[#C0392B] bg-[#f1e3e1] AllowedPointerForButton">
           <h5 className="text-[#C0392B] font-sans font-medium text-[16px]">
             Decline
           </h5>
         </button>
-
         <button
           className="flex h-8.75 justify-center items-center p-2 mr-1.5 rounded-full bg-[#11AC76] AllowedPointerForButton"
           onClick={acceptConnectionRequst}
