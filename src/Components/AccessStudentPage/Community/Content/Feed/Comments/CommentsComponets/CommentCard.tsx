@@ -5,6 +5,17 @@ import commentsIcon from "/images/icons/comment-1.png";
 import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 const SubComments = lazy(() => import("./SubComments"));
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type FormatedPostComments = {
   firstName: string;
   lastName: string;
@@ -15,7 +26,9 @@ type FormatedPostComments = {
   disLikes: number;
   date: string;
   time: string;
-  subComments: object[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
+  replayToCommentControl: (plachorder: string, id: string) => void;
 };
 function CommentCard(props: FormatedPostComments) {
   const [subComments, setSubComments] = useState<boolean>(false);
@@ -72,6 +85,14 @@ function CommentCard(props: FormatedPostComments) {
       return timePassed > 1 ? `${timePassed}  years` : `${timePassed}  year`;
     }
   }
+  function handleReplayComment() {
+    props.replayToCommentControl(
+      `reply to ${props.firstName} ${props.lastName}`,
+      props._id,
+    );
+    setSubComments(true);
+    console.log(props.subComments);
+  }
   return (
     <div className="w-full h-full flex flex-col gap-2 ">
       {/**head profile image name and time stamp */}
@@ -124,7 +145,7 @@ function CommentCard(props: FormatedPostComments) {
           {/**reply button */}
           <span
             className="flex items-center gap-0.5 pointer"
-            onClick={() => setSubComments(true)}
+            onClick={handleReplayComment}
           >
             <img className="w-fit h-fit" src={commentsIcon}></img>
             <h5 className="font-sans text-[12px] font-normal text-gray-400">
@@ -144,10 +165,23 @@ function CommentCard(props: FormatedPostComments) {
             </div>
           }
         >
-          {subComments &&
-            props.subComments.map((e, i) => {
-              return <SubComments />;
-            })}
+          {props.subComments.map((e) => {
+            const id = crypto.randomUUID();
+            return (
+              <SubComments
+                connectionId={e.connectionId}
+                comment={e.comment}
+                likes={e.likes}
+                disLikes={e.disLikes}
+                date={e.date}
+                time={e.time}
+                firstName={e.firstName}
+                lastName={e.lastName}
+                imageUrl={e.imageUrl}
+                key={`subComments-key-${id}`}
+              />
+            );
+          })}
         </Suspense>
       </div>
     </div>

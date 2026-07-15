@@ -1,4 +1,4 @@
-import { useState, useEffect, type ChangeEvent } from "react";
+import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import canculeIcon from "/images/icons/proicons_cancel.png";
 import attachment from "/images/icons/attachment.png";
@@ -7,6 +7,17 @@ import emoji from "/images/icons/smile.png";
 import sortIcon from "/images/icons/sort_icon.png";
 import downArrowIcon from "/images/icons/arrow-down.png";
 import CommentsComponets from "./CommentsComponets/CommentsComponets";
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -15,11 +26,13 @@ type PostCommets = {
   date: string;
   time: string;
   createdAt: string;
-  subComments: object[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
 };
 type CommentsData = {
   body: PostCommets[] | [];
   postId: string;
+  commentsCount: Number;
 };
 type CommentsAuthors = {
   firstName: string;
@@ -37,8 +50,15 @@ function CommentsPopUp(props: CommentsData) {
     props.body,
   );
   const [comment, setComment] = useState<string>("");
+  const [placeholder, setPlacholder] = useState<string>("Add comment");
   const [isCommentsSent, setIsCommentsSent] = useState<boolean>(false);
+  const [isReply, setIsReply] = useState<boolean>(false);
+  const [commentReplyId, setCommentReplyId] = useState<string | undefined>(
+    undefined,
+  );
   const [commentsAuthors, setCommentsAuthors] = useState<CommentsAuthors[]>([]);
+  const [reRenderComments, setReRenderComments] = useState<boolean>(true);
+  const commentsCount = useRef(props.commentsCount);
   //get comments authors infor
   useEffect(() => {
     if (props.body.length === 0 || commentsAuthors.length > 0) return;
@@ -91,6 +111,12 @@ function CommentsPopUp(props: CommentsData) {
     const value = e.target.value;
     setComment(value);
   }
+  //handle add comment type eg reply or global comment
+  function handleReplayComment(placehoder: string, replyId: string) {
+    setPlacholder(placehoder);
+    setIsReply(true);
+    setCommentReplyId(replyId);
+  }
   //upload comment
   async function handlePostComments() {
     if (comment.length < 1 || isCommentsSent) return;
@@ -101,11 +127,16 @@ function CommentsPopUp(props: CommentsData) {
     const day = date.getDate();
     const formatedDate = `${year}/${month >= 10 ? month : `0${month}`}/${day >= 10 ? day : `0${day}`}`;
     const time = `${date.getHours() >= 10 ? `${date.getHours()}` : `0${date.getHours()}`}:${date.getMinutes() > 10 ? `${date.getMinutes()}` : `0${date.getMinutes()}`}`;
+
     const newComment = {
       connectionId: userInfo.connectionId,
       comment: comment,
       date: formatedDate,
       time: time,
+    };
+    const replyComment = {
+      ...newComment,
+      commentToReplyId: commentReplyId,
     };
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
@@ -114,7 +145,7 @@ function CommentsPopUp(props: CommentsData) {
       const key = JSON.parse(data);
       const postId = props.postId;
       const requst = await fetch(
-        `${serverPort}/feeds/intaraction/comments/post/${postId}`,
+        `${serverPort}/feeds/intaraction/${isReply ? `reply/comments/${postId}` : `comments/post/${postId}`}`,
         {
           method: "PUT",
           credentials: "include",
@@ -122,39 +153,94 @@ function CommentsPopUp(props: CommentsData) {
             "X-Frontend-Key": `${key}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newComment),
+          body: JSON.stringify(isReply ? replyComment : newComment),
         },
       );
       const responds = await requst.json();
+      if (!responds.ok) return console.log(responds.message);
       alert(responds.message);
-      const author = {
-        firstName: userInfo.firstName,
-        lastName: userInfo.lastName,
-        bio: userInfo.bio,
-        connectionId: userInfo.connectionId,
-        imageUrl: userInfo.imageUrl,
-      };
-      const upLoadedComment = { ...responds.comment };
-      const updatedAuthorsInfo =
-        commentsAuthors.length > 0 ? [author, ...commentsAuthors] : [author];
-      const upDatedComments =
-        props.body.length > 0
-          ? [upLoadedComment, ...props.body]
-          : [upLoadedComment];
-      console.log(postComments);
-      console.log(upDatedComments);
-      setComment("");
-      setIsCommentsSent(false);
-      setPostComments(upDatedComments);
-      setCommentsAuthors(updatedAuthorsInfo);
+      if (isReply) {
+        setIsReply(false);
+        if (!commentReplyId) return;
+        const author = {
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          bio: userInfo.bio,
+          connectionId: userInfo.connectionId,
+          imageUrl: userInfo.imageUrl,
+        };
+        const upLoadedComment = { ...responds.comment };
+        const updatedAuthorsInfo =
+          commentsAuthors.length > 0 ? [author, ...commentsAuthors] : [author];
+        const updatedPostedComments = [];
+        const postedComments = props.body;
+        const commentToReplyId = commentReplyId;
+        for (let i = 0; i < postedComments.length; i++) {
+          const comment = postedComments[i];
+          console.log(comment._id.trim() === commentToReplyId.trim());
+          if (comment._id.trim() === commentToReplyId.trim()) {
+            const subComments = [...comment.subComments, upLoadedComment];
+            const commentData = {
+              connectionId: comment.connectionId,
+              comment: comment.comment,
+              likes: comment.likes,
+              disLikes: comment.disLikes,
+              date: comment.date,
+              time: comment.time,
+              createdAt: comment.createdAt,
+              _id: comment._id,
+            };
+            const updatedComment = { ...commentData, subComments: subComments };
+            updatedPostedComments.push(updatedComment);
+          } else {
+            updatedPostedComments.push(comment);
+          }
+        }
+        setCommentReplyId(undefined);
+        setComment("");
+        setIsCommentsSent(false);
+        setPostComments(updatedPostedComments);
+        setCommentsAuthors(updatedAuthorsInfo);
+        setReRenderComments(true);
+        commentsCount.current = Number(commentsCount.current) + 1;
+      } else {
+        const author = {
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          bio: userInfo.bio,
+          connectionId: userInfo.connectionId,
+          imageUrl: userInfo.imageUrl,
+        };
+        const upLoadedComment = { ...responds.comment };
+        const updatedAuthorsInfo =
+          commentsAuthors.length > 0 ? [author, ...commentsAuthors] : [author];
+        const upDatedComments =
+          props.body.length > 0
+            ? [upLoadedComment, ...props.body]
+            : [upLoadedComment];
+        setComment("");
+        setIsCommentsSent(false);
+        setPostComments(upDatedComments);
+        setCommentsAuthors(updatedAuthorsInfo);
+        setReRenderComments(true);
+        commentsCount.current = Number(commentsCount.current) + 1;
+      }
     } catch (error) {
       console.log(error);
       setIsCommentsSent(false);
+      if (isReply) {
+        setIsReply(false);
+        setCommentReplyId(undefined);
+      }
     }
   }
   function canculeAddComments() {
     setPopUpCard(undefined);
     setPopUpControl(false);
+    if (isReply) {
+      setIsReply(false);
+      setCommentReplyId(undefined);
+    }
   }
   return (
     <div className="w-[60%] max-w-219.75 h-[80%] relative max-h-145.5 pl-7 pr-7 pb-7 pt-4  bg-white rounded-[20px] overflow-hidden">
@@ -172,7 +258,7 @@ function CommentsPopUp(props: CommentsData) {
           <div className="w-full h-full">
             <textarea
               className="w-full h-full resize-none placeholder:text-[16px] placeholder:font-sans placeholder:font-normal placeholder:text-gray-300"
-              placeholder="Add comment"
+              placeholder={placeholder}
               value={comment}
               onChange={handleAddComments}
             ></textarea>
@@ -206,7 +292,7 @@ function CommentsPopUp(props: CommentsData) {
             {/**comments count */}
             <span className="w-9 h-5.5 bg-[#11AC76] pl-1 pr-1 pt-0.5 pb-0.5 rounded-[14px] text-gray-200 flex justify-center items-center">
               <h5 className="font-sans font-normal text-[16px]">
-                {postComments.length}
+                {`${commentsCount.current}`}
               </h5>
             </span>
           </span>
@@ -221,6 +307,9 @@ function CommentsPopUp(props: CommentsData) {
           <CommentsComponets
             body={postComments}
             authorsInfor={commentsAuthors}
+            reRenderComments={reRenderComments}
+            setReRenderComments={setReRenderComments}
+            replayToCommentControl={handleReplayComment}
           />
         )}
       </div>

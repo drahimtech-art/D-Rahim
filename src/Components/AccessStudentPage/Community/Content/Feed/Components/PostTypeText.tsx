@@ -5,6 +5,17 @@ import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -13,7 +24,8 @@ type PostCommets = {
   date: string;
   time: string;
   createdAt: string;
-  subComments: object[] | [];
+  subComments: CommentData[] | [];
+  _id: string;
 };
 type CommentsData = {
   connectionId: string;
@@ -40,7 +52,7 @@ type PostData = {
   content: string;
   engamentStates: {
     likesId: string[];
-    comments: CommentsData[] | [];
+    comments: PostCommets[] | [];
   };
   postId: string;
   hashTages: string[];
@@ -235,6 +247,7 @@ function PostTypeText(props: PostData) {
       <CommentsPopUp
         postId={props.postId}
         body={props.engamentStates.comments}
+        commentsCount={props.engament.comments}
       />,
     );
     setPopUpControl(true);
