@@ -1,26 +1,70 @@
 import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
-import { FeedContextApi } from "../../../ContextApi/FeedsContext";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import canculeIcon from "/images/icons/proicons_cancel.png";
 import videoIcon from "/images/icons/video_icon.png";
 import photoIcon from "/images/icons/photo_icon.png";
 import writeIcon from "/images/icons/write_icon.png";
-function PostPopUp() {
+type CommentData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+};
+type PostCommets = {
+  connectionId: string;
+  comment: string;
+  likes: number;
+  disLikes: number;
+  date: string;
+  time: string;
+  createdAt: string;
+  subComments: CommentData[] | [];
+  _id: string;
+};
+type FeedsPostData = {
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  bio: string;
+  connectionId: string;
+  engament: {
+    likes: number;
+    comments: number;
+    shares: number;
+  };
+  content: {
+    type: string;
+    caption: string;
+    content: string;
+  };
+  engamentStates: {
+    likesId: string[];
+    comments: PostCommets[] | [];
+  };
+  postId: string;
+  hashTages: string[];
+  date: string;
+  time: string;
+  createdAt: Date;
+};
+type UpdatePost = {
+  updatePost: (post: FeedsPostData) => void;
+};
+function PostPopUp(props: UpdatePost) {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
-  const feedsContext = FeedContextApi();
   if (!userDetails) return;
   const { userInfo, setPopUpControl } = userDetails;
-  const {
-    postText,
-    setPostText,
-    postPhotoMedia,
-    setPostPhotoMedia,
-    postVideoMedia,
-    setPostVideoMedia,
-    setUploadPost,
-  } = feedsContext;
   const [photoDisplay, setPhotoDisplay] = useState<string | undefined>();
+  const [postPhotoMedia, setPostPhotoMedia] = useState<Blob | undefined>();
+  const [postVideoMedia, setPostVideoMedia] = useState<Blob | undefined>();
+  const [postText, setPostText] = useState<string>("");
   const photoRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     if (!postPhotoMedia) return;
@@ -29,6 +73,105 @@ function PostPopUp() {
       setPhotoDisplay(photo);
     })();
   }, [postPhotoMedia]);
+  //
+  const [hashTages, setHashTags] = useState<string[]>([]);
+  const [textToPost, setTextToPost] = useState<string>("");
+  //const videoRef = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    (() => {
+      setTextToPost(postText);
+      //get hastages
+      const hashTagesInPost = postText.split("#");
+      if (hashTagesInPost.length > 1) {
+        const Tages: string[] = [];
+        for (let i = 1; i < hashTagesInPost.length; i++) {
+          const tages = `#${hashTagesInPost[i].split(" ")[0]}`;
+          Tages.push(tages);
+        }
+        setHashTags(Tages);
+      } else {
+        setHashTags([]);
+      }
+    })();
+  }, [postText]);
+  //upload post
+  async function uploadPostFunc() {
+    if (textToPost.trim() === "") return;
+    const hashTagesInPost = textToPost.split("#");
+    let filtedPostText = textToPost;
+    if (hashTagesInPost.length > 1) {
+      const textWithOutHashTages = hashTagesInPost[0];
+      filtedPostText = textWithOutHashTages;
+    }
+    if (!filtedPostText) return;
+    setPopUpControl(false);
+    try {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const formatedDate = `${year}/${month >= 10 ? month : `0${month}`}/${day >= 10 ? day : `0${day}`}`;
+      const time = `${date.getHours() >= 10 ? `${date.getHours()}` : `0${date.getHours()}`}:${date.getMinutes() > 10 ? `${date.getMinutes()}` : `0${date.getMinutes()}`}`;
+      let contentType;
+      if (postPhotoMedia) {
+        contentType = "image";
+      } else if (postVideoMedia) {
+        contentType = "video";
+      } else {
+        contentType = "text";
+      }
+      const postTextData = {
+        connectionId: userInfo.connectionId,
+        hashTages: hashTages,
+        caption: filtedPostText,
+        type: contentType,
+        date: formatedDate,
+        time: time,
+      };
+      const formData = new FormData();
+      if (postPhotoMedia) {
+        formData.append("media", postPhotoMedia);
+      }
+      formData.append("postContent", JSON.stringify(postTextData));
+      setPostText("");
+      setHashTags([]);
+      setPostPhotoMedia(undefined);
+      setPostVideoMedia(undefined);
+      const CLIENT_KEY = "CLIENT_KEY";
+      const data = localStorage.getItem(CLIENT_KEY);
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const requst = await fetch(`${serverPort}/feeds/upload/content`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "X-Frontend-Key": `${key}`,
+        },
+        body: formData,
+      });
+      const responds = await requst.json();
+      if (responds.ok) {
+        alert(responds.message);
+        const postMedia: FeedsPostData = {
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          imageUrl: userInfo.imageUrl,
+          bio: userInfo.bio,
+          ...responds.post,
+        };
+        props.updatePost(postMedia);
+      } else {
+        alert(responds.message);
+      }
+    } catch (error) {
+      alert(error);
+      console.log(error);
+      setPopUpControl(false);
+    }
+  }
+  //
+
+  //
   function handlePostMediaClear() {
     if (photoDisplay) {
       setPostPhotoMedia(undefined);
@@ -155,7 +298,7 @@ function PostPopUp() {
           <span className="w-full flex justify-end">
             <button
               className="w-25 h-fit pl-2.5 pr-2.5 pt-1.5 pb-1.5 flex justify-center items-center pointer rounded-2xl bg-[#11AC76]"
-              onClick={() => setUploadPost(true)}
+              onClick={uploadPostFunc}
             >
               <h5 className="text-white font-sans text-[14px] font-medium">
                 Post
