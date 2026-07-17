@@ -312,3 +312,6 @@ textarea:focus {
 .postPopUpPlacholder::placeholder {
   font-size: clamp(18px, 5vw, 20px);
 }
+.virtuoso > :nth-child(1) > :first-child {
+  min-width: 100%;
+}

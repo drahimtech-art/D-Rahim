@@ -56,19 +56,28 @@ type FeedsPostData = {
 type FeedData = {
   feedsPost: FeedsPostData[] | undefined;
   setFeedsPost: React.Dispatch<SetStateAction<FeedsPostData[] | undefined>>;
+  getFeedsControl: boolean;
+  setGetFeedsControl: React.Dispatch<SetStateAction<boolean>>;
 };
 
 const FeedContext = createContext<FeedData>({
   feedsPost: undefined,
   setFeedsPost: () => {},
+  getFeedsControl: true,
+  setGetFeedsControl: () => {},
 });
 export function FeedContextProvider({ children }: { children: ReactNode }) {
-  const [feedsPost, setFeedsPost] = useState<FeedsPostData[] | undefined>();
+  const [feedsPost, setFeedsPost] = useState<
+    FeedsPostData[] | undefined | []
+  >();
+  const [getFeedsControl, setGetFeedsControl] = useState<boolean>(true);
   return (
     <FeedContext.Provider
       value={{
         feedsPost,
         setFeedsPost,
+        getFeedsControl,
+        setGetFeedsControl,
       }}
     >
       {children}

@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import Head from "./Head";
-import UserPost from "./UserPost";
 import Feed from "./Feed/Feed";
 const Group = lazy(() => import("./Groups/Group"));
 const Connections = lazy(() => import("./Connections/Connections"));
@@ -14,17 +13,8 @@ type CommunityPagesControl = {
 };
 function Content(props: CommunityPagesControl) {
   return (
-    <div className="flex flex-col w-full h-full overflow-y-auto">
-      {/**head  */}
-      <Head
-        feedsSate={props.feedsState}
-        groupState={props.groupState}
-        connectionsState={props.connectionsState}
-        toFeedsPage={props.toFeedsPage}
-        toGroupsPage={props.toGroupsPage}
-        toConnectionsPage={props.toConnectionsPage}
-      />
-      <div className="mt-7.5 flex flex-col gap-3.75">
+    <div className="flex flex-col min-w-full h-full relative">
+      <div className="  h-full flex flex-col gap-3.75 overflow-y-auto">
         {/**content */}
         <Suspense
           fallback={
@@ -34,12 +24,37 @@ function Content(props: CommunityPagesControl) {
           }
         >
           {props.feedsState && (
-            <>
-              <UserPost /> <Feed />
-            </>
+            <div className="w-full min-h-full ">
+              <Feed
+                feedsState={props.feedsState}
+                groupState={props.groupState}
+                connectionsState={props.connectionsState}
+                toFeedsPage={props.toFeedsPage}
+                toGroupsPage={props.toGroupsPage}
+                toConnectionsPage={props.toConnectionsPage}
+              />
+            </div>
           )}
-          {props.groupState && <Group />}
-          {props.connectionsState && <Connections />}
+          {props.groupState && (
+            <Group
+              feedsState={props.feedsState}
+              groupState={props.groupState}
+              connectionsState={props.connectionsState}
+              toFeedsPage={props.toFeedsPage}
+              toGroupsPage={props.toGroupsPage}
+              toConnectionsPage={props.toConnectionsPage}
+            />
+          )}
+          {props.connectionsState && (
+            <Connections
+              feedsState={props.feedsState}
+              groupState={props.groupState}
+              connectionsState={props.connectionsState}
+              toFeedsPage={props.toFeedsPage}
+              toGroupsPage={props.toGroupsPage}
+              toConnectionsPage={props.toConnectionsPage}
+            />
+          )}
         </Suspense>
       </div>
     </div>

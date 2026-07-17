@@ -64,7 +64,7 @@ function UserPost() {
   function updatePost(post: FeedsPostData) {
     setFeedsPost((prevsPosts) => {
       if (!prevsPosts) return [post];
-      return [post, ...prevsPosts];
+      if (prevsPosts) return [post, ...prevsPosts];
     });
   }
   //postPopUp control
@@ -74,7 +74,7 @@ function UserPost() {
   }
   return (
     <>
-      <div className="w-full flex gap-5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
+      <td className="w-full flex gap-5 mt-7.5  h-fit pl-4 pt-5 pb-5 pr-4 border-[1.5px] border-[#11AC76] rounded-2xl">
         {/**profile image */}
         <span className="w-full flex  max-w-12.5 h-12.5  ">
           <img
@@ -90,6 +90,7 @@ function UserPost() {
               className="w-full h-full pl-5 border-[1.5px] border-[#11AC76] rounded-full"
               placeholder="Start a post"
               defaultValue={""}
+              readOnly={true}
               onClick={handlePostPopUp}
             ></input>
           </span>
@@ -127,7 +128,7 @@ function UserPost() {
             </span>
           </div>
         </div>
-      </div>
+      </td>
     </>
   );
 }

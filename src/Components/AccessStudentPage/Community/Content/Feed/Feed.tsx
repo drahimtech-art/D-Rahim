@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { FeedContextApi } from "../../../../ContextApi/FeedsContext";
 import { MessagesApi } from "../../../../ContextApi/MessagesApi";
+import Head from "./Head";
 import PostTypeText from "./Components/PostTypeText";
+import UserPost from "../UserPost";
 import PostTypePhoto from "./Components/PostTypePhoto";
+import { TableVirtuoso } from "react-virtuoso";
 type CommentData = {
   firstName: string;
   lastName: string;
@@ -64,7 +67,15 @@ type Connections = {
   date?: string;
   time?: string;
 };
-function Feed() {
+type CommunityPagesControl = {
+  feedsState: boolean;
+  groupState: boolean;
+  connectionsState: boolean;
+  toFeedsPage: () => void;
+  toGroupsPage: () => void;
+  toConnectionsPage: () => void;
+};
+function Feed(prop: CommunityPagesControl) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   const feedsMediaData = FeedContextApi();
@@ -72,10 +83,14 @@ function Feed() {
   if (!userDetails || !feedsMediaData || !messagesContextData) return;
   const { userInfo } = userDetails;
   const { conections, setConections } = messagesContextData;
-  const { feedsPost, setFeedsPost } = feedsMediaData;
-  const [feedsPostStore, setFeedsPostStore] = useState<
-    FeedsData[] | undefined
-  >();
+  const { feedsPost, setFeedsPost, getFeedsControl, setGetFeedsControl } =
+    feedsMediaData;
+  const [feedsPostStore, setFeedsPostStore] = useState<FeedsData[] | any[]>([
+    {
+      postId:
+        "04162727-0a8e-4dbc-a55c-395e5349ca3a$2aadd1df-8154-403b-8ec6-26bec47e7c87",
+    },
+  ]);
   //get userConnections list
   useEffect(() => {
     if (!conections) return;
@@ -109,13 +124,21 @@ function Feed() {
   //listen on feeds post media change to add it to sate to be rendered
   useEffect(() => {
     if (feedsPost && feedsPost.length !== 0) {
-      setFeedsPostStore(feedsPost);
+      setFeedsPostStore([
+        {
+          postId:
+            "04162727-0a8e-4dbc-a55c-395e5349ca3a$2aadd1df-8154-403b-8ec6-26bec47e7c87",
+        },
+        ...feedsPost,
+      ]);
     }
+    console.log(feedsPost);
   }, [feedsPost]);
   //get posts
   useEffect(() => {
-    if (feedsPost) if (feedsPost.length !== 0) return; // get post once and only once on this section
+    if (feedsPost) if (feedsPost.length !== 0 && !getFeedsControl) return; // get post once and only once on this section
     async function getFeed() {
+      console.log(`called feedpost ${feedsPost}`);
       const connectionId = userInfo.connectionId;
       const CLIENT_KEY = "CLIENT_KEY";
       const data = localStorage.getItem(CLIENT_KEY);
@@ -134,60 +157,108 @@ function Feed() {
         );
         const responds = await requst.json();
         if (responds.ok) {
-          setFeedsPost(responds.feeds);
+          setGetFeedsControl(false);
+          const feeds =
+            feedsPost && feedsPost?.length !== 0
+              ? [...feedsPost, ...responds.feeds]
+              : [...responds.feeds];
+          setFeedsPost(feeds);
         }
+        setGetFeedsControl(false);
       } catch (error) {
+        setGetFeedsControl(false);
         console.log(error);
       }
     }
     getFeed();
-  }, [feedsPost]);
+    console.log("called");
+  }, [feedsPost, getFeedsControl]);
+  //handle fecth more feeds
+  function handleFeacthMoreFeeds() {
+    console.log("fecthing data");
+    if (getFeedsControl) return;
+    setGetFeedsControl(true);
+  }
   return (
-    <div className="flex flex-col gap-3.5 w-full h-fit">
+    <div className="w-full h-full ">
       {/**post card */}
-      {feedsPostStore &&
-        feedsPostStore.map((e, _) => {
-          if (e.content.type === "image")
-            return (
-              <PostTypePhoto
-                firstName={e.firstName}
-                lastName={e.lastName}
-                profileImg={e.imageUrl}
-                bio={e.bio}
-                connectionId={e.connectionId}
-                engament={e.engament}
-                engamentStates={e.engamentStates}
-                caption={e.content.caption}
-                content={e.content.content}
-                postId={e.postId}
-                date={e.date}
-                time={e.time}
-                hashTages={e.hashTages}
-                createdAt={e.createdAt}
-                key={e.postId}
-              />
-            );
-          if (e.content.type === "text")
-            return (
-              <PostTypeText
-                firstName={e.firstName}
-                lastName={e.lastName}
-                profileImg={e.imageUrl}
-                bio={e.bio}
-                connectionId={e.connectionId}
-                engament={e.engament}
-                engamentStates={e.engamentStates}
-                caption={e.content.caption}
-                content={e.content.content}
-                postId={e.postId}
-                date={e.date}
-                time={e.time}
-                hashTages={e.hashTages}
-                createdAt={e.createdAt}
-                key={e.postId}
-              />
-            );
-        })}
+      {feedsPostStore && (
+        <TableVirtuoso
+          className="w-full! h-full!  relative! virtuoso"
+          data={feedsPostStore}
+          endReached={handleFeacthMoreFeeds}
+          fixedFooterContent={
+            getFeedsControl
+              ? () => (
+                  <tr className="w-full h-full bg-green-500 font-bold text-2xl">
+                    Loading....
+                  </tr>
+                )
+              : undefined
+          }
+          computeItemKey={(_, post) =>
+            `key-${post.postId}-&-id-${crypto.randomUUID()}`
+          }
+          itemContent={(index, post) => {
+            if (index === 0)
+              return (
+                <>
+                  <Head
+                    feedsSate={prop.feedsState}
+                    groupState={prop.groupState}
+                    connectionsState={prop.connectionsState}
+                    toFeedsPage={prop.toFeedsPage}
+                    toGroupsPage={prop.toGroupsPage}
+                    toConnectionsPage={prop.toConnectionsPage}
+                  />
+                  <UserPost />
+                </>
+              );
+            if (index !== 0 && post.content.type === "image")
+              return (
+                <td className="w-full  block h-fit mt-3.5">
+                  <PostTypePhoto
+                    firstName={post.firstName}
+                    lastName={post.lastName}
+                    profileImg={post.imageUrl}
+                    bio={post.bio}
+                    connectionId={post.connectionId}
+                    engament={post.engament}
+                    engamentStates={post.engamentStates}
+                    caption={post.content.caption}
+                    content={post.content.content}
+                    postId={post.postId}
+                    date={post.date}
+                    time={post.time}
+                    hashTages={post.hashTages}
+                    createdAt={post.createdAt}
+                  />
+                </td>
+              );
+            if (index !== 0 && post.content.type === "text")
+              return (
+                <td className="w-full block h-fit mt-3.5">
+                  <PostTypeText
+                    firstName={post.firstName}
+                    lastName={post.lastName}
+                    profileImg={post.imageUrl}
+                    bio={post.bio}
+                    connectionId={post.connectionId}
+                    engament={post.engament}
+                    engamentStates={post.engamentStates}
+                    caption={post.content.caption}
+                    content={post.content.content}
+                    postId={post.postId}
+                    date={post.date}
+                    time={post.time}
+                    hashTages={post.hashTages}
+                    createdAt={post.createdAt}
+                  />
+                </td>
+              );
+          }}
+        ></TableVirtuoso>
+      )}
     </div>
   );
 }

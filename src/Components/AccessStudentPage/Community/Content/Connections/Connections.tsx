@@ -2,6 +2,7 @@ import { useState, useEffect, type ChangeEvent } from "react";
 //import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { MessagesApi } from "../../../../ContextApi/MessagesApi";
 import Head from "./Head";
+import HeadMenu from "../Head";
 import ConectionsList from "./ConectionsList";
 type Connections = {
   contactFirstName: string;
@@ -15,7 +16,15 @@ type Connections = {
   date?: string;
   time?: string;
 };
-function Connections() {
+type CommunityPagesControl = {
+  feedsState: boolean;
+  groupState: boolean;
+  connectionsState: boolean;
+  toFeedsPage: () => void;
+  toGroupsPage: () => void;
+  toConnectionsPage: () => void;
+};
+function Connections(props: CommunityPagesControl) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   //const userDetails = StudentsAppData();
   const messagesContextData = MessagesApi();
@@ -74,6 +83,15 @@ function Connections() {
   }, [conections]);
   return (
     <div className="w-full h-full">
+      {/**head  */}
+      <HeadMenu
+        feedsSate={props.feedsState}
+        groupState={props.groupState}
+        connectionsState={props.connectionsState}
+        toFeedsPage={props.toFeedsPage}
+        toGroupsPage={props.toGroupsPage}
+        toConnectionsPage={props.toConnectionsPage}
+      />
       {/**head, search bar and filter bar */}
       <Head search={search} toFilterConnectionsList={toFilterConnectionsList} />
       {/**connections list */}

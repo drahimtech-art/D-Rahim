@@ -90,8 +90,9 @@ function CommentCard(props: FormatedPostComments) {
       `reply to ${props.firstName} ${props.lastName}`,
       props._id,
     );
-    setSubComments(true);
-    console.log(props.subComments);
+  }
+  function handlViewCommentReply() {
+    setSubComments(!subComments);
   }
   return (
     <div className="w-full h-full flex flex-col gap-2 ">
@@ -154,7 +155,12 @@ function CommentCard(props: FormatedPostComments) {
           </span>
           {/**more button */}
           <span className="flex items-center ">
-            <img className="w-fit h-fit" src={moreIcon}></img>
+            <h5
+              className="font-sans text-[10px] font-normal text-gray-400 pointer"
+              onClick={handlViewCommentReply}
+            >
+              -View Reply- {props.subComments.length}
+            </h5>
           </span>
         </span>
         {/**sub comments */}
@@ -165,23 +171,24 @@ function CommentCard(props: FormatedPostComments) {
             </div>
           }
         >
-          {props.subComments.map((e) => {
-            const id = crypto.randomUUID();
-            return (
-              <SubComments
-                connectionId={e.connectionId}
-                comment={e.comment}
-                likes={e.likes}
-                disLikes={e.disLikes}
-                date={e.date}
-                time={e.time}
-                firstName={e.firstName}
-                lastName={e.lastName}
-                imageUrl={e.imageUrl}
-                key={`subComments-key-${id}`}
-              />
-            );
-          })}
+          {subComments &&
+            props.subComments.map((e) => {
+              const id = crypto.randomUUID();
+              return (
+                <SubComments
+                  connectionId={e.connectionId}
+                  comment={e.comment}
+                  likes={e.likes}
+                  disLikes={e.disLikes}
+                  date={e.date}
+                  time={e.time}
+                  firstName={e.firstName}
+                  lastName={e.lastName}
+                  imageUrl={e.imageUrl}
+                  key={`subComments-key-${id}`}
+                />
+              );
+            })}
         </Suspense>
       </div>
     </div>
