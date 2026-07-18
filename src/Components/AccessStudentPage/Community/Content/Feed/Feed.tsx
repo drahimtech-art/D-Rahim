@@ -155,18 +155,37 @@ function Feed(prop: CommunityPagesControl) {
       console.log(error);
     }
   }
-  //get posts
-  useEffect(() => {
-    if (feedsPost) if (feedsPost.length !== 0 && !getFeedsControl) return; // get post once and only once on this section
-    getFeed();
-    console.log("called");
-  }, []);
+
   //handle fecth more feeds
   function handleFeacthMoreFeeds() {
     console.log("fecthing data");
     if (getFeedsControl) return;
     getFeed();
     setGetFeedsControl(true);
+  }
+  //update list
+  function updateItemAtIndexInList(
+    index: number,
+    data: FeedsPostData,
+    value: boolean,
+  ) {
+    if (!feedsPost) return;
+    console.log(value);
+    const list = [...feedsPost];
+    const postData = { ...data };
+    console.log(postData.isPostLiked);
+    if (postData.isPostLiked === value) return;
+    postData.engament.likes = value
+      ? postData.engament.likes + 1
+      : postData.engament.likes - 1;
+    postData.isPostLiked = value;
+    const updatedPostData = { ...postData };
+    const updatedList = [
+      ...list.slice(0, index - 1),
+      updatedPostData,
+      ...list.slice(index),
+    ];
+    setFeedsPost([...updatedList]);
   }
   return (
     <div className="w-full h-full ">
@@ -209,20 +228,9 @@ function Feed(prop: CommunityPagesControl) {
               return (
                 <td className="w-full  block h-fit mt-3.5">
                   <PostTypePhoto
-                    firstName={post.firstName}
-                    lastName={post.lastName}
-                    imageUrl={post.imageUrl}
-                    bio={post.bio}
-                    connectionId={post.connectionId}
-                    engament={post.engament}
-                    isPostLiked={post.isPostLiked}
-                    comments={post.comments}
-                    caption={post.content.caption}
-                    content={post.content.content}
-                    postId={post.postId}
-                    postedAt={post.postedAt}
-                    hashTages={post.hashTages}
-                    createdAt={post.createdAt}
+                    body={post}
+                    arrayIndex={index}
+                    updateItemAtIndexInList={updateItemAtIndexInList}
                   />
                 </td>
               );
@@ -230,20 +238,9 @@ function Feed(prop: CommunityPagesControl) {
               return (
                 <td className="w-full block h-fit mt-3.5">
                   <PostTypeText
-                    firstName={post.firstName}
-                    lastName={post.lastName}
-                    imageUrl={post.imageUrl}
-                    bio={post.bio}
-                    connectionId={post.connectionId}
-                    engament={post.engament}
-                    isPostLiked={post.isPostLiked}
-                    comments={post.comments}
-                    caption={post.content.caption}
-                    content={post.content.content}
-                    postId={post.postId}
-                    postedAt={post.postedAt}
-                    hashTages={post.hashTages}
-                    createdAt={post.createdAt}
+                    body={post}
+                    arrayIndex={index}
+                    updateItemAtIndexInList={updateItemAtIndexInList}
                   />
                 </td>
               );

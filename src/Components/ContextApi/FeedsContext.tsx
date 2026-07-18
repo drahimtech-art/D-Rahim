@@ -32,10 +32,8 @@ type FeedsPostData = {
     caption: string;
     content: string;
   };
-  engamentStates: {
-    isPostLiked: boolean;
-    comments: PostCommets[] | [];
-  };
+  isPostLiked: boolean;
+  comments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
   postedAt: Date;

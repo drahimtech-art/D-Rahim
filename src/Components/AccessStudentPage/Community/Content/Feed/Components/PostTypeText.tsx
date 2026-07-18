@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import { MessagesApi } from "../../../../../ContextApi/MessagesApi";
 import { TotalTimePassed } from "../../../../TotalTimePassed";
@@ -29,9 +29,11 @@ type FeedsPostData = {
     comments: number;
     shares: number;
   };
-  caption: string;
-  content: string;
-
+  content: {
+    type: string;
+    caption: string;
+    content: string;
+  };
   isPostLiked: boolean;
   comments: PostCommets[] | [];
   postId: string;
@@ -39,27 +41,28 @@ type FeedsPostData = {
   postedAt: Date;
   createdAt: Date;
 };
-type Connections = {
-  contactFirstName: string;
-  contactLastName: string;
-  contactId: string;
-  contactImage: string | null;
-  chatGroupId: string;
-  invite: boolean;
-  isConnected: boolean;
-  bio: string;
-  sendsentAt?: string;
+type Body = {
+  body: FeedsPostData;
+  arrayIndex: number;
+  updateItemAtIndexInList: (
+    index: number,
+    data: FeedsPostData,
+    value: boolean,
+  ) => void;
 };
-function PostTypeText(props: FeedsPostData) {
+function PostTypeText(props: Body) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   const messagesContextData = MessagesApi();
   if (!userDetails) return;
   const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
   const { conections } = messagesContextData;
-  const [likes, setLikes] = useState<number>(props.engament.likes);
-  const [isPostLiked, setIsPostLiked] = useState<boolean>(props.isPostLiked);
-  const [commentsCount, _] = useState<number>(props.engament.comments);
+  const [likes, setLikes] = useState<number>(props.body.engament.likes);
+  const [isPostLiked, setIsPostLiked] = useState<boolean>();
+  useMemo(() => {
+    setIsPostLiked(props.body.isPostLiked);
+  }, []);
+  const [commentsCount, _] = useState<number>(props.body.engament.comments);
   const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
   const [postDate, setPostDate] = useState<string>("");
   const postLikeRef = useRef<HTMLHeadingElement | null>(null);
@@ -70,7 +73,7 @@ function PostTypeText(props: FeedsPostData) {
   useEffect(() => {
     if (conections.length === 0 || !conections) return;
     for (const contact of conections) {
-      const authorId = props.connectionId;
+      const authorId = props.body.connectionId;
       if (contact.contactId === authorId && contact.invite) {
         if (contact.isConnected) {
           contectionSate.current = "Connected";
@@ -109,7 +112,7 @@ function PostTypeText(props: FeedsPostData) {
     try {
       if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
-      const postId = props.postId;
+      const postId = props.body.postId;
       const requst = await fetch(
         `${serverPort}/feeds/intaraction/like/post/${postId}`,
         {
@@ -123,7 +126,10 @@ function PostTypeText(props: FeedsPostData) {
         },
       );
       const responds = await requst.json();
-      console.log(responds);
+      if (responds.ok) {
+        console.log(responds.message);
+      }
+      props.updateItemAtIndexInList(props.arrayIndex, props.body, !isPostLiked);
     } catch (error) {
       console.log(error);
     }
@@ -133,8 +139,8 @@ function PostTypeText(props: FeedsPostData) {
   }
   //get update feed of post upload time every minite
   useEffect(() => {
-    if (!props) return;
-    const postedAt = props.postedAt;
+    if (!props.body) return;
+    const postedAt = props.body.postedAt;
     const timer = setInterval(() => {
       const timePassed = TotalTimePassed(postedAt);
       if (timePassed) {
@@ -159,7 +165,7 @@ function PostTypeText(props: FeedsPostData) {
     try {
       if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
-      const author = props.connectionId;
+      const author = props.body.connectionId;
       const requst = await fetch(
         `${serverPort}/connection/user/add/${author}`,
         {
@@ -184,9 +190,9 @@ function PostTypeText(props: FeedsPostData) {
   function handleAddComments() {
     setPopUpCard(
       <CommentsPopUp
-        postId={props.postId}
-        body={props.engamentStates.comments}
-        commentsCount={props.engament.comments}
+        postId={props.body.postId}
+        body={props.body.engamentStates.comments}
+        commentsCount={props.body.engament.comments}
       />,
     );
     setPopUpControl(true);
@@ -201,7 +207,7 @@ function PostTypeText(props: FeedsPostData) {
             {
               <img
                 className="rounded-full min-w-12.5 max-w-12.5 min-h-12.5 max-h-12.5"
-                src={props.imageUrl ? props.imageUrl : noProfileImg}
+                src={props.body.imageUrl ? props.body.imageUrl : noProfileImg}
               ></img>
             }
           </span>
@@ -209,11 +215,11 @@ function PostTypeText(props: FeedsPostData) {
           <span className="fle flex-col gap-1.25">
             {/**full name */}
             <h5 className="font-sans font-medium text-[20px] line-clamp-1">
-              {`${props.firstName} ${props.lastName}`}
+              {`${props.body.firstName} ${props.body.lastName}`}
             </h5>
             {/**bio */}
             <h5 className="font-sans font-medium text-[16px] line-clamp-1 text-gray-500">
-              {props.bio}
+              {props.body.bio}
             </h5>
             {/**post time */}
             <h5 className="font-sans font-normal text-[16px] line-clamp-1 text-gray-500">
@@ -239,13 +245,13 @@ function PostTypeText(props: FeedsPostData) {
         {viewMoreCaption ? (
           <div className="w-full  pointer" onClick={handleViewMoreCaption}>
             <h5 className=" font-sans font-medium text-[16px] max-w-[95%]">
-              {props.caption}
+              {props.body.content.caption}
             </h5>
           </div>
         ) : (
           <span className="w-full flex items-center ">
             <h5 className="line-clamp-1 font-sans font-medium text-[16px] max-w-[70%] mr-auto">
-              {props.caption}
+              {props.body.content.caption}
             </h5>
             <h5
               className="font-sans font-medium text-[16px] pointer"
@@ -257,7 +263,7 @@ function PostTypeText(props: FeedsPostData) {
         )}
         {/**hashtag */}
         <span className="flex gap-2 font-sans font-medium text-[16px] items-center text-[#505AE2]">
-          {props.hashTages.map((e, i) => {
+          {props.body.hashTages.map((e, i) => {
             return <h5 key={`hashTag-key-${i}`}>{e}</h5>;
           })}
         </span>
