@@ -1,37 +1,27 @@
 import { useState, useEffect, useRef } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import { MessagesApi } from "../../../../../ContextApi/MessagesApi";
+import { TotalTimePassed } from "../../../../TotalTimePassed";
 import likeIcon from "/images/icons/like_icon.png";
 import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
-type CommentData = {
+type PostCommets = {
+  postId: string;
+  parentId: string;
+  depth: number;
+  authorId: string;
+  comment: string;
+  likesCount: number;
+  dislikeCount: number;
+  replyCount: number;
+  commentedAt: Date;
+};
+type FeedsPostData = {
   firstName: string;
   lastName: string;
   imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-};
-type PostCommets = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: CommentData[] | [];
-  _id: string;
-};
-type PostData = {
-  firstName: string;
-  lastName: string;
-  profileImg: string | null;
   bio: string;
   connectionId: string;
   engament: {
@@ -41,17 +31,26 @@ type PostData = {
   };
   caption: string;
   content: string;
-  engamentStates: {
-    likesId: string[];
-    comments: PostCommets[] | [];
-  };
+
+  isPostLiked: boolean;
+  comments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
-  date: string;
-  time: string;
+  postedAt: Date;
   createdAt: Date;
 };
-function PostTypeText(props: PostData) {
+type Connections = {
+  contactFirstName: string;
+  contactLastName: string;
+  contactId: string;
+  contactImage: string | null;
+  chatGroupId: string;
+  invite: boolean;
+  isConnected: boolean;
+  bio: string;
+  sendsentAt?: string;
+};
+function PostTypeText(props: FeedsPostData) {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   const messagesContextData = MessagesApi();
@@ -59,11 +58,10 @@ function PostTypeText(props: PostData) {
   const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
   const { conections } = messagesContextData;
   const [likes, setLikes] = useState<number>(props.engament.likes);
-  const [isPostLiked, setIsPostLiked] = useState<boolean>(false);
+  const [isPostLiked, setIsPostLiked] = useState<boolean>(props.isPostLiked);
   const [commentsCount, _] = useState<number>(props.engament.comments);
   const [viewMoreCaption, setViewMoreCaption] = useState<boolean>(false);
   const [postDate, setPostDate] = useState<string>("");
-  const postLikesId = useRef(props.engamentStates.likesId);
   const postLikeRef = useRef<HTMLHeadingElement | null>(null);
   const [sendConectionRequst, setSendConectionRequst] =
     useState<boolean>(false);
@@ -87,25 +85,25 @@ function PostTypeText(props: PostData) {
       }
     }
   }, [conections]);
-  //check if userHasAlready liked post
-  useEffect(() => {
-    const userConnectionId = userInfo.connectionId;
-    if (!postLikesId.current) return;
-    if (postLikesId.current.includes(userConnectionId)) {
-      setIsPostLiked(true);
-    }
-  }, [postLikesId]);
   //update post liked buttion ux
   useEffect(() => {
-    if (!isPostLiked || !postLikeRef.current) return;
-    postLikeRef.current.classList.remove("font-normal");
-    postLikeRef.current.classList.add("font-medium");
+    if (!postLikeRef.current) return;
+    if (isPostLiked) {
+      postLikeRef.current.classList.remove("font-normal");
+      postLikeRef.current.classList.add("font-medium");
+    } else {
+      postLikeRef.current.classList.remove("font-medium");
+      postLikeRef.current.classList.add("font-normal");
+    }
   }, [isPostLiked]);
   //
   async function addLike() {
-    if (isPostLiked) return;
-    setIsPostLiked(true);
-    setLikes((prevCount) => (prevCount += 1));
+    setIsPostLiked(!isPostLiked);
+    if (isPostLiked) {
+      setLikes((prevCount) => (prevCount -= 1));
+    } else {
+      setLikes((prevCount) => (prevCount += 1));
+    }
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
     try {
@@ -133,70 +131,18 @@ function PostTypeText(props: PostData) {
   function handleViewMoreCaption() {
     setViewMoreCaption((prevState) => !prevState);
   }
-  //get post upload time
-  function getPostUpLoadTime(time: string, date: string) {
-    const newDate = new Date();
-    const newHour = Number(newDate.getHours());
-    const newMinites = Number(newDate.getMinutes());
-    const newMonth = Number(newDate.getMonth() + 1);
-    const newDay = Number(newDate.getDate());
-    const newYear = newDate.getFullYear().toString();
-    //
-    const oldMonth = Number(date.split("/")[1]);
-    const oldDay = Number(date.split("/")[2]);
-    const oldYear = date.split("/")[0];
-    let oldHour = Number(time.split(":")[0]);
-    let oldMinites = Number(time.split(":")[1]);
-    let timePassed;
-    //minites passed
-    if (
-      oldHour === newHour &&
-      oldMonth === newMonth &&
-      oldDay === newDay &&
-      oldYear === newYear
-    ) {
-      timePassed = newMinites - oldMinites;
-      return timePassed > 1 ? `${timePassed}minutes` : `${timePassed}minute`;
-    }
-    //hours passed
-    if (
-      oldHour !== newHour &&
-      oldMonth === newMonth &&
-      oldDay === newDay &&
-      oldYear === newYear
-    ) {
-      timePassed = newHour - oldHour;
-      return timePassed > 1 ? `${timePassed}hours` : `${timePassed}hour`;
-    }
-    //days passed
-    if (oldMonth === newMonth && oldYear === newYear && oldDay !== newDay) {
-      timePassed = newDay - oldDay;
-      return timePassed > 1 ? `${timePassed}days` : `${timePassed}day`;
-    }
-    //months passed
-    if (oldMonth !== newMonth && oldYear === newYear) {
-      timePassed = newMonth - oldMonth;
-      return timePassed > 1 ? `${timePassed}months` : `${timePassed}month`;
-    }
-    //years
-    if (oldYear !== newYear) {
-      timePassed = newMonth - oldMonth;
-      return `${timePassed}years`;
-    }
-  }
   //get update feed of post upload time every minite
   useEffect(() => {
     if (!props) return;
-    const postTime = props.time;
-    const postDate = props.date;
+    const postedAt = props.postedAt;
     const timer = setInterval(() => {
-      const timePassed = getPostUpLoadTime(postTime, postDate);
+      const timePassed = TotalTimePassed(postedAt);
       if (timePassed) {
         setPostDate(timePassed);
       }
     }, 10000);
     (() => {
-      const timePassed = getPostUpLoadTime(postTime, postDate);
+      const timePassed = TotalTimePassed(postedAt);
       if (timePassed) {
         setPostDate(timePassed);
       }
@@ -255,7 +201,7 @@ function PostTypeText(props: PostData) {
             {
               <img
                 className="rounded-full min-w-12.5 max-w-12.5 min-h-12.5 max-h-12.5"
-                src={props.profileImg ? props.profileImg : noProfileImg}
+                src={props.imageUrl ? props.imageUrl : noProfileImg}
               ></img>
             }
           </span>

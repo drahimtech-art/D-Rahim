@@ -1,76 +1,18 @@
 import { StudentsAppData } from "../../../ContextApi/StudentsApi";
-import { FeedContextApi } from "../../../ContextApi/FeedsContext";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/icons/video_icon.png";
 import photoIcon from "/images/icons/photo_icon.png";
 import writeIcon from "/images/icons/write_icon.png";
 import PostPopUp from "./PostPopUp";
-type CommentData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-};
-type PostCommets = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: CommentData[] | [];
-  _id: string;
-};
-type FeedsPostData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  bio: string;
-  connectionId: string;
-  engament: {
-    likes: number;
-    comments: number;
-    shares: number;
-  };
-  content: {
-    type: string;
-    caption: string;
-    content: string;
-  };
-  engamentStates: {
-    likesId: string[];
-    comments: PostCommets[] | [];
-  };
-  postId: string;
-  hashTages: string[];
-  date: string;
-  time: string;
-  createdAt: Date;
-};
-
 function UserPost() {
   const userDetails = StudentsAppData();
-  const feedsContext = FeedContextApi();
   if (!userDetails) return;
   const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
-  const { setFeedsPost } = feedsContext;
   const profileImage = userInfo.imageUrl;
-  function updatePost(post: FeedsPostData) {
-    setFeedsPost((prevsPosts) => {
-      if (!prevsPosts) return [post];
-      if (prevsPosts) return [post, ...prevsPosts];
-    });
-  }
   //postPopUp control
   function handlePostPopUp() {
     setPopUpControl(true);
-    setPopUpCard(<PostPopUp updatePost={updatePost} />);
+    setPopUpCard(<PostPopUp />);
   }
   return (
     <>

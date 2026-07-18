@@ -5,27 +5,16 @@ import {
   type ReactNode,
   type SetStateAction,
 } from "react";
-type CommentData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-};
 type PostCommets = {
-  connectionId: string;
+  postId: string;
+  parentId: string;
+  depth: number;
+  authorId: string;
   comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: CommentData[] | [];
-  _id: string;
+  likesCount: number;
+  dislikeCount: number;
+  replyCount: number;
+  commentedAt: Date;
 };
 type FeedsPostData = {
   firstName: string;
@@ -44,13 +33,12 @@ type FeedsPostData = {
     content: string;
   };
   engamentStates: {
-    likesId: string[];
+    isPostLiked: boolean;
     comments: PostCommets[] | [];
   };
   postId: string;
   hashTages: string[];
-  date: string;
-  time: string;
+  postedAt: Date;
   createdAt: Date;
 };
 type FeedData = {
@@ -70,7 +58,7 @@ export function FeedContextProvider({ children }: { children: ReactNode }) {
   const [feedsPost, setFeedsPost] = useState<
     FeedsPostData[] | undefined | []
   >();
-  const [getFeedsControl, setGetFeedsControl] = useState<boolean>(true);
+  const [getFeedsControl, setGetFeedsControl] = useState<boolean>(false);
   return (
     <FeedContext.Provider
       value={{

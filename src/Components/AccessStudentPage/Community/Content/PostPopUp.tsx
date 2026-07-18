@@ -53,10 +53,8 @@ type FeedsPostData = {
   time: string;
   createdAt: Date;
 };
-type UpdatePost = {
-  updatePost: (post: FeedsPostData) => void;
-};
-function PostPopUp(props: UpdatePost) {
+
+function PostPopUp() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   if (!userDetails) return;
@@ -106,12 +104,6 @@ function PostPopUp(props: UpdatePost) {
     if (!filtedPostText) return;
     setPopUpControl(false);
     try {
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      const formatedDate = `${year}/${month >= 10 ? month : `0${month}`}/${day >= 10 ? day : `0${day}`}`;
-      const time = `${date.getHours() >= 10 ? `${date.getHours()}` : `0${date.getHours()}`}:${date.getMinutes() > 10 ? `${date.getMinutes()}` : `0${date.getMinutes()}`}`;
       let contentType;
       if (postPhotoMedia) {
         contentType = "image";
@@ -125,8 +117,7 @@ function PostPopUp(props: UpdatePost) {
         hashTages: hashTages,
         caption: filtedPostText,
         type: contentType,
-        date: formatedDate,
-        time: time,
+        postedAt: new Date().toISOString(),
       };
       const formData = new FormData();
       if (postPhotoMedia) {
@@ -152,14 +143,6 @@ function PostPopUp(props: UpdatePost) {
       const responds = await requst.json();
       if (responds.ok) {
         alert(responds.message);
-        const postMedia: FeedsPostData = {
-          firstName: userInfo.firstName,
-          lastName: userInfo.lastName,
-          imageUrl: userInfo.imageUrl,
-          bio: userInfo.bio,
-          ...responds.post,
-        };
-        props.updatePost(postMedia);
       } else {
         alert(responds.message);
       }

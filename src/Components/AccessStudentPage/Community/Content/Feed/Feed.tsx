@@ -7,29 +7,18 @@ import PostTypeText from "./Components/PostTypeText";
 import UserPost from "../UserPost";
 import PostTypePhoto from "./Components/PostTypePhoto";
 import { TableVirtuoso } from "react-virtuoso";
-type CommentData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-};
 type PostCommets = {
-  connectionId: string;
+  postId: string;
+  parentId: string;
+  depth: number;
+  authorId: string;
   comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: CommentData[] | [];
-  _id: string;
+  likesCount: number;
+  dislikeCount: number;
+  replyCount: number;
+  commentedAt: Date;
 };
-type FeedsData = {
+type FeedsPostData = {
   firstName: string;
   lastName: string;
   imageUrl: string | null;
@@ -45,14 +34,11 @@ type FeedsData = {
     caption: string;
     content: string;
   };
-  engamentStates: {
-    likesId: string[];
-    comments: PostCommets[] | [];
-  };
+  isPostLiked: boolean;
+  comments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
-  date: string;
-  time: string;
+  postedAt: Date;
   createdAt: Date;
 };
 type Connections = {
@@ -64,8 +50,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date?: string;
-  time?: string;
+  sentAt?: Date;
 };
 type CommunityPagesControl = {
   feedsState: boolean;
@@ -85,12 +70,14 @@ function Feed(prop: CommunityPagesControl) {
   const { conections, setConections } = messagesContextData;
   const { feedsPost, setFeedsPost, getFeedsControl, setGetFeedsControl } =
     feedsMediaData;
-  const [feedsPostStore, setFeedsPostStore] = useState<FeedsData[] | any[]>([
-    {
-      postId:
-        "04162727-0a8e-4dbc-a55c-395e5349ca3a$2aadd1df-8154-403b-8ec6-26bec47e7c87",
-    },
-  ]);
+  const [feedsPostStore, setFeedsPostStore] = useState<FeedsPostData[] | any[]>(
+    [
+      {
+        postId:
+          "04162727-0a8e-4dbc-a55c-395e5349ca3a$2aadd1df-8154-403b-8ec6-26bec47e7c87",
+      },
+    ],
+  );
   //get userConnections list
   useEffect(() => {
     if (!conections) return;
@@ -134,49 +121,51 @@ function Feed(prop: CommunityPagesControl) {
     }
     console.log(feedsPost);
   }, [feedsPost]);
+  //get feeds function
+  async function getFeed() {
+    console.log(`called feedpost ${feedsPost}`);
+    const connectionId = userInfo.connectionId;
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const requst = await fetch(
+        `${serverPort}/feeds/get/content/${connectionId}`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+          },
+        },
+      );
+      const responds = await requst.json();
+      if (responds.ok) {
+        setGetFeedsControl(false);
+        const feeds =
+          feedsPost && feedsPost?.length !== 0
+            ? [...feedsPost, ...responds.feeds]
+            : [...responds.feeds];
+        setFeedsPost(feeds);
+      }
+      setGetFeedsControl(false);
+    } catch (error) {
+      setGetFeedsControl(false);
+      console.log(error);
+    }
+  }
   //get posts
   useEffect(() => {
     if (feedsPost) if (feedsPost.length !== 0 && !getFeedsControl) return; // get post once and only once on this section
-    async function getFeed() {
-      console.log(`called feedpost ${feedsPost}`);
-      const connectionId = userInfo.connectionId;
-      const CLIENT_KEY = "CLIENT_KEY";
-      const data = localStorage.getItem(CLIENT_KEY);
-      try {
-        if (!data || data === "null") throw new Error("Access key not found");
-        const key = JSON.parse(data);
-        const requst = await fetch(
-          `${serverPort}/feeds/get/content/${connectionId}`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "X-Frontend-Key": `${key}`,
-            },
-          },
-        );
-        const responds = await requst.json();
-        if (responds.ok) {
-          setGetFeedsControl(false);
-          const feeds =
-            feedsPost && feedsPost?.length !== 0
-              ? [...feedsPost, ...responds.feeds]
-              : [...responds.feeds];
-          setFeedsPost(feeds);
-        }
-        setGetFeedsControl(false);
-      } catch (error) {
-        setGetFeedsControl(false);
-        console.log(error);
-      }
-    }
     getFeed();
     console.log("called");
-  }, [feedsPost, getFeedsControl]);
+  }, []);
   //handle fecth more feeds
   function handleFeacthMoreFeeds() {
     console.log("fecthing data");
     if (getFeedsControl) return;
+    getFeed();
     setGetFeedsControl(true);
   }
   return (
@@ -190,8 +179,10 @@ function Feed(prop: CommunityPagesControl) {
           fixedFooterContent={
             getFeedsControl
               ? () => (
-                  <tr className="w-full h-full bg-green-500 font-bold text-2xl">
-                    Loading....
+                  <tr>
+                    <td className="w-full h-full bg-green-500 font-bold text-2xl">
+                      Loading....
+                    </td>
                   </tr>
                 )
               : undefined
@@ -220,16 +211,16 @@ function Feed(prop: CommunityPagesControl) {
                   <PostTypePhoto
                     firstName={post.firstName}
                     lastName={post.lastName}
-                    profileImg={post.imageUrl}
+                    imageUrl={post.imageUrl}
                     bio={post.bio}
                     connectionId={post.connectionId}
                     engament={post.engament}
-                    engamentStates={post.engamentStates}
+                    isPostLiked={post.isPostLiked}
+                    comments={post.comments}
                     caption={post.content.caption}
                     content={post.content.content}
                     postId={post.postId}
-                    date={post.date}
-                    time={post.time}
+                    postedAt={post.postedAt}
                     hashTages={post.hashTages}
                     createdAt={post.createdAt}
                   />
@@ -241,16 +232,16 @@ function Feed(prop: CommunityPagesControl) {
                   <PostTypeText
                     firstName={post.firstName}
                     lastName={post.lastName}
-                    profileImg={post.imageUrl}
+                    imageUrl={post.imageUrl}
                     bio={post.bio}
                     connectionId={post.connectionId}
                     engament={post.engament}
-                    engamentStates={post.engamentStates}
+                    isPostLiked={post.isPostLiked}
+                    comments={post.comments}
                     caption={post.content.caption}
                     content={post.content.content}
                     postId={post.postId}
-                    date={post.date}
-                    time={post.time}
+                    postedAt={post.postedAt}
                     hashTages={post.hashTages}
                     createdAt={post.createdAt}
                   />
