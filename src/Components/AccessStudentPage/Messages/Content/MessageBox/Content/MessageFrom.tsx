@@ -19,7 +19,7 @@ function MessageFrom(props: Messages) {
           )}
           {/**time */}
           <h5 className="font-normal text-[12px] font-sans text-[#FFFFFF]">
-            {props.timePassed} AM
+            {props.timePassed}
           </h5>
         </span>
       </div>

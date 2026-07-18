@@ -6,7 +6,7 @@ type Messages = {
   to: string;
   type: string;
   imgUrl: string;
-  sentAt: Date;
+  sentAt?: string;
   text: string;
   _id?: string;
 };
@@ -24,7 +24,7 @@ function MessageContent({
           return (
             <MessageMe
               text={e.text}
-              timePassed={MessageTimeStamp(e.sentAt)}
+              timePassed={e.sentAt ? MessageTimeStamp(e.sentAt) : ""}
               type={e.type}
               imgUrl={e.imgUrl}
               key={`messages-key-${i}`}
@@ -33,7 +33,7 @@ function MessageContent({
         return (
           <MessageFrom
             text={e.text}
-            timePassed={MessageTimeStamp(e.sentAt)}
+            timePassed={e.sentAt ? MessageTimeStamp(e.sentAt) : ""}
             type={e.type}
             imgUrl={e.imgUrl}
             key={`messages-key-${i}`}

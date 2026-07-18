@@ -12,8 +12,7 @@ type Message = {
   to: string;
   type: string;
   imgUrl: string;
-  date: string;
-  time: string;
+  sentAt: string;
   text: string;
 };
 type ServerToClient = {

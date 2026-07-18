@@ -5,7 +5,7 @@ type Messages = {
   to: string;
   type: string;
   imgUrl: string;
-  sentAt?: Date;
+  sentAt: string;
   text: string;
   _id?: string;
 };
@@ -18,7 +18,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  sentAt?: Date;
+  sentAt?: string;
 };
 type ChatContact = {
   contactId: string;
@@ -35,7 +35,7 @@ type SortingData = {
   contactImage: string | null;
   invite: boolean;
   isConnected: boolean;
-  sentAt?: Date;
+  sentAt: string;
 };
 type MessagesApiDataType = {
   contactMessages: Messages[];

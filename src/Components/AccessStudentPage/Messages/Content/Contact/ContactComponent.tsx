@@ -13,8 +13,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date?: string;
-  time?: string;
+  sentAt?: string;
 };
 type SortingData = {
   contactFirstName: string;
@@ -25,17 +24,16 @@ type SortingData = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date: string;
-  time: string;
+  sentAt?: string;
 };
 type Messages = {
   from: string;
   to: string;
   type: string;
   imgUrl: string;
-  date: string;
-  time: string;
+  sentAt: string;
   text: string;
+  _id?: string;
 };
 type ChatContact = {
   contactId: string;
@@ -76,10 +74,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const [lastMessageTime, setLastMessageTime] = useState<string>("");
   //
   const lastMessageIndex = contactMessagesTemb.length;
-  const [lastMessageTimeAndDate, setLastMessageTimeAndDate] = useState({
-    date: "",
-    time: "",
-  });
+  const [lastMessageTimeAndDate, setLastMessageTimeAndDate] = useState("");
   const [isMessagesLoaded, setIsMessagesLoaded] = useState<boolean>(false);
   //
   //start chat with contact
@@ -116,14 +111,9 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       };
   //update connections with dataAndTime and move latest time and date to top
   function updateMoveContactToTopOnce() {
-    const lastTimeStap = { ...lastMessageTimeAndDate };
+    const lastTimeStap = lastMessageTimeAndDate;
     const contactInfor = { ...connectionInfo };
-    if (
-      lastTimeStap.date.trim() === "" ||
-      lastTimeStap.time.trim() === "" ||
-      isMessagesLoaded
-    )
-      return;
+    if (lastTimeStap.trim() === "" || isMessagesLoaded) return;
     setIsMessagesLoaded(true);
     //contact info with new timeStap
     const replaceData: SortingData = {
@@ -135,8 +125,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
       invite: contactInfor.invite,
       isConnected: contactInfor.isConnected,
       bio: contactInfor.bio,
-      date: lastTimeStap.date,
-      time: lastTimeStap.time,
+      sentAt: contactInfor.sentAt,
     };
     //filter and replace list with replace data
     setConectionsWithTimeStap((prevConnections) => {
@@ -244,8 +233,7 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
           to: message.to,
           type: message.type,
           imgUrl: "",
-          date: message.date,
-          time: message.time,
+          sentAt: message.sentAt,
           text: "",
         },
         room: room,
@@ -289,26 +277,12 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   function sendMessageAndFiles() {
     if (!chatContact) return;
     if (inputMessage.trim() === "" && !isFiles) return;
-    const date = new Date();
-    const month =
-      date.getMonth() + 1 >= 10
-        ? date.getMonth() + 1
-        : `0${date.getMonth() + 1}`;
-    const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`;
-    const year = date.getFullYear();
-    const dateFomart = `${month}/${day}/${year}`;
-    const hour =
-      date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
-    const minites =
-      date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
-    const timeFomart = `${hour}:${minites}`;
     const messageFomart: Messages = {
       from: userInfo.connectionId,
       to: chatContact.contactId,
       type: isFiles ? "image" : "text",
       imgUrl: isFiles ? (files ? URL.createObjectURL(files as Blob) : "") : "",
-      date: dateFomart,
-      time: timeFomart,
+      sentAt: new Date().toISOString(),
       text: inputMessage,
     };
     if (chatContact.contactId !== connectionInfo.contactId) return;
@@ -341,7 +315,8 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     setContactMessages([...contactMessagesTemb]);
   }, [chatContact, contactMessagesTemb]);
   //lastmessageTime logic
-  function getLastMessageTime(time: string, date: string) {
+  function getLastMessageTime(DateValue: string) {
+    const [date, time] = DateValue.toLocaleString().split("T");
     const newDate = new Date();
     const newHour = Number(newDate.getHours());
     const newMinites = Number(newDate.getMinutes());
@@ -349,9 +324,9 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     const newDay = Number(newDate.getDate());
     const newYear = newDate.getFullYear().toString();
     //
-    const oldMonth = Number(date.split("/")[0]);
-    const oldDay = Number(date.split("/")[1]);
-    const oldYear = date.split("/")[2];
+    const oldMonth = Number(date.split("-")[1]);
+    const oldDay = Number(date.split("-")[2]);
+    const oldYear = date.split("-")[0];
     let oldHour = Number(time.split(":")[0]);
     let oldMinites = Number(time.split(":")[1]);
     let timePassed;
@@ -399,18 +374,19 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
     const updateTimeEverMinites = setInterval(() => {
       if (lastMessageIndex === 0) return;
       const timeStap = getLastMessageTime(
-        contactMessagesTemb[lastMessageIndex - 1].time,
-        contactMessagesTemb[lastMessageIndex - 1].date,
+        contactMessagesTemb[lastMessageIndex - 1].sentAt,
       );
       setLastMessageTime(timeStap ? timeStap : "");
     }, 10000);
     //on change message funtion
     if (lastMessageIndex === 0) return;
-    const date = contactMessagesTemb[lastMessageIndex - 1].date;
-    const time = contactMessagesTemb[lastMessageIndex - 1].time;
-    const timeStap = getLastMessageTime(time, date);
+    const timeStap = getLastMessageTime(
+      contactMessagesTemb[lastMessageIndex - 1].sentAt,
+    );
     setLastMessageTime(timeStap ? timeStap : "");
-    setLastMessageTimeAndDate({ date: date, time: time });
+    if (timeStap) {
+      setLastMessageTimeAndDate(timeStap);
+    }
     //
     return () => clearInterval(updateTimeEverMinites);
   }, [lastMessageIndex, contactMessagesTemb]);

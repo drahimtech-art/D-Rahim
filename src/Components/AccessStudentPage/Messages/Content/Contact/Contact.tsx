@@ -17,7 +17,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  sentAt?: Date;
+  sentAt?: string;
 };
 type SortingData = {
   contactFirstName: string;
@@ -28,7 +28,7 @@ type SortingData = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  sentAt: Date;
+  sentAt: string;
 };
 function Contact() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;

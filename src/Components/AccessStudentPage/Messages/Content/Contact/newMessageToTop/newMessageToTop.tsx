@@ -9,7 +9,7 @@ type SortingData = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  sentAt: Date;
+  sentAt: string;
 };
 type Connections = {
   contactFirstName: string;
@@ -20,7 +20,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  sentAt?: Date;
+  sentAt?: string;
 };
 export function newMessageToTopOnce({
   connections,

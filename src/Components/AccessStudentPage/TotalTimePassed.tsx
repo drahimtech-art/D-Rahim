@@ -1,4 +1,4 @@
-export function TotalTimePassed(timePased: Date) {
+export function TotalTimePassed(timePased: string) {
   const [date, time] = timePased.toLocaleString().split("T");
   const newDate = new Date();
   const newHour = Number(newDate.getHours());

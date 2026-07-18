@@ -1,4 +1,4 @@
-export function MessageTimeStamp(sentAt: Date) {
+export function MessageTimeStamp(sentAt: string) {
   const [date, time] = sentAt.toLocaleString().split("T");
   const [_, __, ___] = date.split("-").map(Number);
   const [hour, miniute] = time.split(":").map(Number);
