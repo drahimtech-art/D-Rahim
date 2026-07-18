@@ -7,27 +7,17 @@ import emoji from "/images/icons/smile.png";
 import sortIcon from "/images/icons/sort_icon.png";
 import downArrowIcon from "/images/icons/arrow-down.png";
 import CommentsComponets from "./CommentsComponets/CommentsComponets";
-type CommentData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-};
 type PostCommets = {
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  createdAt: string;
-  subComments: CommentData[] | [];
   _id: string;
+  postId: string;
+  parentId: string;
+  depth: number;
+  authorId: string;
+  comment: string;
+  likesCount: number;
+  dislikeCount: number;
+  replyCount: number;
+  commentedAt: Date;
 };
 type CommentsData = {
   body: PostCommets[] | [];
@@ -85,6 +75,7 @@ function CommentsPopUp(props: CommentsData) {
         const responds = await requst.json();
         if (responds.ok) {
           const authors: CommentsAuthors[] = responds.author;
+          console.log(authors);
           setCommentsAuthors(authors);
         }
       } catch (error) {
@@ -97,7 +88,7 @@ function CommentsPopUp(props: CommentsData) {
       const authorIds: string[] = [];
       const postComments = comments;
       for (const comment of postComments) {
-        const id = comment.connectionId;
+        const id = comment.authorId;
         if (!authorIds.includes(id)) {
           authorIds.push(id);
         }
@@ -121,18 +112,11 @@ function CommentsPopUp(props: CommentsData) {
   async function handlePostComments() {
     if (comment.length < 1 || isCommentsSent) return;
     setIsCommentsSent(true);
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const formatedDate = `${year}/${month >= 10 ? month : `0${month}`}/${day >= 10 ? day : `0${day}`}`;
-    const time = `${date.getHours() >= 10 ? `${date.getHours()}` : `0${date.getHours()}`}:${date.getMinutes() > 10 ? `${date.getMinutes()}` : `0${date.getMinutes()}`}`;
 
     const newComment = {
       connectionId: userInfo.connectionId,
       comment: comment,
-      date: formatedDate,
-      time: time,
+      commentedAt: new Date().toISOString(),
     };
     const replyComment = {
       ...newComment,
@@ -170,7 +154,7 @@ function CommentsPopUp(props: CommentsData) {
           imageUrl: userInfo.imageUrl,
         };
         const upLoadedComment = { ...responds.comment };
-        const updatedAuthorsInfo =
+        /*const updatedAuthorsInfo =
           commentsAuthors.length > 0 ? [author, ...commentsAuthors] : [author];
         const updatedPostedComments = [];
         const postedComments = props.body;
@@ -218,10 +202,11 @@ function CommentsPopUp(props: CommentsData) {
           props.body.length > 0
             ? [upLoadedComment, ...props.body]
             : [upLoadedComment];
+            */
         setComment("");
         setIsCommentsSent(false);
-        setPostComments(upDatedComments);
-        setCommentsAuthors(updatedAuthorsInfo);
+        //setPostComments(upDatedComments);
+        //setCommentsAuthors(updatedAuthorsInfo);
         setReRenderComments(true);
         commentsCount.current = Number(commentsCount.current) + 1;
       }

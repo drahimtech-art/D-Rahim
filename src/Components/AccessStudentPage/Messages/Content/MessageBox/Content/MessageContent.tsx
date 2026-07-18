@@ -1,3 +1,4 @@
+import { MessageTimeStamp } from "./MessageTimeStamp";
 import MessageMe from "./MessageMe";
 import MessageFrom from "./MessageFrom";
 type Messages = {
@@ -5,9 +6,9 @@ type Messages = {
   to: string;
   type: string;
   imgUrl: string;
-  date: string;
-  time: string;
+  sentAt: Date;
   text: string;
+  _id?: string;
 };
 function MessageContent({
   messages,
@@ -23,8 +24,7 @@ function MessageContent({
           return (
             <MessageMe
               text={e.text}
-              date={e.date}
-              time={e.time}
+              timePassed={MessageTimeStamp(e.sentAt)}
               type={e.type}
               imgUrl={e.imgUrl}
               key={`messages-key-${i}`}
@@ -33,8 +33,7 @@ function MessageContent({
         return (
           <MessageFrom
             text={e.text}
-            date={e.date}
-            time={e.time}
+            timePassed={MessageTimeStamp(e.sentAt)}
             type={e.type}
             imgUrl={e.imgUrl}
             key={`messages-key-${i}`}

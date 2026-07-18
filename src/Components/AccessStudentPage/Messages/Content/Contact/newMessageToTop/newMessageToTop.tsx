@@ -9,8 +9,7 @@ type SortingData = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date: string;
-  time: string;
+  sentAt: Date;
 };
 type Connections = {
   contactFirstName: string;
@@ -21,8 +20,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date?: string;
-  time?: string;
+  sentAt?: Date;
 };
 export function newMessageToTopOnce({
   connections,
@@ -51,8 +49,9 @@ export function newMessageToTopOnce({
   const sortByDataAndTime = (message: SortingData[]) => {
     return message.sort((a, b) => {
       const getTime = (m: SortingData) => {
-        const [month, day, year] = m.date.split("/").map(Number);
-        const [hour, miniute] = m.time.split(":").map(Number);
+        const [date, time] = m.sentAt.toLocaleString().split("T");
+        const [year, month, day] = date.split("-").map(Number);
+        const [hour, miniute] = time.split(":").map(Number);
         return new Date(year, month - 1, day, hour, miniute).getTime();
       };
       return getTime(b) - getTime(a);

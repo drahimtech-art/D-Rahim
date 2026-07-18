@@ -6,6 +6,7 @@ import {
   type SetStateAction,
 } from "react";
 type PostCommets = {
+  _id: string;
   postId: string;
   parentId: string;
   depth: number;
@@ -33,7 +34,7 @@ type FeedsPostData = {
     content: string;
   };
   isPostLiked: boolean;
-  comments: PostCommets[] | [];
+  topPostComments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
   postedAt: Date;

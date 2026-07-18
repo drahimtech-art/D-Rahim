@@ -5,7 +5,7 @@ type Messages = {
   to: string;
   type: string;
   imgUrl: string;
-  sentAt?: string;
+  sentAt?: Date;
   text: string;
   _id?: string;
 };

@@ -1,6 +1,5 @@
 type Messages = {
-  date: string;
-  time: string;
+  timePassed: string;
   text: string;
   type: string;
   imgUrl: string;
@@ -20,7 +19,7 @@ function MessageFrom(props: Messages) {
           )}
           {/**time */}
           <h5 className="font-normal text-[12px] font-sans text-[#FFFFFF]">
-            {props.time} AM
+            {props.timePassed} AM
           </h5>
         </span>
       </div>

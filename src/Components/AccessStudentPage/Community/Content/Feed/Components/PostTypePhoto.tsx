@@ -8,6 +8,7 @@ import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
 type PostCommets = {
+  _id: string;
   postId: string;
   parentId: string;
   depth: number;
@@ -35,7 +36,8 @@ type FeedsPostData = {
     content: string;
   };
   isPostLiked: boolean;
-  comments: PostCommets[] | [];
+
+  topPostComments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
   postedAt: Date;
@@ -71,18 +73,24 @@ function PostTypePhoto(props: Body) {
 
   //check post author connections state
   useEffect(() => {
-    if (conections.length === 0) return;
-    for (const contact of conections) {
-      const authorId = props.body.connectionId;
-      if (contact.contactId === authorId && contact.invite) {
-        if (contact.isConnected) {
-          contectionSate.current = "Connected";
-          setSendConectionRequst(true);
-        } else {
-          contectionSate.current = "Requst Sent";
+    const authorId = props.body.connectionId;
+    if (conections.length !== 0) {
+      for (const contact of conections) {
+        if (contact.contactId === authorId && contact.invite) {
+          if (contact.isConnected) {
+            contectionSate.current = "Connected";
+            setSendConectionRequst(true);
+          } else {
+            contectionSate.current = "Requst Sent";
+            setSendConectionRequst(true);
+          }
+        } else if (userInfo.connectionId === authorId) {
+          contectionSate.current = "View Post";
           setSendConectionRequst(true);
         }
-      } else if (userInfo.connectionId === authorId) {
+      }
+    } else {
+      if (userInfo.connectionId === authorId) {
         contectionSate.current = "View Post";
         setSendConectionRequst(true);
       }
@@ -110,6 +118,9 @@ function PostTypePhoto(props: Body) {
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);
     try {
+      const connectionId = userInfo.connectionId;
+      if (!connectionId)
+        throw new Error(`user connectionId not found ${connectionId}`);
       if (!data || data === "null") throw new Error("Access key not found");
       const key = JSON.parse(data);
       const postId = props.body.postId;
@@ -122,7 +133,7 @@ function PostTypePhoto(props: Body) {
             "X-Frontend-Key": `${key}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ connectionId: userInfo.connectionId }),
+          body: JSON.stringify({ connectionId: connectionId }),
         },
       );
       const responds = await requst.json();
@@ -191,7 +202,7 @@ function PostTypePhoto(props: Body) {
     setPopUpCard(
       <CommentsPopUp
         postId={props.body.postId}
-        body={props.body.engamentStates.comments}
+        body={props.body.topPostComments}
         commentsCount={props.body.engament.comments}
       />,
     );

@@ -8,6 +8,7 @@ import UserPost from "../UserPost";
 import PostTypePhoto from "./Components/PostTypePhoto";
 import { TableVirtuoso } from "react-virtuoso";
 type PostCommets = {
+  _id: string;
   postId: string;
   parentId: string;
   depth: number;
@@ -35,7 +36,7 @@ type FeedsPostData = {
     content: string;
   };
   isPostLiked: boolean;
-  comments: PostCommets[] | [];
+  topPostComments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
   postedAt: Date;

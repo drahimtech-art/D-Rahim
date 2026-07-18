@@ -111,7 +111,11 @@ function Settings() {
         saveButtonRef.current.classList.add("AllowedPointerForButton");
         alert(responds.message);
         const userData: UserData = responds.userInfo;
-        setUserInfo(userData);
+        setUserInfo({
+          ...userData,
+          connectionId: userInfo.connectionId,
+          email: userInfo.email,
+        });
       } else {
         throw new Error(responds.message);
       }
@@ -122,6 +126,7 @@ function Settings() {
       alert(error);
     }
   }
+  console.log(userInfo);
   return (
     <div className="w-full h-fit">
       {/**head */}

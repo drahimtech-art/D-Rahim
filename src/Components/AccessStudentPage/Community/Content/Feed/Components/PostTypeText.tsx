@@ -8,6 +8,7 @@ import shareIcon from "/images/icons/share_icon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import CommentsPopUp from "../Comments/CommentsPopUp";
 type PostCommets = {
+  _id: string;
   postId: string;
   parentId: string;
   depth: number;
@@ -35,7 +36,8 @@ type FeedsPostData = {
     content: string;
   };
   isPostLiked: boolean;
-  comments: PostCommets[] | [];
+
+  topPostComments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
   postedAt: Date;
@@ -191,7 +193,7 @@ function PostTypeText(props: Body) {
     setPopUpCard(
       <CommentsPopUp
         postId={props.body.postId}
-        body={props.body.engamentStates.comments}
+        body={props.body.topPostComments}
         commentsCount={props.body.engament.comments}
       />,
     );

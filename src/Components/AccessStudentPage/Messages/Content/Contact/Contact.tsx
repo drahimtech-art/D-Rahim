@@ -17,8 +17,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date?: string;
-  time?: string;
+  sentAt?: Date;
 };
 type SortingData = {
   contactFirstName: string;
@@ -29,8 +28,7 @@ type SortingData = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  date: string;
-  time: string;
+  sentAt: Date;
 };
 function Contact() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
@@ -58,7 +56,7 @@ function Contact() {
     function validateAllTimeStapHasBeenCollected() {
       let pass = true;
       for (const data of conectionsWithTimeStap) {
-        if (!data.date || data.date.trim() === "") {
+        if (!data.sentAt) {
           pass = false;
         }
       }

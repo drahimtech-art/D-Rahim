@@ -4,92 +4,33 @@ import thumpsUpIcon from "/images/icons/thumbs-up.png";
 import commentsIcon from "/images/icons/comment-1.png";
 import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
+import { TotalTimePassed } from "../../../../../TotalTimePassed";
 const SubComments = lazy(() => import("./SubComments"));
-type CommentData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-};
 type FormatedPostComments = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
-  subComments: CommentData[] | [];
-  _id: string;
+  body: {
+    firstName: string;
+    lastName: string;
+    imageUrl: string | null;
+    postId: string;
+    parentId: string;
+    depth: number;
+    authorId: string;
+    comment: string;
+    likesCount: number;
+    dislikeCount: number;
+    replyCount: number;
+    commentedAt: Date;
+  };
   replayToCommentControl: (plachorder: string, id: string) => void;
 };
 function CommentCard(props: FormatedPostComments) {
   const [subComments, setSubComments] = useState<boolean>(false);
-  //comments posted date & time
-  function getPostUpLoadTime(time: string, date: string) {
-    const newDate = new Date();
-    const newHour = Number(newDate.getHours());
-    const newMinites = Number(newDate.getMinutes());
-    const newMonth = Number(newDate.getMonth() + 1);
-    const newDay = Number(newDate.getDate());
-    const newYear = newDate.getFullYear().toString();
-    //
-    const oldMonth = Number(date.split("/")[1]);
-    const oldDay = Number(date.split("/")[2]);
-    const oldYear = date.split("/")[0];
-    let oldHour = Number(time.split(":")[0]);
-    let oldMinites = Number(time.split(":")[1]);
-    let timePassed;
-    //minites passed
-    if (
-      oldHour === newHour &&
-      oldMonth === newMonth &&
-      oldDay === newDay &&
-      oldYear === newYear
-    ) {
-      timePassed = newMinites - oldMinites;
-      return timePassed > 1
-        ? `${timePassed}  minutes`
-        : `${timePassed}  minute`;
-    }
-    //hours passed
-    if (
-      oldHour !== newHour &&
-      oldMonth === newMonth &&
-      oldDay === newDay &&
-      oldYear === newYear
-    ) {
-      timePassed = newHour - oldHour;
-      return timePassed > 1 ? `${timePassed}  hours` : `${timePassed}  hour`;
-    }
-    //days passed
-    if (oldMonth === newMonth && oldYear === newYear && oldDay !== newDay) {
-      timePassed = newDay - oldDay;
-      return timePassed > 1 ? `${timePassed}  days` : `${timePassed}  day`;
-    }
-    //months passed
-    if (oldMonth !== newMonth && oldYear === newYear) {
-      timePassed = newMonth - oldMonth;
-      return timePassed > 1 ? `${timePassed}  months` : `${timePassed}  month`;
-    }
-    //years
-    if (oldYear !== newYear) {
-      timePassed = newMonth - oldMonth;
-      return timePassed > 1 ? `${timePassed}  years` : `${timePassed}  year`;
-    }
-  }
   function handleReplayComment() {
+    /*
     props.replayToCommentControl(
       `reply to ${props.firstName} ${props.lastName}`,
       props._id,
-    );
+    );*/
   }
   function handlViewCommentReply() {
     setSubComments(!subComments);
@@ -102,22 +43,22 @@ function CommentCard(props: FormatedPostComments) {
         <span className="w-6.5 h-6.5">
           <img
             className="min-w-6.5 min-h-6.5 max-w-6.5 max-h-6.5 rounded-full"
-            src={props.imageUrl ? props.imageUrl : noProfileImg}
+            src={props.body.imageUrl ? props.body.imageUrl : noProfileImg}
           ></img>
         </span>
         {/**name */}
         <span className="flex gap-1">
           <h5 className="font-sans font-medium text-[16px]">
-            {props.firstName}
+            {props.body.firstName}
           </h5>
           <h5 className="font-sans font-medium text-[16px]">
-            {props.lastName}
+            {props.body.lastName}
           </h5>
         </span>
         {/**time stap */}
         <span className="flex gap-2">
           <h5 className="font-sans text-[12px] font-light">
-            {getPostUpLoadTime(props.time, props.date)}
+            {TotalTimePassed(props.body.commentedAt)}
           </h5>
           <h5 className="font-sans text-[12px] font-light"> ago</h5>
         </span>
@@ -125,7 +66,9 @@ function CommentCard(props: FormatedPostComments) {
       {/*comments text and actions button*/}
       <div className="flex flex-col gap-2 ml-7 ">
         <span className="w-full max-w-[82%]">
-          <h5 className="font-sans text-[16px] font-normal">{props.comment}</h5>
+          <h5 className="font-sans text-[16px] font-normal">
+            {props.body.comment}
+          </h5>
         </span>
         <span className="w-fit flex gap-2.75 items-center">
           {/**action buttons */}
@@ -133,14 +76,14 @@ function CommentCard(props: FormatedPostComments) {
           <span className="flex items-center pointer">
             <img className="w-fit h-fit" src={thumpsUpIcon}></img>
             <h5 className="font-sans text-[12px] font-normal text-gray-400">
-              {props.likes}
+              {props.body.likesCount}
             </h5>
           </span>
           {/**dislike button */}
           <span className="flex items-center pointer">
             <img className="w-fit h-fit" src={thumpsDownIcon}></img>
             <h5 className="font-sans text-[12px] font-normal text-gray-400">
-              {props.disLikes}
+              {props.body.dislikeCount}
             </h5>
           </span>
           {/**reply button */}
@@ -159,7 +102,7 @@ function CommentCard(props: FormatedPostComments) {
               className="font-sans text-[10px] font-normal text-gray-400 pointer"
               onClick={handlViewCommentReply}
             >
-              -View Reply- {props.subComments.length}
+              -View Reply- {props.body.replyCount}
             </h5>
           </span>
         </span>
@@ -170,26 +113,7 @@ function CommentCard(props: FormatedPostComments) {
               Loading....
             </div>
           }
-        >
-          {subComments &&
-            props.subComments.map((e) => {
-              const id = crypto.randomUUID();
-              return (
-                <SubComments
-                  connectionId={e.connectionId}
-                  comment={e.comment}
-                  likes={e.likes}
-                  disLikes={e.disLikes}
-                  date={e.date}
-                  time={e.time}
-                  firstName={e.firstName}
-                  lastName={e.lastName}
-                  imageUrl={e.imageUrl}
-                  key={`subComments-key-${id}`}
-                />
-              );
-            })}
-        </Suspense>
+        ></Suspense>
       </div>
     </div>
   );

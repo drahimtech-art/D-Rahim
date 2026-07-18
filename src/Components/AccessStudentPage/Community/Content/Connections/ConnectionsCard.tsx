@@ -23,6 +23,7 @@ type ChatContact = {
   invite: boolean;
   isConnected: boolean;
 };
+
 function ConnectionsCard(props: Connections) {
   const [_, setSearchParems] = useSearchParams();
   const messagesContextData = MessagesApi();
