@@ -17,7 +17,7 @@ type PostCommets = {
   likesCount: number;
   dislikeCount: number;
   replyCount: number;
-  commentedAt: Date;
+  commentedAt: string;
 };
 type CommentsData = {
   body: PostCommets[] | [];
@@ -153,8 +153,7 @@ function CommentsPopUp(props: CommentsData) {
           connectionId: userInfo.connectionId,
           imageUrl: userInfo.imageUrl,
         };
-        const upLoadedComment = { ...responds.comment };
-        /*const updatedAuthorsInfo =
+        const updatedAuthorsInfo =
           commentsAuthors.length > 0 ? [author, ...commentsAuthors] : [author];
         const updatedPostedComments = [];
         const postedComments = props.body;
@@ -163,18 +162,19 @@ function CommentsPopUp(props: CommentsData) {
           const comment = postedComments[i];
           console.log(comment._id.trim() === commentToReplyId.trim());
           if (comment._id.trim() === commentToReplyId.trim()) {
-            const subComments = [...comment.subComments, upLoadedComment];
             const commentData = {
-              connectionId: comment.connectionId,
-              comment: comment.comment,
-              likes: comment.likes,
-              disLikes: comment.disLikes,
-              date: comment.date,
-              time: comment.time,
-              createdAt: comment.createdAt,
               _id: comment._id,
+              postId: comment.postId,
+              parentId: comment.parentId,
+              depth: comment.depth,
+              authorId: comment.authorId,
+              comment: comment.comment,
+              likesCount: comment.likesCount,
+              dislikeCount: comment.dislikeCount,
+              replyCount: comment.replyCount,
+              commentedAt: comment.commentedAt,
             };
-            const updatedComment = { ...commentData, subComments: subComments };
+            const updatedComment = { ...commentData };
             updatedPostedComments.push(updatedComment);
           } else {
             updatedPostedComments.push(comment);
@@ -202,11 +202,10 @@ function CommentsPopUp(props: CommentsData) {
           props.body.length > 0
             ? [upLoadedComment, ...props.body]
             : [upLoadedComment];
-            */
         setComment("");
         setIsCommentsSent(false);
-        //setPostComments(upDatedComments);
-        //setCommentsAuthors(updatedAuthorsInfo);
+        setPostComments(upDatedComments);
+        setCommentsAuthors(updatedAuthorsInfo);
         setReRenderComments(true);
         commentsCount.current = Number(commentsCount.current) + 1;
       }

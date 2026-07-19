@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CommentCard from "./CommentCard";
 type PostCommets = {
+  _id: string;
   postId: string;
   parentId: string;
   depth: number;
@@ -9,7 +10,7 @@ type PostCommets = {
   likesCount: number;
   dislikeCount: number;
   replyCount: number;
-  commentedAt: Date;
+  commentedAt: string;
 };
 type CommentsAuthors = {
   firstName: string;
@@ -19,6 +20,7 @@ type CommentsAuthors = {
   imageUrl: string | null;
 };
 type FormatedPostComments = {
+  _id: string;
   firstName: string;
   lastName: string;
   imageUrl: string | null;
@@ -30,7 +32,7 @@ type FormatedPostComments = {
   likesCount: number;
   dislikeCount: number;
   replyCount: number;
-  commentedAt: Date;
+  commentedAt: string;
 };
 type CommentsData = {
   body: PostCommets[] | [];
@@ -61,6 +63,7 @@ function CommentsComponets(props: CommentsData) {
             imageUrl: author.imageUrl,
           };
           const commentData = {
+            _id: comment._id,
             postId: comment.postId,
             parentId: comment.parentId,
             depth: comment.depth,

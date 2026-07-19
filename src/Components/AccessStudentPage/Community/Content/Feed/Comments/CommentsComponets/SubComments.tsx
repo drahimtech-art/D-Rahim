@@ -1,73 +1,41 @@
+import { useState, useEffect } from "react";
 import thumpsDownIcon from "/images/icons/thumbs-down.png";
 import thumpsUpIcon from "/images/icons/thumbs-up.png";
+import commentsIcon from "/images/icons/comment-1.png";
 import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
-type CommentData = {
-  firstName: string;
-  lastName: string;
-  imageUrl: string | null;
-  connectionId: string;
-  comment: string;
-  likes: number;
-  disLikes: number;
-  date: string;
-  time: string;
+import { TotalTimePassed } from "../../../../../TotalTimePassed";
+type FormatedPostComments = {
+  body: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    imageUrl: string | null;
+    postId: string;
+    parentId: string;
+    depth: number;
+    authorId: string;
+    comment: string;
+    likesCount: number;
+    dislikeCount: number;
+    replyCount: number;
+    commentedAt: string;
+  };
+  replayToCommentControl: (plachorder: string, id: string) => void;
 };
-function SubComments(props: CommentData) {
-  //comments posted date & time
-  function getPostUpLoadTime(time: string, date: string) {
-    const newDate = new Date();
-    const newHour = Number(newDate.getHours());
-    const newMinites = Number(newDate.getMinutes());
-    const newMonth = Number(newDate.getMonth() + 1);
-    const newDay = Number(newDate.getDate());
-    const newYear = newDate.getFullYear().toString();
-    //
-    const oldMonth = Number(date.split("/")[1]);
-    const oldDay = Number(date.split("/")[2]);
-    const oldYear = date.split("/")[0];
-    let oldHour = Number(time.split(":")[0]);
-    let oldMinites = Number(time.split(":")[1]);
-    let timePassed;
-    //minites passed
-    if (
-      oldHour === newHour &&
-      oldMonth === newMonth &&
-      oldDay === newDay &&
-      oldYear === newYear
-    ) {
-      timePassed = newMinites - oldMinites;
-      return timePassed > 1
-        ? `${timePassed}  minutes`
-        : `${timePassed}  minute`;
-    }
-    //hours passed
-    if (
-      oldHour !== newHour &&
-      oldMonth === newMonth &&
-      oldDay === newDay &&
-      oldYear === newYear
-    ) {
-      timePassed = newHour - oldHour;
-      return timePassed > 1 ? `${timePassed}  hours` : `${timePassed}  hour`;
-    }
-    //days passed
-    if (oldMonth === newMonth && oldYear === newYear && oldDay !== newDay) {
-      timePassed = newDay - oldDay;
-      return timePassed > 1 ? `${timePassed}  days` : `${timePassed}  day`;
-    }
-    //months passed
-    if (oldMonth !== newMonth && oldYear === newYear) {
-      timePassed = newMonth - oldMonth;
-      return timePassed > 1 ? `${timePassed}  months` : `${timePassed}  month`;
-    }
-    //years
-    if (oldYear !== newYear) {
-      timePassed = newMonth - oldMonth;
-      return timePassed > 1 ? `${timePassed}  years` : `${timePassed}  year`;
-    }
+function SubComments(props: FormatedPostComments) {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const [viewSubComments, setViewSubComments] = useState<boolean>(false);
+  const [supComments, setSubComments] = useState<FormatedPostComments[]>([]);
+  function handleReplayComment() {
+    props.replayToCommentControl(
+      `reply to ${props.body.firstName} ${props.body.lastName}`,
+      props.body._id,
+    );
   }
-
+  function handlViewCommentReply() {
+    setViewSubComments(!viewSubComments);
+  }
   return (
     <div className="w-full h-full flex flex-col gap-2 ">
       {/**head profile image name and time stamp */}
@@ -76,22 +44,22 @@ function SubComments(props: CommentData) {
         <span className="w-6.5 h-6.5">
           <img
             className="min-w-6.5 min-h-6.5 max-w-6.5 max-h-6.5 rounded-full"
-            src={props.imageUrl ? props.imageUrl : noProfileImg}
+            src={props.body.imageUrl ? props.body.imageUrl : noProfileImg}
           ></img>
         </span>
         {/**name */}
         <span className="flex gap-1">
           <h5 className="font-sans font-medium text-[16px]">
-            {props.firstName}
+            {props.body.firstName}
           </h5>
           <h5 className="font-sans font-medium text-[16px]">
-            {props.lastName}
+            {props.body.lastName}
           </h5>
         </span>
         {/**time stap */}
         <span className="flex gap-2">
           <h5 className="font-sans text-[12px] font-light">
-            {getPostUpLoadTime(props.time, props.date)}
+            {TotalTimePassed(props.body.commentedAt)}
           </h5>
           <h5 className="font-sans text-[12px] font-light"> ago</h5>
         </span>
@@ -99,7 +67,9 @@ function SubComments(props: CommentData) {
       {/*comments text and actions button*/}
       <div className="flex flex-col gap-2 ml-7 ">
         <span className="w-full max-w-[82%]">
-          <h5 className="font-sans text-[16px] font-normal">{props.comment}</h5>
+          <h5 className="font-sans text-[16px] font-normal">
+            {props.body.comment}
+          </h5>
         </span>
         <span className="w-fit flex gap-2.75 items-center">
           {/**action buttons */}
@@ -107,19 +77,34 @@ function SubComments(props: CommentData) {
           <span className="flex items-center pointer">
             <img className="w-fit h-fit" src={thumpsUpIcon}></img>
             <h5 className="font-sans text-[12px] font-normal text-gray-400">
-              {props.likes}
+              {props.body.likesCount}
             </h5>
           </span>
           {/**dislike button */}
           <span className="flex items-center pointer">
             <img className="w-fit h-fit" src={thumpsDownIcon}></img>
             <h5 className="font-sans text-[12px] font-normal text-gray-400">
-              {props.disLikes}
+              {props.body.dislikeCount}
+            </h5>
+          </span>
+          {/**reply button */}
+          <span
+            className="flex items-center gap-0.5 pointer"
+            onClick={handleReplayComment}
+          >
+            <img className="w-fit h-fit" src={commentsIcon}></img>
+            <h5 className="font-sans text-[12px] font-normal text-gray-400">
+              Reply
             </h5>
           </span>
           {/**more button */}
           <span className="flex items-center ">
-            <img className="w-fit h-fit" src={moreIcon}></img>
+            <h5
+              className="font-sans text-[10px] font-normal text-gray-400 pointer"
+              onClick={handlViewCommentReply}
+            >
+              -View Reply- {props.body.replyCount}
+            </h5>
           </span>
         </span>
         {/**sub comments */}

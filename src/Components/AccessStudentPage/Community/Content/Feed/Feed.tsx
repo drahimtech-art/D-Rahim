@@ -17,7 +17,7 @@ type PostCommets = {
   likesCount: number;
   dislikeCount: number;
   replyCount: number;
-  commentedAt: Date;
+  commentedAt: string;
 };
 type FeedsPostData = {
   firstName: string;
@@ -39,7 +39,7 @@ type FeedsPostData = {
   topPostComments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
-  postedAt: Date;
+  postedAt: string;
   createdAt: Date;
 };
 type Connections = {
@@ -124,7 +124,6 @@ function Feed(prop: CommunityPagesControl) {
   }, [feedsPost]);
   //get feeds function
   async function getFeed() {
-    console.log(`called feedpost ${feedsPost}`);
     const connectionId = userInfo.connectionId;
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);

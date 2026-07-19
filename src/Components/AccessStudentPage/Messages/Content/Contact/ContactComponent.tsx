@@ -316,12 +316,12 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   //lastmessageTime logic
   function getLastMessageTime(DateValue: string) {
     const [date, time] = DateValue.toLocaleString().split("T");
-    const newDate = new Date();
-    const newHour = Number(newDate.getHours());
-    const newMinites = Number(newDate.getMinutes());
-    const newMonth = Number(newDate.getMonth() + 1);
-    const newDay = Number(newDate.getDate());
-    const newYear = newDate.getFullYear().toString();
+    const [newDate, newTime] = new Date().toISOString().split("T");
+    const newHour = Number(newTime.split(":")[0]);
+    const newMinites = Number(newTime.split(":")[1]);
+    const newMonth = Number(newDate.split("-")[1]);
+    const newDay = Number(newDate.split("-")[2]);
+    const newYear = newDate.split("-")[0];
     //
     const oldMonth = Number(date.split("-")[1]);
     const oldDay = Number(date.split("-")[2]);

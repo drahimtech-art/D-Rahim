@@ -15,7 +15,7 @@ type PostCommets = {
   likesCount: number;
   dislikeCount: number;
   replyCount: number;
-  commentedAt: Date;
+  commentedAt: string;
 };
 type FeedsPostData = {
   firstName: string;
@@ -37,7 +37,7 @@ type FeedsPostData = {
   topPostComments: PostCommets[] | [];
   postId: string;
   hashTages: string[];
-  postedAt: Date;
+  postedAt: string;
   createdAt: Date;
 };
 type FeedData = {

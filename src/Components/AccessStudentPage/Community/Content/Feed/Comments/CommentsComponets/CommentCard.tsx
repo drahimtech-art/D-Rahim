@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import thumpsDownIcon from "/images/icons/thumbs-down.png";
 import thumpsUpIcon from "/images/icons/thumbs-up.png";
 import commentsIcon from "/images/icons/comment-1.png";
@@ -6,8 +6,21 @@ import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import { TotalTimePassed } from "../../../../../TotalTimePassed";
 const SubComments = lazy(() => import("./SubComments"));
+type PostCommets = {
+  _id: string;
+  postId: string;
+  parentId: string;
+  depth: number;
+  authorId: string;
+  comment: string;
+  likesCount: number;
+  dislikeCount: number;
+  replyCount: number;
+  commentedAt: string;
+};
 type FormatedPostComments = {
   body: {
+    _id: string;
     firstName: string;
     lastName: string;
     imageUrl: string | null;
@@ -19,21 +32,77 @@ type FormatedPostComments = {
     likesCount: number;
     dislikeCount: number;
     replyCount: number;
-    commentedAt: Date;
+    commentedAt: string;
   };
   replayToCommentControl: (plachorder: string, id: string) => void;
 };
+type SubComments = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  imageUrl: string | null;
+  postId: string;
+  parentId: string;
+  depth: number;
+  authorId: string;
+  comment: string;
+  likesCount: number;
+  dislikeCount: number;
+  replyCount: number;
+  commentedAt: string;
+};
 function CommentCard(props: FormatedPostComments) {
-  const [subComments, setSubComments] = useState<boolean>(false);
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const [viewSubComments, setViewSubComments] = useState<boolean>(false);
+  const [isRequstSent, setIsRequstSent] = useState<boolean>(false);
+  const [supComments, setSubComments] = useState<SubComments[]>([]);
+  //get subReplays
+  async function getSubComments() {
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data || data === "null") throw new Error("Access key not found");
+      setIsRequstSent(true);
+      const key = JSON.parse(data);
+      const postId = props.body.postId;
+      const commentsParentId = props.body._id;
+      const requst = await fetch(
+        `${serverPort}/feeds/intaraction/post/sub/comments/${postId}`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ commentsParentId: commentsParentId }),
+        },
+      );
+      const responds = await requst.json();
+      if (responds.ok) {
+        const data: SubComments[] = responds.subComments;
+        setSubComments(data);
+        setIsRequstSent(false);
+        console.log(responds.message);
+      }
+    } catch (error) {
+      console.log(error);
+      setIsRequstSent(false);
+    }
+  }
+  //call get subReplays
+  useEffect(() => {
+    if (isRequstSent || supComments.length !== 0 || !viewSubComments) return;
+    getSubComments();
+  }, [viewSubComments]);
   function handleReplayComment() {
-    /*
     props.replayToCommentControl(
-      `reply to ${props.firstName} ${props.lastName}`,
-      props._id,
-    );*/
+      `reply to ${props.body.firstName} ${props.body.lastName}`,
+      props.body._id,
+    );
   }
   function handlViewCommentReply() {
-    setSubComments(!subComments);
+    setViewSubComments(!viewSubComments);
   }
   return (
     <div className="w-full h-full flex flex-col gap-2 ">
@@ -113,7 +182,20 @@ function CommentCard(props: FormatedPostComments) {
               Loading....
             </div>
           }
-        ></Suspense>
+        >
+          {supComments.length !== 0 &&
+            viewSubComments &&
+            supComments.map((e) => {
+              const id = crypto.randomUUID();
+              return (
+                <SubComments
+                  body={e}
+                  replayToCommentControl={handleReplayComment}
+                  key={`comments-key-${e.authorId}-${id}`}
+                />
+              );
+            })}
+        </Suspense>
       </div>
     </div>
   );
