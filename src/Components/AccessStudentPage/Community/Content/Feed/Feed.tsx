@@ -51,7 +51,7 @@ type Connections = {
   invite: boolean;
   isConnected: boolean;
   bio: string;
-  sentAt?: Date;
+  sentAt?: string;
 };
 type CommunityPagesControl = {
   feedsState: boolean;

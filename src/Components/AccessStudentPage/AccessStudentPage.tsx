@@ -88,6 +88,7 @@ function AccessStudentPage() {
     setRenderDashboard(false);
     setRenderSettings(true);
   }
+  //listen for online ping
   function logout() {}
   console.log("full page rerender");
   return (

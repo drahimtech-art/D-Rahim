@@ -1,12 +1,14 @@
-//import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
+import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { MessagesApi } from "../../../../ContextApi/MessagesApi";
+import { SocketApi } from "../../../../ContextApi/SocketApi";
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import Head from "./Head";
 import MessageContent from "./Content/MessageContent";
 import SendMessageAndFiles from "./SendMessageAndFiles";
 function MessageBox() {
-  //const userDetails = StudentsAppData();
+  const userDetails = StudentsAppData();
   const messagesContextData = MessagesApi();
+  const socketApi = SocketApi();
   const {
     chatContact,
     inputMessage,
@@ -17,9 +19,12 @@ function MessageBox() {
     isFiles,
     setIsFiles,
   } = messagesContextData;
-  if (!chatContact) return;
+  const { socket } = socketApi;
+  if (!chatContact || !userDetails) return;
+  const { userInfo } = userDetails;
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
   const [displayImage, setDisplayImage] = useState<string>("");
+  const [onlineStatus, setOnlineStatus] = useState<boolean>(false);
   const scrollDiv = useRef<HTMLDivElement | null>(null);
   function controlScroll() {
     const container = scrollDiv.current;
@@ -61,6 +66,35 @@ function MessageBox() {
   useEffect(() => {
     canculeFileInput();
   }, [chatContact.contactId]);
+  //send online ping
+  useEffect(() => {
+    function askConnectionIfOnline() {
+      // send ping to check if connection is online
+      if (!socket || !chatContact || !chatContact.isConnected) return;
+      socket.emit("isOnline", chatContact.contactId, userInfo.connectionId);
+    }
+    const callOnlinePing = setInterval(() => {
+      setTimeout(() => {
+        askConnectionIfOnline();
+      });
+      setOnlineStatus(false);
+    }, 20000); // every 5 minite to validate if user is online
+    askConnectionIfOnline();
+    return () => {
+      clearInterval(callOnlinePing);
+    };
+  }, [socketApi.isConnected, socket]);
+  //listen on connection status response
+  useEffect(() => {
+    if (!socket) return;
+    function getOnlineStatusResponse(_: boolean) {
+      setOnlineStatus(true);
+    }
+    socket.on("online", getOnlineStatusResponse);
+    return () => {
+      socket.off("online", getOnlineStatusResponse);
+    };
+  }, [socketApi.isConnected, socket]);
   return (
     <div
       className="w-full flex flex-col relative p-1.25 h-full bg-[#DBFFDF] rounded-2xl overflow-hidden"
@@ -71,7 +105,7 @@ function MessageBox() {
         firstName={chatContact?.contactFirstName}
         lastName={chatContact?.contactLastName}
         imageUrl={chatContact.contactImage}
-        status={chatContact.isConnected ? "online" : "offline"}
+        status={onlineStatus ? "online" : "offline"}
       />
       {/**content */}
 

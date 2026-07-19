@@ -17,6 +17,8 @@ type Message = {
 };
 type ServerToClient = {
   "receive-message": (message: Message) => void;
+  areYouOnline: (senderRoom: string) => void; // listen on online requst
+  online: (state: boolean) => void; // listen on any online response
 };
 type ClientToServer = {
   "send-message": (
@@ -25,6 +27,8 @@ type ClientToServer = {
   ) => void;
   "join-room": (connectionId: string) => void;
   "leave-room": (connectionId: string) => void;
+  isOnline: (room: string, senderRoom: string) => void; // send requst to connection if his online
+  amOnline: (room: string, state: boolean) => void; // send online feedback
 };
 type AppSocket = Socket<ServerToClient, ClientToServer>;
 type SocketContextType = {
@@ -82,6 +86,9 @@ export const SocketProviderContext = ({
       });
       newSocket.on("receive-message", (message: Message) => {
         setReceiveMessage(message);
+      });
+      newSocket.on("areYouOnline", (senderRoom: string) => {
+        newSocket.emit("amOnline", senderRoom, true);
       });
       newSocket.connect();
       socketRef.current = newSocket;
