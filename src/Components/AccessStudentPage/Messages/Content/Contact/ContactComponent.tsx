@@ -55,7 +55,6 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
   const {
     setChatContact,
     chatContact,
-
     inputMessage,
     setInputMessage,
     sendMessage,

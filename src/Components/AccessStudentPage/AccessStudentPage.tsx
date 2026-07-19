@@ -134,19 +134,16 @@ function AccessStudentPage() {
                 >
                   {renderDashboard && <Dashboard />}
                   {renderClasses && <Classes />}
-                  {renderMessage && (
-                    <MessagesApiProvider>
-                      <Messages />
-                    </MessagesApiProvider>
-                  )}
+
                   {renderSettings && <Settings />}
-                  {renderCummunity && (
+                  <>
                     <FeedContextProvider>
                       <MessagesApiProvider>
-                        <Community />
+                        {renderMessage && <Messages />}
+                        {renderCummunity && <Community />}
                       </MessagesApiProvider>
                     </FeedContextProvider>
-                  )}
+                  </>
                 </Suspense>
               </div>
             </div>
