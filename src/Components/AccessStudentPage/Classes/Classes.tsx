@@ -20,8 +20,7 @@ function Classes() {
   const [renderAllClasses, setRenderAllClasses] = useState<boolean>(true);
   const [renderActiveClasses, setRenderActiveClasses] =
     useState<boolean>(false);
-  const [renderCompletedClasses, setRenderCompletedClasses] =
-    useState<boolean>(false);
+  const [_, setRenderCompletedClasses] = useState<boolean>(false);
   function toAllClass() {
     setRenderActiveClasses(false);
     setRenderCompletedClasses(false);

@@ -2,10 +2,11 @@ import { lazy, Suspense, useState, useEffect } from "react";
 import thumpsDownIcon from "/images/icons/thumbs-down.png";
 import thumpsUpIcon from "/images/icons/thumbs-up.png";
 import commentsIcon from "/images/icons/comment-1.png";
-import moreIcon from "/images/icons/moreIcon.png";
+//import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import { TotalTimePassed } from "../../../../../TotalTimePassed";
 const SubComments = lazy(() => import("./SubComments"));
+/*
 type PostCommets = {
   _id: string;
   postId: string;
@@ -17,7 +18,7 @@ type PostCommets = {
   dislikeCount: number;
   replyCount: number;
   commentedAt: string;
-};
+};*/
 type FormatedPostComments = {
   body: {
     _id: string;

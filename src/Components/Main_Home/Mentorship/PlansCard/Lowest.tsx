@@ -3,15 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Lowest() {
   const urlNavigator = useNavigate();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [reference, setReference] = useState<string>("");
+  const [_, setLoading] = useState<boolean>(false);
+  const [reference, __] = useState<string>("");
   const paystackPublicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
   const serverUrl = import.meta.env.VITE_SERVER_PORT;
   //payemnt
   function MakePayment({
     email,
     amount,
-    orderId,
   }: {
     email: string;
     amount: number;

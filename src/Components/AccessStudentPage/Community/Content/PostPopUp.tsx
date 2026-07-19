@@ -5,6 +5,7 @@ import canculeIcon from "/images/icons/proicons_cancel.png";
 import videoIcon from "/images/icons/video_icon.png";
 import photoIcon from "/images/icons/photo_icon.png";
 import writeIcon from "/images/icons/write_icon.png";
+/*
 type CommentData = {
   firstName: string;
   lastName: string;
@@ -16,6 +17,7 @@ type CommentData = {
   date: string;
   time: string;
 };
+/*
 type PostCommets = {
   connectionId: string;
   comment: string;
@@ -27,6 +29,7 @@ type PostCommets = {
   subComments: CommentData[] | [];
   _id: string;
 };
+/*
 type FeedsPostData = {
   firstName: string;
   lastName: string;
@@ -53,6 +56,7 @@ type FeedsPostData = {
   time: string;
   createdAt: Date;
 };
+*/
 
 function PostPopUp() {
   const serverPort = import.meta.env.VITE_SERVER_PORT;

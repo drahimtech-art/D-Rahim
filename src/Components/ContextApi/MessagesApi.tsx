@@ -28,6 +28,7 @@ type ChatContact = {
   chatGroupId: string;
   isConnected: boolean;
 };
+/*
 type SortingData = {
   contactFirstName: string;
   contactLastName: string;
@@ -37,6 +38,7 @@ type SortingData = {
   isConnected: boolean;
   sentAt: string;
 };
+*/
 type MessagesApiDataType = {
   contactMessages: Messages[];
   setContactMessages: React.Dispatch<React.SetStateAction<Messages[]>>;

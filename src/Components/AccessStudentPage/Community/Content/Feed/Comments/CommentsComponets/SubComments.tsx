@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import thumpsDownIcon from "/images/icons/thumbs-down.png";
 import thumpsUpIcon from "/images/icons/thumbs-up.png";
 import commentsIcon from "/images/icons/comment-1.png";
-import moreIcon from "/images/icons/moreIcon.png";
+//import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import { TotalTimePassed } from "../../../../../TotalTimePassed";
 type FormatedPostComments = {
@@ -24,9 +24,9 @@ type FormatedPostComments = {
   replayToCommentControl: (plachorder: string, id: string) => void;
 };
 function SubComments(props: FormatedPostComments) {
-  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  //const serverPort = import.meta.env.VITE_SERVER_PORT;
   const [viewSubComments, setViewSubComments] = useState<boolean>(false);
-  const [supComments, setSubComments] = useState<FormatedPostComments[]>([]);
+  //const [supComments, setSubComments] = useState<FormatedPostComments[]>([]);
   function handleReplayComment() {
     props.replayToCommentControl(
       `reply to ${props.body.firstName} ${props.body.lastName}`,

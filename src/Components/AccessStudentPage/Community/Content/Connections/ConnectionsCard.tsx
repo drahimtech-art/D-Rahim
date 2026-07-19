@@ -27,7 +27,7 @@ type ChatContact = {
 function ConnectionsCard(props: Connections) {
   const [_, setSearchParems] = useSearchParams();
   const messagesContextData = MessagesApi();
-  const { setChatContact, chatContact } = messagesContextData;
+  const { setChatContact } = messagesContextData;
   //start chat with contact
   function setChatBoxInfo() {
     const data: ChatContact = {

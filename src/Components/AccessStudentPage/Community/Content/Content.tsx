@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import Head from "./Head";
+//import Head from "./Head";
 import Feed from "./Feed/Feed";
 const Group = lazy(() => import("./Groups/Group"));
 const Connections = lazy(() => import("./Connections/Connections"));

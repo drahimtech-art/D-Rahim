@@ -11,7 +11,7 @@ export function MakePayment({
   orderId: string;
 }) {
   const urlNavigator = useNavigate();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [_, setLoading] = useState<boolean>(false);
   const [reference, setReference] = useState<string>("");
   const paystackPublicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
   const serverUrl = import.meta.env.VITE_SERVER_PORT;

@@ -17,7 +17,7 @@ function ConnectionCard(props: RequstInfo) {
   const { userInfo } = userDetails;
   const [acceptRequst, setAcceptRequst] = useState<boolean>(false);
   const acceptRequstRef = useRef<HTMLButtonElement | null>(null);
-  const rejectRequstRef = useRef<HTMLButtonElement | null>(null);
+  //const rejectRequstRef = useRef<HTMLButtonElement | null>(null);
   async function acceptConnectionRequst() {
     if (acceptRequst || !acceptRequstRef.current) return;
     setAcceptRequst(true);
