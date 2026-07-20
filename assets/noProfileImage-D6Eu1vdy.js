@@ -1,0 +1,1 @@
+var e=`/D-Rahim/images/noProfileImage.jpeg`;export{e as t};

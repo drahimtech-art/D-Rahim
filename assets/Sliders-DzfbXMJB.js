@@ -1,0 +1,1 @@
+var e=`/D-Rahim/images/icons/HouseSimple_icon.png`,t=`/D-Rahim/images/icons/StudentLight_icon.png`,n=`/D-Rahim/images/icons/Student.png`,r=`/D-Rahim/images/icons/Sliders_icon.png`,i=`/D-Rahim/images/icons/Sliders.png`;export{e as a,t as i,r as n,n as r,i as t};

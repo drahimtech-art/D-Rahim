@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DUAcabCT.js";import{t}from"./ClassProgressCard-DzP55Nfc.js";var n=e();function r(){return(0,n.jsxs)(`div`,{className:`flex flex-col gap-6.25`,children:[(0,n.jsx)(t,{}),(0,n.jsx)(t,{}),(0,n.jsx)(t,{}),(0,n.jsx)(t,{}),(0,n.jsx)(t,{}),(0,n.jsx)(t,{})]})}export{r as default};

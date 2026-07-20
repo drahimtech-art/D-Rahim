@@ -1,0 +1,1 @@
+var e=`/D-Rahim/images/class1.png`;export{e as t};
