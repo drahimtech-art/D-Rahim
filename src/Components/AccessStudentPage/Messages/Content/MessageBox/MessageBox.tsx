@@ -21,7 +21,7 @@ function MessageBox() {
   } = messagesContextData;
   const { socket } = socketApi;
   if (!chatContact || !userDetails) return;
-  const { userInfo } = userDetails;
+  //const { userInfo } = userDetails;
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
   const [displayImage, setDisplayImage] = useState<string>("");
   const [onlineStatus, setOnlineStatus] = useState<boolean>(false);
