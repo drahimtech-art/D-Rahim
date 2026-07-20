@@ -212,7 +212,7 @@ const PostTypePhoto = memo((props: Body) => {
     setPopUpControl(true);
   }
   return (
-    <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5">
+    <div className="w-full flex flex-col border-[1.5px] border-[#11AC76] rounded-2xl pl-4 pr-4 p-2.5 h">
       {/**image heading and connect action button */}
       <div className="w-full flex ">
         <div className="flex gap-4.25 mr-auto items-center max-w-75">
@@ -285,7 +285,7 @@ const PostTypePhoto = memo((props: Body) => {
         )}
         <span className="w-full h-fit">
           <img
-            className="w-full h-fit rounded-[20px]"
+            className="w-full h-fit max-h-125 rounded-[20px]"
             src={props.body.content.content}
           ></img>
         </span>

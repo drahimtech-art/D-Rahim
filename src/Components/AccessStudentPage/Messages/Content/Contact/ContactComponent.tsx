@@ -411,12 +411,13 @@ function ContactComponent({ connectionInfo }: { connectionInfo: Connections }) {
         ></img>
       </span>
       {/**name, message & time */}
-      <div className="w-full flex flex-col gap-1.25">
+      <div className="w-full flex flex-col gap-1.25 ">
         {/**name & time */}
         <span className="flex items-center">
           {/**name */}
-          <h5 className="font-sans font-bold text-[16px]  line-clamp-1">
-            {connectionInfo.contactFirstName} {connectionInfo.contactLastName}
+          <h5 className="font-sans font-bold text-[16px]  line-clamp-1 max-w-[90%]">
+            {connectionInfo.contactFirstName}{" "}
+            {connectionInfo.contactLastName}{" "}
           </h5>
           {/**time */}
           <h5 className="ml-auto font-normal font-sans text-[13px] ">
