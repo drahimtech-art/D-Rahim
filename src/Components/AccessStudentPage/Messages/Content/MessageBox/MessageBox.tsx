@@ -71,28 +71,18 @@ function MessageBox() {
     function askConnectionIfOnline() {
       // send ping to check if connection is online
       if (!socket || !chatContact || !chatContact.isConnected) return;
-      socket.emit("isOnline", chatContact.contactId, userInfo.connectionId);
+      socket.emit("isOnline", chatContact.contactId, (state) => {
+        setOnlineStatus(state);
+      });
     }
     const callOnlinePing = setInterval(() => {
       setTimeout(() => {
         askConnectionIfOnline();
       });
-      setOnlineStatus(false);
     }, 20000); // every 5 minite to validate if user is online
     askConnectionIfOnline();
     return () => {
       clearInterval(callOnlinePing);
-    };
-  }, [socketApi.isConnected, socket]);
-  //listen on connection status response
-  useEffect(() => {
-    if (!socket) return;
-    function getOnlineStatusResponse(_: boolean) {
-      setOnlineStatus(true);
-    }
-    socket.on("online", getOnlineStatusResponse);
-    return () => {
-      socket.off("online", getOnlineStatusResponse);
     };
   }, [socketApi.isConnected, socket]);
   return (
