@@ -42,6 +42,7 @@ type FeedsPostData = {
   hashTages: string[];
   postedAt: string;
   createdAt: Date;
+  listId: string;
 };
 type Body = {
   body: FeedsPostData;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { StudentsAppData } from "../../../../../ContextApi/StudentsApi";
 import { MessagesApi } from "../../../../../ContextApi/MessagesApi";
 import { TotalTimePassed } from "../../../../TotalTimePassed";
@@ -42,6 +42,7 @@ type FeedsPostData = {
   hashTages: string[];
   postedAt: string;
   createdAt: Date;
+  listId: string;
 };
 type Body = {
   body: FeedsPostData;
@@ -52,11 +53,12 @@ type Body = {
     value: boolean,
   ) => void;
 };
-function PostTypePhoto(props: Body) {
+const PostTypePhoto = memo((props: Body) => {
   const serverPort = import.meta.env.VITE_SERVER_PORT;
   const userDetails = StudentsAppData();
   const messagesContextData = MessagesApi();
   if (!userDetails) return;
+
   const { userInfo, setPopUpCard, setPopUpControl } = userDetails;
   const { conections } = messagesContextData;
   const [likes, setLikes] = useState<number>(props.body.engament.likes);
@@ -95,7 +97,7 @@ function PostTypePhoto(props: Body) {
         setSendConectionRequst(true);
       }
     }
-  }, [conections]);
+  }, []);
   //update post liked buttion ux
   useEffect(() => {
     if (!postLikeRef.current) return;
@@ -150,6 +152,7 @@ function PostTypePhoto(props: Body) {
   }
   //get update feed of post upload time every minite
   useEffect(() => {
+    console.log("mounts");
     if (!props.body) return;
     const postedAt = props.body.postedAt;
     const timer = setInterval(() => {
@@ -326,5 +329,5 @@ function PostTypePhoto(props: Body) {
       </div>
     </div>
   );
-}
+});
 export default PostTypePhoto;

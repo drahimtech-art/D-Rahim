@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import { FeedContextApi } from "../../../../ContextApi/FeedsContext";
 import { MessagesApi } from "../../../../ContextApi/MessagesApi";
@@ -41,6 +41,7 @@ type FeedsPostData = {
   hashTages: string[];
   postedAt: string;
   createdAt: Date;
+  listId: string;
 };
 type Connections = {
   contactFirstName: string;
@@ -143,11 +144,11 @@ function Feed(prop: CommunityPagesControl) {
       const responds = await requst.json();
       if (responds.ok) {
         setGetFeedsControl(false);
-        const feeds =
-          feedsPost && feedsPost?.length !== 0
-            ? [...feedsPost, ...responds.feeds]
+        setFeedsPost((prevFeeds) => {
+          return prevFeeds && prevFeeds?.length !== 0
+            ? [...prevFeeds, ...responds.feeds]
             : [...responds.feeds];
-        setFeedsPost(feeds);
+        });
       }
       setGetFeedsControl(false);
     } catch (error) {
@@ -169,24 +170,61 @@ function Feed(prop: CommunityPagesControl) {
     data: FeedsPostData,
     value: boolean,
   ) {
-    if (!feedsPost) return;
     console.log(value);
-    const list = [...feedsPost];
-    const postData = { ...data };
-    console.log(postData.isPostLiked);
-    if (postData.isPostLiked === value) return;
-    postData.engament.likes = value
-      ? postData.engament.likes + 1
-      : postData.engament.likes - 1;
-    postData.isPostLiked = value;
-    const updatedPostData = { ...postData };
-    const updatedList = [
-      ...list.slice(0, index - 1),
-      updatedPostData,
-      ...list.slice(index),
-    ];
-    setFeedsPost([...updatedList]);
+    setFeedsPost((prevList) => {
+      if (!prevList) return;
+      const postData = { ...data };
+      console.log(postData.isPostLiked);
+      if (postData.isPostLiked === value) return;
+      postData.engament.likes = value
+        ? postData.engament.likes + 1
+        : postData.engament.likes - 1;
+      postData.isPostLiked = value;
+      const updatedPostData = { ...postData };
+      const updatedList = [
+        ...prevList.slice(0, index - 1),
+        updatedPostData,
+        ...prevList.slice(index),
+      ];
+      return updatedList;
+    });
   }
+  const renderList = useCallback((index: number, post: FeedsPostData) => {
+    if (index === 0) {
+      return (
+        <>
+          <Head
+            feedsSate={prop.feedsState}
+            groupState={prop.groupState}
+            connectionsState={prop.connectionsState}
+            toFeedsPage={prop.toFeedsPage}
+            toGroupsPage={prop.toGroupsPage}
+            toConnectionsPage={prop.toConnectionsPage}
+          />
+          <UserPost />
+        </>
+      );
+    } else if (index !== 0 && post.content.type === "image") {
+      return (
+        <td className="w-full  block h-fit mt-3.5">
+          <PostTypePhoto
+            body={post}
+            arrayIndex={index}
+            updateItemAtIndexInList={updateItemAtIndexInList}
+          />
+        </td>
+      );
+    } else if (index !== 0 && post.content.type === "text")
+      return (
+        <td className="w-full block h-fit mt-3.5">
+          <PostTypeText
+            body={post}
+            arrayIndex={index}
+            updateItemAtIndexInList={updateItemAtIndexInList}
+          />
+        </td>
+      );
+  }, []);
   return (
     <div className="w-full h-full ">
       {/**post card */}
@@ -206,45 +244,8 @@ function Feed(prop: CommunityPagesControl) {
                 )
               : undefined
           }
-          computeItemKey={(_, post) =>
-            `key-${post.postId}-&-id-${crypto.randomUUID()}`
-          }
-          itemContent={(index, post) => {
-            if (index === 0)
-              return (
-                <>
-                  <Head
-                    feedsSate={prop.feedsState}
-                    groupState={prop.groupState}
-                    connectionsState={prop.connectionsState}
-                    toFeedsPage={prop.toFeedsPage}
-                    toGroupsPage={prop.toGroupsPage}
-                    toConnectionsPage={prop.toConnectionsPage}
-                  />
-                  <UserPost />
-                </>
-              );
-            if (index !== 0 && post.content.type === "image")
-              return (
-                <td className="w-full  block h-fit mt-3.5">
-                  <PostTypePhoto
-                    body={post}
-                    arrayIndex={index}
-                    updateItemAtIndexInList={updateItemAtIndexInList}
-                  />
-                </td>
-              );
-            if (index !== 0 && post.content.type === "text")
-              return (
-                <td className="w-full block h-fit mt-3.5">
-                  <PostTypeText
-                    body={post}
-                    arrayIndex={index}
-                    updateItemAtIndexInList={updateItemAtIndexInList}
-                  />
-                </td>
-              );
-          }}
+          computeItemKey={(_, post) => `key-${post.listId}}`}
+          itemContent={renderList}
         ></TableVirtuoso>
       )}
     </div>
