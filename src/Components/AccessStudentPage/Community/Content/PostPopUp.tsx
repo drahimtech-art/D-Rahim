@@ -184,8 +184,8 @@ function PostPopUp() {
     setPostText(value);
   }
   return (
-    <div className="w-[60%] max-w-219.75 h-[80%] relative max-h-145.5 p-10 border border-[#56D566] bg-white rounded-2xl">
-      <div className="w-full h-full flex flex-col overflow-hidden  relative">
+    <div className="w-[60%] max-w-219.75  h-full relative max-h-145.5 p-10 border border-[#56D566] bg-white rounded-2xl">
+      <div className="w-full h-full max-h-full flex flex-col  relative">
         {/**profil picture name and cancule button */}
         <div className="flex">
           {/** profil picture and name*/}
@@ -232,9 +232,10 @@ function PostPopUp() {
           ></textarea>
         </div>
         {/**photo and image display */}
+
         {photoDisplay && (
-          <div className="w-full h-[250%]  mb-5">
-            <div className="w-[50%] relative h-full ">
+          <div className="max-w-full h-[250%] max-h-full overflow-hidden relative mb-5">
+            <div className="w-fit max-w-[50%] h-full max-h-full  relative ">
               <span className="p-2 absolute w-full flex justify-end">
                 <i
                   className="fa fa-xmark text-2xl pointer text-gray-200"
@@ -242,7 +243,7 @@ function PostPopUp() {
                 ></i>
               </span>
               <img
-                className="w-full h-full rounded-2xl"
+                className="w-full h-full max-h-full rounded-2xl"
                 src={photoDisplay}
               ></img>
             </div>
