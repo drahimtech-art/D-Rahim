@@ -48,10 +48,10 @@ const ConceptSpring = lazy(
     import("../features/home/features/Services/features/ServicesCardInfo/ConceptSpring"),
 );
 //ourwork page
-const AdminLogin = lazy(() => import("../shared/Login/AdminLogin"));
+const AdminLogin = lazy(() => import("../auth/Login/AdminLogin"));
 const AdminDasboard = lazy(() => import("../features/admin/AdminDasbord"));
 //access student page
-const AccessLogin = lazy(() => import("../shared/Login/AccessLogin"));
+const AccessLogin = lazy(() => import("../auth/Login/AccessLogin"));
 const AccessStudentPage = lazy(
   () => import("../features/students/AccessStudentPage"),
 );
