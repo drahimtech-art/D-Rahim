@@ -8,6 +8,8 @@ import {
 type Data = {
   projectInfo: OurWorkData;
   setProjectInfo: React.Dispatch<SetStateAction<OurWorkData>>;
+  listOfProjects: DesignType | undefined;
+  setListOfProjects: React.Dispatch<SetStateAction<DesignType | undefined>>;
 };
 type OurWorkData = {
   imageUrl: string;
@@ -22,9 +24,13 @@ type OurWorkData = {
   industry: string[];
   endText: string;
 };
-
-const DataContext = createContext<Data | null>(null);
-export const DataContextProvider = ({ children }: { children: ReactNode }) => {
+type DesignType = {
+  moblieDesign: OurWorkData[];
+  webSiteDesign: OurWorkData[];
+  branding: OurWorkData[];
+};
+const OurWork = createContext<Data | null>(null);
+export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
   const [projectInfo, setProjectInfo] = useState<OurWorkData>({
     imageUrl: "",
     imageText: "",
@@ -38,16 +44,20 @@ export const DataContextProvider = ({ children }: { children: ReactNode }) => {
     industry: [],
     endText: "",
   });
-
+  const [listOfProjects, setListOfProjects] = useState<DesignType | undefined>(
+    undefined,
+  );
   return (
-    <DataContext.Provider
+    <OurWork.Provider
       value={{
         projectInfo,
         setProjectInfo,
+        listOfProjects,
+        setListOfProjects,
       }}
     >
       {children}
-    </DataContext.Provider>
+    </OurWork.Provider>
   );
 };
-export const AppDataContext = () => useContext(DataContext);
+export const OurWorkApi = () => useContext(OurWork);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
-import { AppDataContext } from "../../../../storage/ContextApi";
+import { OurWorkApi } from "../../../../storage/OurWorkApi.tsx";
 type ImageData = {
   image: string;
   text: string;
@@ -23,7 +23,7 @@ type ImageData = {
 function Card(props: ImageData) {
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
   const urlNavigator = useNavigate();
-  const dataContext = AppDataContext();
+  const dataContext = OurWorkApi();
   if (!dataContext) return;
   const { setProjectInfo } = dataContext;
   const data = {

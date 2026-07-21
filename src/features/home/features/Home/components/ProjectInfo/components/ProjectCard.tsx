@@ -1,9 +1,9 @@
-import { AppDataContext } from "../../../../../../../storage/ContextApi";
+import { OurWorkApi } from "../../../../../../../storage/OurWorkApi.tsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 function ProjectCard() {
   const urlNavigator = useNavigate();
-  const dataContext = AppDataContext();
+  const dataContext = OurWorkApi();
   if (!dataContext) return;
   const { projectInfo } = dataContext;
   useEffect(() => {

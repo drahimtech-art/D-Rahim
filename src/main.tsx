@@ -2,11 +2,11 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { DataContextProvider } from "./storage/ContextApi.tsx";
+import { OurWorkProvider } from "./storage/OurWorkApi.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <DataContextProvider>
+    <OurWorkProvider>
       <App />
-    </DataContextProvider>
+    </OurWorkProvider>
   </StrictMode>,
 );

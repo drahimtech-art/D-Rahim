@@ -20,12 +20,12 @@ type Body = {
   isNotClickCable?: boolean;
 };
 function CardList(props: Body) {
-  const productData = props.body;
-  if (!productData) return;
+  const ourWorkList = props.body;
+  if (!ourWorkList) return;
   return (
     <>
       <div className="flex flex-wrap min-[1000px]:grid  min-[1000px]:grid-cols-3  sm:gap-10 gap-5 min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 justify-around  mt-4 sm:mt-10 min-[1000px]:mt-8 items-stretch">
-        {productData.map((e, i) => {
+        {ourWorkList.map((e, i) => {
           return (
             <Card
               key={`card${i}`}
