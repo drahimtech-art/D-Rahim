@@ -2,7 +2,7 @@ import { StudentsAppData } from "../../../../storage/StudentsApi";
 import { useState, useRef, type ChangeEvent } from "react";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import pencil from "/images/icons/pencil.png";
-import LeftPanel from "./LeftPanel";
+import LeftPanel from "./components/LeftPanel";
 type UserData = {
   firstName: string;
   lastName: string;
