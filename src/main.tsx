@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { DataContextProvider } from "./Components/ContextApi/ContextApi.tsx";
+import { DataContextProvider } from "./storage/ContextApi.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <DataContextProvider>
