@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 //import Head from "./Head";
 import Feed from "./features/Feed/Feed";
 const Group = lazy(() => import("./features/Groups/Group"));
-const Connections = lazy(() => import("./Connections/Connections"));
+const Connections = lazy(() => import("./features/Connections/Connections"));
 type CommunityPagesControl = {
   feedsState: boolean;
   groupState: boolean;

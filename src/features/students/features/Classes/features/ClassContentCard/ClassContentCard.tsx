@@ -1,5 +1,5 @@
-import Head from "./Head";
-import Content from "./Content/Content";
+import Head from "./components/Head";
+import Content from "./components/Content/Content";
 import type { SetStateAction } from "react";
 type BackButtonControll = {
   setIsClassActive: React.Dispatch<SetStateAction<boolean>>;

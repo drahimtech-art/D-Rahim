@@ -1,4 +1,4 @@
-import ClassProgressBar from "../AllClasses/ClassProgressCard";
+import ClassProgressBar from "../../shared/ClassProgressCard";
 function ActiveClass() {
   return (
     <div className="flex flex-col gap-6.25">

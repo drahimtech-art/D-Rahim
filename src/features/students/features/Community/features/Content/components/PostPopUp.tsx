@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type ChangeEvent } from "react";
-import { StudentsAppData } from "../../../storage/StudentsApi";
+import { StudentsAppData } from "../../../../../../../storage/StudentsApi";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import canculeIcon from "/images/icons/proicons_cancel.png";
 import videoIcon from "/images/icons/video_icon.png";

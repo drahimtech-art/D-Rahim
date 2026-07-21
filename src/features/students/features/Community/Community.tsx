@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Content from "./features/Content/Content";
 import Connections from "./features/Connections/Connections";
-import FriendsRequst from "./features/Content/Connections/FriendsRequst/FriendsRequst";
+import FriendsRequst from "./features/Content/features/Connections/components/FriendsRequst";
 function Community() {
   const [feedState, setFeedState] = useState<boolean>(true);
   const [groupState, setGroupState] = useState<boolean>(false);

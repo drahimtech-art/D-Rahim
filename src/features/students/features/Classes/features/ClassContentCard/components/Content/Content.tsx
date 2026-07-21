@@ -1,6 +1,6 @@
-import LeftPanelBar from "./NavigationPanel/LeftPanelBar";
-import MainContent from "./MainContent";
-import RightPanel from "./RightPanel";
+import LeftPanelBar from "./features/LeftPanelBar";
+import MainContent from "./features/MainContent";
+import RightPanel from "./features/RightPanel";
 function Content() {
   return (
     <div className="mt-10 w-full h-full flex items-center  gap-10">

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { StudentsAppData } from "../../../../../storage/StudentsApi";
-import { MessagesApi } from "../../../../../storage/MessagesApi";
-import { TotalTimePassed } from "../../../../TotalTimePassed";
+import { StudentsAppData } from "../../../../../../../../../storage/StudentsApi";
+import { MessagesApi } from "../../../../../../../../../storage/MessagesApi";
+import { TotalTimePassed } from "../../../../../../../shared/TotalTimePassed";
 import likeIcon from "/images/icons/like_icon.png";
 import commentIcon from "/images/icons/comment_icon.png";
 import shareIcon from "/images/icons/share_icon.png";

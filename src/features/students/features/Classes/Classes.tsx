@@ -1,5 +1,5 @@
 import { useState, lazy } from "react";
-import HeadContent from "./HeadContent";
+import HeadContent from "./components/HeadContent";
 //
 /*
 import classImge1 from "/images/class1.png";
@@ -10,11 +10,9 @@ import classImge5 from "/images/class3.png";
 import classImge6 from "/images/class7.png";
 import classImge7 from "/images/class4.png";
 */
-import AllClasses from "./Navigation/AllClasses/AllClasses";
-const ActiveClass = lazy(
-  () => import("./Navigation/ActiveClasses/ActiveClass"),
-);
-import ClassContentCard from "./Navigation/ClassContentCard/ClassContentCard";
+import AllClasses from "./features/AllClasses/AllClasses";
+const ActiveClass = lazy(() => import("./features/ActiveClasses/ActiveClass"));
+import ClassContentCard from "./features/ClassContentCard/ClassContentCard";
 function Classes() {
   const [isClassActive, setIsClassActive] = useState<boolean>(false); // for testing am going to prop drill
   const [renderAllClasses, setRenderAllClasses] = useState<boolean>(true);

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { StudentsAppData } from "../../../../../../../../storage/StudentsApi";
+import { StudentsAppData } from "../../../../../../../../../../storage/StudentsApi";
 import noProfileImg from "/images/noProfileImage.jpeg";
 type RequstInfo = {
   firstName: string;

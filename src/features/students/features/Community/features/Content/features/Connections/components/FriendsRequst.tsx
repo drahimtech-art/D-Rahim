@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { StudentsAppData } from "../../../../../../../../storage/StudentsApi";
-import ConnectionCard from "./ConnectionCard";
+import { StudentsAppData } from "../../../../../../../../../storage/StudentsApi";
+import ConnectionCard from "./FriendsRequst/ConnectionCard";
 type ConnectionsRequst = {
   firstName: string;
   lastName: string;

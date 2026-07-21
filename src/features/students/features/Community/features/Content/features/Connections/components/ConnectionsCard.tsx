@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 //import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
 import noProfileImg from "/images/noProfileImage.jpeg";
-import { MessagesApi } from "../../../../storage/MessagesApi";
+import { MessagesApi } from "../../../../../../../../../storage/MessagesApi";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;

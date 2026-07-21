@@ -1,5 +1,5 @@
-import PeopleYouMayKnow from "./PeopleYouMayKnow/PeopleYouMayKnow";
-import RecommendGroups from "./RecommendGroups/RecommendGroups";
+import PeopleYouMayKnow from "./components/PeopleYouMayKnow/PeopleYouMayKnow";
+import RecommendGroups from "./components/RecommendGroups/RecommendGroups";
 function Connections() {
   return (
     <div className="w-full h-full max-h-fit min-w-[250px]   bg-[#FFFFFF] overflow-y-auto">

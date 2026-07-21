@@ -1,4 +1,4 @@
-import { StudentsAppData } from "../../../storage/StudentsApi";
+import { StudentsAppData } from "../../../../../../../storage/StudentsApi";
 import noProfileImg from "/images/noProfileImage.jpeg";
 import videoIcon from "/images/icons/video_icon.png";
 import photoIcon from "/images/icons/photo_icon.png";

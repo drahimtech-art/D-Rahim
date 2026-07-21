@@ -1,5 +1,5 @@
 import type React from "react";
-import ClassProgressBar from "./ClassProgressCard";
+import ClassProgressBar from "../../shared/ClassProgressCard";
 type EnterClassControl = {
   setIsClassActive: React.Dispatch<React.SetStateAction<boolean>>;
 };

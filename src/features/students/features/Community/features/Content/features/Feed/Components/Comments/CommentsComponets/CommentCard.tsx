@@ -4,7 +4,7 @@ import thumpsUpIcon from "/images/icons/thumbs-up.png";
 import commentsIcon from "/images/icons/comment-1.png";
 //import moreIcon from "/images/icons/moreIcon.png";
 import noProfileImg from "/images/noProfileImage.jpeg";
-import { TotalTimePassed } from "../../../../../TotalTimePassed";
+import { TotalTimePassed } from "../../../../../../../../../shared/TotalTimePassed";
 const SubComments = lazy(() => import("./SubComments"));
 /*
 type PostCommets = {

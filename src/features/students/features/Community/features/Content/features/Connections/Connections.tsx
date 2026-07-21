@@ -1,9 +1,9 @@
 import { useState, useEffect, type ChangeEvent } from "react";
 //import { StudentsAppData } from "../../../../ContextApi/StudentsApi";
-import { MessagesApi } from "../../../../storage/MessagesApi";
-import Head from "./Head";
-import HeadMenu from "../components/Head";
-import ConectionsList from "./ConectionsList";
+import { MessagesApi } from "../../../../../../../../storage/MessagesApi";
+import Head from "./components/Head";
+import HeadMenu from "../../components/Head";
+import ConectionsList from "./components/ConectionsList";
 type Connections = {
   contactFirstName: string;
   contactLastName: string;
