@@ -5,18 +5,13 @@ import {
   type ReactNode,
   type SetStateAction,
 } from "react";
-type Data = {
-  projectInfo: OurWorkData;
-  setProjectInfo: React.Dispatch<SetStateAction<OurWorkData>>;
-  listOfProjects: DesignType | undefined;
-  setListOfProjects: React.Dispatch<SetStateAction<DesignType | undefined>>;
-};
 type OurWorkData = {
-  imageUrl: string;
-  imageText: string;
+  image: string;
+  text: string;
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
+  popImageUrl: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -26,17 +21,46 @@ type OurWorkData = {
 };
 type DesignType = {
   moblieDesign: OurWorkData[];
-  webSiteDesign: OurWorkData[];
+  websiteDesign: OurWorkData[];
   branding: OurWorkData[];
 };
-const OurWork = createContext<Data | null>(null);
-export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
-  const [projectInfo, setProjectInfo] = useState<OurWorkData>({
-    imageUrl: "",
-    imageText: "",
+type OurWorkDataType = {
+  projectInfo: OurWorkData;
+  setProjectInfo: React.Dispatch<SetStateAction<OurWorkData>>;
+  listOfProjects: DesignType;
+  setListOfProjects: React.Dispatch<SetStateAction<DesignType>>;
+};
+const OurWork = createContext<OurWorkDataType>({
+  projectInfo: {
+    image: "",
+    text: "",
     subText: "",
     popUpHeadding: "",
     popHeadText: "",
+    popImageUrl: "",
+    capabilities: [],
+    duration: "",
+    team: [],
+    location: "",
+    industry: [],
+    endText: "",
+  },
+  setProjectInfo: () => {},
+  listOfProjects: {
+    moblieDesign: [],
+    websiteDesign: [],
+    branding: [],
+  },
+  setListOfProjects: () => {},
+});
+export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
+  const [projectInfo, setProjectInfo] = useState<OurWorkData>({
+    image: "",
+    text: "",
+    subText: "",
+    popUpHeadding: "",
+    popHeadText: "",
+    popImageUrl: "",
     capabilities: [],
     duration: "",
     team: [],
@@ -44,9 +68,11 @@ export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
     industry: [],
     endText: "",
   });
-  const [listOfProjects, setListOfProjects] = useState<DesignType | undefined>(
-    undefined,
-  );
+  const [listOfProjects, setListOfProjects] = useState<DesignType>({
+    moblieDesign: [],
+    websiteDesign: [],
+    branding: [],
+  });
   return (
     <OurWork.Provider
       value={{

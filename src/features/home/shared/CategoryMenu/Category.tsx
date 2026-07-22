@@ -1,32 +1,15 @@
 import { useRef, useState, useEffect } from "react";
-import products from "../../../../Components/Products";
+import { OurWorkApi } from "../../../../storage/OurWorkApi";
 import mobileProducts from "../../../../Components/MobileProducts";
+import products from "../../../../Components/Products";
 import CardList from "../Card/CardList";
-import image0 from "/images/10.png";
-import image1 from "/images/11.png";
-import image2 from "/images/8.png";
-import image3 from "/images/14.png";
-import image4 from "/images/13.png";
-import image5 from "/images/17.png";
-import image6 from "/images/6.png";
-import image7 from "/images/9.png";
-import image8 from "/images/12.png";
-import imageP0 from "/images/p10.png";
-import imageP1 from "/images/p11.png";
-import imageP2 from "/images/p8.png";
-import imageP3 from "/images/p14.png";
-import imageP4 from "/images/p13.png";
-import imageP5 from "/images/p17.png";
-import imageP6 from "/images/p6.png";
-import imageP7 from "/images/p9.png";
-import imageP8 from "/images/p12.png";
 type OurWorkData = {
   image: string;
   text: string;
   subText?: string;
   popUpHeadding: string;
   popHeadText: string;
-  popImageUrl?: string;
+  popImageUrl: string;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -34,240 +17,131 @@ type OurWorkData = {
   industry: string[];
   endText: string;
 };
-const countData = [
-  [
-    {
-      image: image0,
-      text: "Website Design ",
-      subText: "",
-      popUpHeadding:
-        "Simplifying document conversion through speed, accuracy, and seamless accessibility.",
-      popHeadText: "Pdf to Word",
-      popImageUrl: imageP0,
-      capabilities: [
-        "UI/UX Design",
-        "Document Conversion Flow",
-        "Product Research",
-        "Web App Design",
-      ],
-      duration: "3months",
-      team: ["Product Design", "UI Designer", "Developer"],
-      location: "Nigeria",
-      industry: ["Productivity Tools", "Document Technology"],
-      endText:
-        "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting",
-    },
-    {
-      image: image1,
-      text: "Mobile Design ",
-      subText: "",
-      popUpHeadding:
-        "Creating accessible healthcare solutions that connect people to better care and wellness.",
-      popHeadText: "Vite Care ",
-      popImageUrl: imageP1,
-      capabilities: [
-        "UI/UX Design",
-        "Healthcare Experience Design",
-        "User Resarch",
-        "Mobile App Design",
-      ],
-      duration: "3months",
-      team: [
-        "Product Designer",
-        "UI Designer",
-        "Healthcare Researcher",
-        "Developer",
-      ],
-      location: "Nigeria",
-      industry: ["HealthTech", "Healthcare"],
-      endText:
-        "VitaCare is a digital healthcare platform designed to simplify access to medical services and help users to manage their health anytime.",
-    },
-    {
-      image: image2,
-      text: "Mobile Design ",
-      subText: "",
-      popUpHeadding:
-        "Connecting people to delicious meals through fast, seamless, and convenient food ordering experiences.",
-      popHeadText: "Come Chop",
-      popImageUrl: imageP2,
-      capabilities: [
-        "UI/UX Design",
-        "Food Ordering Experience",
-        "User Research",
-        "Mobile App Design",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "Developer"],
-      location: "Nigeria",
-      industry: ["Food Technology", "Delivery Services"],
-      endText:
-        "Come Chop is a food delivery platform designed to connect users with local restaurants and",
-    },
-    {
-      image: image3,
-      text: "Website Design ",
-      subText: "",
-      popUpHeadding:
-        "Creating secure and seamless authentication experiences for modern digital platforms.",
-      popHeadText: "Razor",
-      popImageUrl: imageP3,
-      capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
-      ],
-      duration: "2months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
-      location: "Nigeria",
-      industry: ["Cybersecurity", "Authentication Technology"],
-      endText:
-        "A secure authentication system designed to provide fast, seamless, and reliable user access through a clean and inteuitve interface",
-    },
-    {
-      image: image4,
-      text: "Mobile Design ",
-      subText: "",
-      popUpHeadding:
-        "Creating accessible healthcare solutions that connect people to quality care anytime, anywhere.",
-      popHeadText: "Medi Link",
-      popImageUrl: imageP4,
-      capabilities: [
-        "UI/UX Design",
-        "Healtcare Experience Design",
-        "User Research",
-        "Mobile App Design",
-      ],
-      duration: "3months",
-      team: [
-        "Product Designer",
-        "UI Designer",
-        "Healthcare Researcher",
-        "Developer",
-      ],
-      location: "Nigeria",
-      industry: ["HealthTech", "Healthcare"],
-      endText:
-        "A Clean, modern, and easy to remember. It sounds trustworthy and feels like a real health-tech product",
-    },
-    {
-      image: image5,
-      text: "Branding ",
-      subText: "",
-      popUpHeadding:
-        "Transforming ideas into functional living spaces through smart design and visualization.",
-      popHeadText: "Home Architect",
-      popImageUrl: imageP5,
-      capabilities: [
-        "UI/UX Design",
-        "Architecture Planning",
-        "3D Visualization",
-        "Product Research",
-      ],
-      duration: "3months",
-      team: [
-        "Product Designer",
-        "UI Designer",
-        "Architectural Consultant",
-        "Developer",
-      ],
-      location: "Nigeria",
-      industry: ["Architecture", "Real Estate Tecnology"],
-      endText:
-        "A design platform that helps users plan, visualize, and create functional home layouts through an intuitive and user-friendly interface.",
-    },
-  ],
-  [
-    {
-      image: image6,
-      text: "Branding ",
-      subText: "",
-      popUpHeadding:
-        "Creating secure identity verification through fast, seamless, and intelligent facial recognition.",
-      popHeadText: "Face Scan",
-      popImageUrl: imageP6,
-      capabilities: [
-        "UI/UX Design",
-        "Biometric Authentication",
-        "Security Research",
-        "Mobile Experience Design",
-      ],
-      duration: "2months",
-      team: ["Product Designer", "UI Designer", "Developer"],
-      location: "Nigeria",
-      industry: ["Security Technology", "Biometic Solutions"],
-      endText:
-        "a biometric authentication system that enables secure and seamless user verification using facial recognition technology",
-    },
-    {
-      image: image7,
-      text: "Website Design ",
-      subText: "",
-      popUpHeadding:
-        "Empowering businesses to deploy, manage, and scale digital products with speed and efficiency.",
-      popHeadText: "Xnora",
-      popImageUrl: imageP7,
-      capabilities: [
-        "UI/UX Design",
-        "Web Platform Design",
-        "Developer Experience",
-        "Product Strategy",
-      ],
-      duration: "3months",
-      team: [
-        "Product Designer",
-        "UI Designer",
-        "Developer",
-        "Product Strategist",
-      ],
-      location: "Nigeria",
-      industry: ["Cloud Technology", "Software Development"],
-      endText:
-        "Xnora is a modern web platform built for seamless deployment and efficient performance. It provides a clean, enviroment for deployment.",
-    },
-    {
-      image: image8,
-      text: "Mobile Design ",
-      subText: "",
-      popUpHeadding:
-        "Creating faster, smarter, and more meaningful communication experiences for everyday conversations.",
-      popHeadText: "Target Message",
-      popImageUrl: imageP8,
-      capabilities: [
-        "UI/UX Design",
-        "Messaging Experience Design",
-        "User Research",
-        "Moblie App Design",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "Developer"],
-      location: "Nigeria",
-      industry: ["Communication Technology", "Social Networking"],
-      endText:
-        "A mobile app designed to put essential end-to-end encrypted messaging in the hands of users",
-    },
-  ],
-];
+type DesignType = {
+  moblieDesign: OurWorkData[];
+  websiteDesign: OurWorkData[];
+  branding: OurWorkData[];
+};
+
 function Category() {
+  const ourWorkProjecData = OurWorkApi();
+  //const { listOfProjects } = ourWorkProjecData;
   const projectRef = useRef<HTMLSpanElement | null>(null);
   const mDesignRef = useRef<HTMLSpanElement | null>(null);
   const wDesignRef = useRef<HTMLSpanElement | null>(null);
   const brandingRef = useRef<HTMLSpanElement | null>(null);
-  const ourWorkData: Array<OurWorkData[]> = products();
-  const ourWorkDataMobile: Array<OurWorkData[]> = mobileProducts();
-  const [ourWorkRender, setOurWorkRender] = useState<OurWorkData[]>(
-    ourWorkData[0],
-  );
+
+  const [ourWorkRender, setOurWorkRender] = useState<OurWorkData[]>([]);
   const [ourWorkFirstRender, setOurWorkFirstRender] = useState<boolean>(true);
   const [firstRenderCount, setFirstRenderCount] = useState<number>(1);
+  const [allProjectsAtRoundomPick, setAllProjectAtRandomPick] = useState<
+    OurWorkData[][]
+  >([]);
+  const listOfProjects: DesignType = products();
   const oneRef = useRef<HTMLHeadingElement | null>(null);
   const twoRef = useRef<HTMLHeadingElement | null>(null);
   const threeRef = useRef<HTMLHeadingElement | null>(null);
-  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>(
-    ourWorkDataMobile[0],
-  );
+  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>();
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
+  //get all projects after projects has been gotten
+  useEffect(() => {
+    console.log(listOfProjects);
+    const moblieDesign = listOfProjects.moblieDesign;
+    const websiteDesign = listOfProjects.websiteDesign;
+    const branding = listOfProjects.branding;
+    if (
+      moblieDesign.length === 0 ||
+      websiteDesign.length === 0 ||
+      branding.length === 0
+    )
+      return;
+    const allProjects: OurWorkData[][] = [];
+    let guessedList: number[] = []; // guessedList could only be guessed at 3 counts 0, 1, 2, as 0 = moblieDesign, 1 = websiteDesign, 2 = branding
+    const indexPickedInMoblieDesign: number[] = [];
+    const indexPickedInWebSiteDesign: number[] = [];
+    const indexPickedInBranding: number[] = [];
+    while (allProjects.length < 3) {
+      // while allProjects is not index on 3 counts loop
+      let count = 0; // full (3) index count that makes on allProjects index; 3 count = 1 allProjects index
+      let guessNumber; // guessNumber
+      const filteringList: OurWorkData[] = []; // list of getted values to make one full allProjects index list length can be below 6 to make one full index
+      function getFullList() {
+        do {
+          //guess a random number between 0 - 2
+          const firstGuess = Math.floor(Math.random() * 3);
+          guessNumber = firstGuess;
+        } while (guessedList.includes(guessNumber)); // compare guessed number to guessed list since guessed list can only be 0, 1, 2, we guess in the range that hassent been guessed
+        guessedList.push(guessNumber);
+        console.log(guessedList);
+        function getRandeomIndex(
+          counter: number,
+          sltIndex: number | undefined,
+          list: OurWorkData[],
+          sltIndexInList: number[],
+        ) {
+          console.log("before pass", counter, sltIndex);
+          const index = Math.floor(Math.random() * list.length);
+          if (sltIndexInList.includes(index))
+            return (
+              console.log("return", sltIndex, counter),
+              getRandeomIndex(counter, sltIndex, list, sltIndexInList)
+            );
+          sltIndex = index;
+          counter += 1;
+          sltIndexInList.push(index);
+          console.log("pass", counter, sltIndex);
+          const item = list[index];
+          filteringList.push(item);
+          if (counter !== 2) {
+            console.log("recall");
+            getRandeomIndex(counter, sltIndex, list, sltIndexInList);
+          }
+        }
+        if (guessNumber === 0 && moblieDesign.length !== 0) {
+          // if guess number is 0 which 0 = moblie desgin; get values from moblie design
+          // moblieDesign
+          let selectedIndex: number | undefined; // selected index which is used as a closure selected index keeps recored of number guessed in moble design to pick value as to avoid deplicated value in one full allProjects index (1)
+          let count = 0; // count which at as a breaker to exit the closure loop which is range 0 -1
+          getRandeomIndex(
+            count,
+            selectedIndex,
+            moblieDesign,
+            indexPickedInMoblieDesign,
+          );
+        } else if (guessNumber === 1 && websiteDesign.length !== 0) {
+          // websiteDesign
+          let selectedIndex: number | undefined; // selected index which is used as a closure selected index keeps recored of number guessed in website design to pick value as to avoid deplicated value in one full allProjects index (1)
+          let count = 0; // count which at as a breaker to exit the closure loop which is range 0 -1
+          getRandeomIndex(
+            count,
+            selectedIndex,
+            websiteDesign,
+            indexPickedInWebSiteDesign,
+          );
+        } else if (guessNumber === 2 && branding.length !== 0) {
+          // branding
+          let selectedIndex: number | undefined; // selected index which is used as a closure selected index keeps recored of number guessed in branding to pick value as to avoid deplicated value in one full allProjects index (1)
+          let count = 0; // count which at as a breaker to exit the closure loop which is range 0 -1
+          getRandeomIndex(
+            count,
+            selectedIndex,
+            branding,
+            indexPickedInBranding,
+          );
+        }
+        count += 1;
+      }
+      while (count < 3) {
+        getFullList();
+      }
+      ((guessedList = []), allProjects.push(filteringList));
+    }
+    console.log(indexPickedInMoblieDesign);
+    console.log(indexPickedInWebSiteDesign);
+    console.log(indexPickedInBranding);
+    console.log(allProjects);
+    setAllProjectAtRandomPick(allProjects);
+  }, []);
   useEffect(() => {
     const handleWindowResize = () => {
       if (typeof window !== undefined) {
@@ -325,8 +199,9 @@ function Category() {
       "text-black",
     );
     setOurWorkFirstRender(true);
-    setAllProductsMoblie([...ourWorkDataMobile[0]]);
-    return setOurWorkRender([...ourWorkData[0]]);
+    setAllProductsMoblie([]);
+    console.log(allProjectsAtRoundomPick[0]);
+    return setOurWorkRender(allProjectsAtRoundomPick[0]);
   }
   function mDesignCliked() {
     if (
@@ -374,8 +249,8 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    setAllProductsMoblie([...ourWorkDataMobile[1]]);
-    return setOurWorkRender([...ourWorkData[1]]);
+    setAllProductsMoblie([]);
+    return setOurWorkRender(listOfProjects.moblieDesign);
   }
   function wDesignCliked() {
     if (
@@ -423,8 +298,8 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    setAllProductsMoblie([...ourWorkDataMobile[2]]);
-    return setOurWorkRender([...ourWorkData[2]]);
+    setAllProductsMoblie([]);
+    return setOurWorkRender(listOfProjects.websiteDesign);
   }
   function brandingCliked() {
     if (
@@ -472,8 +347,8 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
-    setAllProductsMoblie([...ourWorkDataMobile[3]]);
-    return setOurWorkRender([...ourWorkData[3]]);
+    setAllProductsMoblie([]);
+    return setOurWorkRender(listOfProjects.branding);
   }
   function countPlus() {
     if (firstRenderCount === 3) return;
@@ -491,7 +366,7 @@ function Category() {
         twoRef.current.classList.remove("text-green-500");
         oneRef.current.classList.add("text-green-500");
         (() => {
-          setOurWorkRender(ourWorkData[0]);
+          setOurWorkRender(allProjectsAtRoundomPick[0]);
         })();
         break;
       case 2:
@@ -499,7 +374,7 @@ function Category() {
         oneRef.current.classList.remove("text-green-500");
         twoRef.current.classList.add("text-green-500");
         (() => {
-          setOurWorkRender(countData[0]);
+          setOurWorkRender(allProjectsAtRoundomPick[1]);
         })();
         break;
       case 3:
@@ -507,7 +382,7 @@ function Category() {
         twoRef.current.classList.remove("text-green-500");
         threeRef.current.classList.add("text-green-500");
         (() => {
-          setOurWorkRender(countData[1]);
+          setOurWorkRender(allProjectsAtRoundomPick[2]);
         })();
         break;
       default:

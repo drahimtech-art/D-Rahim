@@ -40,135 +40,13 @@ type OurWorkData = {
   industry: string[];
   endText: string;
 };
-const productData: Array<OurWorkData[]> = [
-  [
-    {
-      image: image0,
-      text: "Branding",
-      subText: "",
-      popUpHeadding:
-        "Creating pathways of hope, support, and sustainable change for underserved communities.",
-      popHeadText: "Alhafeez Foundation",
-      popImageUrl: imageP0,
-      capabilities: [
-        "Community Support",
-        "Humanitarian Aid",
-        "Education Programes",
-      ],
-      duration: "3months",
-      team: ["Program Coordinator", "Volunteers", "Community Leaders"],
-      location: "Nigeria",
-      industry: ["Non-profit Organization", "Humanitarian Services"],
-      endText:
-        "Alhafeez foundation is a non-profit organization dedicated to providing support, resources, and opportunities to underserved communities through sustainable initiatives.",
-    },
-    {
-      image: image1,
-      text: "Mobile Design",
-      subText: "",
-      popUpHeadding:
-        "Creating seamless, secure, and accessible financial solutions for everyday transactions.",
-      popHeadText: "Wankard",
-      popImageUrl: imageP1,
-      capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
-      location: "Nigeria",
-      industry: ["Fintech", "Digital Payments"],
-      endText:
-        "wankard is a fintech app focused on creating a clean, accessible, and efficient platform for day to day transactions",
-    },
-    {
-      image: image2,
-      text: "Mobile Design",
-      subText: "",
-      popUpHeadding:
-        "Creating smarter pathways to career growth, opportunity, and seamless job connections.",
-      popHeadText: "Jobified Employer",
-      popImageUrl: imageP2,
-      capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "Fintech Strategy",
-        "User Research",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
-      location: "Nigeria",
-      industry: ["Recruitment", "Career Technology"],
-      endText:
-        "Creating a job-matching platform designed to bridge the gap between job seekers and employers through a smooth, user-centered experience.",
-    },
-    {
-      image: image3,
-      text: "Mobile Design",
-      subText: "",
-      popUpHeadding:
-        "Creating faster, smarter, and more connected mobile experiences for everyday communication.",
-      popHeadText: "Snap Mobile",
-      popImageUrl: imageP3,
-      capabilities: [
-        "UI/UX Design",
-        "Mobile App Design",
-        "User Experience Strategy",
-        "User Research",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
-      location: "Nigeria",
-      industry: ["Mobile Technology", "Communication"],
-      endText:
-        "Snap Mobile case study showcases our end-to-end UX design process from research and wireframing to prototyping and final UI design.",
-    },
-    {
-      image: image4,
-      text: "Website Design",
-      subText: "",
-      popUpHeadding:
-        "Creating smarter financial insights, seamless tracking, and better money management for everyone.",
-      popHeadText: "Finance All",
-      popImageUrl: imageP4,
-      capabilities: [
-        "UI/UX Designer",
-        "Finacial Dashboard Design",
-        "Data Visualization",
-        "User Research",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
-      location: "Nigeria",
-      industry: ["Fintech", "Financial Analytics"],
-      endText:
-        "A financial dashboard designed to provide a clear, real-time overview of personal and business finaces. it delivers insights and analytics.",
-    },
-    {
-      image: image5,
-      text: "Mobile Design",
-      subText: "",
-      popUpHeadding:
-        "Creating seamless travel experiences through smarter booking, planning, and journey management.",
-      popHeadText: "Travel Express",
-      popImageUrl: imageP5,
-      capabilities: [
-        "UI/UX Design",
-        "Travel Booking Experience",
-        "User Research",
-        "Mobile App Design",
-      ],
-      duration: "3months",
-      team: ["Product Designer", "UI Designer", "UX Researcher", "Developer"],
-      location: "Nigeria",
-      industry: ["Travel Technology", "Transportation"],
-      endText:
-        "Travel express is a travel experience platform designed to simplify trip planning and enhance the way users explore new destinations",
-    },
-  ],
-  [
+type DesignType = {
+  moblieDesign: OurWorkData[];
+  websiteDesign: OurWorkData[];
+  branding: OurWorkData[];
+};
+const workType: DesignType = {
+  moblieDesign: [
     {
       image: image1,
       text: "Wankard Moblie App 🇳🇬",
@@ -307,7 +185,7 @@ const productData: Array<OurWorkData[]> = [
         "VitaCare is a digital healthcare platform designed to simplify access to medical services and help users to manage their health anytime.",
     },
   ],
-  [
+  websiteDesign: [
     {
       image: image9,
       text: "Xnora Web App 🇳🇬",
@@ -445,7 +323,7 @@ const productData: Array<OurWorkData[]> = [
         "A user-centered digital project aimed at improving the experience of corps members by simplifing processes, and modernizing the overall platform",
     },
   ],
-  [
+  branding: [
     {
       image: image0,
       text: "Alhafeez foundation web App 🇳🇬🇬🇫",
@@ -583,9 +461,8 @@ const productData: Array<OurWorkData[]> = [
         "PDF to Word is a simple and efficient tool for converting PDF files into fully editable Word documents while preserving layout and formatting",
     },
   ],
-];
-
+};
 function products() {
-  return productData;
+  return workType;
 }
 export default products;
