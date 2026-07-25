@@ -1,6 +1,6 @@
 import Top from "../../../../shared/Top/Top";
-import HeadText from "./HeadText";
-import ProjectCard from "./ProjectCard";
+import HeadText from "./components/HeadText";
+import ProjectCard from "./components/ProjectCard";
 import End from "../../../../shared/Footer/Footer";
 function DiscoverAllServices() {
   return (

@@ -45,7 +45,7 @@ function ServiceCard() {
           )}
           <span className="min-w-70 min-[1000px]:w-full ">
             <img
-              className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
+              className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:hover:opacity-0 transition-all"
               src={cv1}
             ></img>
           </span>
@@ -65,7 +65,7 @@ function ServiceCard() {
             )}
             <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:hover:opacity-0 transition-all"
                 src={cv2}
               ></img>
             </span>
@@ -84,7 +84,7 @@ function ServiceCard() {
             )}
             <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:hover:opacity-0 transition-all"
                 src={cv3}
               ></img>
             </span>
@@ -103,7 +103,7 @@ function ServiceCard() {
             )}
             <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:hover:opacity-0 transition-all"
                 src={cv5}
               ></img>
             </span>
@@ -122,7 +122,7 @@ function ServiceCard() {
             )}
             <span className="min-w-70 min-[1000px]:w-full ">
               <img
-                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl hover:opacity-0 transition-all"
+                className="w-full h-full min-[1000px]:absolute top-0 min-[1000px]:bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:hover:opacity-0 transition-all"
                 src={cv4}
               ></img>
             </span>

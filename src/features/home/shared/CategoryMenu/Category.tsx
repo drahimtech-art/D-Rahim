@@ -38,6 +38,7 @@ function Category() {
   const oneRef = useRef<HTMLHeadingElement | null>(null);
   const twoRef = useRef<HTMLHeadingElement | null>(null);
   const threeRef = useRef<HTMLHeadingElement | null>(null);
+  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>([]);
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
   //
   useEffect(() => {
@@ -60,18 +61,6 @@ function Category() {
       !brandingRef.current
     )
       return;
-
-    projectRef.current.classList.remove(
-      "bg-transparent",
-      "hover:bg-secondary-green",
-      "hover:text-gray-200",
-      "text-black",
-    );
-    projectRef.current.classList.add(
-      "bg-primary-green",
-      "border-primary-green",
-      "text-gray-200",
-    );
     mDesignRef.current.classList.remove("text-gray-200");
     mDesignRef.current.classList.add(
       "bg-transparent",
@@ -96,10 +85,35 @@ function Category() {
       "hover:text-gray-200",
       "text-black",
     );
+
+    projectRef.current.classList.remove(
+      "bg-transparent",
+      "hover:bg-secondary-green",
+      "hover:text-gray-200",
+      "text-black",
+    );
+    projectRef.current.classList.add(
+      "bg-primary-green",
+      "border-primary-green",
+      "text-gray-200",
+    );
     setOurWorkFirstRender(true);
-    console.log(allProjectsAtRoundomPick[0]);
+    setAllProductsMoblie([
+      ...allProjectsAtRoundomPick[0],
+      ...allProjectsAtRoundomPick[1],
+      ...allProjectsAtRoundomPick[2],
+    ]);
     return setOurWorkRender(allProjectsAtRoundomPick[0]);
   }
+  useEffect(() => {
+    (() => {
+      setAllProductsMoblie([
+        ...allProjectsAtRoundomPick[0],
+        ...allProjectsAtRoundomPick[1],
+        ...allProjectsAtRoundomPick[2],
+      ]);
+    })();
+  }, []);
   function mDesignCliked() {
     if (
       !projectRef.current ||
@@ -146,6 +160,7 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
+    setAllProductsMoblie(listOfProjects.moblieDesign);
     return setOurWorkRender(listOfProjects.moblieDesign);
   }
   function wDesignCliked() {
@@ -194,6 +209,7 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
+    setAllProductsMoblie(listOfProjects.websiteDesign);
     return setOurWorkRender(listOfProjects.websiteDesign);
   }
   function brandingCliked() {
@@ -242,6 +258,7 @@ function Category() {
       "text-gray-200",
     );
     setOurWorkFirstRender(false);
+    setAllProductsMoblie(listOfProjects.branding);
     return setOurWorkRender(listOfProjects.branding);
   }
   function countPlus() {
@@ -326,7 +343,7 @@ function Category() {
       {devicesWidth !== undefined && devicesWidth >= 1000 ? (
         <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
       ) : (
-        <CardList body={ourWorkRender} isPC={false} isMoblie={true} />
+        <CardList body={allProductsMoblie} isPC={false} isMoblie={true} />
       )}
 
       {ourWorkFirstRender && (

@@ -28,7 +28,7 @@ const DiscoverAllServices = lazy(
 );
 const ExploreProjects = lazy(
   () =>
-    import("../features/home/features/Services/features/DiscoverAllServices/ExploreProjects/ExploreProjects") as Promise<{
+    import("../features/home/features/Services/features/DiscoverAllServices/components/ExploreProjects") as Promise<{
       default: ComponentType<any>;
     }>,
 );
