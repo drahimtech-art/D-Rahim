@@ -29,6 +29,10 @@ type OurWorkDataType = {
   setProjectInfo: React.Dispatch<SetStateAction<OurWorkData>>;
   listOfProjects: DesignType;
   setListOfProjects: React.Dispatch<SetStateAction<DesignType>>;
+  allRandomSelectedProjectInfo: OurWorkData[][] | undefined;
+  setAllRandomSelectedProjectInfo: React.Dispatch<
+    SetStateAction<OurWorkData[][] | undefined>
+  >;
 };
 const OurWork = createContext<OurWorkDataType>({
   projectInfo: {
@@ -52,6 +56,8 @@ const OurWork = createContext<OurWorkDataType>({
     branding: [],
   },
   setListOfProjects: () => {},
+  allRandomSelectedProjectInfo: undefined,
+  setAllRandomSelectedProjectInfo: () => {},
 });
 export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
   const [projectInfo, setProjectInfo] = useState<OurWorkData>({
@@ -73,6 +79,8 @@ export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
     websiteDesign: [],
     branding: [],
   });
+  const [allRandomSelectedProjectInfo, setAllRandomSelectedProjectInfo] =
+    useState<OurWorkData[][] | undefined>(undefined);
   return (
     <OurWork.Provider
       value={{
@@ -80,6 +88,8 @@ export const OurWorkProvider = ({ children }: { children: ReactNode }) => {
         setProjectInfo,
         listOfProjects,
         setListOfProjects,
+        allRandomSelectedProjectInfo,
+        setAllRandomSelectedProjectInfo,
       }}
     >
       {children}
