@@ -71,7 +71,6 @@ export function AllRandomSelectedProjectInfo(
             firstSubList,
             secondSubList,
           );
-        console.log("pass", counter, sltIndex);
         counter += 1;
         if (sltIndexInList.length !== list.length) {
           // if all index hassent been guss push the item at the current index

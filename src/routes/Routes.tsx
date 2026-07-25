@@ -3,7 +3,8 @@ import { lazy, Suspense, type ComponentType } from "react";
 import { StudentsContextProvider } from "../storage/StudentsApi";
 import { SocketProviderContext } from "../storage/SocketApi";
 import ScrollToTop from "./components/ScrollToTop";
-import Home from "../features/home/features/Home/Home";
+const Home = lazy(() => import("../features/home/features/Home/Home"));
+import HomeLoadingState from "../features/home/shared/LoadingState/LoadingState";
 const Service = lazy(
   () => import("../features/home/features/Services/Service"),
 );
@@ -65,55 +66,55 @@ function Routes() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <HomeLoadingState children={<Home />} />,
         },
         {
           path: "/project/info",
-          element: <ProjectInfo />,
+          element: <HomeLoadingState children={<ProjectInfo />} />,
         },
         {
           path: "/services",
-          element: <Service />,
+          element: <HomeLoadingState children={<Service />} />,
         },
         {
           path: "/uiux",
-          element: <UiUx />,
+          element: <HomeLoadingState children={<UiUx />} />,
         },
         {
           path: "/simplebranding",
-          element: <SimpleBranding />,
+          element: <HomeLoadingState children={<SimpleBranding />} />,
         },
         {
           path: "/conceptspring",
-          element: <ConceptSpring />,
+          element: <HomeLoadingState children={<ConceptSpring />} />,
         },
         {
           path: "/designworkshop",
-          element: <DesignWorkShop />,
+          element: <HomeLoadingState children={<DesignWorkShop />} />,
         },
         {
           path: "/discover/all/services",
-          element: <DiscoverAllServices />,
+          element: <HomeLoadingState children={<DiscoverAllServices />} />,
         },
         {
           path: "/explore/projects",
-          element: <ExploreProjects />,
+          element: <HomeLoadingState children={<ExploreProjects />} />,
         },
         {
           path: "/about",
-          element: <About />,
+          element: <HomeLoadingState children={<About />} />,
         },
         {
           path: "/mentorship",
-          element: <Mentorship />,
+          element: <HomeLoadingState children={<Mentorship />} />,
         },
         {
           path: "/contact",
-          element: <GetInTouch />,
+          element: <HomeLoadingState children={<GetInTouch />} />,
         },
         {
           path: "/book/call",
-          element: <BookACall />,
+          element: <HomeLoadingState children={<BookACall />} />,
         },
         {
           //devmode
