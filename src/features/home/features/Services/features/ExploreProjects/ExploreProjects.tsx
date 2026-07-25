@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { OurWorkApi } from "../../../../../../../storage/OurWorkApi";
-import Top from "../../../../../shared/Top/Top";
-import Card from "./Card";
-import End from "../../../../../shared/Footer/Footer";
+import { OurWorkApi } from "../../../../../../storage/OurWorkApi";
+import Top from "../../../../shared/Top/Top";
+import Card from "./components/Card";
+import End from "../../../../shared/Footer/Footer";
 function ExploreProjects() {
   const ourWorkProjecData = OurWorkApi();
   const { listOfProjects } = ourWorkProjecData;
