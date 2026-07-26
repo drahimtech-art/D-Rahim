@@ -1,6 +1,6 @@
-import companyImage from "/images/25.png";
-import mcompanyImage from "/images/m25.png";
-import tpCompanyImage from "/images/tp25.png";
+import companyImage from "/images/company_image_wide.png";
+import mcompanyImage from "/images/company_image_slim.png";
+import tpCompanyImage from "/images/company_image_medium.png";
 function AboutHeadText() {
   return (
     <>

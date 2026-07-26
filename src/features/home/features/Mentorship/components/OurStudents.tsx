@@ -1,9 +1,9 @@
-import image1 from "/images/22.png";
-import image2 from "/images/23.png";
-import image3 from "/images/24.png";
-import tpImage1 from "/images/tp22.png";
-import tpImage2 from "/images/tp23.png";
-import tpImage3 from "/images/tp24.png";
+import image1 from "/images/Zainab_Jimoh.png";
+import image2 from "/images/Chinedu_Paul.png";
+import image3 from "/images/Fumilayo_Zuliat.png";
+import tpImage1 from "/images/Zainab_Jimoh_0.png";
+import tpImage2 from "/images/Chinedu_Paul_0.png";
+import tpImage3 from "/images/Fumilayo_Zuliat_0.png";
 function OurStudents() {
   return (
     <div className="mt-10 lg:mt-27.25 lg:pl-10 lg:pr-10 pl-5  pr-5">

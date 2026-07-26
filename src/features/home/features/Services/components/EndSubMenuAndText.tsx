@@ -1,11 +1,11 @@
-import cv1 from "/images/c9.png";
-import cv1Image from "/images/20.png";
-import cv2 from "/images/c8.png";
-import cv2Image from "/images/18.png";
-import cv3 from "/images/c5.png";
-import cv3Image from "/images/19.png";
-import cv4 from "/images/c4.png";
-import cv4Image from "/images/21.png";
+import cv1 from "/images/service_card_cover_9.png";
+import cv1Image from "/images/uiux_audit.png";
+import cv2 from "/images/service_card_cover_8.png";
+import cv2Image from "/images/simple_branding.png";
+import cv3 from "/images/service_card_cover_5.png";
+import cv3Image from "/images/design_workshop.png";
+import cv4 from "/images/service_card_cover_4.png";
+import cv4Image from "/images/concept_sprint.png";
 import { useNavigate } from "react-router-dom";
 function EndSubMenuAndText() {
   const urlNavigator = useNavigate();

@@ -1,9 +1,9 @@
-import jimohImg from "/images/27.png";
-import abdulmalikImg from "/images/26.png";
-import victoryImg from "/images/28.png";
-import tpJimohImg from "/images/tp27.png";
-import tpAbdulmalikImg from "/images/tp26.png";
-import tpVictoryImg from "/images/tp28.png";
+import jimohImg from "/images/Jimoh_Abdulrahim_0.png";
+import abdulmalikImg from "/images/Abdulmalik_Mohammed_0.png";
+import victoryImg from "/images/Victory_Nwanoruo_0.png";
+import tpJimohImg from "/images/Jimoh_Abdulrahim.png";
+import tpAbdulmalikImg from "/images/Abdulmalik_Mohammed.png";
+import tpVictoryImg from "/images/Victory_Nwanoruo.png";
 function OurTerms() {
   return (
     <div className="mt-10 min-[1000px]:mt-27.25 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 w-full">
