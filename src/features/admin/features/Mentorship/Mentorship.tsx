@@ -1,6 +1,6 @@
-import TopBar from "../../TopBar";
-import TopContent from "../../TopContent";
-import MentorshipTable from "./MentorshipTable";
+import TopBar from "../../shared/TopBar";
+import TopContent from "../../components/TopContent";
+import MentorshipTable from "./components/MentorshipTable";
 function Mentorship() {
   return (
     <div className="w-full h-full  ">

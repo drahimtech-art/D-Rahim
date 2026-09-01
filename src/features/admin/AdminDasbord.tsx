@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { lazy } from "react";
-import LeftNevBar from "./LeftNevBar";
-import Dashboard from "./Navigation/Dashboard/Dashboard";
-const Bookings = lazy(() => import("./Navigation/Booking/Bookings"));
-const Mentorship = lazy(() => import("./Navigation/Mentorship/Mentorship"));
-const JobInquires = lazy(() => import("./Navigation/JobInquires/JobInquires"));
-const Content = lazy(() => import("./Navigation/Content/Content"));
-const Settings = lazy(() => import("./Navigation/Settings/Settings"));
+import LeftNevBar from "./shared/LeftNevBar";
+import Dashboard from "./features/Dashboard/Dashboard";
+const Bookings = lazy(() => import("./features/Booking/Bookings"));
+const Mentorship = lazy(() => import("./features/Mentorship/Mentorship"));
+const JobInquires = lazy(() => import("./features/JobInquires/JobInquires"));
+const Content = lazy(() => import("./features/Content/Content"));
+const Settings = lazy(() => import("./features/Settings/Settings"));
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
@@ -69,7 +69,7 @@ function AdminDasboard() {
         <div className="w-[25%] min-w-73.5 ">
           <div className="fixed ">
             <div className="w-full h-full relative">
-              <div className="absolute min-w-73.5 ">
+              <div className="absolute w-[294px] ">
                 {/**sideber left*/}
                 <LeftNevBar
                   toDashboard={toDashboard}

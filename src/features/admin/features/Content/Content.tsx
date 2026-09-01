@@ -1,6 +1,6 @@
-import TopBar from "../../TopBar";
-import TopContent from "../../TopContent";
-import ContentTable from "./ContentTable";
+import TopBar from "../../shared/TopBar";
+import TopContent from "../../components/TopContent";
+import ContentTable from "./components/ContentTable";
 function Content() {
   return (
     <div className="w-full h-full  ">

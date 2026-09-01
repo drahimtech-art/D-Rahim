@@ -1,5 +1,4 @@
 import { AllRandomSelectedProjectInfo } from "../shared/AllRandomSelectedProjectInfo /AllRandomSelectedProjectInfo ";
-import products from "../../../Components/Products";
 type OurWorkData = {
   image: string;
   text: string;
@@ -28,21 +27,9 @@ export async function GetOurWorkList(
   >,
 ) {
   //devMode
-  const listOfAllProdocts = products();
+
   try {
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        setListOfProjects(listOfAllProdocts);
-        AllRandomSelectedProjectInfo(
-          listOfAllProdocts,
-          setAllRandomSelectedProjectInfo,
-        );
-        resolve(true);
-      }, 1000);
-    });
-    return true;
-    /*
-    const getList = await fetch(`${serverPort}/home/get/ourwork/projectlist`, {
+    const getList = await fetch(`${serverPort}/home/ourwork/projectlist`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -63,7 +50,6 @@ export async function GetOurWorkList(
       console.log(responds.message);
       return false;
     }
-    */
   } catch (error) {
     console.log(`got an error in GetOurWorkList api ${error}`);
     return false;

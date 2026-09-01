@@ -1,6 +1,6 @@
-import TopBar from "../../TopBar";
-import TopContent from "../../TopContent";
-import JobInquiresTable from "./JobInquiresTable";
+import TopBar from "../../shared/TopBar";
+import TopContent from "../../components/TopContent";
+import JobInquiresTable from "./components/JobInquiresTable";
 function JobInquires() {
   return (
     <div className="w-full h-full  ">

@@ -1,6 +1,6 @@
-import TopBar from "../../TopBar";
-import TopContent from "../../TopContent";
-import BookingTable from "./BookingTable";
+import TopBar from "../../shared/TopBar";
+import TopContent from "../../components/TopContent";
+import BookingTable from "./components/BookingTable";
 function Bookings() {
   return (
     <div className="w-full h-full  ">

@@ -1,5 +1,5 @@
-import TopBar from "../../TopBar";
-import JobInquiresTable from "../JobInquires/JobInquiresTable";
+import TopBar from "../../shared/TopBar";
+import JobInquiresTable from "../JobInquires/components/JobInquiresTable";
 function Settings() {
   return (
     <div className="w-full h-full  ">

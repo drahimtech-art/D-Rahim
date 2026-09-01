@@ -1,7 +1,7 @@
-import TopBar from "../../TopBar";
-import TopContent from "../../TopContent";
-import RecentActivities from "./RecentActivities";
-import Alert from "./Alert";
+import TopBar from "../../shared/TopBar";
+import TopContent from "../../components/TopContent";
+import RecentActivities from "./components/RecentActivities";
+import Alert from "./components/Alert";
 function Dashboard() {
   return (
     <div className="w-full h-full flex flex-col gap-7 ">
