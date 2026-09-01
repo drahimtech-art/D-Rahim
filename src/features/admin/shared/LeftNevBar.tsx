@@ -51,23 +51,23 @@ function LeftNevBar(props: NavigationControl) {
       return;
     //remove
     dashboardRef.current.classList.remove("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-primary-green");
+    bookingsRef.current.classList.remove("bg-button-light-green");
     bookingsRef.current.classList.remove("text-white");
     bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-primary-green");
+    mentorshipRef.current.classList.remove("bg-button-light-green");
     mentorshipRef.current.classList.remove("text-white");
     mentorshipRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-primary-green");
+    jobInquiresRef.current.classList.remove("bg-button-light-green");
     jobInquiresRef.current.classList.remove("text-white");
     jobInquiresRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-primary-green");
+    contentRef.current.classList.remove("bg-button-light-green");
     contentRef.current.classList.remove("text-white");
     contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-primary-green");
+    settingsRef.current.classList.remove("bg-button-light-green");
     settingsRef.current.classList.remove("text-white");
     settingsRef.current.classList.add("text-[#757575]");
     //add
-    dashboardRef.current.classList.add("bg-primary-green");
+    dashboardRef.current.classList.add("bg-button-light-green");
     dashboardRef.current.classList.add("text-white");
     //func call
     props.toDashboard();
@@ -86,23 +86,23 @@ function LeftNevBar(props: NavigationControl) {
       return;
     //remove
     bookingsRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-primary-green");
+    dashboardRef.current.classList.remove("bg-button-light-green");
     dashboardRef.current.classList.remove("text-white");
     dashboardRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-primary-green");
+    mentorshipRef.current.classList.remove("bg-button-light-green");
     mentorshipRef.current.classList.remove("text-white");
     mentorshipRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-primary-green");
+    jobInquiresRef.current.classList.remove("bg-button-light-green");
     jobInquiresRef.current.classList.remove("text-white");
     jobInquiresRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-primary-green");
+    contentRef.current.classList.remove("bg-button-light-green");
     contentRef.current.classList.remove("text-white");
     contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-primary-green");
+    settingsRef.current.classList.remove("bg-button-light-green");
     settingsRef.current.classList.remove("text-white");
     settingsRef.current.classList.add("text-[#757575]");
     //add
-    bookingsRef.current.classList.add("bg-primary-green");
+    bookingsRef.current.classList.add("bg-button-light-green");
     bookingsRef.current.classList.add("text-white");
     //func call
     props.toBooking();
@@ -121,23 +121,23 @@ function LeftNevBar(props: NavigationControl) {
       return;
     //remove
     mentorshipRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-primary-green");
+    dashboardRef.current.classList.remove("bg-button-light-green");
     dashboardRef.current.classList.remove("text-white");
     dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-primary-green");
+    bookingsRef.current.classList.remove("bg-button-light-green");
     bookingsRef.current.classList.remove("text-white");
     bookingsRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-primary-green");
+    jobInquiresRef.current.classList.remove("bg-button-light-green");
     jobInquiresRef.current.classList.remove("text-white");
     jobInquiresRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-primary-green");
+    contentRef.current.classList.remove("bg-button-light-green");
     contentRef.current.classList.remove("text-white");
     contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-primary-green");
+    settingsRef.current.classList.remove("bg-button-light-green");
     settingsRef.current.classList.remove("text-white");
     settingsRef.current.classList.add("text-[#757575]");
     //add
-    mentorshipRef.current.classList.add("bg-primary-green");
+    mentorshipRef.current.classList.add("bg-button-light-green");
     mentorshipRef.current.classList.add("text-white");
     //func call
     props.toMentorship();
@@ -155,23 +155,23 @@ function LeftNevBar(props: NavigationControl) {
     )
       return;
     jobInquiresRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-primary-green");
+    dashboardRef.current.classList.remove("bg-button-light-green");
     dashboardRef.current.classList.remove("text-white");
     dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-primary-green");
+    bookingsRef.current.classList.remove("bg-button-light-green");
     bookingsRef.current.classList.remove("text-white");
     bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-primary-green");
+    mentorshipRef.current.classList.remove("bg-button-light-green");
     mentorshipRef.current.classList.remove("text-white");
     mentorshipRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-primary-green");
+    contentRef.current.classList.remove("bg-button-light-green");
     contentRef.current.classList.remove("text-white");
     contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-primary-green");
+    settingsRef.current.classList.remove("bg-button-light-green");
     settingsRef.current.classList.remove("text-white");
     settingsRef.current.classList.add("text-[#757575]");
     //add
-    jobInquiresRef.current.classList.add("bg-primary-green");
+    jobInquiresRef.current.classList.add("bg-button-light-green");
     jobInquiresRef.current.classList.add("text-white");
     //func call
     props.toJobinquires();
@@ -189,23 +189,23 @@ function LeftNevBar(props: NavigationControl) {
     )
       return;
     contentRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-primary-green");
+    dashboardRef.current.classList.remove("bg-button-light-green");
     dashboardRef.current.classList.remove("text-white");
     dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-primary-green");
+    bookingsRef.current.classList.remove("bg-button-light-green");
     bookingsRef.current.classList.remove("text-white");
     bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-primary-green");
+    mentorshipRef.current.classList.remove("bg-button-light-green");
     mentorshipRef.current.classList.remove("text-white");
     mentorshipRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-primary-green");
+    jobInquiresRef.current.classList.remove("bg-button-light-green");
     jobInquiresRef.current.classList.remove("text-white");
     jobInquiresRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-primary-green");
+    settingsRef.current.classList.remove("bg-button-light-green");
     settingsRef.current.classList.remove("text-white");
     settingsRef.current.classList.add("text-[#757575]");
     //add
-    contentRef.current.classList.add("bg-primary-green");
+    contentRef.current.classList.add("bg-button-light-green");
     contentRef.current.classList.add("text-white");
     //func call
     props.toContent();
@@ -223,23 +223,23 @@ function LeftNevBar(props: NavigationControl) {
     )
       return;
     settingsRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-primary-green");
+    dashboardRef.current.classList.remove("bg-button-light-green");
     dashboardRef.current.classList.remove("text-white");
     dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-primary-green");
+    bookingsRef.current.classList.remove("bg-button-light-green");
     bookingsRef.current.classList.remove("text-white");
     bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-primary-green");
+    mentorshipRef.current.classList.remove("bg-button-light-green");
     mentorshipRef.current.classList.remove("text-white");
     mentorshipRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-primary-green");
+    contentRef.current.classList.remove("bg-button-light-green");
     contentRef.current.classList.remove("text-white");
     contentRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-primary-green");
+    jobInquiresRef.current.classList.remove("bg-button-light-green");
     jobInquiresRef.current.classList.remove("text-white");
     jobInquiresRef.current.classList.add("text-[#757575]");
     //add
-    settingsRef.current.classList.add("bg-primary-green");
+    settingsRef.current.classList.add("bg-button-light-green");
     settingsRef.current.classList.add("text-white");
     //func call
     props.toSettings();
@@ -295,7 +295,7 @@ function LeftNevBar(props: NavigationControl) {
       {/**navber */}
       <div className="mt-10 flex flex-col gap-4">
         <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5 bg-primary-green text-white rounded-xl transition-all pointer"
+          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5 bg-button-light-green text-white rounded-xl transition-all pointer"
           ref={dashboardRef}
           onClick={toDashboard}
         >
