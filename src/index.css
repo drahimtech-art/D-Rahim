@@ -317,7 +317,7 @@ textarea:focus {
 }
 .ourwork-image-card:hover {
   transition: 300ms ease-in-out;
-  margin-top: -3%;
+  margin-top: -2%;
   height: 106%;
 }
 .ourwork-image-card-parent:hover {
