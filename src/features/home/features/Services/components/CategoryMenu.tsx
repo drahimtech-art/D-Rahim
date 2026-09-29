@@ -55,28 +55,35 @@ function CategoryMenu() {
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 pointer">
       {/** */}
-      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+      <div
+        className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
+        onClick={() => {
+          setOptionOne(!optionOne);
+          setOptionTwo(false);
+          setOptionThree(false);
+          setOptionFour(false);
+        }}
+      >
         <div className="flex items-center">
-          <span
-            className="w-full flex  relative"
-            onClick={() => setOptionOne(!optionOne)}
-          >
+          <span className="w-full flex  relative">
             <h5 className=" serviceMenuText font-inter font-medium">
               Digital Product Design
             </h5>
           </span>
           <span className="ml-20  ">
-            <span className=" flex " onClick={() => setOptionOne(!optionOne)}>
+            <span
+              className=" flex "
+              onClick={() => {
+                setOptionOne(!optionOne);
+                setOptionTwo(false);
+                setOptionThree(false);
+                setOptionFour(false);
+              }}
+            >
               {optionOne ? (
-                <i
-                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionOne(!optionOne)}
-                ></i>
+                <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               ) : (
-                <i
-                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionOne(!optionOne)}
-                ></i>
+                <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               )}
             </span>
           </span>
@@ -104,28 +111,35 @@ function CategoryMenu() {
         </div>
       </div>
       {/** */}
-      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+      <div
+        className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
+        onClick={() => {
+          setOptionTwo(!optionTwo);
+          setOptionOne(false);
+          setOptionThree(false);
+          setOptionFour(false);
+        }}
+      >
         <div className="flex items-center">
           <span
             className="w-full flex  relative"
-            onClick={() => setOptionTwo(!optionTwo)}
+            onClick={() => {
+              setOptionTwo(!optionTwo);
+              setOptionOne(false);
+              setOptionThree(false);
+              setOptionFour(false);
+            }}
           >
             <h5 className=" serviceMenuText font-inter font-medium">
               Website Design
             </h5>
           </span>
           <span className="ml-20  ">
-            <span className=" flex " onClick={() => setOptionTwo(!optionTwo)}>
+            <span className=" flex ">
               {optionTwo ? (
-                <i
-                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionTwo(!optionTwo)}
-                ></i>
+                <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               ) : (
-                <i
-                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionTwo(!optionTwo)}
-                ></i>
+                <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               )}
             </span>
           </span>
@@ -152,11 +166,24 @@ function CategoryMenu() {
         </div>
       </div>
       {/** */}
-      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+      <div
+        className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
+        onClick={() => {
+          setOptionThree(!optionThree);
+          setOptionOne(false);
+          setOptionTwo(false);
+          setOptionFour(false);
+        }}
+      >
         <div className="flex items-center">
           <span
             className="w-full flex  relative"
-            onClick={() => setOptionThree(!optionThree)}
+            onClick={() => {
+              setOptionThree(!optionThree);
+              setOptionOne(false);
+              setOptionTwo(false);
+              setOptionFour(false);
+            }}
           >
             <h5 className=" serviceMenuText font-inter font-medium">
               Branding
@@ -165,18 +192,17 @@ function CategoryMenu() {
           <span className="ml-20  ">
             <span
               className=" flex "
-              onClick={() => setOptionThree(!optionThree)}
+              onClick={() => {
+                setOptionThree(!optionThree);
+                setOptionOne(false);
+                setOptionTwo(false);
+                setOptionFour(false);
+              }}
             >
               {optionThree ? (
-                <i
-                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionThree(!optionThree)}
-                ></i>
+                <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               ) : (
-                <i
-                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionThree(!optionThree)}
-                ></i>
+                <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               )}
             </span>
           </span>
@@ -205,28 +231,43 @@ function CategoryMenu() {
         </div>
       </div>
       {/** */}
-      <div className="   border-b-2 pt-10  pb-10 p-2.5 w-full">
+      <div
+        className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
+        onClick={() => {
+          setOptionFour(!optionFour);
+          setOptionOne(false);
+          setOptionTwo(false);
+          setOptionOne(false);
+        }}
+      >
         <div className="flex items-center">
           <span
             className="w-full flex  relative"
-            onClick={() => setOptionFour(!optionFour)}
+            onClick={() => {
+              setOptionFour(!optionFour);
+              setOptionOne(false);
+              setOptionTwo(false);
+              setOptionOne(false);
+            }}
           >
             <h5 className=" serviceMenuText font-inter font-medium">
               Development
             </h5>
           </span>
           <span className="ml-20  ">
-            <span className=" flex " onClick={() => setOptionFour(!optionFour)}>
+            <span
+              className=" flex "
+              onClick={() => {
+                setOptionFour(!optionFour);
+                setOptionOne(false);
+                setOptionTwo(false);
+                setOptionOne(false);
+              }}
+            >
               {optionFour ? (
-                <i
-                  className=" fas fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionFour(!optionFour)}
-                ></i>
+                <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               ) : (
-                <i
-                  className=" fas fa-angle-down  ml-auto lg:text-[2rem] text-[1.2rem]"
-                  onClick={() => setOptionFour(!optionFour)}
-                ></i>
+                <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
               )}
             </span>
           </span>

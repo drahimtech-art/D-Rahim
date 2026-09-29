@@ -55,7 +55,12 @@ function FAQ() {
       <div className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5 pointer">
         <span
           className="flex flex-col pt-2 pb-2 border-t-2 border-b-2 transition-all"
-          onClick={() => setOption1(!option1)}
+          onClick={() => {
+            setOption1(!option1);
+            setOption2(false);
+            setOption3(false);
+            setOption4(false);
+          }}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className=" font-inter min24Max35px sm:max-w-75.75 min-[1000px]:min-w-full min-[1000px]:max-w-full  font-medium">
@@ -63,9 +68,9 @@ function FAQ() {
               competitors?
             </h5>
             {!option1 ? (
-              <i className=" fas fa-angle-down ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
           <div className="relative ">
@@ -84,16 +89,21 @@ function FAQ() {
         </span>
         <span
           className="flex flex-col pt-2 pb-2  border-b-2 "
-          onClick={() => setOption2(!option2)}
+          onClick={() => {
+            setOption2(!option2);
+            setOption1(false);
+            setOption3(false);
+            setOption4(false);
+          }}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className="min24Max35px sm:max-w-75.75 min-[1000px]:min-w-full min-[1000px]:max-w-full font-medium font-inter">
               Why does digital product design matter today?
             </h5>
             {!option2 ? (
-              <i className=" fas fa-angle-down ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
           <div className="relative w-full pl-2.5 pr-2.5">
@@ -112,16 +122,21 @@ function FAQ() {
         </span>
         <span
           className="flex flex-col pt-2 pb-2  border-b-2 "
-          onClick={() => setOption3(!option3)}
+          onClick={() => {
+            setOption3(!option3);
+            setOption1(false);
+            setOption2(false);
+            setOption4(false);
+          }}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className="min24Max35px sm:max-w-75.75 min-[1000px]:min-w-full min-[1000px]:max-w-full font-medium font-inter">
               How do you approach your product design process?
             </h5>
             {!option3 ? (
-              <i className=" fas fa-angle-down ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 
@@ -141,7 +156,12 @@ function FAQ() {
         </span>
         <span
           className="flex flex-col pt-2 pb-2  border-b-2 "
-          onClick={() => setOption4(!option4)}
+          onClick={() => {
+            setOption4(!option4);
+            setOption2(false);
+            setOption3(false);
+            setOption1(false);
+          }}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className="min24Max35px sm:max-w-75.75 min-[1000px]:min-w-full min-[1000px]:max-w-full font-medium font-inter">
@@ -149,9 +169,9 @@ function FAQ() {
               services?
             </h5>
             {!option4 ? (
-              <i className=" fas fa-angle-down ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto min-[1000px]:text-[2rem] text-[1.3rem"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 

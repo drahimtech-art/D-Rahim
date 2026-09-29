@@ -53,16 +53,21 @@ function EndCategoryMenu() {
       <div className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5 pointer">
         <span
           className="flex flex-col pt-2 pb-2 border-t-2 border-b-2 transition-all"
-          onClick={() => setOption1(!option1)}
+          onClick={() => {
+            setOption1(!option1);
+            setOption2(false);
+            setOption3(false);
+            setOption4(false);
+          }}
         >
           <span className="flex justify-start items-center  pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className=" font-inter min24Max58px font-medium">
               Simplicity First
             </h5>
             {!option1 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
           <div className="relative ">
@@ -79,16 +84,21 @@ function EndCategoryMenu() {
         </span>
         <span
           className="flex flex-col pt-2 pb-2  border-b-2 "
-          onClick={() => setOption2(!option2)}
+          onClick={() => {
+            setOption2(!option2);
+            setOption1(false);
+            setOption3(false);
+            setOption4(false);
+          }}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className="min24Max58px font-medium font-inter">
               User-Centered Thinking
             </h5>
             {!option2 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
           <div className="relative ">
@@ -105,16 +115,21 @@ function EndCategoryMenu() {
         </span>
         <span
           className="flex flex-col pt-2 pb-2  border-b-2 "
-          onClick={() => setOption3(!option3)}
+          onClick={() => {
+            setOption3(!option3);
+            setOption1(false);
+            setOption2(false);
+            setOption4(false);
+          }}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className="min24Max58px font-medium font-inter">
               Impact Over Hype
             </h5>
             {!option3 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 
@@ -132,16 +147,21 @@ function EndCategoryMenu() {
         </span>
         <span
           className="flex flex-col pt-2 pb-2  border-b-2 "
-          onClick={() => setOption4(!option4)}
+          onClick={() => {
+            setOption4(!option4);
+            setOption1(false);
+            setOption2(false);
+            setOption3(false);
+          }}
         >
           <span className="flex justify-start items-center pl-2.5 pr-2.5 sm:pt-10 sm:pb-10 pt-3 pb-3">
             <h5 className="min24Max58px font-medium font-inter">
               Accessibility For All
             </h5>
             {!option4 ? (
-              <i className=" fas fa-angle-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fas fa-angle-down rotate-down ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             ) : (
-              <i className=" fa fa-angle-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
+              <i className=" fa fa-angle-down rotate-up ml-auto lg:text-[2rem] text-[1.2rem]"></i>
             )}
           </span>
 

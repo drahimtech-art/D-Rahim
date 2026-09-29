@@ -166,17 +166,17 @@
 }
 .dropDownMenuAnimation {
   position: absolute;
-  opacity: 0;
   top: 100%;
   pointer-events: none;
-  transition: transform 180ms ease-out;
+  transition: transform 400ms ease-out;
+  opacity: 0;
 }
 .dropDownMenuAnimation-open {
   position: none;
   opacity: 1;
   transition:
-    opacity 180ms ease-in,
-    transform 180ms ease-in;
+    opacity 400ms ease-in,
+    transform 400ms ease-in;
   pointer-events: auto;
 }
 .paymentCardShadow {
@@ -316,14 +316,38 @@ textarea:focus {
   min-width: 100%;
 }
 .ourwork-image-card:hover {
-  transition: 400ms ease-in-out;
+  transition: 300ms ease-in-out;
   margin-top: -3%;
   height: 106%;
 }
 .ourwork-image-card-parent:hover {
-  transition: 500ms ease-in-out;
+  transition: 300ms ease-in-out;
   border-radius: 10px;
   width: 100%;
   margin-top: -2px;
   box-shadow: 2px 2px 2px #acaaaa;
+}
+.rotate-up {
+  transition: 180ms ease-in-out;
+  animation: rotate-revase-up 180ms ease-in forwards;
+}
+.rotate-down {
+  transition: 120ms ease-in-out;
+  animation: rotate-revase-down 120ms ease-in forwards;
+}
+@keyframes rotate-revase-up {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 180deg;
+  }
+}
+@keyframes rotate-revase-down {
+  from {
+    rotate: 180deg;
+  }
+  to {
+    rotate: 0deg;
+  }
 }
