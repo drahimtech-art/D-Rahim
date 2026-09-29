@@ -17,7 +17,7 @@ function ComingSoon(): React.ReactElement {
           or get notified when enrollment opens.
         </h5>
       </section>
-      <section className="mt-[83px] flex justify-center">
+      <section className="min-[1000px]:mt-[83px] mt-10 flex justify-center">
         <div className="">
           <span className="flex justify-center pointer">
             <img
