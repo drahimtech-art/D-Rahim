@@ -103,7 +103,7 @@ function Top() {
               <img src={Logo} alt="logo"></img>
             </div>
             <span className="mt-0.5">
-              <h5 className="font-inter font-semibold text-[1.1rem]">
+              <h5 className="font-inter  font-semibold text-[1.1rem]">
                 D'RAHIM
               </h5>
               <h5 className="-mt-1 font-semibold text-[0.5rem]">

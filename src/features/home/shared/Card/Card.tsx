@@ -65,13 +65,15 @@ function Card(props: ImageData) {
   }
   return (
     <>
-      <span className="flex flex-col grow  min-[1000px]:max-h-full items-stretch">
+      <span className="flex flex-col grow  min-[1000px]:max-h-full items-stretch  ">
         {props.isPC && (
-          <img
-            className="w-full h-full pointer min-[1000px]:h-100 "
-            src={props.image}
-            onClick={handleClick}
-          ></img>
+          <span className="w-full h-full pointer min-[1000px]:h-100 overflow-hidden ourwork-image-card-parent">
+            <img
+              className="w-full h-full pointer  ourwork-image-card  "
+              src={props.image}
+              onClick={handleClick}
+            ></img>
+          </span>
         )}
         {props.isMoblie && (
           <img

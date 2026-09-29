@@ -315,3 +315,15 @@ textarea:focus {
 .virtuoso > :nth-child(1) > :first-child {
   min-width: 100%;
 }
+.ourwork-image-card:hover {
+  transition: 400ms ease-in-out;
+  margin-top: -3%;
+  height: 106%;
+}
+.ourwork-image-card-parent:hover {
+  transition: 500ms ease-in-out;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: -2px;
+  box-shadow: 2px 2px 2px #acaaaa;
+}
