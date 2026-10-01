@@ -93,12 +93,12 @@ function Top() {
   }, [menuControl]);
   return (
     <>
-      <div className="bg-white  sticky top-0  z-5">
+      <article className="bg-white  sticky top-0  z-5">
         <div
           className="flex  w-full max-h-28.75  z-5 items-center min-[1000px]:p-10 p-5    bg-white  "
           ref={topDivRef}
         >
-          <div className="flex">
+          <header className="flex">
             <div className="w-7  min-[1000px]:w-8 h-10">
               <img src={Logo} alt="logo"></img>
             </div>
@@ -110,8 +110,8 @@ function Top() {
                 TECH INNOVATION
               </h5>
             </span>
-          </div>
-          <div className="min-[1000px]:flex gap-6 ml-auto hidden">
+          </header>
+          <nav className="min-[1000px]:flex gap-6 ml-auto hidden">
             <span
               className="border-b-2 border-white ourWorkHeadMenu   font-inter  pointer"
               onClick={work}
@@ -140,8 +140,8 @@ function Top() {
             >
               <h5>Mentorship</h5>
             </span>
-          </div>
-          <div className="hidden min-[1000px]:block ml-auto ">
+          </nav>
+          <section className="hidden min-[1000px]:block ml-auto ">
             <span
               className="block w-fit h-fit min-[1000px]:p-2 p-1 min-[1000px]:pl-7 min-[1000px]:pr-7 pr-5 pl-5 rounded-full bg-primary-green hover:bg-secondary-green pointer"
               onClick={contact}
@@ -150,15 +150,15 @@ function Top() {
                 Get In Touch{" "}
               </h5>
             </span>
-          </div>
-          <div className="block min-[1000px]:hidden ml-auto">
+          </section>
+          <section className="block min-[1000px]:hidden ml-auto">
             <i
               className="fa fa-bars text-[1.5rem]"
               onClick={() => setMenuControl(!menuControl)}
             ></i>
-          </div>
+          </section>
         </div>
-      </div>
+      </article>
       <div
         className="menuAnimationSlideIn min-[1000px]:hidden"
         ref={menuDivRef}
