@@ -301,7 +301,7 @@ function Category() {
     }
   }, [firstRenderCount, ourWorkRender]);
   return (
-    <>
+    <article>
       <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-30 mt-10">
         <span className="block">
           <h5 className="font-size-heading fontPoppins font-semibold">
@@ -309,7 +309,7 @@ function Category() {
           </h5>
         </span>
       </div>
-      <div className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:flex-row flex flex-col mt-10 lg:mt-15 lg:gap-9.5 gap-4  lg:max-w-full overflow-hidden pb-2 ">
+      <section className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:flex-row flex flex-col mt-10 lg:mt-15 lg:gap-9.5 gap-4  lg:max-w-full overflow-hidden pb-2 ">
         <span
           className="w-fit  p-2.5 pl-7.5 pr-7.5 flex  justify-center items-center   h-fit font-inter   ourWorkHeadMenu  border-primary-green bg-primary-green  border   text-gray-200 transition-all  rounded-full overflow-hidden whitespace-nowrap pointer"
           ref={projectRef}
@@ -338,7 +338,7 @@ function Category() {
         >
           <h5>Branding</h5>
         </span>
-      </div>
+      </section>
 
       {devicesWidth !== undefined && devicesWidth >= 1000 ? (
         <CardList body={ourWorkRender} isPC={true} isMoblie={false} />
@@ -347,7 +347,7 @@ function Category() {
       )}
 
       {ourWorkFirstRender && (
-        <div className="hidden lg:flex justify-center gap-6 lg:mt-16 mt-8 ">
+        <section className="hidden lg:flex justify-center gap-6 lg:mt-16 mt-8 ">
           <span
             className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
             onClick={countMinus}
@@ -365,9 +365,9 @@ function Category() {
           >
             <i className="fa fa-arrow-right text-gray-200 text-[1.2rem]"></i>
           </span>
-        </div>
+        </section>
       )}
-    </>
+    </article>
   );
 }
 export default Category;
