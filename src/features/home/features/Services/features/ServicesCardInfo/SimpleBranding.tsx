@@ -5,9 +5,9 @@ function SimpleBranding() {
   return (
     <>
       <Top />
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5  ">
-        <div className="flex items-center">
-          <span className="min-[1000px]:w-[70%] min-[1000px]:border-b-2">
+      <main className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5  ">
+        <article className="flex items-center">
+          <section className="min-[1000px]:w-[70%] min-[1000px]:border-b-2">
             <h5 className="fontPoppins font-semibold cardPopUpFontSize">
               Simple Branding
             </h5>
@@ -18,22 +18,22 @@ function SimpleBranding() {
               your business in under a month. And if you’re open to it, we can
               even help you find a standout name.
             </h5>
-          </span>
-          <span className="hidden min-[1000px]:block  min-[1000px]:w-[30%] -mt-25">
+          </section>
+          <section className="hidden min-[1000px]:block  min-[1000px]:w-[30%] -mt-25">
             <img className="w-full h-full" src={branding}></img>
-          </span>
-        </div>
-        <div className="min-[1000px]:mt-5 mt-10 min-[1000px]:pl-7.5 min-[1000px]:pr-7.5 flex flex-col min-[1000px]:flex-row gap-10 min-[1000px]:gap-37.5 ">
-          <span className="flex flex-col gap-2.5">
+          </section>
+        </article>
+        <article className="min-[1000px]:mt-5 mt-10 min-[1000px]:pl-7.5 min-[1000px]:pr-7.5 flex flex-col min-[1000px]:flex-row gap-10 min-[1000px]:gap-37.5 ">
+          <section className="flex flex-col gap-2.5">
             <h5 className="font-inter font-semibold max20px">Duration</h5>
             <h5 className="font-inter min20Max24px">3 - 4 weeks</h5>
-          </span>
-          <span className="flex flex-col gap-2.5">
+          </section>
+          <section className="flex flex-col gap-2.5">
             <h5 className="font-inter font-semibold max20px">Team</h5>
             <h5 className="font-inter min20Max24px">Brand designer</h5>
             <h5 className="font-inter min20Max24px">Project manager</h5>
-          </span>
-          <span className="flex flex-col gap-2.5">
+          </section>
+          <section className="flex flex-col gap-2.5">
             <h5 className="font-inter font-semibold max20px">Delivery</h5>
             <h5 className="font-inter min20Max24px">
               2 visual identity concepts
@@ -42,12 +42,12 @@ function SimpleBranding() {
               2 pieces of collateral (business card, email template, etc.)
             </h5>
             <h5 className="font-inter min20Max24px">Brandbook</h5>
-          </span>
-        </div>
+          </section>
+        </article>
         {/** */}
-        <div className="flex min-[1000px]:justify-center mt-20 min-[1000px]:mt-27.25">
+        <article className="flex min-[1000px]:justify-center mt-20 min-[1000px]:mt-27.25">
           <div>
-            <div className="flex  ">
+            <section className="flex  ">
               <div className="flex flex-col min-[1000px]:max-w-254.5 ">
                 <h5 className="fontPoppins font-semibold cardPopUpFontSize">
                   When products need Simple Branding?
@@ -84,9 +84,9 @@ function SimpleBranding() {
                   </h5>
                 </span>
               </div>
-            </div>
+            </section>
             {/** */}
-            <div className="flex mt-20 min-[1000px]:mt-27.25">
+            <section className="flex mt-20 min-[1000px]:mt-27.25">
               <div className="flex flex-col min-[1000px]:max-w-254.5 ">
                 <h5 className="fontPoppins font-semibold cardPopUpFontSize">
                   What will the process look like?
@@ -122,10 +122,9 @@ function SimpleBranding() {
                   </span>
                 </div>
               </div>
-            </div>
-
+            </section>
             {/** */}
-            <div className="flex  mt-20 min-[1000px]:mt-27.25">
+            <section className="flex  mt-20 min-[1000px]:mt-27.25">
               <div className="flex flex-col min-[1000px]:max-w-254.5 ">
                 <h5 className="fontPoppins font-semibold cardPopUpFontSize">
                   What will I get in the end?
@@ -145,10 +144,10 @@ function SimpleBranding() {
                   </h5>
                 </span>
               </div>
-            </div>
+            </section>
           </div>
-        </div>
-      </div>
+        </article>
+      </main>
       <div className="min-[1000px]:-mt-40">
         <End />
       </div>
