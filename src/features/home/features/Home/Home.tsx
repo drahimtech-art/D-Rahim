@@ -6,10 +6,12 @@ function Home() {
   return (
     <>
       <Top />
-      <Category />
-      <div className="hidden min-[1000px]:flex w-full">
-        <EndCategoryMenu />
-      </div>
+      <main>
+        <Category />
+        <div className="hidden min-[1000px]:flex w-full">
+          <EndCategoryMenu />
+        </div>
+      </main>
       <End />
     </>
   );
