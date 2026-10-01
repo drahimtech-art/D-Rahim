@@ -1,9 +1,9 @@
 import imageD1 from "/images/d1.png";
 function HeadText() {
   return (
-    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5 mt-5">
+    <article className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5 mt-5">
       <div className="w-full ">
-        <span className=" flex flex-col  min-[1000px]:pb-22 ">
+        <section className=" flex flex-col  min-[1000px]:pb-22 ">
           <h5 className=" min-[1000px]:max-w-250 font-size-heading fontPoppins font-semibold">
             Design Services for Digital Products
           </h5>
@@ -13,16 +13,16 @@ function HeadText() {
             understanding business needs at each phase, we deliver the right
             solutions faster and drive innovation forward.
           </h5>
-        </span>
-        <span className="block min-[1000px]:mt-27.25 mt-10 min-[1000px]:w-[70%] min-[1000px]:max-w-301.5 min-[1000px]:h-77.5  ">
+        </section>
+        <section className="block min-[1000px]:mt-27.25 mt-10 min-[1000px]:w-[70%] min-[1000px]:max-w-301.5 min-[1000px]:h-77.5  ">
           <img className="w-full h-full" src={imageD1}></img>
-        </span>
-        <span className="block min-[1000px]:mt-26.25 mt-10 text-[20px] min-[1000px]:text-[46px] font-semibold fontPoppins min-[1000px]:font-inter min-[1000px]:max-w-262.75  ">
+        </section>
+        <section className="block min-[1000px]:mt-26.25 mt-10 text-[20px] min-[1000px]:text-[46px] font-semibold fontPoppins min-[1000px]:font-inter min-[1000px]:max-w-262.75  ">
           <h5>
             Develop a scalable ecosystem of experiences designed around people.
           </h5>
-        </span>
-        <span className="block min-[1000px]:mt-27.25 mt-10">
+        </section>
+        <section className="block min-[1000px]:mt-27.25 mt-10">
           <h5 className="fontPoppins font-semibold min40Max60px">
             Expand and Scale
           </h5>
@@ -55,8 +55,8 @@ function HeadText() {
               </span>
             </div>
           </div>
-        </span>
-        <span className="block min-[1000px]:mt-30 mt-10">
+        </section>
+        <section className="block min-[1000px]:mt-30 mt-10">
           <h5 className="fontPoppins font-semibold min40Max60px">
             Build and Launch
           </h5>
@@ -90,8 +90,8 @@ function HeadText() {
               </span>
             </div>
           </div>
-        </span>
-        <span className="block min-[1000px]:mt-30 mt-10">
+        </section>
+        <section className="block min-[1000px]:mt-30 mt-10">
           <h5 className="fontPoppins font-semibold min40Max60px">
             Create and Refine
           </h5>
@@ -124,8 +124,8 @@ function HeadText() {
               </span>
             </div>
           </div>
-        </span>
-        <span className="block min-[1000px]:mt-30 mt-10">
+        </section>
+        <section className="block min-[1000px]:mt-30 mt-10">
           <h5 className="fontPoppins font-semibold min40Max60px">
             Our Expertise
           </h5>
@@ -175,9 +175,9 @@ function HeadText() {
               </span>
             </div>
           </div>
-        </span>
+        </section>
       </div>
-    </div>
+    </article>
   );
 }
 export default HeadText;

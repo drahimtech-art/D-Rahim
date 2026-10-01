@@ -6,8 +6,10 @@ function DiscoverAllServices() {
   return (
     <>
       <Top />
-      <HeadText />
-      <ProjectCard />
+      <main>
+        <HeadText />
+        <ProjectCard />
+      </main>
       <End />
     </>
   );

@@ -34,8 +34,8 @@ function ProjectCard() {
     urlNavigator(url, { replace: true });
   }
   return (
-    <>
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30 mt-10">
+    <article>
+      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30 mt-10">
         <span className="block min-[1000px]:mt-30 ">
           <h5 className="fontPoppins font-semibold min40Max60px">
             Our Projects
@@ -47,8 +47,8 @@ function ProjectCard() {
             iteration, and close collaboration with our clients’ teams.
           </h5>
         </span>
-      </div>
-      <div className="min-[1000px]:mt-15 mt-10 h-fit  ">
+      </section>
+      <article className="min-[1000px]:mt-15 mt-10 h-fit  ">
         {devicesWidth !== undefined && devicesWidth >= 1000 ? (
           <CardList body={projects} isPC={true} isMoblie={false} />
         ) : (
@@ -59,8 +59,8 @@ function ProjectCard() {
             isNotClickCable={true}
           />
         )}
-      </div>
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25 mt-10">
+      </article>
+      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25 mt-10">
         {devicesWidth !== undefined && devicesWidth >= 1000 ? (
           <button
             className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
@@ -76,11 +76,11 @@ function ProjectCard() {
             <h5 className="">Explore more projects</h5>
           </button>
         )}
-      </div>
+      </section>
       <div className="mt-30 sm:pb-10 min-[1000px]:mb-0">
         <FAQ />
       </div>
-    </>
+    </article>
   );
 }
 export default ProjectCard;
