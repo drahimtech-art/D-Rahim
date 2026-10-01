@@ -65,7 +65,7 @@ function Card(props: ImageData) {
   }
   return (
     <>
-      <span className="flex flex-col grow  min-[1000px]:max-h-full items-stretch  ">
+      <section className="flex flex-col grow  min-[1000px]:max-h-full items-stretch  ">
         {props.isPC && (
           <span className="w-full h-full pointer min-[1000px]:h-100 overflow-hidden ourwork-image-card-parent">
             <img
@@ -88,7 +88,7 @@ function Card(props: ImageData) {
         <h5 className="ourWorkHeadMenu text-gray-600 min-[1000px]:line-clamp-3   font-inter">
           {props.subText}
         </h5>
-      </span>
+      </section>
       {devicesWidth !== undefined && devicesWidth >= 1000 && (
         <CardPopUp
           control={isPopUpVisible}
