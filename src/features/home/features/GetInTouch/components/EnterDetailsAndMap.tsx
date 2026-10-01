@@ -1,7 +1,7 @@
 function EnterDetailsAndMap() {
   return (
-    <div className="flex min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-15 mt-10 min-[1000px]:gap-10 gap-5">
-      <div className="min-[1000px]:w-[60%] min-[1000px]:max-w-232">
+    <article className="flex min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-15 mt-10 min-[1000px]:gap-10 gap-5">
+      <section className="min-[1000px]:w-[60%] min-[1000px]:max-w-232">
         <span className="ourWorkMenuText fontPoppins font-semibold min-[1000px]:hidden">
           <h5>Enter Details</h5>
         </span>
@@ -77,8 +77,8 @@ function EnterDetailsAndMap() {
             </h5>
           </span>
         </div>
-      </div>
-      <div className="w-[40%] ml-auto hidden min-[1000px]:block">
+      </section>
+      <section className="w-[40%] ml-auto hidden min-[1000px]:block">
         <span className="flex justify-center w-full">
           <h5 className="font-semibold logoMainText">Find Us On The Map</h5>
         </span>
@@ -86,8 +86,8 @@ function EnterDetailsAndMap() {
         <span className="flex justify-center mt-25">
           <i className="fa-brands fa-whatsapp min-[1000px]:text-[5rem] text-green-600"></i>
         </span>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 export default EnterDetailsAndMap;

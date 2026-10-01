@@ -6,8 +6,10 @@ function GetInTouch() {
   return (
     <>
       <Top />
-      <GetInTouchHeadText />
-      <EnterDetailsAndMap />
+      <main>
+        <GetInTouchHeadText />
+        <EnterDetailsAndMap />
+      </main>
       <End />
     </>
   );
