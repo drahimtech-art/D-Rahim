@@ -5,9 +5,9 @@ function DesignWorkShop() {
   return (
     <>
       <Top />
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5  ">
-        <div className="flex items-center">
-          <span className="min-[1000px]:w-[70%] min-[1000px]:border-b-2">
+      <main className="min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-16 pt-10 pl-5 pr-5  ">
+        <article className="flex items-center">
+          <section className="min-[1000px]:w-[70%] min-[1000px]:border-b-2">
             <h5 className="fontPoppins font-semibold cardPopUpFontSize">
               Design Workshops
             </h5>
@@ -17,33 +17,33 @@ function DesignWorkShop() {
               product decisions, and build a deeper understanding of the people
               they’re designing for.
             </h5>
-          </span>
-          <span className="hidden min-[1000px]:block  min-[1000px]:w-[30%] -mt-25">
+          </section>
+          <section className="hidden min-[1000px]:block  min-[1000px]:w-[30%] -mt-25">
             <img className="w-full h-full" src={designworkshop}></img>
-          </span>
-        </div>
-        <div className="min-[1000px]:mt-5 mt-10 min-[1000px]:pl-7.5 min-[1000px]:pr-7.5 flex flex-col min-[1000px]:flex-row gap-10 min-[1000px]:gap-37.5 ">
-          <span className="flex flex-col gap-2.5">
+          </section>
+        </article>
+        <article className="min-[1000px]:mt-5 mt-10 min-[1000px]:pl-7.5 min-[1000px]:pr-7.5 flex flex-col min-[1000px]:flex-row gap-10 min-[1000px]:gap-37.5 ">
+          <section className="flex flex-col gap-2.5">
             <h5 className="font-inter font-semibold max20px">Duration</h5>
             <h5 className="font-inter min20Max24px">1 week</h5>
             <h5 className="font-inter min20Max24px">3 operational calls</h5>
-          </span>
-          <span className="flex flex-col gap-2.5">
+          </section>
+          <section className="flex flex-col gap-2.5">
             <h5 className="font-inter font-semibold max20px">Team</h5>
             <h5 className="font-inter min20Max24px">UI/UX designer</h5>
             <h5 className="font-inter min20Max24px">Business Analyst</h5>
-          </span>
-          <span className="flex flex-col gap-2.5">
+          </section>
+          <section className="flex flex-col gap-2.5">
             <h5 className="font-inter font-semibold max20px">Delivery</h5>
             <h5 className="font-inter min20Max24px max-w-68.5">
               Workshop delivery presentation (depends on the workshops itself)
             </h5>
-          </span>
-        </div>
+          </section>
+        </article>
         {/** */}
-        <div className="flex min-[1000px]:justify-center mt-20 min-[1000px]:mt-27.25">
+        <article className="flex min-[1000px]:justify-center mt-20 min-[1000px]:mt-27.25">
           <div>
-            <div className="flex  ">
+            <section className="flex  ">
               <div className="flex flex-col min-[1000px]:max-w-254.5 ">
                 <h5 className="fontPoppins font-semibold cardPopUpFontSize">
                   When products need Design Workshops?
@@ -77,9 +77,9 @@ function DesignWorkShop() {
                   </h5>
                 </span>
               </div>
-            </div>
+            </section>
             {/** */}
-            <div className="flex mt-20 min-[1000px]:mt-27.25">
+            <section className="flex mt-20 min-[1000px]:mt-27.25">
               <div className="flex flex-col min-[1000px]:max-w-254.5 ">
                 <h5 className="fontPoppins font-semibold cardPopUpFontSize">
                   What will the process look like?
@@ -114,10 +114,9 @@ function DesignWorkShop() {
                   </span>
                 </div>
               </div>
-            </div>
-
+            </section>
             {/** */}
-            <div className="flex  mt-20 min-[1000px]:mt-27.25">
+            <section className="flex  mt-20 min-[1000px]:mt-27.25">
               <div className="flex flex-col min-[1000px]:max-w-254.5 ">
                 <h5 className="fontPoppins font-semibold cardPopUpFontSize">
                   What will I get in the end?
@@ -131,10 +130,10 @@ function DesignWorkShop() {
                   </h5>
                 </span>
               </div>
-            </div>
+            </section>
           </div>
-        </div>
-      </div>
+        </article>
+      </main>
       <div className="min-[1000px]:-mt-40">
         <End />
       </div>
