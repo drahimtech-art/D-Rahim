@@ -46,12 +46,12 @@ function EndCategoryMenu() {
     }
   }, [option1, option2, option3, option4]);
   return (
-    <div className=" lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col sm:mt-27.25 mt-10 w-full ">
-      <span className="block">
+    <article className=" lg:pl-10 lg:pr-10 pl-5 pr-5 flex flex-col sm:mt-27.25 mt-10 w-full ">
+      <section className="block">
         <h5 className=" font-semibold font-size-heading">Our Values</h5>
-      </span>
-      <div className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5 pointer">
-        <span
+      </section>
+      <article className="flex flex-col mt-5 sm:mt-15 sm:mb-15 mb-27.5 pointer">
+        <section
           className="flex flex-col pt-2 pb-2 border-t-2 border-b-2 transition-all"
           onClick={() => {
             setOption1(!option1);
@@ -81,8 +81,8 @@ function EndCategoryMenu() {
               </h5>
             </span>
           </div>
-        </span>
-        <span
+        </section>
+        <section
           className="flex flex-col pt-2 pb-2  border-b-2 "
           onClick={() => {
             setOption2(!option2);
@@ -112,8 +112,8 @@ function EndCategoryMenu() {
               </h5>
             </span>
           </div>
-        </span>
-        <span
+        </section>
+        <section
           className="flex flex-col pt-2 pb-2  border-b-2 "
           onClick={() => {
             setOption3(!option3);
@@ -144,8 +144,8 @@ function EndCategoryMenu() {
               </h5>
             </span>
           </div>
-        </span>
-        <span
+        </section>
+        <section
           className="flex flex-col pt-2 pb-2  border-b-2 "
           onClick={() => {
             setOption4(!option4);
@@ -176,9 +176,9 @@ function EndCategoryMenu() {
               </h5>
             </span>
           </div>
-        </span>
-      </div>
-    </div>
+        </section>
+      </article>
+    </article>
   );
 }
 export default EndCategoryMenu;
