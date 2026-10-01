@@ -15,21 +15,21 @@ type Body = {
 
 function Card(props: Body) {
   return (
-    <div className="flex flex-col mt-10">
-      <span className="pl-10 pr-10 ">
+    <article className="flex flex-col mt-10">
+      <section className="pl-10 pr-10 ">
         <h5 className="font-inter font-medium ourWorkMenuText">
           {props.body.popHeadText}
         </h5>
         <h5 className="fontPoppins font-semibold font-size-heading mt-5">
           {props.body?.popUpHeadding}
         </h5>
-      </span>
-      <span className="mt-5 w-full max-h-198">
+      </section>
+      <section className="mt-5 w-full max-h-198">
         <img className="w-full h-full" src={props.body.popImageUrl}></img>
-      </span>
-      <div className=" mt-27.25 pl-10 pr-10">
+      </section>
+      <article className=" mt-27.25 pl-10 pr-10">
         <div className="flex gap-41 ">
-          <span className="flex flex-col w-60 ">
+          <section className="flex flex-col w-60 ">
             <span>
               <h5 className="font-inter font-medium text-[30px]">
                 Capabilities
@@ -45,9 +45,9 @@ function Card(props: Body) {
                 );
               })}
             </span>
-          </span>
+          </section>
           {/** */}
-          <span className="flex flex-col  ">
+          <section className="flex flex-col  ">
             <span className="">
               <h5 className="font-inter font-medium text-[30px]">Team</h5>
               {props.body.team.map((e, i) => {
@@ -61,9 +61,9 @@ function Card(props: Body) {
                 );
               })}
             </span>
-          </span>
+          </section>
           {/** */}
-          <span className="flex flex-col ">
+          <section className="flex flex-col ">
             <span className="">
               <h5 className="font-inter font-medium text-[30px]">Industry</h5>
               {props.body.industry.map((e, i) => {
@@ -77,9 +77,9 @@ function Card(props: Body) {
                 );
               })}
             </span>
-          </span>
+          </section>
         </div>
-        <div className="flex gap-41 mt-10">
+        <section className="flex gap-41 mt-10">
           <span className="w-60 ">
             <h5 className="font-inter font-medium text-[30px]">Duration</h5>
             <h5 className=" font-inter font-normal text-[20px]">
@@ -92,14 +92,14 @@ function Card(props: Body) {
               {props.body.location}
             </h5>
           </span>
-        </div>
-        <div className="mt-13 ">
+        </section>
+        <section className="mt-13 ">
           <h5 className="font-inter font-normal text-[20.87px] w-238.5 ">
             {props.body.endText}
           </h5>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </article>
   );
 }
 export default Card;

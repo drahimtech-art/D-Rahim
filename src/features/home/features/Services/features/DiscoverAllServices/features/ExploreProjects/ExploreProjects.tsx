@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { OurWorkApi } from "../../../../../../storage/OurWorkApi";
-import Top from "../../../../shared/Top/Top";
+import { OurWorkApi } from "../../../../../../../../storage/OurWorkApi";
+import Top from "../../../../../../shared/Top/Top";
 import Card from "./components/Card";
-import End from "../../../../shared/Footer/Footer";
+import End from "../../../../../../shared/Footer/Footer";
 function ExploreProjects() {
   const ourWorkProjecData = OurWorkApi();
   const { listOfProjects } = ourWorkProjecData;
@@ -34,11 +34,11 @@ function ExploreProjects() {
   return (
     <>
       <Top />
-      <div className="flex flex-col w-full gap-27.25">
+      <main className="flex flex-col w-full gap-27.25">
         {exploreProject.map((e, i) => {
           return <Card body={e} key={`project-key${i}`} />;
         })}
-      </div>
+      </main>
       <End />
     </>
   );
