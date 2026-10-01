@@ -9,8 +9,8 @@ function End() {
   }
   return (
     <footer className="mt-20 min-[1000px]:mt-96 bg-primary-green lg:pl-10 lg:pr-40 pl-5 pr-5 pt-10 w-full overflow-hidden">
-      <div className="w-full flex flex-col min-[1000px]:flex-row">
-        <div className="flex flex-col flex-wrap">
+      <article className="w-full flex flex-col min-[1000px]:flex-row">
+        <section className="flex flex-col flex-wrap">
           <span className="block">
             <h5 className="ourWorkMenuText font-medium min-[1000px]:font-normal text-gray-200 font-inter">
               Reach Us Today
@@ -32,8 +32,8 @@ function End() {
               <i className="fas fa-arrow-up  rotate-40"></i>
             </span>
           </div>
-        </div>
-        <div className="mt-15.5 min-[1000px]:mt-0 flex flex-col min-[1000px]:ml-auto text-gray-200 font-inter w-75.5 ourWorkHeadMenu min-[1000px]:h-29">
+        </section>
+        <section className="mt-15.5 min-[1000px]:mt-0 flex flex-col min-[1000px]:ml-auto text-gray-200 font-inter w-75.5 ourWorkHeadMenu min-[1000px]:h-29">
           <span>
             <h5>
               Federal Capital Territory, Abuja Nigeria NO9, Hil top Street Kubwa
@@ -45,9 +45,9 @@ function End() {
               Kuje
             </h5>
           </span>
-        </div>
-      </div>
-      <div className="hidden min-[1000px]:block mt-30">
+        </section>
+      </article>
+      <nav className="hidden min-[1000px]:block mt-30">
         <span className="flex gap-5 text-[1.8rem] lg:text-[2rem] text-gray-200">
           <a
             className="fa-brands fa-facebook"
@@ -70,8 +70,8 @@ function End() {
             target="_blank"
           ></a>
         </span>
-      </div>
-      <div className="mt-15.5 min-[1000px]:mt-30 flex flex-col gap-10 min-[1000px]:flex-row text-gray-200 text-[16px] font-inter  min-[1000px]:gap-46.5">
+      </nav>
+      <section className="mt-15.5 min-[1000px]:mt-30 flex flex-col gap-10 min-[1000px]:flex-row text-gray-200 text-[16px] font-inter  min-[1000px]:gap-46.5">
         <h5 className="hidden min-[1000px]:block">
           2026 D'RHIM TECH INNOVATION
         </h5>
@@ -81,8 +81,8 @@ function End() {
         <h5 className="block min-[1000px]:hidden">
           2026 D'RHIM TECH INNOVATION
         </h5>
-      </div>
-      <div className="block min-[1000px]:hidden mt-30 pb-10">
+      </section>
+      <nav className="block min-[1000px]:hidden mt-30 pb-10">
         <span className="flex gap-5 text-[1.8rem] lg:text-[2rem] text-gray-200">
           <a
             className="fa-brands fa-facebook"
@@ -105,7 +105,7 @@ function End() {
             target="_blank"
           ></a>
         </span>
-      </div>
+      </nav>
     </footer>
   );
 }
