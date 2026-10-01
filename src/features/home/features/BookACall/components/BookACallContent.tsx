@@ -15,7 +15,7 @@ function BookACallContent() {
   }
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-20 mt-10 flex flex-col min-[1000px]:flex-row min-[1000px]:gap-10 gap-5 justify-around">
-      <div className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
+      <section className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
         <div className="flex flex-col gap-2 min-[1000px]:mt-6">
           <div className="flex justify-center min-[1000px]:pr-20">
             <span className="w-35 h-35 rounded-full ">
@@ -47,9 +47,9 @@ function BookACallContent() {
             </h5>
           </span>
         </div>
-      </div>
+      </section>
       {/**calender */}
-      <div className="flex flex-col  min-[1000px]:w-[40%] min-[1000px]:mr-auto">
+      <section className="flex flex-col  min-[1000px]:w-[40%] min-[1000px]:mr-auto">
         <span>
           <h5 className="font-inter font-bold text-[24px]">
             Select a Date & Time
@@ -63,9 +63,9 @@ function BookACallContent() {
             onChange={handleDateChage}
           />
         </div>
-      </div>
+      </section>
       {/**time */}
-      <div className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
+      <section className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
         <span>
           <h5 className="font-inter  text-[24px]">Tuesday, September 9</h5>
         </span>
@@ -101,7 +101,7 @@ function BookACallContent() {
             <h5 className="font-inter  text-[24px]">08:30 pm</h5>
           </span>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

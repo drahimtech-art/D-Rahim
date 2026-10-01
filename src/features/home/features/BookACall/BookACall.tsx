@@ -5,7 +5,9 @@ function BookACall() {
   return (
     <>
       <Top />
-      <BookACallContent />
+      <main>
+        <BookACallContent />
+      </main>
       <End />
     </>
   );
