@@ -8,7 +8,7 @@ function End() {
     urlNavigator("/book/call", { replace: true });
   }
   return (
-    <div className="mt-20 min-[1000px]:mt-96 bg-primary-green lg:pl-10 lg:pr-40 pl-5 pr-5 pt-10 w-full overflow-hidden">
+    <footer className="mt-20 min-[1000px]:mt-96 bg-primary-green lg:pl-10 lg:pr-40 pl-5 pr-5 pt-10 w-full overflow-hidden">
       <div className="w-full flex flex-col min-[1000px]:flex-row">
         <div className="flex flex-col flex-wrap">
           <span className="block">
@@ -106,7 +106,7 @@ function End() {
           ></a>
         </span>
       </div>
-    </div>
+    </footer>
   );
 }
 export default End;

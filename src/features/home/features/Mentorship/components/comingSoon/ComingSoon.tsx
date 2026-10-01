@@ -1,7 +1,7 @@
 import whatsAppIcon from "/images/icons/whatsapp-icon.png";
 function ComingSoon(): React.ReactElement {
   return (
-    <main className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-15 mt-7">
+    <main className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-15 mt-7 ">
       <header>
         <h2 className="font-size-heading font-sans font-semibold">
           Mentorship Coming Soon!
