@@ -39,7 +39,7 @@ function CardPopUp(props: Body) {
     }
   }, [isPopUpVisible]);
   return (
-    <div
+    <article
       className="w-full  h-screen  fixed  inset-0  z-50   items-center justify-center p-7 pl-16 pr-16  "
       ref={backGroundRef}
     >
@@ -50,7 +50,7 @@ function CardPopUp(props: Body) {
             ref={popUpCardRef}
           >
             <div className=" overflow-y-scroll w-full h-full scroll-container pr-5 ">
-              <div className="flex items-center">
+              <section className="flex items-center">
                 <h2 className="font-inter font-medium cardPopUpFontSize">
                   {props.body.popHeadText}
                 </h2>
@@ -74,8 +74,8 @@ function CardPopUp(props: Body) {
                     </span>
                   </div>
                 </div>
-              </div>
-              <div className="mt-4.25">
+              </section>
+              <section className="mt-4.25">
                 <h5 className="fontPoppins font-semibold cardPopUpSubHeadFontSize">
                   {props.body?.popUpHeadding}
                 </h5>
@@ -86,8 +86,8 @@ function CardPopUp(props: Body) {
                     className="w-full h-full "
                   />
                 </span>
-              </div>
-              <div className=" mt-23.75 pl-10 pr-10">
+              </section>
+              <section className=" mt-23.75 pl-10 pr-10">
                 <div className="flex gap-41 ">
                   <span className="flex flex-col w-60 ">
                     <span>
@@ -166,12 +166,12 @@ function CardPopUp(props: Body) {
                     {props.body.endText}
                   </h5>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 export default CardPopUp;
