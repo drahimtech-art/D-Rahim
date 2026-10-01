@@ -8,10 +8,12 @@ function About() {
   return (
     <>
       <Top />
-      <AboutHeadText />
-      <AboutSubHeadText />
-      <OurTerms />
-      <EndCategoryMenu />
+      <main>
+        <AboutHeadText />
+        <AboutSubHeadText />
+        <OurTerms />
+        <EndCategoryMenu />
+      </main>
       <End />
     </>
   );

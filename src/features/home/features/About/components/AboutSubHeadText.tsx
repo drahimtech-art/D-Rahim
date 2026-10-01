@@ -1,7 +1,7 @@
 function AboutSubHeadText() {
   return (
-    <div className="mt-10 sm:mt-27.25 lg:pl-10 lg:pr-10 pl-5 pr-5">
-      <div className="w-full">
+    <article className="mt-10 sm:mt-27.25 lg:pl-10 lg:pr-10 pl-5 pr-5">
+      <section className="w-full">
         <h5 className="w-full sm:w-[80%] sm:max-w-274.25 font-inter ourWorkHeadMenu">
           We are <strong>D'RAHHIM TECH INNOVATION</strong>, A Digital Product
           Design & Branding Agency. As a team of Designers, Business Analysts,
@@ -10,8 +10,8 @@ function AboutSubHeadText() {
           worldwide digital-first companies, enabling organizations to succeed
           at digital transformation.
         </h5>
-      </div>
-      <div className="sm:grid sm:grid-cols-3 sm:gap-19.5 flex flex-col  mt-10 overflow-hidden">
+      </section>
+      <section className="sm:grid sm:grid-cols-3 sm:gap-19.5 flex flex-col  mt-10 overflow-hidden">
         <span className="flex items-center gap-2.5 sm:flex sm:flex-col sm:items-start border-t-2 border-b-2 sm:border-0 pt-2.5 pb-2.5 sm:pt-0 sm:pb-0">
           <h5 className="font-inter expereanceText font-semibold">10+</h5>
           <h5 className="font-inter expereanceText font-semibold block sm:hidden">
@@ -39,8 +39,8 @@ function AboutSubHeadText() {
             Years
           </h5>
         </span>
-      </div>
-      <div className="mt-10 sm:mt-27.25">
+      </section>
+      <section className="mt-10 sm:mt-27.25">
         <span>
           <h5 className="w-[80%] sm:w-full min-[1000px]:max-w-268.5 font-inter text-[24px] min-[1000px]:text-[58px] font-semibold min-[1000px]:font-medium  ">
             Our mission is to simplify technology and design meaningful digital
@@ -48,8 +48,8 @@ function AboutSubHeadText() {
             across Africa regardless of their background.
           </h5>
         </span>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 export default AboutSubHeadText;

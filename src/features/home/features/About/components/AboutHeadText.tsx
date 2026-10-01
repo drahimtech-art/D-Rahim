@@ -3,16 +3,16 @@ import mcompanyImage from "/images/company_image_slim.png";
 import tpCompanyImage from "/images/company_image_medium.png";
 function AboutHeadText() {
   return (
-    <>
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-10 mt-5">
+    <article>
+      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-10 mt-5">
         <div className="w-full">
           <h5 className="w-full sm:w-[80%] sm:max-w-232 font-size-heading  fontPoppins font-semibold">
             We help businesses make an impact with breakthrough digital products
             and brands.
           </h5>
         </div>
-      </div>
-      <div className="w-full h-147  min-[1000px]:max-h-198 mt-4">
+      </section>
+      <section className="w-full h-147  min-[1000px]:max-h-198 mt-4">
         <img
           className=" hidden min-[1000px]:block w-full h-full  min-[1000px]:max-h-198"
           src={companyImage}
@@ -25,8 +25,8 @@ function AboutHeadText() {
           className="hidden sm:block imageDisplayOff w-full h-full sm:max-h-147 min-[1000px]:max-h-[198]"
           src={tpCompanyImage}
         ></img>
-      </div>
-    </>
+      </section>
+    </article>
   );
 }
 export default AboutHeadText;

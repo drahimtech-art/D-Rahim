@@ -6,14 +6,14 @@ import tpAbdulmalikImg from "/images/Abdulmalik_Mohammed.png";
 import tpVictoryImg from "/images/Victory_Nwanoruo.png";
 function OurTerms() {
   return (
-    <div className="mt-10 min-[1000px]:mt-27.25 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 w-full">
+    <article className="mt-10 min-[1000px]:mt-27.25 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 w-full">
       <span>
         <h5 className="fontPoppins font-semibold font-size-heading">
           Our Teams
         </h5>
       </span>
       <div className="mt-10 min-[1000px]:mt-15 flex flex-wrap min-[1000px]:grid min-[1000px]:grid-cols-3 min-[1000px]:max-h-203 justify-evenly gap-10">
-        <div className="flex flex-col min-[1000px]:h-203">
+        <section className="flex flex-col min-[1000px]:h-203">
           <span className=" max-h-175 ">
             <img
               className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
@@ -43,8 +43,8 @@ function OurTerms() {
           >
             LinkedIn{" "}
           </a>
-        </div>
-        <div className="flex flex-col ">
+        </section>
+        <section className="flex flex-col ">
           <span className="   max-h-175">
             <img
               className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
@@ -74,8 +74,8 @@ function OurTerms() {
           >
             LinkedIn{" "}
           </a>
-        </div>
-        <div className="flex flex-col ">
+        </section>
+        <section className="flex flex-col ">
           <span className="   max-h-175 ">
             <img
               className="w-full h-full block sm:hidden imageDisplayOn rounded-3xl"
@@ -105,9 +105,9 @@ function OurTerms() {
           >
             LinkedIn{" "}
           </a>
-        </div>
+        </section>
       </div>
-    </div>
+    </article>
   );
 }
 export default OurTerms;
