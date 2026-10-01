@@ -9,11 +9,13 @@ function Service() {
   return (
     <>
       <Top />
-      <HeadText />
-      <CategoryMenu />
-      <SubHeadText />
-      <ServiceCard />
-      <EndSubMenuAndText />
+      <main>
+        <HeadText />
+        <CategoryMenu />
+        <SubHeadText />
+        <ServiceCard />
+        <EndSubMenuAndText />
+      </main>
       <End />
     </>
   );

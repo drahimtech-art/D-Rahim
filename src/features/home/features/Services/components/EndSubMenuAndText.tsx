@@ -26,8 +26,8 @@ function EndSubMenuAndText() {
     urlNavigator(url, { replace: false });
   }
   return (
-    <>
-      <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-30 mt-10 min-[1000px]:mb-27.25 mb-10">
+    <article>
+      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-30 mt-10 min-[1000px]:mb-27.25 mb-10">
         <span className="flex flex-col gap-10 ">
           <h5 className="font-Poppins font-semibold min40Max60px">
             Tailored Solutions for Startups
@@ -39,10 +39,10 @@ function EndSubMenuAndText() {
             without delays.
           </h5>
         </span>
-      </div>
-      <div className="-mb-10 min-[1000px]:-mb-80 w-full  min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-20 overflow-hidden">
+      </section>
+      <article className="-mb-10 min-[1000px]:-mb-80 w-full  min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-20 overflow-hidden">
         <div className="flex  min-[1000px]:gap-10 gap-7.5 min-[1000px]:justify-around w-full min-[1000px]:w-full  overflow-x-scroll min-[1000px]:overflow-auto ">
-          <div className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
+          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
             <img
               className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
               src={cv1Image}
@@ -55,8 +55,8 @@ function EndSubMenuAndText() {
                 onClick={toUiUxPage}
               ></img>
             </span>
-          </div>
-          <div className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
+          </section>
+          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
             <img
               className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
               src={cv2Image}
@@ -69,8 +69,8 @@ function EndSubMenuAndText() {
                 onClick={toSimpleBranding}
               ></img>
             </span>
-          </div>
-          <div className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
+          </section>
+          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
             <img
               className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
               src={cv3Image}
@@ -83,8 +83,8 @@ function EndSubMenuAndText() {
                 onClick={toDesignWorkShop}
               ></img>
             </span>
-          </div>
-          <div className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
+          </section>
+          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
             <img
               className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
               src={cv4Image}
@@ -97,10 +97,10 @@ function EndSubMenuAndText() {
                 onClick={toConceptSpring}
               ></img>
             </span>
-          </div>
+          </section>
         </div>
-      </div>
-    </>
+      </article>
+    </article>
   );
 }
 export default EndSubMenuAndText;

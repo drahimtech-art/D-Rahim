@@ -29,9 +29,9 @@ function ServiceCard() {
     return () => window.removeEventListener("resize", () => handleWindowResize);
   }, []);
   return (
-    <div className="min-[1000px]:mt-20 mt-10 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  w-full  min-[1000px]:max-h-171.5 overflow-hidden">
+    <article className="min-[1000px]:mt-20 mt-10 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  w-full  min-[1000px]:max-h-171.5 overflow-hidden">
       <div className="flex min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 gap-7.5 overflow-x-scroll min-[1000px]:overflow-auto">
-        <div className="relative min-w-70 h-70 min-[1000px]:max-h-171.5 bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:w-full min-[1000px]:h-full ">
+        <section className="relative min-w-70 h-70 min-[1000px]:max-h-171.5 bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:w-full min-[1000px]:h-full ">
           {devicesWidth !== undefined && devicesWidth >= 1000 ? (
             <img
               className="  min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  w-full max-h-171.5 min-[1000px]:bg-[#bdb9b9]"
@@ -49,9 +49,9 @@ function ServiceCard() {
               src={cv1}
             ></img>
           </span>
-        </div>
-        <div className="flex gap-7.5 min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 min-[1000px]:max-h-171.5 min-[1000px]:min-w-145 w-full ">
-          <div className="min-w-70 h-70 min-[1000px]:w-full relative  ">
+        </section>
+        <article className="flex gap-7.5 min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 min-[1000px]:max-h-171.5 min-[1000px]:min-w-145 w-full ">
+          <section className="min-w-70 h-70 min-[1000px]:w-full relative  ">
             {devicesWidth !== undefined && devicesWidth >= 1000 ? (
               <img
                 className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
@@ -69,8 +69,8 @@ function ServiceCard() {
                 src={cv2}
               ></img>
             </span>
-          </div>
-          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+          </section>
+          <section className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
             {devicesWidth !== undefined && devicesWidth >= 1000 ? (
               <img
                 className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
@@ -88,8 +88,8 @@ function ServiceCard() {
                 src={cv3}
               ></img>
             </span>
-          </div>
-          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+          </section>
+          <section className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
             {devicesWidth !== undefined && devicesWidth >= 1000 ? (
               <img
                 className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
@@ -107,8 +107,8 @@ function ServiceCard() {
                 src={cv5}
               ></img>
             </span>
-          </div>
-          <div className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
+          </section>
+          <section className="min-w-70 h-70 min-[1000px]:w-full relative min-[1000px]:h-70   max-h-81    ">
             {devicesWidth !== undefined && devicesWidth >= 1000 ? (
               <img
                 className="min-[1000px]:rounded-4xl object-fill absolute min-[1000px]:block h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0 w-full "
@@ -126,10 +126,10 @@ function ServiceCard() {
                 src={cv4}
               ></img>
             </span>
-          </div>
-        </div>
+          </section>
+        </article>
       </div>
-    </div>
+    </article>
   );
 }
 export default ServiceCard;

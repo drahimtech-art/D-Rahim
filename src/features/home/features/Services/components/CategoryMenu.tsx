@@ -53,9 +53,9 @@ function CategoryMenu() {
     urlNavigator(url, { replace: true });
   }
   return (
-    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 pointer">
+    <article className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 pointer">
       {/** */}
-      <div
+      <article
         className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
         onClick={() => {
           setOptionOne(!optionOne);
@@ -64,7 +64,7 @@ function CategoryMenu() {
           setOptionFour(false);
         }}
       >
-        <div className="flex items-center">
+        <section className="flex items-center">
           <span className="w-full flex  relative">
             <h5 className=" serviceMenuText font-inter font-medium">
               Digital Product Design
@@ -87,8 +87,8 @@ function CategoryMenu() {
               )}
             </span>
           </span>
-        </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2   ">
+        </section>
+        <section className="min-[1000px]:grid min-[1000px]:grid-cols-2   ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
             className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
@@ -108,10 +108,10 @@ function CategoryMenu() {
               </span>
             </span>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
       {/** */}
-      <div
+      <article
         className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
         onClick={() => {
           setOptionTwo(!optionTwo);
@@ -120,7 +120,7 @@ function CategoryMenu() {
           setOptionFour(false);
         }}
       >
-        <div className="flex items-center">
+        <section className="flex items-center">
           <span
             className="w-full flex  relative"
             onClick={() => {
@@ -143,8 +143,8 @@ function CategoryMenu() {
               )}
             </span>
           </span>
-        </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
+        </section>
+        <section className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
             className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
@@ -163,10 +163,10 @@ function CategoryMenu() {
               </span>
             </span>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
       {/** */}
-      <div
+      <article
         className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
         onClick={() => {
           setOptionThree(!optionThree);
@@ -175,7 +175,7 @@ function CategoryMenu() {
           setOptionFour(false);
         }}
       >
-        <div className="flex items-center">
+        <section className="flex items-center">
           <span
             className="w-full flex  relative"
             onClick={() => {
@@ -206,8 +206,8 @@ function CategoryMenu() {
               )}
             </span>
           </span>
-        </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
+        </section>
+        <section className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
             className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
@@ -228,10 +228,10 @@ function CategoryMenu() {
               </span>
             </span>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
       {/** */}
-      <div
+      <article
         className="   border-b-2 pt-10  pb-10 p-2.5 w-full"
         onClick={() => {
           setOptionFour(!optionFour);
@@ -240,7 +240,7 @@ function CategoryMenu() {
           setOptionOne(false);
         }}
       >
-        <div className="flex items-center">
+        <section className="flex items-center">
           <span
             className="w-full flex  relative"
             onClick={() => {
@@ -271,8 +271,8 @@ function CategoryMenu() {
               )}
             </span>
           </span>
-        </div>
-        <div className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
+        </section>
+        <section className="min-[1000px]:grid min-[1000px]:grid-cols-2  ">
           <div className="w-full min-[1000px]:block hidden"></div>
           <div
             className="min-[1000px]:ml-20 mt-5 min-[1000px]:mt-0 w-86.77 block "
@@ -292,9 +292,9 @@ function CategoryMenu() {
               </span>
             </span>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </article>
   );
 }
 export default CategoryMenu;
