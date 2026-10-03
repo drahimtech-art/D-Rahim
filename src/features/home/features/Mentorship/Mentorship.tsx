@@ -7,7 +7,16 @@ import MentorshipPlan from "./components/MentorshipPlan";
 import OurStudents from "./components/OurStudents";
 */
 import ComingSoon from "./components/comingSoon/ComingSoon";
+import { useEffect } from "react";
+import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 function Mentorship() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { setMentorshipPage } = pagesConfigData;
+  useEffect(() => {
+    (() => {
+      setMentorshipPage(true);
+    })();
+  }, []);
   return (
     <>
       <Top />
