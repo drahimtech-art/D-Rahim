@@ -30,7 +30,7 @@ const PagesConfigContextData = createContext<PagesConfigConextType>({
   setMentorshipPage: () => {},
 });
 
-export function PagesConfig({
+export function PagesConfigProvider({
   children,
 }: {
   children: React.ReactNode;
