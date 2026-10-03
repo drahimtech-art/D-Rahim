@@ -8,6 +8,10 @@ interface PagesConfigConextType {
   setAboutPage: React.Dispatch<React.SetStateAction<boolean>>;
   mentorshipPage: boolean;
   setMentorshipPage: React.Dispatch<React.SetStateAction<boolean>>;
+  contactPage: boolean;
+  setContactPage: React.Dispatch<React.SetStateAction<boolean>>;
+  bookACallPage: boolean;
+  setBookACallPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface PagesLoaded {
   workPage: boolean;
@@ -18,6 +22,10 @@ interface PagesLoaded {
   setAboutPage: React.Dispatch<React.SetStateAction<boolean>>;
   mentorshipPage: boolean;
   setMentorshipPage: React.Dispatch<React.SetStateAction<boolean>>;
+  contactPage: boolean;
+  setContactPage: React.Dispatch<React.SetStateAction<boolean>>;
+  bookACallPage: boolean;
+  setBookACallPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const PagesConfigContextData = createContext<PagesConfigConextType>({
   workPage: false,
@@ -28,6 +36,10 @@ const PagesConfigContextData = createContext<PagesConfigConextType>({
   setAboutPage: () => {},
   mentorshipPage: false,
   setMentorshipPage: () => {},
+  contactPage: false,
+  setContactPage: () => {},
+  bookACallPage: false,
+  setBookACallPage: () => false,
 });
 
 export function PagesConfigProvider({
@@ -39,6 +51,8 @@ export function PagesConfigProvider({
   const [servicesPage, setServicesPage] = useState<boolean>(false);
   const [aboutPage, setAboutPage] = useState<boolean>(false);
   const [mentorshipPage, setMentorshipPage] = useState<boolean>(false);
+  const [contactPage, setContactPage] = useState<boolean>(false);
+  const [bookACallPage, setBookACallPage] = useState<boolean>(false);
   return (
     <PagesConfigContextData.Provider
       value={{
@@ -50,6 +64,10 @@ export function PagesConfigProvider({
         setAboutPage,
         mentorshipPage,
         setMentorshipPage,
+        contactPage,
+        setContactPage,
+        bookACallPage,
+        setBookACallPage,
       }}
     >
       {children}
