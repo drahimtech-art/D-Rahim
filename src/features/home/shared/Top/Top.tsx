@@ -2,8 +2,10 @@ import Logo from "/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Menu from "../Menu/Menu";
+import LoadingAnimation from "../LoadingState/LoadingAnimation";
 function Top() {
   const [menuControl, setMenuControl] = useState<boolean>(false);
+  const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   const serverPath = window.location.hash;
   const workRef = useRef<HTMLSpanElement | null>(null);
   const servicesRef = useRef<HTMLSpanElement | null>(null);
@@ -14,18 +16,33 @@ function Top() {
   const urlNavigator = useNavigate();
   function services() {
     urlNavigator("/services", { replace: true });
+    if (serverPath != "/services") {
+      setShouldAppLoad(true);
+    }
   }
   function work() {
     urlNavigator("/", { replace: true });
+    if (serverPath != "/") {
+      setShouldAppLoad(true);
+    }
   }
   function about() {
     urlNavigator("/about", { replace: true });
+    if (serverPath != "/about") {
+      setShouldAppLoad(true);
+    }
   }
   function mentorship() {
     urlNavigator("/mentorship", { replace: true });
+    if (serverPath != "/mentorship") {
+      setShouldAppLoad(true);
+    }
   }
   function contact() {
     urlNavigator("/contact", { replace: true });
+    if (serverPath != "/contact") {
+      setShouldAppLoad(true);
+    }
   }
   useEffect(() => {
     if (
@@ -91,6 +108,7 @@ function Top() {
       topDivRef.current.style.background = "white";
     }
   }, [menuControl]);
+
   return (
     <>
       <article className="bg-white  sticky top-0  z-5">
@@ -165,6 +183,7 @@ function Top() {
       >
         <Menu setMenuControl={setMenuControl} />
       </div>
+      {shouldAppLoad && <LoadingAnimation />}
     </>
   );
 }

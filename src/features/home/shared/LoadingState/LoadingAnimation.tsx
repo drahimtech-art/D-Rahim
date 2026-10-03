@@ -1,7 +1,16 @@
+import { useEffect } from "react";
 import appLogo from "/images/logo.png";
 function LoadingAnimation(): React.ReactElement {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    console.log("mount");
+    return () => {
+      document.body.style.overflow = "";
+      console.log("un-mount");
+    };
+  }, []);
   return (
-    <article className="w-full h-screen max-h-screen bg-[#004A3C] font-bold text-2xl">
+    <article className="w-full h-screen max-h-screen bg-[#004A3C] font-bold text-2xl top-0 fixed z-50">
       <section className="flex justify-center items-center w-full h-full">
         <div className="flex flex-col gap-4 ">
           <div className=" relative w-[161px] h-[161px]">

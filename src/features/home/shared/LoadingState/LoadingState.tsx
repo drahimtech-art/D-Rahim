@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { OurWorkApi } from "../../../../storage/OurWorkApi";
 import { GetOurWorkList } from "../../api/Api";
 import LoadingAnimation from "./LoadingAnimation";
 function LoadingState({
-  children,
+  Children,
 }: {
-  children: React.ReactNode;
+  Children: React.LazyExoticComponent<() => React.JSX.Element>;
 }): React.ReactNode {
   const ourWorkProjecData = OurWorkApi();
   const { listOfProjects, setListOfProjects, setAllRandomSelectedProjectInfo } =
@@ -32,6 +32,12 @@ function LoadingState({
     }
     getData();
   }, []);
-  return isDataGoten ? children : <LoadingAnimation />;
+  return isDataGoten ? (
+    <Suspense fallback={<LoadingAnimation />}>
+      <Children />
+    </Suspense>
+  ) : (
+    <LoadingAnimation />
+  );
 }
 export default LoadingState;

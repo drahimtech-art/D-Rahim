@@ -4,7 +4,7 @@ import { OurWorkApi } from "../../../../../../../../storage/OurWorkApi";
 import Top from "../../../../../../shared/Top/Top";
 import Card from "./components/Card";
 import End from "../../../../../../shared/Footer/Footer";
-function ExploreProjects() {
+function ExploreProjects(): React.ReactElement {
   const ourWorkProjecData = OurWorkApi();
   const { listOfProjects } = ourWorkProjecData;
   const exploreProject = [
@@ -14,7 +14,7 @@ function ExploreProjects() {
   ];
   const urlNavigator = useNavigate();
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
-  useEffect(() => {
+  useEffect((): any => {
     const handleWindowResize = () => {
       if (typeof window !== undefined) {
         return setDevicesWidth(window.innerWidth);
@@ -28,7 +28,7 @@ function ExploreProjects() {
   }, []);
   if (devicesWidth !== undefined && devicesWidth < 1000) {
     const url = "discover/all/services";
-    return urlNavigator(url, { replace: true });
+    urlNavigator(url, { replace: true });
   }
 
   return (

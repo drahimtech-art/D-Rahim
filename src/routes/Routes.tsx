@@ -1,5 +1,5 @@
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import { lazy, Suspense, type ComponentType } from "react";
+import { lazy, Suspense } from "react";
 import { StudentsContextProvider } from "../storage/StudentsApi";
 import { SocketProviderContext } from "../storage/SocketApi";
 import ScrollToTop from "./components/ScrollToTop";
@@ -28,9 +28,7 @@ const DiscoverAllServices = lazy(
 );
 const ExploreProjects = lazy(
   () =>
-    import("../features/home/features/Services/features/DiscoverAllServices/features/ExploreProjects/ExploreProjects") as Promise<{
-      default: ComponentType<any>;
-    }>,
+    import("../features/home/features/Services/features/DiscoverAllServices/features/ExploreProjects/ExploreProjects"),
 );
 const UiUx = lazy(
   () =>
@@ -66,55 +64,55 @@ function Routes() {
       children: [
         {
           path: "/",
-          element: <HomeLoadingState children={<Home />} />,
+          element: <HomeLoadingState Children={Home} />,
         },
         {
           path: "/project/info",
-          element: <HomeLoadingState children={<ProjectInfo />} />,
+          element: <HomeLoadingState Children={ProjectInfo} />,
         },
         {
           path: "/services",
-          element: <HomeLoadingState children={<Service />} />,
+          element: <HomeLoadingState Children={Service} />,
         },
         {
           path: "/uiux",
-          element: <HomeLoadingState children={<UiUx />} />,
+          element: <HomeLoadingState Children={UiUx} />,
         },
         {
           path: "/simplebranding",
-          element: <HomeLoadingState children={<SimpleBranding />} />,
+          element: <HomeLoadingState Children={SimpleBranding} />,
         },
         {
           path: "/conceptspring",
-          element: <HomeLoadingState children={<ConceptSpring />} />,
+          element: <HomeLoadingState Children={ConceptSpring} />,
         },
         {
           path: "/designworkshop",
-          element: <HomeLoadingState children={<DesignWorkShop />} />,
+          element: <HomeLoadingState Children={DesignWorkShop} />,
         },
         {
           path: "/discover/all/services",
-          element: <HomeLoadingState children={<DiscoverAllServices />} />,
+          element: <HomeLoadingState Children={DiscoverAllServices} />,
         },
         {
           path: "/explore/projects",
-          element: <HomeLoadingState children={<ExploreProjects />} />,
+          element: <HomeLoadingState Children={ExploreProjects} />,
         },
         {
           path: "/about",
-          element: <HomeLoadingState children={<About />} />,
+          element: <HomeLoadingState Children={About} />,
         },
         {
           path: "/mentorship",
-          element: <HomeLoadingState children={<Mentorship />} />,
+          element: <HomeLoadingState Children={Mentorship} />,
         },
         {
           path: "/contact",
-          element: <HomeLoadingState children={<GetInTouch />} />,
+          element: <HomeLoadingState Children={GetInTouch} />,
         },
         {
           path: "/book/call",
-          element: <HomeLoadingState children={<BookACall />} />,
+          element: <HomeLoadingState Children={BookACall} />,
         },
         {
           //devmode
