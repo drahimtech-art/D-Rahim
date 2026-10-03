@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { OurWorkApi } from "../../../../storage/OurWorkApi";
 import { GetOurWorkList } from "../../api/Api";
+import LoadingAnimation from "./LoadingAnimation";
 function LoadingState({
   children,
 }: {
@@ -31,12 +32,6 @@ function LoadingState({
     }
     getData();
   }, []);
-  return isDataGoten ? (
-    children
-  ) : (
-    <div className="w-full h-full bg-green-500 font-bold text-2xl">
-      Loading....
-    </div>
-  );
+  return isDataGoten ? children : <LoadingAnimation />;
 }
 export default LoadingState;
