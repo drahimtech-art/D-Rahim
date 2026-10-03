@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Menu from "../Menu/Menu";
 import LoadingAnimation from "../LoadingState/LoadingAnimation";
+import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 function Top() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { workPage, servicesPage, aboutPage, mentorshipPage } = pagesConfigData;
   const [menuControl, setMenuControl] = useState<boolean>(false);
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   const serverPath = window.location.hash;
@@ -16,25 +19,25 @@ function Top() {
   const urlNavigator = useNavigate();
   function services() {
     urlNavigator("/services", { replace: true });
-    if (serverPath != "#/services") {
+    if (serverPath != "#/services" && !servicesPage) {
       setShouldAppLoad(true);
     }
   }
   function work() {
     urlNavigator("/", { replace: true });
-    if (serverPath != "/" && serverPath != "#/") {
+    if (serverPath != "/" && serverPath != "#/" && !workPage) {
       setShouldAppLoad(true);
     }
   }
   function about() {
     urlNavigator("/about", { replace: true });
-    if (serverPath != "#/about") {
+    if (serverPath != "#/about" && !aboutPage) {
       setShouldAppLoad(true);
     }
   }
   function mentorship() {
     urlNavigator("/mentorship", { replace: true });
-    if (serverPath != "#/mentorship") {
+    if (serverPath != "#/mentorship" && !mentorshipPage) {
       setShouldAppLoad(true);
     }
   }
