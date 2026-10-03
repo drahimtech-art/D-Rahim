@@ -351,3 +351,14 @@ textarea:focus {
     rotate: 0deg;
   }
 }
+.animation-180deg {
+  animation: rotate-full 3s linear infinite;
+}
+@keyframes rotate-full {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}

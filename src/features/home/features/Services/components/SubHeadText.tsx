@@ -1,6 +1,6 @@
 function SubHeadText() {
   return (
-    <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-27.25 mt-10">
+    <article className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-27.25 mt-10">
       <span className="flex flex-col min-[1000px]:max-w-237 gap-10">
         <h5 className="fontPoppins font-semibold min40Max60px ">
           Delivering Solutions Across Many Industries
@@ -12,7 +12,7 @@ function SubHeadText() {
           complex design problems.
         </h5>
       </span>
-    </div>
+    </article>
   );
 }
 export default SubHeadText;
