@@ -11,37 +11,37 @@ function Menu(props: MenuControl) {
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   function services() {
     urlNavigator("/services", { replace: true });
-    if (serverPath != "/services") {
+    if (serverPath != "#/services") {
       setShouldAppLoad(true);
     }
   }
   function work() {
     urlNavigator("/", { replace: true });
-    if (serverPath != "/") {
+    if (serverPath != "/" && serverPath != "#/") {
       setShouldAppLoad(true);
     }
   }
   function about() {
     urlNavigator("/about", { replace: true });
-    if (serverPath != "/about") {
+    if (serverPath != "#/about") {
       setShouldAppLoad(true);
     }
   }
   function mentorship() {
     urlNavigator("/mentorship", { replace: true });
-    if (serverPath != "/mentorship") {
+    if (serverPath != "#/mentorship") {
       setShouldAppLoad(true);
     }
   }
   function contact() {
     urlNavigator("/contact", { replace: true });
-    if (serverPath != "/contact") {
+    if (serverPath != "#/contact") {
       setShouldAppLoad(true);
     }
   }
   function bookACall() {
-    urlNavigator("/contact", { replace: true });
-    if (serverPath != "/book/call") {
+    urlNavigator("/book/call", { replace: true });
+    if (serverPath != "#/book/call") {
       setShouldAppLoad(true);
     }
   }
