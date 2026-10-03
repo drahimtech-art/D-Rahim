@@ -61,33 +61,32 @@ function EnterDetailsAndMap() {
           </span>
         </div>
         <div className="mt-10">
-          <span className="flex w-full items-center min-[1000px]:max-w-201.75 ">
-            <input
-              className="min-[1000px]:w-6 min-[1000px]:h-6 w-10 h-10 text-green-400"
-              type="radio"
-            ></input>
+          <span className="w-full  min-[1000px]:max-w-201.75 ">
             <h5 className=" text-[16px] ml-2 ">
-              Keep this button selected to give consent for us to collect and
-              process the personal information you've submitted, in line with
-              our Privacy Policy.
+              <strong className="font-normal text-[#2563EB]">
+                {" "}
+                By clicking Submit Application
+              </strong>
+              , you consent to D’rahim Tech Innovation collecting and processing
+              the personal information you provide in accordance with our
+              Privacy Policy.
             </h5>
           </span>
-          <span className="flex ml-auto mr-auto min-[1000px]:p-0 pl-7.5 pr-7.5 p-2.5 items-center justify-center mt-10 bg-green-600 min-[1000px]:w-36 min-[1000px]:h-12.5 w-fit rounded-full">
+          <button className="flex mr-auto pointer pl-7.5 pr-7.5 p-2.5 items-center justify-center mt-10 bg-button-bgGreen min-[1000px]:w-fit min-[1000px]:h-12.5 w-fit rounded-full">
             <h5 className="text-center min22 text-gray-200 font-medium font-inter">
-              Submit
+              Submit Application
             </h5>
-          </span>
+          </button>
         </div>
       </section>
       <section className="w-[40%] ml-auto hidden min-[1000px]:block">
-        <span className="flex justify-center w-full">
-          <h5 className="font-semibold logoMainText">Find Us On The Map</h5>
-        </span>
-        <div className="mt-2 w-full h-[50%]  max-h-112.5  rounded-2xl">
+        <div className=" w-full h-[50%]  max-h-112.5  rounded-2xl">
           <img className="w-full h-full  rounded-2xl" src={mapIcon} />
         </div>
-        <span className="flex justify-center mt-25">
-          <i className="fa-brands fa-whatsapp min-[1000px]:text-[5rem] text-green-600"></i>
+        <span className="flex justify-center w-full mt-2">
+          <h5 className="font-normal font-inter logoMainText">
+            Find Us On The Map
+          </h5>
         </span>
       </section>
     </article>
