@@ -12,7 +12,7 @@ function Service() {
   const { setServicesPage } = pagesConfigData;
   useEffect(() => {
     (() => {
-      setServicesPage(false);
+      setServicesPage(true);
     })();
   }, []);
   return (

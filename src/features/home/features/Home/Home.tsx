@@ -9,7 +9,7 @@ function Home() {
   const { setWorkPage } = pagesConfigData;
   useEffect(() => {
     (() => {
-      setWorkPage(false);
+      setWorkPage(true);
     })();
   }, []);
   return (

@@ -4,7 +4,16 @@ import AboutHeadText from "./components/AboutHeadText";
 import AboutSubHeadText from "./components/AboutSubHeadText";
 import OurTerms from "./components/OurTerms";
 import End from "../../shared/Footer/Footer";
+import { useEffect } from "react";
+import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 function About() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { setAboutPage } = pagesConfigData;
+  useEffect(() => {
+    (() => {
+      setAboutPage(true);
+    })();
+  }, []);
   return (
     <>
       <Top />
