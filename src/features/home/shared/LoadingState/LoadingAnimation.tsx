@@ -3,10 +3,8 @@ import appLogo from "/images/logo.png";
 function LoadingAnimation(): React.ReactElement {
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    console.log("mount");
     return () => {
       document.body.style.overflow = "";
-      console.log("un-mount");
     };
   }, []);
   return (
