@@ -6,7 +6,8 @@ import LoadingAnimation from "../LoadingState/LoadingAnimation";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 function Top() {
   const pagesConfigData = PagesConfigDataApi();
-  const { workPage, servicesPage, aboutPage, mentorshipPage } = pagesConfigData;
+  const { workPage, servicesPage, aboutPage, mentorshipPage, contactPage } =
+    pagesConfigData;
   const [menuControl, setMenuControl] = useState<boolean>(false);
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   const serverPath = window.location.hash;
@@ -43,7 +44,7 @@ function Top() {
   }
   function contact() {
     urlNavigator("/contact", { replace: true });
-    if (serverPath != "#/contact") {
+    if (serverPath != "#/contact" && !contactPage) {
       setShouldAppLoad(true);
     }
   }
