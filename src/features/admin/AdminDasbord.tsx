@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { lazy } from "react";
 import LeftNevBar from "./shared/LeftNevBar";
 import Dashboard from "./features/Dashboard/Dashboard";
-const Bookings = lazy(() => import("./features/Booking/Bookings"));
-const Mentorship = lazy(() => import("./features/Mentorship/Mentorship"));
-const JobInquires = lazy(() => import("./features/JobInquires/JobInquires"));
-const Content = lazy(() => import("./features/Content/Content"));
-const Settings = lazy(() => import("./features/Settings/Settings"));
+import Bookings from "./features/Booking/Bookings";
+import Mentorship from "./features/Mentorship/Mentorship";
+import JobInquires from "./features/JobInquires/JobInquires";
+import Content from "./features/Content/Content";
+import Settings from "./features/Settings/Settings";
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
