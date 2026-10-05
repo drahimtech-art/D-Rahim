@@ -2,63 +2,79 @@ import { useState } from "react";
 import LeftNevBar from "./shared/LeftNevBar";
 import Dashboard from "./features/Dashboard/Dashboard";
 import Bookings from "./features/Booking/Bookings";
-import Mentorship from "./features/Mentorship/Mentorship";
+//import Payment from "./features/Payment/Payment";
 import JobInquires from "./features/JobInquires/JobInquires";
-import Content from "./features/Content/Content";
+//import Analytics from "./features/Analytics/Analytics";
 import Settings from "./features/Settings/Settings";
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
+  const [renderPortfolio, setRenderPortfolio] = useState<boolean>(false);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
-  const [renderMentorship, setRenderMentorship] = useState<boolean>(false);
+  const [renderPayment, setRenderPayment] = useState<boolean>(false);
   const [renderJobInquires, setRenderJobInquires] = useState<boolean>(false);
-  const [renderContent, setRenderContent] = useState<boolean>(false);
+  const [renderAnalytics, setRenderAnalytics] = useState<boolean>(false);
   const [renderSettings, setRenderSettings] = useState<boolean>(false);
   function toDashboard() {
     setRenderSettings(false);
-    setRenderContent(false);
+    setRenderAnalytics(false);
     setRenderJobInquires(false);
-    setRenderMentorship(false);
+    setRenderPayment(false);
     setRenderBooking(false);
+    setRenderPortfolio(false);
     setRenderDashboard(true);
+  }
+  function toPortfolio() {
+    setRenderSettings(false);
+    setRenderAnalytics(false);
+    setRenderJobInquires(false);
+    setRenderPayment(false);
+    setRenderBooking(false);
+    setRenderDashboard(false);
+    setRenderPortfolio(true);
   }
   function toBooking() {
     setRenderSettings(false);
-    setRenderContent(false);
+    setRenderAnalytics(false);
     setRenderJobInquires(false);
-    setRenderMentorship(false);
+    setRenderPayment(false);
     setRenderDashboard(false);
+    setRenderPortfolio(false);
     setRenderBooking(true);
   }
-  function toMentorship() {
+  function toPayment() {
     setRenderSettings(false);
-    setRenderContent(false);
+    setRenderAnalytics(false);
     setRenderJobInquires(false);
     setRenderBooking(false);
     setRenderDashboard(false);
-    setRenderMentorship(true);
+    setRenderPortfolio(false);
+    setRenderPayment(true);
   }
   function toJobinquires() {
     setRenderSettings(false);
-    setRenderContent(false);
-    setRenderMentorship(false);
+    setRenderAnalytics(false);
+    setRenderPayment(false);
     setRenderBooking(false);
     setRenderDashboard(false);
+    setRenderPortfolio(false);
     setRenderJobInquires(true);
   }
-  function toContent() {
+  function toAnalytics() {
     setRenderSettings(false);
     setRenderJobInquires(false);
-    setRenderMentorship(false);
+    setRenderPayment(false);
     setRenderBooking(false);
     setRenderDashboard(false);
-    setRenderContent(true);
+    setRenderPortfolio(false);
+    setRenderAnalytics(true);
   }
   function toSettings() {
-    setRenderContent(false);
+    setRenderAnalytics(false);
     setRenderJobInquires(false);
-    setRenderMentorship(false);
+    setRenderPayment(false);
     setRenderBooking(false);
     setRenderDashboard(false);
+    setRenderPortfolio(false);
     setRenderSettings(true);
   }
   function logout() {}
@@ -72,30 +88,32 @@ function AdminDasboard() {
                 {/**sideber left*/}
                 <LeftNevBar
                   toDashboard={toDashboard}
+                  toPortfolio={toPortfolio}
                   toBooking={toBooking}
-                  toContent={toContent}
+                  toAnalytics={toAnalytics}
                   toJobinquires={toJobinquires}
-                  toMentorship={toMentorship}
+                  toPayment={toPayment}
                   toSettings={toSettings}
                   logout={logout}
                   Dashboard={renderDashboard}
                   Jobinquires={renderJobInquires}
                   Booking={renderBooking}
-                  Mentorship={renderMentorship}
-                  Content={renderContent}
+                  Payment={renderPayment}
+                  Analytics={renderAnalytics}
                   Settings={renderSettings}
+                  Portfolio={renderPortfolio}
                 />
               </div>
             </nav>
           </div>
         </div>
         <main className="w-full h-full">
-          {/**center content*/}
+          {/**center Analytics*/}
           {renderDashboard && <Dashboard />}
           {renderBooking && <Bookings />}
-          {renderMentorship && <Mentorship />}
+          {/**{renderPayment && <Payment />}**/}
           {renderJobInquires && <JobInquires />}
-          {renderContent && <Content />}
+          {/**{renderAnalytics && <Analytics />} */}
           {renderSettings && <Settings />}
         </main>
       </div>

@@ -5,38 +5,42 @@ import homeIcon from "/images/icons/HouseSimple_icon.png";
 import lightHomeIcon from "/images/icons/HouseSimple.png";
 import calenderIcon from "/images/icons/CalendarDotsLight_icon.png";
 import lightCalenderIcon from "/images/icons/CalendarDots.png";
-import mentorshipIcon from "/images/icons/StudentLight_icon.png";
-import lightMentorshipIcon from "/images/icons/Student.png";
 import jobInquiresIcon from "/images/icons/BriefcaseLight_icon.png";
 import lightJobInquiresIcon from "/images/icons/Briefcase.png";
-import contentIcon from "/images/icons/PackageDark.png";
-import lightContentIcon from "/images/icons/Package.png";
-import settingsIcon from "/images/icons/Sliders_icon.png";
-import lightSettingsIcon from "/images/icons/Sliders.png";
+import settingsIcon from "/images/icons/GearSix.png";
+import lightSettingsIcon from "/images/icons/GearSix_light.png";
+import analyticsIcon from "/images/icons/ChartBar.png";
+import paymentIcon from "/images/icons/CreditCard.png";
+import lightPaymentIcon from "/images/icons/CreditCard_light.png";
+import portfolioIcon from "/images/icons/SquaresFour.png";
+import lightPortfolioIcon from "/images/icons/SquaresFour_light.png";
 type NavigationControl = {
   toDashboard: () => void;
+  toPortfolio: () => void;
   toBooking: () => void;
-  toMentorship: () => void;
+  toPayment: () => void;
   toJobinquires: () => void;
-  toContent: () => void;
+  toAnalytics: () => void;
   toSettings: () => void;
   logout: () => void;
   //
   Dashboard: boolean;
+  Portfolio: boolean;
   Booking: boolean;
-  Mentorship: boolean;
+  Payment: boolean;
   Jobinquires: boolean;
-  Content: boolean;
+  Analytics: boolean;
   Settings: boolean;
 };
 function LeftNevBar(props: NavigationControl) {
   const [searchParems, setSearchParems] = useSearchParams();
   const page = searchParems.get("page");
   const dashboardRef = useRef<HTMLButtonElement | null>(null);
+  const portfolioRef = useRef<HTMLButtonElement | null>(null);
   const bookingsRef = useRef<HTMLButtonElement | null>(null);
-  const mentorshipRef = useRef<HTMLButtonElement | null>(null);
+  const paymentRef = useRef<HTMLButtonElement | null>(null);
   const jobInquiresRef = useRef<HTMLButtonElement | null>(null);
-  const contentRef = useRef<HTMLButtonElement | null>(null);
+  const analyticsRef = useRef<HTMLButtonElement | null>(null);
   const settingsRef = useRef<HTMLButtonElement | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   function removeButtonActionColor(ref: RefObject<HTMLButtonElement | null>) {
@@ -54,18 +58,20 @@ function LeftNevBar(props: NavigationControl) {
   function toDashboard() {
     if (
       !dashboardRef.current ||
+      !portfolioRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef.current ||
+      !paymentRef.current ||
       !jobInquiresRef.current ||
-      !contentRef.current ||
+      !analyticsRef.current ||
       !settingsRef.current
     )
       return;
     //remove
     removeButtonActionColor(bookingsRef);
-    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(portfolioRef);
+    removeButtonActionColor(paymentRef);
     removeButtonActionColor(jobInquiresRef);
-    removeButtonActionColor(contentRef);
+    removeButtonActionColor(analyticsRef);
     removeButtonActionColor(settingsRef);
     //add
     addButtonActionColor(dashboardRef);
@@ -74,21 +80,48 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "overview") return;
     setSearchParems({ page: "overview" });
   }
-  function toBooking() {
+  function toPortfolio() {
     if (
       !dashboardRef.current ||
+      !portfolioRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef.current ||
+      !paymentRef.current ||
       !jobInquiresRef.current ||
-      !contentRef.current ||
+      !analyticsRef.current ||
       !settingsRef.current
     )
       return;
     //remove
     removeButtonActionColor(dashboardRef);
-    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(bookingsRef);
+    removeButtonActionColor(paymentRef);
     removeButtonActionColor(jobInquiresRef);
-    removeButtonActionColor(contentRef);
+    removeButtonActionColor(analyticsRef);
+    removeButtonActionColor(settingsRef);
+    //add
+    addButtonActionColor(portfolioRef);
+    //func call
+    props.toPortfolio();
+    if (page == "portfolio") return;
+    setSearchParems({ page: "portfolio" });
+  }
+  function toBooking() {
+    if (
+      !dashboardRef.current ||
+      !portfolioRef.current ||
+      !bookingsRef.current ||
+      !paymentRef.current ||
+      !jobInquiresRef.current ||
+      !analyticsRef.current ||
+      !settingsRef.current
+    )
+      return;
+    //remove
+    removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(portfolioRef);
+    removeButtonActionColor(paymentRef);
+    removeButtonActionColor(jobInquiresRef);
+    removeButtonActionColor(analyticsRef);
     removeButtonActionColor(settingsRef);
     //add
     addButtonActionColor(bookingsRef);
@@ -97,44 +130,48 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "bookings") return;
     setSearchParems({ page: "bookings" });
   }
-  function toMentorship() {
+  function toPayment() {
     if (
       !dashboardRef.current ||
+      !portfolioRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef.current ||
+      !paymentRef.current ||
       !jobInquiresRef.current ||
-      !contentRef.current ||
+      !analyticsRef.current ||
       !settingsRef.current
     )
       return;
     //remove
     removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(portfolioRef);
     removeButtonActionColor(bookingsRef);
     removeButtonActionColor(jobInquiresRef);
-    removeButtonActionColor(contentRef);
+    removeButtonActionColor(analyticsRef);
     removeButtonActionColor(settingsRef);
     //add
-    addButtonActionColor(mentorshipRef);
+    addButtonActionColor(paymentRef);
     //func call
-    props.toMentorship();
-    if (page == "mentorship") return;
-    setSearchParems({ page: "mentorship" });
+    props.toPayment();
+    if (page == "payment") return;
+    setSearchParems({ page: "payment" });
   }
   function toJobinquires() {
     if (
       !dashboardRef.current ||
+      !portfolioRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef.current ||
+      !paymentRef.current ||
       !jobInquiresRef.current ||
-      !contentRef.current ||
+      !analyticsRef.current ||
       !settingsRef.current
     )
       return;
     //remove
     removeButtonActionColor(dashboardRef);
-    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(portfolioRef);
+    removeButtonActionColor(paymentRef);
     removeButtonActionColor(bookingsRef);
-    removeButtonActionColor(contentRef);
+    removeButtonActionColor(analyticsRef);
     removeButtonActionColor(settingsRef);
     //add
     addButtonActionColor(jobInquiresRef);
@@ -143,44 +180,48 @@ function LeftNevBar(props: NavigationControl) {
     if (page == "jobinquires") return;
     setSearchParems({ page: "jobinquires" });
   }
-  function toContent() {
+  function toAnalytics() {
     if (
       !dashboardRef.current ||
+      !portfolioRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef.current ||
+      !paymentRef.current ||
       !jobInquiresRef.current ||
-      !contentRef.current ||
+      !analyticsRef.current ||
       !settingsRef.current
     )
       return;
     //remove
     removeButtonActionColor(dashboardRef);
-    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(portfolioRef);
+    removeButtonActionColor(paymentRef);
     removeButtonActionColor(jobInquiresRef);
     removeButtonActionColor(bookingsRef);
     removeButtonActionColor(settingsRef);
     //add
-    addButtonActionColor(contentRef);
+    addButtonActionColor(analyticsRef);
     //func call
-    props.toContent();
-    if (page == "content") return;
-    setSearchParems({ page: "content" });
+    props.toAnalytics();
+    if (page == "analytics") return;
+    setSearchParems({ page: "analytics" });
   }
   function toSettings() {
     if (
       !dashboardRef.current ||
+      !portfolioRef.current ||
       !bookingsRef.current ||
-      !mentorshipRef.current ||
+      !paymentRef.current ||
       !jobInquiresRef.current ||
-      !contentRef.current ||
+      !analyticsRef.current ||
       !settingsRef.current
     )
       return;
     //remove
     removeButtonActionColor(dashboardRef);
-    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(portfolioRef);
+    removeButtonActionColor(paymentRef);
     removeButtonActionColor(jobInquiresRef);
-    removeButtonActionColor(contentRef);
+    removeButtonActionColor(analyticsRef);
     removeButtonActionColor(bookingsRef);
     //add
     addButtonActionColor(settingsRef);
@@ -197,17 +238,20 @@ function LeftNevBar(props: NavigationControl) {
       case "overview":
         toDashboard();
         break;
+      case "portfolio":
+        toPortfolio();
+        break;
       case "bookings":
         toBooking();
         break;
-      case "mentorship":
-        toMentorship();
+      case "payment":
+        toPayment();
         break;
       case "jobinquires":
         toJobinquires();
         break;
-      case "content":
-        toContent();
+      case "analytics":
+        toAnalytics();
         break;
       case "settings":
         toSettings();
@@ -223,8 +267,8 @@ function LeftNevBar(props: NavigationControl) {
     })();
   }, []);
   return (
-    <div className="w-full h-full flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
-      <div className="flex gap-2 items-center">
+    <nav className="w-full h-full flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
+      <header className="flex gap-2 items-center">
         <span className="w-8 h-12.5">
           <img className="w-full h-full" src={LogoImg}></img>
         </span>
@@ -234,7 +278,7 @@ function LeftNevBar(props: NavigationControl) {
             TECH INNOVATION
           </h5>
         </span>
-      </div>
+      </header>
       {/**navber */}
       <div className="mt-10 flex flex-col gap-4">
         <button
@@ -251,27 +295,15 @@ function LeftNevBar(props: NavigationControl) {
         </button>
         <button
           className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={bookingsRef}
-          onClick={toBooking}
+          ref={portfolioRef}
+          onClick={toPortfolio}
         >
-          {props.Booking ? (
-            <img className=" w-6 h-6 " src={lightCalenderIcon}></img>
+          {props.Portfolio ? (
+            <img className=" w-6 h-6 " src={lightPortfolioIcon}></img>
           ) : (
-            <img className=" w-6 h-6 " src={calenderIcon}></img>
+            <img className=" w-6 h-6 " src={portfolioIcon}></img>
           )}
-          <h5 className="font-inter font-normal text-[18px]">Bookings</h5>
-        </button>
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={mentorshipRef}
-          onClick={toMentorship}
-        >
-          {props.Mentorship ? (
-            <img className=" w-6 h-6 " src={lightMentorshipIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={mentorshipIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Mentorship</h5>
+          <h5 className="font-inter font-normal text-[18px]">Portfolio</h5>
         </button>
         <button
           className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
@@ -287,15 +319,40 @@ function LeftNevBar(props: NavigationControl) {
         </button>
         <button
           className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={contentRef}
-          onClick={toContent}
+          ref={bookingsRef}
+          onClick={toBooking}
         >
-          {props.Content ? (
-            <img className=" w-6 h-6 " src={lightContentIcon}></img>
+          {props.Booking ? (
+            <img className=" w-6 h-6 " src={lightCalenderIcon}></img>
           ) : (
-            <img className=" w-6 h-6 " src={contentIcon}></img>
+            <img className=" w-6 h-6 " src={calenderIcon}></img>
           )}
-          <h5 className="font-inter font-normal text-[18px]">Content</h5>
+          <h5 className="font-inter font-normal text-[18px]">Bookings</h5>
+        </button>
+        <button
+          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+          ref={paymentRef}
+          onClick={toPayment}
+        >
+          {props.Payment ? (
+            <img className=" w-6 h-6 " src={lightPaymentIcon}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={paymentIcon}></img>
+          )}
+          <h5 className="font-inter font-normal text-[18px]">Payments</h5>
+        </button>
+
+        <button
+          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+          ref={analyticsRef}
+          onClick={toAnalytics}
+        >
+          {props.Analytics ? (
+            <img className=" w-6 h-6 " src={"lightAnalyticsIcon"}></img>
+          ) : (
+            <img className=" w-6 h-6 " src={analyticsIcon}></img>
+          )}
+          <h5 className="font-inter font-normal text-[18px]">Analytics</h5>
         </button>
         <button
           className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
@@ -310,13 +367,13 @@ function LeftNevBar(props: NavigationControl) {
           <h5 className="font-inter font-normal text-[18px]">Settings</h5>
         </button>
       </div>
-      <div className="min-[1300px]:mt-16 mt-22.5">
+      <div className="min-[1300px]:mt-7 mt-22.5">
         <button className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl ">
           <i className="fas fa-right-from-bracket font-extralight  text-[24px]"></i>
           <h5 className="font-inter font-normal text-[18px]">Logout</h5>
         </button>
       </div>
-    </div>
+    </nav>
   );
 }
 export default LeftNevBar;
