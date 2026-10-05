@@ -68,7 +68,7 @@ function AdminDasboard() {
       <div className="flex gap-10 h-fit w-full ">
         <div className="w-[25%] min-w-73.5 ">
           <div className="fixed ">
-            <div className="w-full h-full relative">
+            <nav className="w-full h-full relative">
               <div className="absolute w-[294px] ">
                 {/**sideber left*/}
                 <LeftNevBar
@@ -87,16 +87,18 @@ function AdminDasboard() {
                   Settings={renderSettings}
                 />
               </div>
-            </div>
+            </nav>
           </div>
         </div>
-        {/**center content*/}
-        {renderDashboard && <Dashboard />}
-        {renderBooking && <Bookings />}
-        {renderMentorship && <Mentorship />}
-        {renderJobInquires && <JobInquires />}
-        {renderContent && <Content />}
-        {renderSettings && <Settings />}
+        <main className="w-full h-full">
+          {/**center content*/}
+          {renderDashboard && <Dashboard />}
+          {renderBooking && <Bookings />}
+          {renderMentorship && <Mentorship />}
+          {renderJobInquires && <JobInquires />}
+          {renderContent && <Content />}
+          {renderSettings && <Settings />}
+        </main>
       </div>
     </div>
   );
