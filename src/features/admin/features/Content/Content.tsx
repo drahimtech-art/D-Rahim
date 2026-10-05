@@ -1,5 +1,5 @@
 import TopBar from "../../shared/TopBar";
-import TopContent from "../../components/TopContent";
+import TopContent from "../Dashboard/components/TopContent";
 import ContentTable from "./components/ContentTable";
 function Content() {
   return (

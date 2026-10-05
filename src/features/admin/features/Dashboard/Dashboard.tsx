@@ -1,5 +1,5 @@
 import TopBar from "../../shared/TopBar";
-import TopContent from "../../components/TopContent";
+import TopContent from "./components/TopContent";
 import RecentActivities from "./components/RecentActivities";
 import Alert from "./components/Alert";
 function Dashboard() {
