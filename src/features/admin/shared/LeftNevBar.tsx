@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, type RefObject } from "react";
 import { useSearchParams } from "react-router-dom";
 import LogoImg from "/images/logo.png";
 import homeIcon from "/images/icons/HouseSimple_icon.png";
@@ -39,6 +39,18 @@ function LeftNevBar(props: NavigationControl) {
   const contentRef = useRef<HTMLButtonElement | null>(null);
   const settingsRef = useRef<HTMLButtonElement | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  function removeButtonActionColor(ref: RefObject<HTMLButtonElement | null>) {
+    if (!ref.current) return;
+    ref.current.classList.remove("text-white");
+    ref.current.classList.remove("bg-button-light-green");
+    ref.current.classList.add("text-[#757575]");
+  }
+  function addButtonActionColor(ref: RefObject<HTMLButtonElement | null>) {
+    if (!ref.current) return;
+    ref.current.classList.remove("text-[#757575]");
+    ref.current.classList.add("bg-button-light-green");
+    ref.current.classList.add("text-white");
+  }
   function toDashboard() {
     if (
       !dashboardRef.current ||
@@ -50,25 +62,13 @@ function LeftNevBar(props: NavigationControl) {
     )
       return;
     //remove
-    dashboardRef.current.classList.remove("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-button-light-green");
-    bookingsRef.current.classList.remove("text-white");
-    bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-button-light-green");
-    mentorshipRef.current.classList.remove("text-white");
-    mentorshipRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-button-light-green");
-    jobInquiresRef.current.classList.remove("text-white");
-    jobInquiresRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-button-light-green");
-    contentRef.current.classList.remove("text-white");
-    contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-button-light-green");
-    settingsRef.current.classList.remove("text-white");
-    settingsRef.current.classList.add("text-[#757575]");
+    removeButtonActionColor(bookingsRef);
+    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(jobInquiresRef);
+    removeButtonActionColor(contentRef);
+    removeButtonActionColor(settingsRef);
     //add
-    dashboardRef.current.classList.add("bg-button-light-green");
-    dashboardRef.current.classList.add("text-white");
+    addButtonActionColor(dashboardRef);
     //func call
     props.toDashboard();
     if (page == "overview") return;
@@ -85,25 +85,13 @@ function LeftNevBar(props: NavigationControl) {
     )
       return;
     //remove
-    bookingsRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-button-light-green");
-    dashboardRef.current.classList.remove("text-white");
-    dashboardRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-button-light-green");
-    mentorshipRef.current.classList.remove("text-white");
-    mentorshipRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-button-light-green");
-    jobInquiresRef.current.classList.remove("text-white");
-    jobInquiresRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-button-light-green");
-    contentRef.current.classList.remove("text-white");
-    contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-button-light-green");
-    settingsRef.current.classList.remove("text-white");
-    settingsRef.current.classList.add("text-[#757575]");
+    removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(jobInquiresRef);
+    removeButtonActionColor(contentRef);
+    removeButtonActionColor(settingsRef);
     //add
-    bookingsRef.current.classList.add("bg-button-light-green");
-    bookingsRef.current.classList.add("text-white");
+    addButtonActionColor(bookingsRef);
     //func call
     props.toBooking();
     if (page == "bookings") return;
@@ -120,25 +108,13 @@ function LeftNevBar(props: NavigationControl) {
     )
       return;
     //remove
-    mentorshipRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-button-light-green");
-    dashboardRef.current.classList.remove("text-white");
-    dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-button-light-green");
-    bookingsRef.current.classList.remove("text-white");
-    bookingsRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-button-light-green");
-    jobInquiresRef.current.classList.remove("text-white");
-    jobInquiresRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-button-light-green");
-    contentRef.current.classList.remove("text-white");
-    contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-button-light-green");
-    settingsRef.current.classList.remove("text-white");
-    settingsRef.current.classList.add("text-[#757575]");
+    removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(bookingsRef);
+    removeButtonActionColor(jobInquiresRef);
+    removeButtonActionColor(contentRef);
+    removeButtonActionColor(settingsRef);
     //add
-    mentorshipRef.current.classList.add("bg-button-light-green");
-    mentorshipRef.current.classList.add("text-white");
+    addButtonActionColor(mentorshipRef);
     //func call
     props.toMentorship();
     if (page == "mentorship") return;
@@ -154,25 +130,14 @@ function LeftNevBar(props: NavigationControl) {
       !settingsRef.current
     )
       return;
-    jobInquiresRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-button-light-green");
-    dashboardRef.current.classList.remove("text-white");
-    dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-button-light-green");
-    bookingsRef.current.classList.remove("text-white");
-    bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-button-light-green");
-    mentorshipRef.current.classList.remove("text-white");
-    mentorshipRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-button-light-green");
-    contentRef.current.classList.remove("text-white");
-    contentRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-button-light-green");
-    settingsRef.current.classList.remove("text-white");
-    settingsRef.current.classList.add("text-[#757575]");
+    //remove
+    removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(bookingsRef);
+    removeButtonActionColor(contentRef);
+    removeButtonActionColor(settingsRef);
     //add
-    jobInquiresRef.current.classList.add("bg-button-light-green");
-    jobInquiresRef.current.classList.add("text-white");
+    addButtonActionColor(jobInquiresRef);
     //func call
     props.toJobinquires();
     if (page == "jobinquires") return;
@@ -188,25 +153,14 @@ function LeftNevBar(props: NavigationControl) {
       !settingsRef.current
     )
       return;
-    contentRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-button-light-green");
-    dashboardRef.current.classList.remove("text-white");
-    dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-button-light-green");
-    bookingsRef.current.classList.remove("text-white");
-    bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-button-light-green");
-    mentorshipRef.current.classList.remove("text-white");
-    mentorshipRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-button-light-green");
-    jobInquiresRef.current.classList.remove("text-white");
-    jobInquiresRef.current.classList.add("text-[#757575]");
-    settingsRef.current.classList.remove("bg-button-light-green");
-    settingsRef.current.classList.remove("text-white");
-    settingsRef.current.classList.add("text-[#757575]");
+    //remove
+    removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(jobInquiresRef);
+    removeButtonActionColor(bookingsRef);
+    removeButtonActionColor(settingsRef);
     //add
-    contentRef.current.classList.add("bg-button-light-green");
-    contentRef.current.classList.add("text-white");
+    addButtonActionColor(contentRef);
     //func call
     props.toContent();
     if (page == "content") return;
@@ -222,25 +176,14 @@ function LeftNevBar(props: NavigationControl) {
       !settingsRef.current
     )
       return;
-    settingsRef.current.classList.remove("text-[#757575]");
-    dashboardRef.current.classList.remove("bg-button-light-green");
-    dashboardRef.current.classList.remove("text-white");
-    dashboardRef.current.classList.add("text-[#757575]");
-    bookingsRef.current.classList.remove("bg-button-light-green");
-    bookingsRef.current.classList.remove("text-white");
-    bookingsRef.current.classList.add("text-[#757575]");
-    mentorshipRef.current.classList.remove("bg-button-light-green");
-    mentorshipRef.current.classList.remove("text-white");
-    mentorshipRef.current.classList.add("text-[#757575]");
-    contentRef.current.classList.remove("bg-button-light-green");
-    contentRef.current.classList.remove("text-white");
-    contentRef.current.classList.add("text-[#757575]");
-    jobInquiresRef.current.classList.remove("bg-button-light-green");
-    jobInquiresRef.current.classList.remove("text-white");
-    jobInquiresRef.current.classList.add("text-[#757575]");
+    //remove
+    removeButtonActionColor(dashboardRef);
+    removeButtonActionColor(mentorshipRef);
+    removeButtonActionColor(jobInquiresRef);
+    removeButtonActionColor(contentRef);
+    removeButtonActionColor(bookingsRef);
     //add
-    settingsRef.current.classList.add("bg-button-light-green");
-    settingsRef.current.classList.add("text-white");
+    addButtonActionColor(settingsRef);
     //func call
     props.toSettings();
     if (page == "settings") return;
