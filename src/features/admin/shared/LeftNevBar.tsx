@@ -367,7 +367,7 @@ function LeftNevBar(props: NavigationControl) {
           <h5 className="font-inter font-normal text-[18px]">Settings</h5>
         </button>
       </div>
-      <div className="mt-22.5">
+      <div className="min-[1300px]:mt-16 mt-22.5">
         <button className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl ">
           <i className="fas fa-right-from-bracket font-extralight  text-[24px]"></i>
           <h5 className="font-inter font-normal text-[18px]">Logout</h5>

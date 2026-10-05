@@ -1,33 +1,40 @@
-import testImage from "/images/testimage.png";
+import calendarIcon from "/images/icons/CalendarDots_icon.png";
+import searchIcon from "/images/icons/search_icon.png";
+import bellIcon from "/images/icons/bell_icon.png";
 type Heading = {
   heading: string;
   subHeading: boolean;
 };
 function TopBar(props: Heading) {
   return (
-    <div className="w-full flex p-2.5 pl-4 pr-4 bg-[#FFFFFF] h-25 items-center rounded-[10px]">
-      <span className="flex min22Max26px gap-1 items-center  mr-auto overflow-hidden">
-        <h5 className="font-inter font-semibold text-[26px] ">
-          {props.heading}
-          {props.subHeading && " 👋"}
+    <article className="w-full flex p-3.5 pl-5 pr-5 bg-[#FFFFFF] h-[100px] items-center rounded-[10px]">
+      <section className="flex flex-col min22Max26px gap-2    mr-auto overflow-hidden">
+        <h5 className="font-inter font-semibold text-[22px] ">
+          Welcome back, Victory! 👋
         </h5>
-      </span>
+        <h5 className="font-inter font-normal text-[18px]">
+          Here’s what’s happening today.
+        </h5>
+      </section>
       {/**search bar */}
-      <div className="flex gap-8 items-center">
-        <span className=" w-92.75 h-9.5 flex  items-center border border-gray-500 p-1 pl-3.25 pr-3.5 rounded-[30px]">
-          <i className="fa fa-search text-2xl"></i>
-          <input className="w-full h-full pl-2" placeholder="Search..."></input>
+      <section className="flex gap-8 items-center">
+        <span className="flex p-3.25 gap-3.25 text-[#757575] items-center rounded-[10px] border-[0.5px] border-[#D9D9D9] ">
+          <img className="w-[24px] h-[24px]" src={calendarIcon}></img>
+          <h5 className="text-[#757575] font-normal text-[14px]">
+            May 26 - Jun 01, 2026
+          </h5>
+          <i className="fa fa-angle-down"></i>
         </span>
         <span className="h-full flex">
-          <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-gray-500 rounded-full">
-            <i className="fa fa-bell text-2xl text-gray-500"></i>
+          <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full">
+            <img className="w-[24px] h-[24px]" src={searchIcon}></img>
           </span>
-          <span className="block mr-5  w-12.5 h-12.5 border border-gray-500 rounded-full">
-            <img className="w-full h-full" src={testImage}></img>
+          <span className=" mr-5 flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full">
+            <img className="w-[24px] h-[24px]" src={bellIcon}></img>
           </span>
         </span>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 export default TopBar;
