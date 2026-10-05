@@ -76,4 +76,5 @@ function TopContent() {
     </article>
   );
 }
+
 export default TopContent;
