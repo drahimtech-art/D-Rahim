@@ -6,7 +6,10 @@ function Dashboard() {
   return (
     <div className="w-full h-full flex flex-col gap-7 ">
       {/**top bar */}
-      <TopBar heading={"Good morning, Victory!"} subHeading={true} />
+      <TopBar
+        heading={"Welcome back, Victory! 👋"}
+        subHeading={" Here’s what’s happening today."}
+      />
       {/**Top Content */}
       <TopContent />
       {/**booking & selas chat */}

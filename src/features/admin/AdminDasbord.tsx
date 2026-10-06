@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LeftNevBar from "./shared/LeftNevBar";
 import Dashboard from "./features/Dashboard/Dashboard";
+import Portfolio from "./features/portfolio/Portfolio";
 import Bookings from "./features/Booking/Bookings";
 //import Payment from "./features/Payment/Payment";
 import JobInquires from "./features/JobInquires/JobInquires";
@@ -110,6 +111,7 @@ function AdminDasboard() {
         <main className="w-full h-full">
           {/**center Analytics*/}
           {renderDashboard && <Dashboard />}
+          {renderPortfolio && <Portfolio />}
           {renderBooking && <Bookings />}
           {/**{renderPayment && <Payment />}**/}
           {renderJobInquires && <JobInquires />}
