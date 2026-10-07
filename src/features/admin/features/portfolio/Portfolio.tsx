@@ -1,5 +1,6 @@
 import TopBar from "../../shared/TopBar";
 import SearchAndFilterBar from "../../shared/SearchAndFilterBar";
+import List from "./components/List";
 function Portfolio(): React.ReactElement {
   return (
     <article className="w-full h-full">
@@ -8,6 +9,7 @@ function Portfolio(): React.ReactElement {
         subHeading="Manage the sevices you offer to your clients."
       />
       <SearchAndFilterBar searchSection="services" />
+      <List />
     </article>
   );
 }
