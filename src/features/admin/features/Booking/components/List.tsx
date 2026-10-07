@@ -15,7 +15,7 @@ function List(): React.ReactElement {
         </span>
         <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
           <h5 className="font-inter font-normal text-[14px] text-[#A5A6A7]">
-            Date Added
+            Date
           </h5>
         </span>
         <span className="pl-2.5 pr-2.5 border-r border-[#ebe8e8] flex justify-start items-center">
