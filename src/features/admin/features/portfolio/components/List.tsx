@@ -31,11 +31,33 @@ function List(): React.ReactElement {
         </span>
       </section>
       <section className="w-full h-[400px] overflow-hidden">
-        <div className="w-full h-full overflow-y-scroll flex flex-col">
+        <div className="w-full h-full  flex flex-col">
           {Array.from({ length: 30 }).map((_, i) => {
             return <TableRows key={`table-row-key-${i}`} />;
           })}
         </div>
+      </section>
+      <section className="w-full h-[72px] pl-2.5 pr-2.5 flex items-center">
+        <span className="p-2.5 mr-auto">
+          <h5 className="font-inter font-normal text-[16px]">
+            Showing 1 to 4 of 12 results
+          </h5>
+        </span>
+        <span className="w-fit h-full flex items-center gap-3">
+          <i className="fa fa-angle-left"></i>
+          <span className="w-fit h-full flex items-center gap-1">
+            <span className="w-7.5 h-7.5 flex justify-center items-center  border border-[#F5F5F5] rounded-xl">
+              <h5 className="font-inter font-normal text-[16px]">1</h5>
+            </span>
+            <span className="w-7.5 h-7.5 flex justify-center items-center   rounded-xl">
+              <h5 className="font-inter font-normal text-[16px]">2</h5>
+            </span>
+            <span className="w-7.5 h-7.5 flex justify-center items-center   rounded-xl">
+              <h5 className="font-inter font-normal text-[16px]">3</h5>
+            </span>
+          </span>
+          <i className="fa fa-angle-right "></i>
+        </span>
       </section>
     </article>
   );
