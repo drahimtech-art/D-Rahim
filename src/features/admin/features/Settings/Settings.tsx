@@ -1,5 +1,4 @@
 import TopBar from "../../shared/TopBar";
-import JobInquiresTable from "../JobInquires/components/JobInquiresTable";
 function Settings() {
   return (
     <div className="w-full h-full  ">
@@ -66,7 +65,7 @@ function Settings() {
             </span>
           </div>
           {/**grid body content */}
-          <JobInquiresTable />
+
           {/**end body content control */}
           <div className="w-full h-18 pl-2.5 pr-2.5 flex items-center">
             <span className="p-2.5 mr-auto">
