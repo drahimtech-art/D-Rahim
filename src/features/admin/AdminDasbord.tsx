@@ -3,7 +3,7 @@ import LeftNevBar from "./shared/LeftNevBar";
 import Dashboard from "./features/Dashboard/Dashboard";
 import Portfolio from "./features/portfolio/Portfolio";
 import Bookings from "./features/Booking/Bookings";
-//import Payment from "./features/Payment/Payment";
+import Payment from "./features/payment/Payment";
 import JobInquires from "./features/JobInquires/JobInquires";
 //import Analytics from "./features/Analytics/Analytics";
 import Settings from "./features/Settings/Settings";
@@ -113,7 +113,7 @@ function AdminDasboard() {
           {renderDashboard && <Dashboard />}
           {renderPortfolio && <Portfolio />}
           {renderBooking && <Bookings />}
-          {/**{renderPayment && <Payment />}**/}
+          {renderPayment && <Payment />}
           {renderJobInquires && <JobInquires />}
           {/**{renderAnalytics && <Analytics />} */}
           {renderSettings && <Settings />}
