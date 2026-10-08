@@ -5,7 +5,7 @@ import Portfolio from "./features/portfolio/Portfolio";
 import Bookings from "./features/Booking/Bookings";
 import Payment from "./features/payment/Payment";
 import JobInquires from "./features/JobInquires/JobInquires";
-//import Analytics from "./features/Analytics/Analytics";
+import Analytics from "./features/analytics/Analytics";
 import Settings from "./features/Settings/Settings";
 function AdminDasboard() {
   const [renderDashboard, setRenderDashboard] = useState<boolean>(true);
@@ -109,13 +109,12 @@ function AdminDasboard() {
           </div>
         </div>
         <main className="w-full h-full">
-          {/**center Analytics*/}
           {renderDashboard && <Dashboard />}
           {renderPortfolio && <Portfolio />}
           {renderBooking && <Bookings />}
           {renderPayment && <Payment />}
           {renderJobInquires && <JobInquires />}
-          {/**{renderAnalytics && <Analytics />} */}
+          {renderAnalytics && <Analytics />}
           {renderSettings && <Settings />}
         </main>
       </div>
