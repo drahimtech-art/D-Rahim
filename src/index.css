@@ -363,3 +363,6 @@ textarea:focus {
     rotate: 360deg;
   }
 }
+.swicth-shadow {
+  box-shadow: 1px 2px 7px black;
+}
