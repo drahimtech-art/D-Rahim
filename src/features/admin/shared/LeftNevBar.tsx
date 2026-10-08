@@ -10,6 +10,7 @@ import lightJobInquiresIcon from "/images/icons/Briefcase.png";
 import settingsIcon from "/images/icons/GearSix.png";
 import lightSettingsIcon from "/images/icons/GearSix_light.png";
 import analyticsIcon from "/images/icons/ChartBar.png";
+import lightAnalyticsIcon from "/images/icons/ChartBar_light.png";
 import paymentIcon from "/images/icons/CreditCard.png";
 import lightPaymentIcon from "/images/icons/CreditCard_light.png";
 import portfolioIcon from "/images/icons/SquaresFour.png";
@@ -348,7 +349,7 @@ function LeftNevBar(props: NavigationControl) {
           onClick={toAnalytics}
         >
           {props.Analytics ? (
-            <img className=" w-6 h-6 " src={"lightAnalyticsIcon"}></img>
+            <img className=" w-6 h-6 " src={lightAnalyticsIcon}></img>
           ) : (
             <img className=" w-6 h-6 " src={analyticsIcon}></img>
           )}
