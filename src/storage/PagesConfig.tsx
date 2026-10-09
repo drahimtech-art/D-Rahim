@@ -67,7 +67,7 @@ const PagesConfigContextData = createContext<PagesConfigConextType>({
   contactPage: false,
   setContactPage: () => {},
   bookACallPage: false,
-  setBookACallPage: () => false,
+  setBookACallPage: () => {},
 });
 
 export function PagesConfigProvider({
@@ -83,10 +83,101 @@ export function PagesConfigProvider({
   const [contactPage, setContactPage] = useState<boolean>(false);
   const [bookACallPage, setBookACallPage] = useState<boolean>(false);
   //user
-  const [visitedClientData, setVistedClientData] = useState();
+  const [visitedClientData, setVisitedClientData] = useState<
+    WebsiteVistedClientData | undefined
+  >(undefined);
+  //create new user
   useEffect(() => {
-    console.log("config mounted");
+    if (visitedClientData) return;
+    const userId = crypto.randomUUID();
+    const dateVisited = new Date();
+    const deviceWidth = window.innerWidth;
+    const desktop = deviceWidth >= 1025 ? true : false;
+    const mobile = deviceWidth >= 320 && deviceWidth < 768 ? true : false;
+    const tablet = deviceWidth >= 768 && deviceWidth < 1025 ? true : false;
+    const other = deviceWidth < 320 ? true : false;
+    //
+    const newVisitedClientData = {
+      userId,
+      pageVisited: {
+        homePage: workPage,
+        servicesPage,
+        aboutPage,
+        mentorshipPage,
+        contactPage,
+      },
+      deviceType: {
+        desktop,
+        mobile,
+        tablet,
+        other,
+      },
+      platformVisitedFrom: {
+        facebook: false,
+        linkined: false,
+        youtub: false,
+        tiktok: false,
+        behance: false,
+        instagram: false,
+        twitter: false,
+        google: false,
+        other: false,
+      },
+      dateVisited,
+    };
+    function createNewVistedClientData(): void {
+      setVisitedClientData(newVisitedClientData);
+    }
+    createNewVistedClientData();
+    //check if user bounce with a timeout of 10s seconds if valid push data to server else do nothing
+    const userBounceValidator = setTimeout(() => {
+      //alert("user didn't bounce");
+    }, 10000); // 10s
+    return () => {
+      clearTimeout(userBounceValidator);
+    };
   }, []);
+  //update user data if user visit new page
+  useEffect(() => {
+    if (
+      !workPage &&
+      !servicesPage &&
+      !aboutPage &&
+      !mentorshipPage &&
+      !contactPage &&
+      !bookACallPage
+    )
+      return;
+    if (!visitedClientData) return;
+    function updateVistedClientData(): void {
+      setVisitedClientData((prevData) => {
+        if (!prevData) return undefined;
+        return {
+          ...prevData,
+          pageVisited: {
+            homePage: workPage,
+            servicesPage,
+            aboutPage,
+            mentorshipPage,
+            contactPage,
+          },
+        };
+      });
+    }
+    updateVistedClientData();
+    console.log("update");
+  }, [
+    workPage,
+    servicesPage,
+    aboutPage,
+    mentorshipPage,
+    contactPage,
+    bookACallPage,
+  ]);
+  //
+  useEffect(() => {
+    console.log(visitedClientData);
+  }, [visitedClientData]);
   return (
     <PagesConfigContextData.Provider
       value={{
