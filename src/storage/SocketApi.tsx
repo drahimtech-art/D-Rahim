@@ -56,18 +56,19 @@ export const SocketProviderContext = ({
   const [receiveMessage, setReceiveMessage] = useState<Message | undefined>();
   //
   const connectsocket = async () => {
-    const CLIENT_KEY = "CLIENT_KEY";
-    const data = localStorage.getItem(CLIENT_KEY);
+    //const CLIENT_KEY = "CLIENT_KEY";
+    //const data = localStorage.getItem(CLIENT_KEY);
     if (socketRef.current?.connected) return;
     try {
-      if (!data || data === "null") throw new Error("Access key not found");
-      const key = JSON.parse(data);
+      //if (!data || data === "null") throw new Error("Access key not found");
+      //const key = JSON.parse(data);
       const newSocket: AppSocket = io(serverPort, {
-        autoConnect: false,
         withCredentials: true,
+        /**
         extraHeaders: {
           "X-Frontend-Key": `${key}`,
         },
+         */
       });
       newSocket.on("connect", () => {
         console.log("Socket conected");
@@ -100,6 +101,7 @@ export const SocketProviderContext = ({
   };
   //
   useEffect(() => {
+    connectsocket();
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();

@@ -44,7 +44,7 @@ interface WebsiteVistedClientData {
   };
   platformVisitedFrom: {
     facebook: boolean;
-    linkined: boolean;
+    linkedIn: boolean;
     youtub: boolean;
     tiktok: boolean;
     behance: boolean;
@@ -114,7 +114,7 @@ export function PagesConfigProvider({
       },
       platformVisitedFrom: {
         facebook: false,
-        linkined: false,
+        linkedIn: false,
         youtub: false,
         tiktok: false,
         behance: false,
