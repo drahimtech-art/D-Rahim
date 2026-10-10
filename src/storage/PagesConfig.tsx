@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { SocketApi } from "./SocketApi";
 interface PagesConfigConextType {
   workPage: boolean;
   setWorkPage: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,7 +28,7 @@ interface PagesLoaded {
   bookACallPage: boolean;
   setBookACallPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
-interface WebsiteVistedClientData {
+export interface WebsiteVistedClientData {
   userId: string;
   pageVisited: {
     homePage: boolean;
@@ -54,6 +55,7 @@ interface WebsiteVistedClientData {
     other: boolean;
   };
   dateVisited: Date;
+  serverId?: string;
 }
 const PagesConfigContextData = createContext<PagesConfigConextType>({
   workPage: false,
@@ -75,6 +77,8 @@ export function PagesConfigProvider({
 }: {
   children: React.ReactNode;
 }): React.ReactNode {
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
   //pages
   const [workPage, setWorkPage] = useState<boolean>(false);
   const [servicesPage, setServicesPage] = useState<boolean>(false);
@@ -86,6 +90,8 @@ export function PagesConfigProvider({
   const [visitedClientData, setVisitedClientData] = useState<
     WebsiteVistedClientData | undefined
   >(undefined);
+  //
+  const [isVisitValidated, setIsVisitValidated] = useState<boolean>(false);
   //create new user
   useEffect(() => {
     if (visitedClientData) return;
@@ -97,7 +103,7 @@ export function PagesConfigProvider({
     const tablet = deviceWidth >= 768 && deviceWidth < 1025 ? true : false;
     const other = deviceWidth < 320 ? true : false;
     //
-    const newVisitedClientData = {
+    const newVisitedClientData: WebsiteVistedClientData = {
       userId,
       pageVisited: {
         homePage: workPage,
@@ -121,7 +127,7 @@ export function PagesConfigProvider({
         instagram: false,
         twitter: false,
         google: false,
-        other: false,
+        other: true,
       },
       dateVisited,
     };
@@ -130,12 +136,6 @@ export function PagesConfigProvider({
     }
     createNewVistedClientData();
     //check if user bounce with a timeout of 10s seconds if valid push data to server else do nothing
-    const userBounceValidator = setTimeout(() => {
-      //alert("user didn't bounce");
-    }, 10000); // 10s
-    return () => {
-      clearTimeout(userBounceValidator);
-    };
   }, []);
   //update user data if user visit new page
   useEffect(() => {
@@ -165,7 +165,6 @@ export function PagesConfigProvider({
       });
     }
     updateVistedClientData();
-    console.log("update");
   }, [
     workPage,
     servicesPage,
@@ -175,9 +174,28 @@ export function PagesConfigProvider({
     bookACallPage,
   ]);
   //
+  function returnIsVisitValidated(): boolean {
+    return isVisitValidated;
+  }
+  //
   useEffect(() => {
-    console.log(visitedClientData);
-  }, [visitedClientData]);
+    if (!socket) return;
+    if (!visitedClientData) return;
+    const didUserStay = returnIsVisitValidated();
+    const validateVistBounce = setTimeout(() => {
+      if (didUserStay) return;
+      socket.emit("validated-new-user", visitedClientData);
+      setIsVisitValidated(true);
+    }, 10000); // 10s
+    if (didUserStay) {
+      socket.emit("validated-new-user", visitedClientData);
+    }
+    return () => {
+      clearTimeout(validateVistBounce);
+    };
+  }, [visitedClientData, socket]);
+  //
+
   return (
     <PagesConfigContextData.Provider
       value={{

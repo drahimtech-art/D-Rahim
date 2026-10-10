@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { io, Socket } from "socket.io-client";
+import type { WebsiteVistedClientData } from "./PagesConfig";
 type Message = {
   from: string;
   to: string;
@@ -16,9 +17,15 @@ type Message = {
   text: string;
 };
 type ServerToClient = {
+  //students
   "receive-message": (message: Message) => void;
+  "is-new-visited-user-still-on": (userId: string) => void;
 };
 type ClientToServer = {
+  //homepage
+  "new-visited-user": (userId: string) => void;
+  "validated-new-user": (userData: WebsiteVistedClientData) => void;
+  //students
   "send-message": (
     message: Message,
     room: { chatId: string; connection: string },
