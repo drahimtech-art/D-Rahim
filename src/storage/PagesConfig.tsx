@@ -79,6 +79,7 @@ export function PagesConfigProvider({
 }): React.ReactNode {
   const socketApi = SocketApi();
   const { socket } = socketApi;
+  const location = window.location;
   //pages
   const [workPage, setWorkPage] = useState<boolean>(false);
   const [servicesPage, setServicesPage] = useState<boolean>(false);
@@ -95,6 +96,15 @@ export function PagesConfigProvider({
   //create new user
   useEffect(() => {
     if (visitedClientData) return;
+    if (
+      location.hash !== "" &&
+      location.hash !== "#/" &&
+      location.hash !== "#/services" &&
+      location.hash !== "#/about" &&
+      location.hash !== "#/mentorship" &&
+      location.hash !== "#/contact"
+    )
+      return;
     const userId = crypto.randomUUID();
     const dateVisited = new Date();
     const deviceWidth = window.innerWidth;
