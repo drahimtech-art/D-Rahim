@@ -5,11 +5,11 @@ function Alert() {
       <article className="w-full h-full ">
         {/**head */}
         <section className="w-full h-fit p-2  flex">
-          <h5 className="font-medium text-[14px] font-inter">
+          <h5 className="font-medium text-[16px] font-inter">
             Needs Your Attention
           </h5>
           <button className="ml-auto pointer">
-            <h5 className=" font-medium text-[14px] text-black font-inter">
+            <h5 className=" font-medium text-[16px] text-black font-inter">
               See All
             </h5>
           </button>
