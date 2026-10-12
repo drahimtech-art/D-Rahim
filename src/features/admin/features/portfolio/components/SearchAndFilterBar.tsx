@@ -1,10 +1,13 @@
 import { useState } from "react";
+import AddNewProjectPopUp from "./AddNewProjectPopUp";
 function SearchAndFilterBar({
   searchSection,
 }: {
   searchSection: string;
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
+  const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
+    useState<boolean>(false);
   return (
     <>
       <div className="w-full mt-10  flex pt-7.5 pb-7.5 pl-2.5 pr-2.5 bg-[#FFFFFF]">
@@ -39,10 +42,13 @@ function SearchAndFilterBar({
               </article>
             )}
           </div>
-          <span className="flex w-37.5 gap-2 pl-2 bg-primary-green pr-2 pt-1.5 pb-1.5 text-[#FFFFFF] justify-center items-center border border-gray-500 rounded-[30px]">
+          <button
+            className="pointer flex w-37.5 gap-2 pl-2 bg-primary-green pr-2 pt-1.5 pb-1.5 text-[#FFFFFF] justify-center items-center border border-gray-500 rounded-[30px]"
+            onClick={() => setRenderAddNewProjectBar(!renderAddNewProjectBar)}
+          >
             <i className="fa fa-plus text-[18px] font-light"></i>
             <h5 className="font-inter font-normal text-[16px]">Add New</h5>
-          </span>
+          </button>
         </div>
       </div>
       {renderFilterBar && (
@@ -50,6 +56,11 @@ function SearchAndFilterBar({
           className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0"
           onClick={() => setRenderFilterBar(!renderFilterBar)}
         ></div>
+      )}
+      {renderAddNewProjectBar && (
+        <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0">
+          <AddNewProjectPopUp closePopUp={setRenderAddNewProjectBar} />
+        </div>
       )}
     </>
   );
