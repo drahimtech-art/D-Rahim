@@ -119,7 +119,7 @@ function Routes() {
         },
         {
           //devmode
-          path: "/devmode/admin/:id",
+          path: "/admin/access/:id",
           element: <AdminDasboard />,
         },
         {
