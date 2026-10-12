@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import LeftNevBar from "./shared/LeftNevBar";
 import Dashboard from "./features/Dashboard/Dashboard";
 import Portfolio from "./features/portfolio/Portfolio";
@@ -79,6 +79,18 @@ function AdminDasboard() {
     setRenderSettings(true);
   }
   function logout() {}
+  //
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [
+    renderDashboard,
+    renderPortfolio,
+    renderJobInquires,
+    renderBooking,
+    renderPayment,
+    renderAnalytics,
+    renderSettings,
+  ]);
   return (
     <div className=" p-10 max-w-full min-w-fit min-h-screen max-h-fit bg-[#f8ffff] ">
       <div className="flex gap-10 h-fit w-full ">
