@@ -20,7 +20,11 @@ export function PostToAdminLoginApi({
         res
           .json()
           .then((data) => {
-            resolve(data);
+            if (data.ok) {
+              resolve(data);
+            } else {
+              reject(data.message);
+            }
           })
           .catch((error) => {
             reject(error);

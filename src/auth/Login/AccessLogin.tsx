@@ -153,13 +153,13 @@ function AccessLogin() {
         </div>
         {/**login btn */}
         <div className="w-full h-full flex justify-center mt-12.5">
-          <span
+          <button
             className="w-50.5 h-12.5 rounded-full bg-[#11AC76] flex justify-center items-center AllowedPointerForButton "
             onClick={toStudentsPage}
             ref={loginControlFuncRef}
           >
             <h5 className="font-medium font-inter min20Max24px">Login</h5>
-          </span>
+          </button>
         </div>
       </div>
     </div>
