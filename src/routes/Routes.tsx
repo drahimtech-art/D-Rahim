@@ -45,7 +45,7 @@ const ConceptSpring = lazy(
   () =>
     import("../features/home/features/Services/features/ServicesCardInfo/ConceptSpring"),
 );
-//ourwork page
+//login page
 const AdminLogin = lazy(() => import("../auth/Login/AdminLogin"));
 const AdminDasboard = lazy(() => import("../features/admin/AdminDasbord"));
 //access student page
@@ -54,7 +54,11 @@ const AccessStudentPage = lazy(
   () => import("../features/students/AccessStudentPage"),
 );
 //auth loaders //url delays
-import AccessAuth from "../features/students/auth/AccessStudentsAuthMiddleware/AccesAuth";
+const AccessAuth = lazy(
+  () =>
+    import("../features/students/auth/AccessStudentsAuthMiddleware/AccesAuth"),
+);
+const ValidateAdminRoute = lazy(() => import("../auth/ValidateAdminRoute"));
 function Routes() {
   const routes = createHashRouter([
     {
@@ -118,9 +122,12 @@ function Routes() {
           element: <AdminLogin />,
         },
         {
-          //devmode
           path: "/admin/access/:id",
-          element: <AdminDasboard />,
+          element: (
+            <ValidateAdminRoute>
+              <AdminDasboard />
+            </ValidateAdminRoute>
+          ),
         },
         {
           //devmode
