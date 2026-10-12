@@ -366,3 +366,33 @@ textarea:focus {
 .swicth-shadow {
   box-shadow: 1px 2px 7px black;
 }
+.popInAnimation {
+  transition: all 700ms ease-in;
+  animation: popIn 1s ease-in forwards;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    margin-top: -20px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+.popOutAnimation {
+  transition: all 700ms ease-in;
+  animation: popOut 1s ease-in forwards;
+}
+
+@keyframes popOut {
+  from {
+    opacity: 1;
+    margin-top: -0px;
+  }
+  to {
+    margin-top: -20px;
+    opacity: 0;
+  }
+}
