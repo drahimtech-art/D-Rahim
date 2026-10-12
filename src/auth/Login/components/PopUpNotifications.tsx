@@ -28,7 +28,7 @@ function PopUpNotifications({
   return (
     <article className="w-full h-[80px] bodyMaxSizing p-4 flex justify-center fixed top-0 ">
       <section
-        className="w-[90%] h-fit pl-[24px] pr-[24px] pt-[20px] pb-[20px]  rounded-[8px] flex items-center gap-[16px] "
+        className="w-[90%] h-fit pl-[24px] pr-[24px] pt-[20px] pb-[20px]  rounded-[8px] flex items-center gap-[16px] opacity-0"
         style={{
           backgroundColor: isWaring ? "#FBF0DA" : "#F9E1E5",
         }}
