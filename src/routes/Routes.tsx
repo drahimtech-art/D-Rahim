@@ -114,8 +114,7 @@ function Routes() {
           element: <HomeLoadingState Children={BookACall} />,
         },
         {
-          //devmode
-          path: "/devmode/admin/login",
+          path: "/admin/access/login",
           element: <AdminLogin />,
         },
         {
