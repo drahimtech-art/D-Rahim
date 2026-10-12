@@ -20,6 +20,11 @@ function AdminLogin() {
   const [privacyPassword, setPrivacyPassword] = useState<string>("");
   const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [renderNotificationBar, setRenderNotificationBar] =
+    useState<boolean>(false);
+  const [isNotificationWaring, setIsNotificationWarning] =
+    useState<boolean>(false);
+  const [notificationMessage, setNotificationMessage] = useState<string>("");
   //
   function validateEmail(e: string) {
     if (typeof e !== "string") return false;
@@ -50,9 +55,20 @@ function AdminLogin() {
   function handleLogin() {
     if (!loginControlFuncRef.current || isLoading) return;
     const isEmailValid = validateEmail(realEmail);
-    if (!isEmailValid) return alert("Please enter in a valid email");
-    if (realPassword.length < 3) alert("Please enter in a valid password");
-    setIsLoading(true);
+    if (!isEmailValid) {
+      setNotificationMessage("Please enter in a valid email");
+      setIsNotificationWarning(false);
+      setRenderNotificationBar(true);
+      setIsLoading(true);
+      return;
+    }
+    if (realPassword.length < 3) {
+      setNotificationMessage("Please enter in a valid password");
+      setIsNotificationWarning(false);
+      setRenderNotificationBar(true);
+      setIsLoading(true);
+      return;
+    }
     loginControlFuncRef.current.classList.remove("AllowedPointerForButton");
     loginControlFuncRef.current.classList.add("notallowedPointerForButton");
     const data = {
@@ -61,7 +77,6 @@ function AdminLogin() {
     };
     PostToAdminLoginApi(data)
       .then((res) => {
-        alert(res.message);
         const CLIENT_KEY = "CLIENT_KEY";
         localStorage.setItem(CLIENT_KEY, JSON.stringify(res.adminApiKey));
         setIsLoading(false);
@@ -75,14 +90,19 @@ function AdminLogin() {
         }, 3000);
       })
       .catch((error) => {
-        setIsLoading(false);
-        alert(`${error}`);
-        console.warn(error);
+        setNotificationMessage(`${error}`);
+        if (`${error}`.includes("email")) {
+          setIsNotificationWarning(true);
+        } else {
+          setIsNotificationWarning(false);
+        }
+        setRenderNotificationBar(true);
         if (!loginControlFuncRef.current) return;
         loginControlFuncRef.current.classList.remove(
           "notallowedPointerForButton",
         );
         loginControlFuncRef.current.classList.add("AllowedPointerForButton");
+        setIsLoading(false);
       });
   }
   return (
@@ -152,7 +172,13 @@ function AdminLogin() {
           </div>
         </div>
       </div>
-      <PopUpNotifications />
+      {renderNotificationBar && (
+        <PopUpNotifications
+          message={notificationMessage}
+          isWaring={isNotificationWaring}
+          closePopUp={setRenderNotificationBar}
+        />
+      )}
     </>
   );
 }
