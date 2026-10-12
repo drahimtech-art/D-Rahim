@@ -37,7 +37,7 @@ function SearchAndFilterBar({
                   <h5>Pending</h5>
                 </button>
                 <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
-                  <h5>Failed</h5>
+                  <h5>Cancelled</h5>
                 </button>
               </article>
             )}
