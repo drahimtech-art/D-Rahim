@@ -1,5 +1,5 @@
 import TopBar from "../../shared/TopBar";
-import SearchAndFilterBar from "../../shared/SearchAndFilterBar";
+import SearchAndFilterBar from "./components/SearchAndFilterBar";
 import List from "./components/List";
 function Bookings() {
   return (

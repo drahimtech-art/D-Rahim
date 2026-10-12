@@ -6,7 +6,7 @@ function Mentorship() {
     <div className="w-full h-full  ">
       <div className="w-full h-full flex flex-col gap-7">
         {/**Top bar*/}
-        <TopBar heading={"Mentorship Enrollments"} subHeading={false} />
+        <TopBar heading={"Mentorship Enrollments"} subHeading={""} />
         {/**Top Content */}
         <TopContent />
       </div>
