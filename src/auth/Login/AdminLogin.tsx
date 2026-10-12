@@ -6,7 +6,7 @@ import LoginLogo from "/images/loginLogo.png";
 function AdminLogin() {
   const urlNavigator = useNavigate();
   function toAdminDasbord() {
-    const url = "/devmode/admin/dashboard";
+    const url = `/admin/access/dashboard`;
     urlNavigator({
       pathname: url,
       search: `?${createSearchParams({
@@ -69,6 +69,9 @@ function AdminLogin() {
           "notallowedPointerForButton",
         );
         loginControlFuncRef.current.classList.add("AllowedPointerForButton");
+        setTimeout(() => {
+          toAdminDasbord();
+        }, 3000);
       })
       .catch((error) => {
         setIsLoading(false);
