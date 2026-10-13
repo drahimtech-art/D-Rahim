@@ -11,7 +11,7 @@ type Heading = {
 function TopBar(props: Heading) {
   const [searchParems, setSearchParems] = useSearchParams();
   const [renderFilterCalender, setRenderFilterCalender] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const page = searchParems.get("page");
   return (
     <>
