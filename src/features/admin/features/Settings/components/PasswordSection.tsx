@@ -1,12 +1,12 @@
 function PasswordSection(): React.ReactElement {
   return (
-    <article className="w-[70%] h-fit flex flex-col gap-[15px]">
+    <article className="w-[70%] h-fit flex flex-col ">
       <section>
         <h5 className="font-semibold font-inter text-[22px]">
           Change Password
         </h5>
       </section>
-      <section className="w-full h-fit flex flex-col gap-[15px]">
+      <section className="w-full h-fit flex flex-col gap-[20px] mt-[20px]">
         <div className="flex flex-col ">
           <h5 className="font-medium text-[14px] font-inter">
             Current password

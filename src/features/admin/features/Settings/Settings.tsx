@@ -14,7 +14,7 @@ function Settings() {
           <h5 className="font-semibold font-inter text-[22px]">My Profile</h5>
         </section>
         {/**content body */}
-        <section className="w-full max-w-[700px] h-full mt-5 flex flex-col gap-[28px]">
+        <section className="w-full max-w-[700px] h-full mt-5 flex flex-col gap-[30px]">
           {/**profile */}
           <ProfileHead />
           {/**password section */}
