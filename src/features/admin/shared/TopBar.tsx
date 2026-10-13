@@ -8,6 +8,8 @@ import { AdminConfigApi } from "../../../storage/AdminConfig";
 type Heading = {
   heading: string;
   subHeading: string;
+  isFirstRequstSent?: boolean;
+  fetchAnalyticsData?: () => void;
 };
 function TopBar(props: Heading) {
   const adminConfigApi = AdminConfigApi();
@@ -16,7 +18,23 @@ function TopBar(props: Heading) {
   const [searchParems, setSearchParems] = useSearchParams();
   const [renderFilterCalender, setRenderFilterCalender] =
     useState<boolean>(false);
+  const [isFirstMount, setIsFirstMount] = useState<boolean>(true);
   const page = searchParems.get("page");
+  function getIsFirstMount(): boolean {
+    return isFirstMount;
+  }
+  useEffect(() => {
+    const firstMount = getIsFirstMount();
+    if (renderFilterCalender || firstMount) return;
+    console.log("get data");
+    if (props.fetchAnalyticsData) {
+      props.fetchAnalyticsData();
+    }
+  }, [filterDateList, renderFilterCalender]);
+  useEffect(() => {
+    if (!props.isFirstRequstSent) return;
+    setIsFirstMount(false);
+  }, [props.isFirstRequstSent]);
   return (
     <>
       <article className="w-full flex p-3.5 pl-5 pr-5 bg-[#FFFFFF] h-[100px] items-center rounded-[10px]">

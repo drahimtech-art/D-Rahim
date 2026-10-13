@@ -4,13 +4,26 @@ import eyeIcon from "/images/icons/Eye.png";
 import refreashIcon from "/images/icons/ArrowClockwise.png";
 import { AdminConfigApi } from "../../../../../storage/AdminConfig";
 import { useState, useEffect } from "react";
-function TopContent() {
+function TopContent({
+  liveVistors,
+  newUsers,
+  pageViewed,
+  bouncedBackUsers,
+  returningUsers,
+}: {
+  liveVistors: number;
+  newUsers: number;
+  pageViewed: number;
+  bouncedBackUsers: number;
+  returningUsers: number;
+}) {
   const adminConfigApi = AdminConfigApi();
   const { filterDateRangeText } = adminConfigApi;
   const [filterDateText, setFilterDateText] = useState<string>("");
   useEffect(() => {
     setFilterDateText(filterDateRangeText.split(",")[0]);
   }, [filterDateRangeText]);
+
   return (
     <article className="w-full h-fit grid grid-cols-4 gap-[29px]">
       {/**content */}
@@ -37,7 +50,7 @@ function TopContent() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            420
+            {liveVistors}
           </h5>
           <img className="w-[24px] h-[24px]" src={usersThreeIcon}></img>
         </span>
@@ -52,7 +65,7 @@ function TopContent() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            35
+            {pageViewed}
           </h5>
           <img className="w-[24px] h-[24px]" src={eyeIcon}></img>
         </span>
@@ -67,7 +80,7 @@ function TopContent() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            101
+            {bouncedBackUsers}
           </h5>
           <img className="w-[24px] h-[24px]" src={refreashIcon}></img>
         </span>
