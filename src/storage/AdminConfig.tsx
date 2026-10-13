@@ -8,7 +8,7 @@ const AdminConfigContextData = createContext<AdminConfigType>({
   filterDateList: [],
   setFilterDateList: () => {},
 });
-export function AdminConfigProvider({
+function AdminConfigProvider({
   children,
 }: {
   children: React.ReactNode;
@@ -23,3 +23,4 @@ export function AdminConfigProvider({
   );
 }
 export const AdminConfigApi = () => useContext(AdminConfigContextData);
+export default AdminConfigProvider;

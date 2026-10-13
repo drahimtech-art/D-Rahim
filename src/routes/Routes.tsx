@@ -59,6 +59,7 @@ const AccessAuth = lazy(
     import("../features/students/auth/AccessStudentsAuthMiddleware/AccesAuth"),
 );
 const ValidateAdminRoute = lazy(() => import("../auth/ValidateAdminRoute"));
+const AdminConfigProvider = lazy(() => import("../storage/AdminConfig"));
 function Routes() {
   const routes = createHashRouter([
     {
@@ -125,7 +126,9 @@ function Routes() {
           path: "/admin/access/:id",
           element: (
             <ValidateAdminRoute>
-              <AdminDasboard />
+              <AdminConfigProvider>
+                <AdminDasboard />
+              </AdminConfigProvider>
             </ValidateAdminRoute>
           ),
         },
