@@ -35,7 +35,7 @@ function GraphAndTrafficLocation({
     google +
     pintrest +
     other;
-  console.log(totalSum);
+
   return (
     <article className="w-full h-[310px] mt-[20px] flex gap-2">
       {/**graph */}

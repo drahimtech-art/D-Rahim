@@ -2,16 +2,14 @@ import usersThreeIcon from "/images/icons/UsersThree1.png";
 import eyeIcon from "/images/icons/Eye.png";
 import { AdminConfigApi } from "../../../../../storage/AdminConfig";
 import { useState, useEffect } from "react";
-import { getAnalyticsData, type AnalyticsDataType } from "../api/Api";
+import { getAnalyticsData } from "../api/Api";
 function AnalyticsInsight({
-  setAnalyticsData,
   liveVistors,
   newUsers,
   pageViewed,
   bouncedBackUsers,
   returningUsers,
 }: {
-  setAnalyticsData: (data: AnalyticsDataType) => void;
   liveVistors: number;
   newUsers: number;
   pageViewed: number;
@@ -19,26 +17,35 @@ function AnalyticsInsight({
   returningUsers: number;
 }) {
   const adminConfigApi = AdminConfigApi();
-  const { filterDateRangeText, filterDateList } = adminConfigApi;
+  const {
+    filterDateRangeText,
+    filterDateList,
+    analyticsData,
+    setAnalyticsData,
+  } = adminConfigApi;
   const [filterDateText, setFilterDateText] = useState<string>("");
   const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
   useEffect(() => {
     setFilterDateText(filterDateRangeText.split(",")[0]);
   }, [filterDateRangeText]);
+
   useEffect(() => {
-    if (isFetchRequstSent || filterDateList.length === 0) return;
+    if (
+      isFetchRequstSent ||
+      filterDateList.length === 0 ||
+      analyticsData.liveVistors !== 0
+    )
+      return;
     (() => {
       setIsFetchRequstSent(true);
       getAnalyticsData({ dateFilterList: filterDateList })
         .then((data) => {
-          console.log(data);
           setAnalyticsData(data.data);
         })
         .catch((error) => {
           console.warn(`${error}`);
         });
     })();
-    console.log("mount");
   }, []);
   return (
     <article className="w-full h-fit mt-[23px] grid grid-cols-4 gap-[29px]">
