@@ -92,7 +92,7 @@ function AdminDasboard() {
     renderSettings,
   ]);
   return (
-    <div className=" p-10 max-w-full min-w-fit min-h-screen max-h-fit bg-[#f8ffff] ">
+    <div className=" p-10 w-full min-w-[1200px]  min-h-screen max-h-fit bg-[#f8ffff] ">
       <div className="flex gap-10 h-fit w-full ">
         <div className="w-[25%] min-w-73.5 ">
           <div className="fixed ">
