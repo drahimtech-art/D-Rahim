@@ -26,7 +26,6 @@ function TopBar(props: Heading) {
   useEffect(() => {
     const firstMount = getIsFirstMount();
     if (renderFilterCalender || firstMount) return;
-    console.log("get data");
     if (props.fetchAnalyticsData) {
       props.fetchAnalyticsData();
     }

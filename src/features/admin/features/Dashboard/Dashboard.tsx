@@ -5,62 +5,38 @@ import Alert from "./components/Alert";
 import RecentJobRequestAlert from "./components/RecentJobRequestAlert";
 import RecentBookings from "./components/RecentBookings";
 import { useState, useEffect } from "react";
-import { getAnalyticsData, type AnalyticsDataType } from "../analytics/api/Api";
+import { getAnalyticsData } from "../analytics/api/Api";
 import { AdminConfigApi } from "../../../../storage/AdminConfig";
 function Dashboard() {
   const adminConfigApi = AdminConfigApi();
-  const { filterDateList } = adminConfigApi;
+  const { filterDateList, analyticsData, setAnalyticsData } = adminConfigApi;
   const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
   const [isFirstRequstSent, setIsFirstRequstSent] = useState<boolean>(false);
-  const [analyticsData, setAnalyticsData] = useState<AnalyticsDataType>({
-    _id: "",
-    dateMonthYearDate: "",
-    liveVistors: 0,
-    newUsers: 0,
-    pageViewed: 0,
-    bouncedBackUsers: 0,
-    returningUsers: 0,
-    deviceType: {
-      desktop: 0,
-      mobile: 0,
-      tablet: 0,
-      other: 0,
-      _id: "",
-    },
-    platformVisitedFrom: {
-      facebook: 0,
-      linkedIn: 0,
-      youtub: 0,
-      tiktok: 0,
-      behance: 0,
-      instagram: 0,
-      twitter: 0,
-      google: 0,
-      pintrest: 0,
-      other: 0,
-      _id: "",
-    },
-    __v: 0,
-  });
   function fetchAnalyticsData() {
     if (isFetchRequstSent || filterDateList.length === 0) return;
-    console.log("requst sent");
     setIsFetchRequstSent(true);
     getAnalyticsData({ dateFilterList: filterDateList })
       .then((data) => {
-        console.log(data);
         setAnalyticsData(data.data);
-        setIsFirstRequstSent(true);
+        if (!isFirstRequstSent) {
+          setIsFirstRequstSent(true);
+        }
         setIsFetchRequstSent(false);
       })
       .catch((error) => {
         console.warn(`${error}`);
-        setIsFirstRequstSent(true);
+        if (!isFirstRequstSent) {
+          setIsFirstRequstSent(true);
+        }
         setIsFetchRequstSent(false);
       });
   }
   //
   useEffect(() => {
+    if (analyticsData.liveVistors !== 0) {
+      setIsFirstRequstSent(true);
+      return;
+    }
     fetchAnalyticsData();
   }, []);
   return (
