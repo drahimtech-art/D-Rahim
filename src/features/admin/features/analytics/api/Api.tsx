@@ -46,6 +46,7 @@ export function getAnalyticsData({
         credentials: "include",
         headers: {
           "X-Frontend-Key": `${key}`,
+          "Content-type": "application/json",
         },
         body: JSON.stringify({ dateFilterList: dateFilterList }),
       },

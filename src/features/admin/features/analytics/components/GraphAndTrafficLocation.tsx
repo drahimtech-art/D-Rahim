@@ -1,7 +1,41 @@
 import linkedinLogoIcon from "/images/icons/LinkedinLogo.png";
 import behanceLogoIcon from "/images/icons/BehanceLogo.png";
 import facebookLogoIcon from "/images/icons/FacebookLogo.png";
-function GraphAndTrafficLocation(): React.ReactElement {
+function GraphAndTrafficLocation({
+  facebook,
+  linkedIn,
+  youtub,
+  tiktok,
+  behance,
+  instagram,
+  twitter,
+  google,
+  pintrest,
+  other,
+}: {
+  facebook: number;
+  linkedIn: number;
+  youtub: number;
+  tiktok: number;
+  behance: number;
+  instagram: number;
+  twitter: number;
+  google: number;
+  pintrest: number;
+  other: number;
+}): React.ReactElement {
+  const totalSum =
+    facebook +
+    linkedIn +
+    youtub +
+    tiktok +
+    behance +
+    instagram +
+    twitter +
+    google +
+    pintrest +
+    other;
+  console.log(totalSum);
   return (
     <article className="w-full h-[310px] mt-[20px] flex gap-2">
       {/**graph */}
@@ -33,10 +67,10 @@ function GraphAndTrafficLocation(): React.ReactElement {
                   <span className="w-full h-[6px] mt-auto block rounded-[3px] bg-[#eeeded]">
                     <span
                       className="bg-[#0088FF] block rounded-[3px] h-full"
-                      style={{ width: "75%" }}
+                      style={{ width: `${(linkedIn / totalSum) * 100}%` }}
                     ></span>
                   </span>
-                  <h5 className="font-inter font-normal text-[12.3px]">75%</h5>
+                  <h5 className="font-inter font-normal text-[12.3px]">{`${(linkedIn / totalSum) * 100}%`}</h5>
                 </span>
               </span>
             </div>
@@ -49,10 +83,10 @@ function GraphAndTrafficLocation(): React.ReactElement {
                   <span className="w-full h-[6px] mt-auto block rounded-[3px] bg-[#eeeded]">
                     <span
                       className="bg-[#0088FF] block rounded-[3px] h-full"
-                      style={{ width: "60%" }}
+                      style={{ width: `${(facebook / totalSum) * 100}%` }}
                     ></span>
                   </span>
-                  <h5 className="font-inter font-normal text-[12.3px]">60%</h5>
+                  <h5 className="font-inter font-normal text-[12.3px]">{`${(facebook / totalSum) * 100}%`}</h5>
                 </span>
               </span>
             </div>
@@ -65,10 +99,10 @@ function GraphAndTrafficLocation(): React.ReactElement {
                   <span className="w-full h-[6px] mt-auto block rounded-[3px] bg-[#eeeded]">
                     <span
                       className="bg-[#0088FF] block rounded-[3px] h-full"
-                      style={{ width: "50%" }}
+                      style={{ width: `${(behance / totalSum) * 100}%` }}
                     ></span>
                   </span>
-                  <h5 className="font-inter font-normal text-[12.3px]">50%</h5>
+                  <h5 className="font-inter font-normal text-[12.3px]">{`${(behance / totalSum) * 100}%`}</h5>
                 </span>
               </span>
             </div>

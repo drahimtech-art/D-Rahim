@@ -2,18 +2,41 @@ import usersThreeIcon from "/images/icons/UsersThree1.png";
 import eyeIcon from "/images/icons/Eye.png";
 import { AdminConfigApi } from "../../../../../storage/AdminConfig";
 import { useState, useEffect } from "react";
-function AnalyticsInsight() {
+import { getAnalyticsData, type AnalyticsDataType } from "../api/Api";
+function AnalyticsInsight({
+  setAnalyticsData,
+  liveVistors,
+  newUsers,
+  pageViewed,
+  bouncedBackUsers,
+  returningUsers,
+}: {
+  setAnalyticsData: (data: AnalyticsDataType) => void;
+  liveVistors: number;
+  newUsers: number;
+  pageViewed: number;
+  bouncedBackUsers: number;
+  returningUsers: number;
+}) {
   const adminConfigApi = AdminConfigApi();
-  const { filterDateRangeText } = adminConfigApi;
+  const { filterDateRangeText, filterDateList } = adminConfigApi;
   const [filterDateText, setFilterDateText] = useState<string>("");
   const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
   useEffect(() => {
     setFilterDateText(filterDateRangeText.split(",")[0]);
   }, [filterDateRangeText]);
   useEffect(() => {
-    if (isFetchRequstSent) return;
+    if (isFetchRequstSent || filterDateList.length === 0) return;
     (() => {
       setIsFetchRequstSent(true);
+      getAnalyticsData({ dateFilterList: filterDateList })
+        .then((data) => {
+          console.log(data);
+          setAnalyticsData(data.data);
+        })
+        .catch((error) => {
+          console.warn(`${error}`);
+        });
     })();
     console.log("mount");
   }, []);
@@ -28,7 +51,7 @@ function AnalyticsInsight() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            420
+            {liveVistors}
           </h5>
           <img className="w-[24px] h-[24px]" src={usersThreeIcon}></img>
         </span>
@@ -43,7 +66,7 @@ function AnalyticsInsight() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            35
+            {pageViewed}
           </h5>
           <img className="w-[24px] h-[24px]" src={eyeIcon}></img>
         </span>
@@ -58,7 +81,7 @@ function AnalyticsInsight() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            101
+            {newUsers}
           </h5>
           <span className="flex justify-center items-center bg-[#DFFEF6] p-1.5 rounded-[10px]">
             <i className="fa fa-arrow-up font-normal text-[#11AC76] text-[11px]"></i>
@@ -78,7 +101,7 @@ function AnalyticsInsight() {
         </span>
         <span className="flex w-full items-center gap-3.25">
           <h5 className="font-inter font-semibold text-[#004A3C] text-[24px]">
-            337
+            {returningUsers}
           </h5>
           <span className="flex justify-center items-center bg-[#FFE0EB] p-1.5 rounded-[10px]">
             <i className="fa fa-arrow-down text-[#F31260] text-[11px]"></i>
