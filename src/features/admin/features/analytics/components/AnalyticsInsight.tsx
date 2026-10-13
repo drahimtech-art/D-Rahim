@@ -86,7 +86,7 @@ function AnalyticsInsight({
           <span className="flex justify-center items-center bg-[#DFFEF6] p-1.5 rounded-[10px]">
             <i className="fa fa-arrow-up font-normal text-[#11AC76] text-[11px]"></i>
             <h5 className="text-[#11AC76] font-inter font-normal text-[11px]">
-              10%
+              0%
             </h5>
           </span>
         </span>
@@ -106,7 +106,7 @@ function AnalyticsInsight({
           <span className="flex justify-center items-center bg-[#FFE0EB] p-1.5 rounded-[10px]">
             <i className="fa fa-arrow-down text-[#F31260] text-[11px]"></i>
             <h5 className="text-[#F31260] font-inter font-normal text-[11px]">
-              3%
+              0%
             </h5>
           </span>
         </span>

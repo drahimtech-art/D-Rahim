@@ -93,6 +93,8 @@ export function PagesConfigProvider({
   >(undefined);
   //
   const [isVisitValidated, setIsVisitValidated] = useState<boolean>(false);
+  const [isComponentFirstMount, setIsComponentFirstMount] =
+    useState<boolean>(false);
   //create new user
   useEffect(() => {
     if (visitedClientData) return;
@@ -203,6 +205,14 @@ export function PagesConfigProvider({
     return () => {
       clearTimeout(validateVistBounce);
     };
+  }, [visitedClientData, socket]);
+  //
+  useEffect(() => {
+    if (!socket) return;
+    if (!visitedClientData) return;
+    if (isComponentFirstMount) return;
+    setIsComponentFirstMount(true);
+    socket.emit("new-visited-user", visitedClientData.userId);
   }, [visitedClientData, socket]);
   //
 

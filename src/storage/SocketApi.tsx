@@ -19,7 +19,6 @@ type Message = {
 type ServerToClient = {
   //students
   "receive-message": (message: Message) => void;
-  "is-new-visited-user-still-on": (userId: string) => void;
 };
 type ClientToServer = {
   //homepage
