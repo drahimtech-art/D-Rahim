@@ -2,7 +2,7 @@ import calendarIcon from "/images/icons/CalendarDots_icon.png";
 import searchIcon from "/images/icons/search_icon.png";
 import bellIcon from "/images/icons/bell_icon.png";
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calender from "./Calender";
 import { AdminConfigApi } from "../../../storage/AdminConfig";
 type Heading = {

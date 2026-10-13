@@ -10,9 +10,7 @@ function Calender({
   filterDateList: string[];
   setFilterDateList: (list: string[]) => void;
 }): React.ReactElement {
-  const [date, setDate] = useState<Date>(
-    new Date(filterDateList[filterDateList.length - 1]),
-  );
+  const [date, setDate] = useState<Date>(new Date(filterDateList[0]));
   const [arrayDate, setArraDate] = useState<Date[]>([]);
   useEffect(() => {
     if (arrayDate.length === 0) return;

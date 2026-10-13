@@ -6,9 +6,17 @@ function AnalyticsInsight() {
   const adminConfigApi = AdminConfigApi();
   const { filterDateRangeText } = adminConfigApi;
   const [filterDateText, setFilterDateText] = useState<string>("");
+  const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
   useEffect(() => {
     setFilterDateText(filterDateRangeText.split(",")[0]);
   }, [filterDateRangeText]);
+  useEffect(() => {
+    if (isFetchRequstSent) return;
+    (() => {
+      setIsFetchRequstSent(true);
+    })();
+    console.log("mount");
+  }, []);
   return (
     <article className="w-full h-fit mt-[23px] grid grid-cols-4 gap-[29px]">
       {/**content */}
