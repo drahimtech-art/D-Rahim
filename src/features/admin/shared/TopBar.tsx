@@ -40,7 +40,7 @@ function TopBar(props: Heading) {
               </button>
               {renderFilterCalender && (
                 <div className="flex w-full justify-center">
-                  <article className="absolute w-[268px] flex flex-col gap-[8px] z-50 h-fit bg-yellow-50 rounded-[10px]  mt-[0.5px] ">
+                  <article className="absolute w-[280px] flex flex-col gap-[8px] z-50 h-fit bg-yellow-50 rounded-[10px]  mt-[0.5px] ">
                     <Calender />
                   </article>
                 </div>
