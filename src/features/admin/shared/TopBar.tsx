@@ -3,6 +3,7 @@ import searchIcon from "/images/icons/search_icon.png";
 import bellIcon from "/images/icons/bell_icon.png";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import Calender from "./Calender";
 type Heading = {
   heading: string;
   subHeading: string;
@@ -26,13 +27,25 @@ function TopBar(props: Heading) {
         {/**search bar */}
         {page === "overview" && (
           <section className="flex gap-8 items-center">
-            <button className="pointer flex p-3.25 gap-3.25 text-[#757575] items-center rounded-[10px] border-[0.5px] border-[#D9D9D9] ">
-              <img className="w-[24px] h-[24px]" src={calendarIcon}></img>
-              <h5 className="text-[#757575] font-normal text-[14px]">
-                May 26 - Jun 01, 2026
-              </h5>
-              <i className="fa fa-angle-down"></i>
-            </button>
+            <div className="relative">
+              <button
+                className="pointer flex p-3.25 gap-3.25 text-[#757575] items-center rounded-[10px] border-[0.5px] border-[#D9D9D9] "
+                onClick={() => setRenderFilterCalender(!renderFilterCalender)}
+              >
+                <img className="w-[24px] h-[24px]" src={calendarIcon}></img>
+                <h5 className="text-[#757575] font-normal text-[14px]">
+                  May 26 - Jun 01, 2026
+                </h5>
+                <i className="fa fa-angle-down"></i>
+              </button>
+              {renderFilterCalender && (
+                <div className="flex w-full justify-center">
+                  <article className="absolute w-[268px] flex flex-col gap-[8px] z-50 h-fit bg-yellow-50 rounded-[10px]  mt-[0.5px] ">
+                    <Calender />
+                  </article>
+                </div>
+              )}
+            </div>
             <span className="h-full flex">
               <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full">
                 <img className="w-[24px] h-[24px]" src={searchIcon}></img>
@@ -45,7 +58,10 @@ function TopBar(props: Heading) {
         )}
       </article>
       {renderFilterCalender && (
-        <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0"></div>
+        <div
+          className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0"
+          onClick={() => setRenderFilterCalender(!renderFilterCalender)}
+        ></div>
       )}
     </>
   );
