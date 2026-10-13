@@ -3,8 +3,16 @@ import "react-calendar/dist/Calendar.css";
 import "./Calender.css";
 import type { Value } from "react-calendar/dist/shared/types.js";
 import { useState, useEffect } from "react";
-function Calender(): React.ReactElement {
-  const [date, setDate] = useState<Date>(new Date());
+function Calender({
+  filterDateList,
+  setFilterDateList,
+}: {
+  filterDateList: string[];
+  setFilterDateList: (list: string[]) => void;
+}): React.ReactElement {
+  const [date, setDate] = useState<Date>(
+    new Date(filterDateList[filterDateList.length - 1]),
+  );
   const [arrayDate, setArraDate] = useState<Date[]>([]);
   useEffect(() => {
     if (arrayDate.length === 0) return;
@@ -75,7 +83,9 @@ function Calender(): React.ReactElement {
       }
     }
     dateRange.push(arrayDate[1].toDateString());
-    console.log(dateRange);
+    (() => {
+      setFilterDateList(dateRange);
+    })();
   }, [arrayDate]);
   useEffect(() => {
     setArraDate([date, date]);

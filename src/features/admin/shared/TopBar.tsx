@@ -4,11 +4,15 @@ import bellIcon from "/images/icons/bell_icon.png";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Calender from "./Calender";
+import { AdminConfigApi } from "../../../storage/AdminConfig";
 type Heading = {
   heading: string;
   subHeading: string;
 };
 function TopBar(props: Heading) {
+  const adminConfigApi = AdminConfigApi();
+  const { filterDateList, setFilterDateList, filterDateRangeText } =
+    adminConfigApi;
   const [searchParems, setSearchParems] = useSearchParams();
   const [renderFilterCalender, setRenderFilterCalender] =
     useState<boolean>(false);
@@ -34,14 +38,17 @@ function TopBar(props: Heading) {
               >
                 <img className="w-[24px] h-[24px]" src={calendarIcon}></img>
                 <h5 className="text-[#757575] font-normal text-[14px]">
-                  May 26 - Jun 01, 2026
+                  {filterDateRangeText}
                 </h5>
                 <i className="fa fa-angle-down"></i>
               </button>
               {renderFilterCalender && (
                 <div className="flex w-full justify-center">
                   <article className="absolute w-[280px] flex flex-col gap-[8px] z-50 h-fit bg-yellow-50 rounded-[10px]  mt-[0.5px] ">
-                    <Calender />
+                    <Calender
+                      filterDateList={filterDateList}
+                      setFilterDateList={setFilterDateList}
+                    />
                   </article>
                 </div>
               )}
