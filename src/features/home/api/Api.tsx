@@ -32,7 +32,15 @@ export async function GetProjectList(
         responds.list,
         setAllRandomSelectedProjectInfo,
       );
-      return true;
+      if (
+        responds.list.branding.length > 3 &&
+        responds.list.moblieDesign.length > 3 &&
+        responds.list.websiteDesign.length > 3
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       console.log(responds.message);
       return false;
