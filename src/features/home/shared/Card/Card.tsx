@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
-import { OurWorkApi } from "../../../../storage/OurWorkApi.tsx";
+import { OurWorkApi } from "../../../../storage/PortfolioProjectApi.tsx";
 type ImageData = {
   image: string;
   text: string;

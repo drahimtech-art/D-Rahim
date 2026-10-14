@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense } from "react";
-import { OurWorkApi } from "../../../../storage/OurWorkApi";
+import { OurWorkApi } from "../../../../storage/PortfolioProjectApi";
 import { GetOurWorkList } from "../../api/Api";
 import LoadingAnimation from "./LoadingAnimation";
 function LoadingState({

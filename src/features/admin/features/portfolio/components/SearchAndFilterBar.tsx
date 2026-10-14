@@ -9,7 +9,7 @@ function SearchAndFilterBar({
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [isAddNewProjectRequstSent, setIsAddNewProjectRequstSent] =
     useState<boolean>(false);
   async function handleUploadNewProject(projectInfo: PortfolioDataType) {
