@@ -14,8 +14,19 @@ function SearchAndFilterBar({
     useState<boolean>(false);
   async function handleUploadNewProject(projectInfo: PortfolioDataType) {
     console.log(projectInfo);
-    postUploadNewProjectData({ projectInfo });
-    //setIsAddNewProjectRequstSent(true);
+    setIsAddNewProjectRequstSent(true);
+    postUploadNewProjectData({ projectInfo })
+      .then((res) => {
+        console.log(res);
+        alert(res.message);
+        setIsAddNewProjectRequstSent(false);
+        setRenderAddNewProjectBar(false);
+      })
+      .catch((error) => {
+        console.warn(error);
+        alert(`${error}`);
+        setIsAddNewProjectRequstSent(false);
+      });
     console.log("post to server");
   }
   return (
