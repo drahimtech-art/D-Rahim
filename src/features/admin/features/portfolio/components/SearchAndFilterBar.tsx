@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
+import type { PortfolioDataType } from "./AddNewProjectPopUp";
 function SearchAndFilterBar({
   searchSection,
 }: {
@@ -7,7 +8,14 @@ function SearchAndFilterBar({
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
+    useState<boolean>(true);
+  const [isAddNewProjectRequstSent, setIsAddNewProjectRequstSent] =
     useState<boolean>(false);
+  async function handleUploadNewProject(projectInfo: PortfolioDataType) {
+    console.log(projectInfo);
+    setIsAddNewProjectRequstSent(true);
+    console.log("post to server");
+  }
   return (
     <>
       <div className="w-full mt-10  flex pt-7.5 pb-7.5 pl-2.5 pr-2.5 bg-[#FFFFFF]">
@@ -59,7 +67,11 @@ function SearchAndFilterBar({
       )}
       {renderAddNewProjectBar && (
         <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0">
-          <AddNewProjectPopUp closePopUp={setRenderAddNewProjectBar} />
+          <AddNewProjectPopUp
+            closePopUp={setRenderAddNewProjectBar}
+            isAddNewProjectRequstSent={isAddNewProjectRequstSent}
+            handleUploadNewProject={handleUploadNewProject}
+          />
         </div>
       )}
     </>
