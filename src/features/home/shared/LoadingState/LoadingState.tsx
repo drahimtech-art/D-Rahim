@@ -1,13 +1,13 @@
 import { useState, useEffect, Suspense } from "react";
-import { OurWorkApi } from "../../../../storage/PortfolioProjectApi";
-import { GetOurWorkList } from "../../api/Api";
+import { ProjectDataApi } from "../../../../storage/PortfolioProjectApi";
+import { GetProjectList } from "../../api/Api";
 import LoadingAnimation from "./LoadingAnimation";
 function LoadingState({
   Children,
 }: {
   Children: React.LazyExoticComponent<() => React.JSX.Element>;
 }): React.ReactNode {
-  const ourWorkProjecData = OurWorkApi();
+  const ourWorkProjecData = ProjectDataApi();
   const { listOfProjects, setListOfProjects, setAllRandomSelectedProjectInfo } =
     ourWorkProjecData;
   const [isDataGoten, setIsDataGoten] = useState<boolean>(false);
@@ -20,7 +20,7 @@ function LoadingState({
       return setIsDataGoten(true);
     async function getData() {
       try {
-        const callGetApi: boolean = await GetOurWorkList(
+        const callGetApi: boolean = await GetProjectList(
           setListOfProjects,
           setAllRandomSelectedProjectInfo,
         );

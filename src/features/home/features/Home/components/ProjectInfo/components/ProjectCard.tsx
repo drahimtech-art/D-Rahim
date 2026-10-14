@@ -1,13 +1,13 @@
-import { OurWorkApi } from "../../../../../../../storage/PortfolioProjectApi.tsx";
+import { ProjectDataApi } from "../../../../../../../storage/PortfolioProjectApi.tsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 function ProjectCard() {
   const urlNavigator = useNavigate();
-  const dataContext = OurWorkApi();
+  const dataContext = ProjectDataApi();
   if (!dataContext) return;
   const { projectInfo } = dataContext;
   useEffect(() => {
-    if (projectInfo.imageUrl.trim() === "") {
+    if (projectInfo.pImage.trim() === "") {
       urlNavigator("/", { replace: true });
     }
   }, []);
@@ -28,16 +28,16 @@ function ProjectCard() {
     <div className="mt-10 flex-col pl-5 pr-5 gap-10 ">
       <span>
         <h5 className=" font-medium font-inter min24Max30px">
-          {projectInfo.popHeadText}
+          {projectInfo.title}
         </h5>
       </span>
       <span className="block mt-10">
         <h5 className="expereanceText  font-semibold fontPoppins">
-          {projectInfo.popUpHeadding}
+          {projectInfo.heading}
         </h5>
       </span>
       <span className=" block w-full h-full mt-10">
-        <img className="w-full h-full" src={projectInfo.imageUrl}></img>
+        <img className="w-full h-full" src={projectInfo.pImage}></img>
       </span>
       <div className="flex flex-col gap-5 mt-5">
         <span>
@@ -79,7 +79,7 @@ function ProjectCard() {
           <h5 className="min16Max24px">{projectInfo.location}</h5>
         </span>
         <span>
-          <h5 className="min16Max24px mt-5">{projectInfo.endText}</h5>
+          <h5 className="min16Max24px mt-5">{projectInfo.about}</h5>
         </span>
       </div>
     </div>

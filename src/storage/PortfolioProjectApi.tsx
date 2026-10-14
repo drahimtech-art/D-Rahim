@@ -13,7 +13,7 @@ export type ProjectData = {
   sImage: string;
   capabilities: string[];
   duration: string;
-  team: string;
+  team: string[];
   location: string;
   industry: string[];
   projectType: string;
@@ -48,7 +48,7 @@ const ProjectDataContext = createContext<ProjectDataType>({
     sImage: "",
     capabilities: [],
     duration: "",
-    team: "",
+    team: [],
     location: "",
     industry: [],
     projectType: "",
@@ -78,7 +78,7 @@ export const ProjectDataProvider = ({ children }: { children: ReactNode }) => {
     sImage: "",
     capabilities: [],
     duration: "",
-    team: "",
+    team: [],
     location: "",
     industry: [],
     projectType: "",

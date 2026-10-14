@@ -1,29 +1,16 @@
 import { AllRandomSelectedProjectInfo } from "../shared/AllRandomSelectedProjectInfo /AllRandomSelectedProjectInfo ";
-type OurWorkData = {
-  image: string;
-  text: string;
-  subText?: string;
-  popUpHeadding: string;
-  popHeadText: string;
-  popImageUrl: string;
-  capabilities: string[];
-  duration: string;
-  team: string[];
-  location: string;
-  industry: string[];
-  endText: string;
-};
+import type { ProjectData } from "../../../storage/PortfolioProjectApi";
 type DesignType = {
-  moblieDesign: OurWorkData[];
-  websiteDesign: OurWorkData[];
-  branding: OurWorkData[];
+  moblieDesign: ProjectData[];
+  websiteDesign: ProjectData[];
+  branding: ProjectData[];
 };
 const serverPort = import.meta.env.VITE_SERVER_PORT;
 const key = import.meta.env.VITE_CLIENT_KEY;
-export async function GetOurWorkList(
+export async function GetProjectList(
   setListOfProjects: React.Dispatch<React.SetStateAction<DesignType>>,
   setAllRandomSelectedProjectInfo: React.Dispatch<
-    React.SetStateAction<OurWorkData[][] | undefined>
+    React.SetStateAction<ProjectData[][] | undefined>
   >,
 ) {
   //devMode
@@ -51,7 +38,7 @@ export async function GetOurWorkList(
       return false;
     }
   } catch (error) {
-    console.log(`got an error in GetOurWorkList api ${error}`);
+    console.log(`got an error in GetProjectList api ${error}`);
     return false;
   }
 }

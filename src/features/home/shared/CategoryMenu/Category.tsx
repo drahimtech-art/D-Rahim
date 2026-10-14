@@ -1,44 +1,34 @@
 import { useRef, useState, useEffect } from "react";
-import { OurWorkApi } from "../../../../storage/PortfolioProjectApi";
+import {
+  ProjectDataApi,
+  type ProjectData,
+} from "../../../../storage/PortfolioProjectApi";
 import CardList from "../Card/CardList";
-type OurWorkData = {
-  image: string;
-  text: string;
-  subText?: string;
-  popUpHeadding: string;
-  popHeadText: string;
-  popImageUrl: string;
-  capabilities: string[];
-  duration: string;
-  team: string[];
-  location: string;
-  industry: string[];
-  endText: string;
-};
+
 /*
 type DesignType = {
-  moblieDesign: OurWorkData[];
+  moblieDesign: ProjectData[];
   websiteDesign: OurWorkData[];
   branding: OurWorkData[];
 };
 */
 
 function Category() {
-  const ourWorkProjecData = OurWorkApi();
+  const ourWorkProjecData = ProjectDataApi();
   const { listOfProjects, allRandomSelectedProjectInfo } = ourWorkProjecData;
   if (!allRandomSelectedProjectInfo) return;
   const projectRef = useRef<HTMLSpanElement | null>(null);
   const mDesignRef = useRef<HTMLSpanElement | null>(null);
   const wDesignRef = useRef<HTMLSpanElement | null>(null);
   const brandingRef = useRef<HTMLSpanElement | null>(null);
-  const [ourWorkRender, setOurWorkRender] = useState<OurWorkData[]>([]);
+  const [ourWorkRender, setOurWorkRender] = useState<ProjectData[]>([]);
   const [ourWorkFirstRender, setOurWorkFirstRender] = useState<boolean>(true);
   const [firstRenderCount, setFirstRenderCount] = useState<number>(1);
   const allProjectsAtRoundomPick = allRandomSelectedProjectInfo;
   const oneRef = useRef<HTMLHeadingElement | null>(null);
   const twoRef = useRef<HTMLHeadingElement | null>(null);
   const threeRef = useRef<HTMLHeadingElement | null>(null);
-  const [allProductsMoblie, setAllProductsMoblie] = useState<OurWorkData[]>([]);
+  const [allProductsMoblie, setAllProductsMoblie] = useState<ProjectData[]>([]);
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
   //
   useEffect(() => {

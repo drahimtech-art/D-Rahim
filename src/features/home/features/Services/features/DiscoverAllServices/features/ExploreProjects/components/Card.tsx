@@ -1,16 +1,6 @@
-type BodyContent = {
-  popHeadText: string;
-  popUpHeadding: string;
-  popImageUrl?: string;
-  capabilities: string[];
-  duration: string;
-  team: string[];
-  location: string;
-  industry: string[];
-  endText: string;
-};
+import type { ProjectData } from "../../../../../../../../../storage/PortfolioProjectApi";
 type Body = {
-  body: BodyContent;
+  body: ProjectData;
 };
 
 function Card(props: Body) {
@@ -18,14 +8,14 @@ function Card(props: Body) {
     <article className="flex flex-col mt-10">
       <section className="pl-10 pr-10 ">
         <h5 className="font-inter font-medium ourWorkMenuText">
-          {props.body.popHeadText}
+          {props.body.title}
         </h5>
         <h5 className="fontPoppins font-semibold font-size-heading mt-5">
-          {props.body?.popUpHeadding}
+          {props.body?.heading}
         </h5>
       </section>
       <section className="mt-5 w-full max-h-198">
-        <img className="w-full h-full" src={props.body.popImageUrl}></img>
+        <img className="w-full h-full" src={props.body.sImage}></img>
       </section>
       <article className=" mt-27.25 pl-10 pr-10">
         <div className="flex gap-41 ">
@@ -95,7 +85,7 @@ function Card(props: Body) {
         </section>
         <section className="mt-13 ">
           <h5 className="font-inter font-normal text-[20.87px] w-238.5 ">
-            {props.body.endText}
+            {props.body.about}
           </h5>
         </section>
       </article>

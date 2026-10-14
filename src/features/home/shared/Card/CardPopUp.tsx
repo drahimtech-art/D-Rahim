@@ -1,23 +1,11 @@
 import { useRef, useEffect } from "react";
+import type { ProjectData } from "../../../../storage/PortfolioProjectApi";
 type Body = {
   control: boolean;
   setIsPopUpVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  body: BodyContent;
+  body: ProjectData;
 };
-type BodyContent = {
-  popHeadText: string;
-  imageUrl: string;
-  imageText: string;
-  subText?: string;
-  popUpHeadding: string;
-  popImageUrl?: string;
-  capabilities: string[];
-  duration: string;
-  team: string[];
-  location: string;
-  industry: string[];
-  endText: string;
-};
+
 function CardPopUp(props: Body) {
   const isPopUpVisible = props.control;
   const backGroundRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +40,7 @@ function CardPopUp(props: Body) {
             <div className=" overflow-y-scroll w-full h-full scroll-container pr-5 ">
               <section className="flex items-center">
                 <h2 className="font-inter font-medium cardPopUpFontSize">
-                  {props.body.popHeadText}
+                  {props.body.title}
                 </h2>
                 <div className="relative ">
                   <div className="fixed z-10 right-22  -mt-4 ">
@@ -77,11 +65,11 @@ function CardPopUp(props: Body) {
               </section>
               <section className="mt-4.25">
                 <h5 className="fontPoppins font-semibold cardPopUpSubHeadFontSize">
-                  {props.body?.popUpHeadding}
+                  {props.body?.heading}
                 </h5>
                 <span className="block w-full h-172">
                   <img
-                    src={props.body.popImageUrl}
+                    src={props.body.sImage}
                     alt="Project Image"
                     className="w-full h-full "
                   />
@@ -163,7 +151,7 @@ function CardPopUp(props: Body) {
                 </div>
                 <div className="mt-13 pb-20">
                   <h5 className="font-inter font-normal text-[20.87px] w-238.5 ">
-                    {props.body.endText}
+                    {props.body.about}
                   </h5>
                 </div>
               </section>

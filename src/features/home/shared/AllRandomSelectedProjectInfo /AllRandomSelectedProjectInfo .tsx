@@ -1,26 +1,13 @@
-type OurWorkData = {
-  image: string;
-  text: string;
-  subText?: string;
-  popUpHeadding: string;
-  popHeadText: string;
-  popImageUrl: string;
-  capabilities: string[];
-  duration: string;
-  team: string[];
-  location: string;
-  industry: string[];
-  endText: string;
-};
+import type { ProjectData } from "../../../../storage/PortfolioProjectApi";
 type DesignType = {
-  moblieDesign: OurWorkData[];
-  websiteDesign: OurWorkData[];
-  branding: OurWorkData[];
+  moblieDesign: ProjectData[];
+  websiteDesign: ProjectData[];
+  branding: ProjectData[];
 };
 export function AllRandomSelectedProjectInfo(
   listOfProjects: DesignType,
   setAllProjectAtRandomPick: React.Dispatch<
-    React.SetStateAction<OurWorkData[][] | undefined>
+    React.SetStateAction<ProjectData[][] | undefined>
   >,
 ) {
   const moblieDesign = listOfProjects.moblieDesign;
@@ -32,7 +19,7 @@ export function AllRandomSelectedProjectInfo(
     branding.length === 0
   )
     return;
-  const allProjects: OurWorkData[][] = [];
+  const allProjects: ProjectData[][] = [];
   let guessedList: number[] = []; // guessedList could only be guessed at 3 counts 0, 1, 2, as 0 = moblieDesign, 1 = websiteDesign, 2 = branding
   const indexPickedInMoblieDesign: number[] = [];
   const indexPickedInWebSiteDesign: number[] = [];
@@ -41,7 +28,7 @@ export function AllRandomSelectedProjectInfo(
     // while allProjects is not index on 3 counts loop
     let count = 0; // full (3) index count that makes on allProjects index; 3 count = 1 allProjects index
     let guessNumber; // guessNumber // guess number range between 0 - 2 as 0 stands for moblie design 1 for website design 2 for branding
-    const filteringList: OurWorkData[] = []; // list of getted values to make one full allProjects index list length can be below 6 to make one full index
+    const filteringList: ProjectData[] = []; // list of getted values to make one full allProjects index list length can be below 6 to make one full index
     function getFullList() {
       do {
         //guess a random number between 0 - 2
@@ -53,10 +40,10 @@ export function AllRandomSelectedProjectInfo(
       function getRandeomIndex(
         counter: number,
         sltIndex: number | undefined,
-        list: OurWorkData[],
+        list: ProjectData[],
         sltIndexInList: number[],
-        firstSubList: OurWorkData[],
-        secondSubList: OurWorkData[],
+        firstSubList: ProjectData[],
+        secondSubList: ProjectData[],
       ): void {
         const index = Math.floor(Math.random() * list.length); // guess a random index between 0 - data in list length
         if (

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { OurWorkApi } from "../../../../../../../../storage/PortfolioProjectApi";
+import { ProjectDataApi } from "../../../../../../../../storage/PortfolioProjectApi";
 import Top from "../../../../../../shared/Top/Top";
 import Card from "./components/Card";
 import End from "../../../../../../shared/Footer/Footer";
 function ExploreProjects(): React.ReactElement {
-  const ourWorkProjecData = OurWorkApi();
+  const ourWorkProjecData = ProjectDataApi();
   const { listOfProjects } = ourWorkProjecData;
   const exploreProject = [
     ...listOfProjects.moblieDesign,

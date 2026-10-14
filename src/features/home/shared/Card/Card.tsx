@@ -1,44 +1,44 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
-import { OurWorkApi } from "../../../../storage/PortfolioProjectApi.tsx";
-type ImageData = {
-  image: string;
-  text: string;
-  subText?: string;
-  popUpHeadding: string;
-  popHeadText: string;
-  popImageUrl?: string;
-  capabilities: string[];
-  duration: string;
-  team: string[];
-  location: string;
-  industry: string[];
-  endText: string;
+import {
+  ProjectDataApi,
+  type ProjectData,
+} from "../../../../storage/PortfolioProjectApi.tsx";
+function Card({
+  projectDate,
+  isPC,
+  isMoblie,
+  isNotClickCable,
+}: {
+  projectDate: ProjectData;
   isPC: boolean;
   isMoblie: boolean;
   isNotClickCable?: boolean;
-};
-
-function Card(props: ImageData) {
+}) {
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
   const urlNavigator = useNavigate();
-  const dataContext = OurWorkApi();
+  const dataContext = ProjectDataApi();
   if (!dataContext) return;
   const { setProjectInfo } = dataContext;
   const data = {
-    imageUrl: props.image,
-    imageText: props.text,
-    subText: props.subText,
-    popUpHeadding: props.popUpHeadding,
-    popHeadText: props.popHeadText,
-    popImageUrl: props.popImageUrl,
-    capabilities: props.capabilities,
-    duration: props.duration,
-    team: props.team,
-    location: props.location,
-    industry: props.industry,
-    endText: props.endText,
+    pImage: projectDate.pImage,
+    title: projectDate.title,
+    about: projectDate.about,
+    heading: projectDate.heading,
+    sImage: projectDate.sImage,
+    capabilities: projectDate.capabilities,
+    duration: projectDate.duration,
+    team: projectDate.team,
+    location: projectDate.location,
+    industry: projectDate.industry,
+    projectType: projectDate.projectType,
+    creationDate: projectDate.creationDate,
+    projectStatus: projectDate.projectStatus,
+    _id: projectDate._id,
+    createdAt: projectDate.createdAt,
+    updatedAt: projectDate.updatedAt,
+    __v: projectDate.__v,
   };
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
   useEffect(() => {
@@ -66,27 +66,27 @@ function Card(props: ImageData) {
   return (
     <>
       <section className="flex flex-col grow  min-[1000px]:max-h-full items-stretch  ">
-        {props.isPC && (
+        {isPC && (
           <span className="w-full h-full pointer min-[1000px]:h-100 overflow-hidden ourwork-image-card-parent">
             <img
               className="w-full h-full pointer  ourwork-image-card  "
-              src={props.image}
+              src={projectDate.pImage}
               onClick={handleClick}
             ></img>
           </span>
         )}
-        {props.isMoblie && (
+        {isMoblie && (
           <img
             className="w-full h-full pointer min-[1000px]:h-100  rounded-2xl sm:rounded-[20px] sm:max-h-125"
-            src={props.image}
-            onClick={props.isNotClickCable ? () => null : projectInfo}
+            src={projectDate.pImage}
+            onClick={isNotClickCable ? () => null : projectInfo}
           ></img>
         )}
         <h5 className="logoMainText font-bold ">
-          {props.text.toLocaleUpperCase()}
+          {projectDate.title.toLocaleUpperCase()}
         </h5>
         <h5 className="ourWorkHeadMenu text-gray-600 min-[1000px]:line-clamp-3   font-inter">
-          {props.subText}
+          {projectDate.about}
         </h5>
       </section>
       {devicesWidth !== undefined && devicesWidth >= 1000 && (
