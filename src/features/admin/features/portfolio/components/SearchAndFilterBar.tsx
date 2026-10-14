@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
 import type { PortfolioDataType } from "./AddNewProjectPopUp";
+import { postUploadNewProjectData } from "../api/Api";
 function SearchAndFilterBar({
   searchSection,
 }: {
@@ -13,7 +14,8 @@ function SearchAndFilterBar({
     useState<boolean>(false);
   async function handleUploadNewProject(projectInfo: PortfolioDataType) {
     console.log(projectInfo);
-    setIsAddNewProjectRequstSent(true);
+    postUploadNewProjectData({ projectInfo });
+    //setIsAddNewProjectRequstSent(true);
     console.log("post to server");
   }
   return (
