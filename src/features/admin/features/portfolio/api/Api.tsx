@@ -1,5 +1,24 @@
 const serverPort = import.meta.env.VITE_SERVER_PORT;
 import type { PortfolioDataType } from "../components/AddNewProjectPopUp";
+interface ProjectInfo {
+  pImage: string;
+  title: string;
+  about: string;
+  heading: string;
+  sImage: string;
+  capabilities: string[];
+  duration: string;
+  team: string;
+  location: string;
+  industry: string[];
+  projectType: string;
+  creationDate: Date;
+  projectStatus: string;
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
 export function postUploadNewProjectData({
   projectInfo,
 }: {
@@ -7,25 +26,7 @@ export function postUploadNewProjectData({
 }): Promise<{
   ok: boolean;
   message: string;
-  projectData: {
-    pImage: string;
-    title: string;
-    about: string;
-    heading: string;
-    sImage: string;
-    capabilities: string[];
-    duration: string;
-    team: string;
-    location: string;
-    industry: string[];
-    projectType: string;
-    creationDate: Date;
-    projectStatus: string;
-    _id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    __v: number;
-  };
+  projectData: ProjectInfo;
 }> {
   return new Promise((resolve, reject) => {
     const CLIENT_KEY = "CLIENT_KEY";
@@ -44,6 +45,55 @@ export function postUploadNewProjectData({
           "X-Frontend-Key": `${key}`,
         },
         body: formRequst,
+      },
+    );
+    requst
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            if (data.ok) {
+              resolve(data);
+            } else {
+              reject(data.message);
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+export function getProjectData({
+  searchWordsList,
+  filterStatus,
+  isStatusSearch,
+}: {
+  searchWordsList: string;
+  filterStatus: string;
+  isStatusSearch: boolean;
+}): Promise<{
+  ok: boolean;
+  message: string;
+  projectDataList: ProjectInfo[];
+}> {
+  return new Promise((resolve, reject) => {
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    if (!data || data === "null") reject("Access key not found");
+    const key = JSON.parse(data as string);
+    const requst = fetch(
+      `${serverPort}/admin/access/api/requst/search/filter/get/proftfolio/data/list`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "X-Frontend-Key": `${key}`,
+        },
+        body: JSON.stringify({ searchWordsList, filterStatus, isStatusSearch }),
       },
     );
     requst
