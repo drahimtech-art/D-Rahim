@@ -15,7 +15,7 @@ function Card(props: Body) {
         </h5>
       </section>
       <section className="mt-5 w-full max-h-198">
-        <img className="w-full h-full" src={props.body.sImage}></img>
+        <img className="w-full h-full max-h-198" src={props.body.sImage}></img>
       </section>
       <article className=" mt-27.25 pl-10 pr-10">
         <div className="flex gap-41 ">
