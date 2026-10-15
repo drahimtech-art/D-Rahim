@@ -1,6 +1,6 @@
 const serverPort = import.meta.env.VITE_SERVER_PORT;
 import type { PortfolioDataType } from "../components/AddNewProjectPopUp";
-interface ProjectInfo {
+export interface ProjectInfo {
   pImage: string;
   title: string;
   about: string;
@@ -70,11 +70,9 @@ export function postUploadNewProjectData({
 export function getProjectData({
   searchWordsList,
   filterStatus,
-  isStatusSearch,
 }: {
   searchWordsList: string;
-  filterStatus: string;
-  isStatusSearch: boolean;
+  filterStatus: "Active" | "InActive" | "All";
 }): Promise<{
   ok: boolean;
   message: string;
@@ -86,14 +84,15 @@ export function getProjectData({
     if (!data || data === "null") reject("Access key not found");
     const key = JSON.parse(data as string);
     const requst = fetch(
-      `${serverPort}/admin/access/api/requst/search/filter/get/proftfolio/data/list`,
+      `${serverPort}/admin/access/api/requst/search/filter/get/portfolio/data/list`,
       {
         method: "POST",
         credentials: "include",
         headers: {
           "X-Frontend-Key": `${key}`,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ searchWordsList, filterStatus, isStatusSearch }),
+        body: JSON.stringify({ searchWordsList, filterStatus }),
       },
     );
     requst

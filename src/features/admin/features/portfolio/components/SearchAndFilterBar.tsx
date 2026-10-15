@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
 import type { PortfolioDataType } from "./AddNewProjectPopUp";
-import { postUploadNewProjectData } from "../api/Api";
+import {
+  postUploadNewProjectData,
+  getProjectData,
+  type ProjectInfo,
+} from "../api/Api";
 function SearchAndFilterBar({
   searchSection,
 }: {
@@ -12,8 +16,16 @@ function SearchAndFilterBar({
     useState<boolean>(false);
   const [isAddNewProjectRequstSent, setIsAddNewProjectRequstSent] =
     useState<boolean>(false);
+  //
+  const [searchWordsList, setSearchWordsList] = useState<string>("");
+  const [filterStatus, setFilterStatus] = useState<
+    "Active" | "InActive" | "All"
+  >("All");
+  const [isFilterRequstSent, setIsFilterRequstSent] = useState<boolean>(false);
+  //
+  const [projectsList, setProjectList] = useState<ProjectInfo[]>([]);
+  //
   async function handleUploadNewProject(projectInfo: PortfolioDataType) {
-    console.log(projectInfo);
     setIsAddNewProjectRequstSent(true);
     postUploadNewProjectData({ projectInfo })
       .then((res) => {
@@ -29,6 +41,36 @@ function SearchAndFilterBar({
       });
     console.log("post to server");
   }
+  //
+  function cheackIfEnterIsClickedOnSearch(e: any) {
+    const key: string = e.key;
+    if (key === "Enter" && searchWordsList.trim() !== "") {
+      handleProjectListApiFetch();
+    }
+  }
+  function handleProjectListApiFetch(status?: "Active" | "InActive" | "All") {
+    if (isFilterRequstSent) return;
+    setIsFilterRequstSent(true);
+    getProjectData({
+      searchWordsList,
+      filterStatus: status ? status : filterStatus,
+    })
+      .then((res) => {
+        alert(res.message);
+        console.log(res);
+        setProjectList(res.projectDataList);
+        setIsFilterRequstSent(false);
+      })
+      .catch((error) => {
+        console.warn(error);
+        setIsFilterRequstSent(false);
+      });
+  }
+  //
+  useEffect(() => {
+    handleProjectListApiFetch();
+  }, []);
+
   return (
     <>
       <div className="w-full mt-10  flex pt-7.5 pb-7.5 pl-2.5 pr-2.5 bg-[#FFFFFF]">
@@ -37,6 +79,9 @@ function SearchAndFilterBar({
           <input
             className="w-full h-full pl-2"
             placeholder={`Search ${searchSection ? searchSection : "...."}...`}
+            value={searchWordsList}
+            onChange={(e) => setSearchWordsList(e.target.value)}
+            onKeyDown={cheackIfEnterIsClickedOnSearch}
           ></input>
         </span>
         {/** */}
@@ -46,18 +91,44 @@ function SearchAndFilterBar({
               className="flex pointer w-37.5 gap-2 pl-2 pr-2 pt-1.5 pb-1.5 text-[#757575] justify-center items-center border border-gray-500 rounded-[30px]"
               onClick={() => setRenderFilterBar(!renderFilterBar)}
             >
-              <h5 className="font-inter font-normal text-[16px]">All Status</h5>
+              <h5 className="font-inter font-normal text-[16px]">
+                {filterStatus === "All" ? "All Status" : filterStatus}
+              </h5>
               <i className="fa fa-angle-down text-[18px] font-light"></i>
             </button>
             {renderFilterBar && (
               <article className="absolute w-[150px] flex flex-col gap-[8px] z-50 h-fit pl-6.25 pr-6.25 pt-3.25 pb-3.25 rounded-[10px] bg-[#FFFFFF] mt-[0.5px] ">
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] transition-all hover:bg-[#11AC76] hover:text-white text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "All") return;
+                    setFilterStatus("All");
+                    setRenderFilterBar(false);
+                    handleProjectListApiFetch("All");
+                  }}
+                >
                   <h5>All</h5>
                 </button>
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] transition-all hover:bg-[#11AC76] hover:text-white text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "Active") return;
+                    setFilterStatus("Active");
+                    setRenderFilterBar(false);
+                    handleProjectListApiFetch("Active");
+                  }}
+                >
                   <h5>Active</h5>
                 </button>
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] transition-all hover:bg-[#11AC76] hover:text-white text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "InActive") return;
+                    setFilterStatus("InActive");
+                    setRenderFilterBar(false);
+                    handleProjectListApiFetch("InActive");
+                  }}
+                >
                   <h5>Inactive</h5>
                 </button>
               </article>
