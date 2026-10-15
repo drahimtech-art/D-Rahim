@@ -76,7 +76,7 @@ export function getProjectData({
 }): Promise<{
   ok: boolean;
   message: string;
-  projectDataList: ProjectInfo[];
+  data: ProjectInfo[];
 }> {
   return new Promise((resolve, reject) => {
     const CLIENT_KEY = "CLIENT_KEY";

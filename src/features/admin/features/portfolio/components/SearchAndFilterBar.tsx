@@ -8,8 +8,10 @@ import {
 } from "../api/Api";
 function SearchAndFilterBar({
   searchSection,
+  setProjectList,
 }: {
   searchSection: string;
+  setProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
@@ -23,7 +25,7 @@ function SearchAndFilterBar({
   >("All");
   const [isFilterRequstSent, setIsFilterRequstSent] = useState<boolean>(false);
   //
-  const [projectsList, setProjectList] = useState<ProjectInfo[]>([]);
+
   //
   async function handleUploadNewProject(projectInfo: PortfolioDataType) {
     setIsAddNewProjectRequstSent(true);
@@ -44,11 +46,14 @@ function SearchAndFilterBar({
   //
   function cheackIfEnterIsClickedOnSearch(e: any) {
     const key: string = e.key;
-    if (key === "Enter" && searchWordsList.trim() !== "") {
-      handleProjectListApiFetch();
+    if (key === "Enter") {
+      handleProjectListApiFetch(false, undefined);
     }
   }
-  function handleProjectListApiFetch(status?: "Active" | "InActive" | "All") {
+  function handleProjectListApiFetch(
+    isFirstFetch: boolean,
+    status?: "Active" | "InActive" | "All",
+  ) {
     if (isFilterRequstSent) return;
     setIsFilterRequstSent(true);
     getProjectData({
@@ -56,9 +61,10 @@ function SearchAndFilterBar({
       filterStatus: status ? status : filterStatus,
     })
       .then((res) => {
-        alert(res.message);
-        console.log(res);
-        setProjectList(res.projectDataList);
+        if (!isFirstFetch) {
+          //alert(res.message);
+        }
+        setProjectList(res.data);
         setIsFilterRequstSent(false);
       })
       .catch((error) => {
@@ -68,7 +74,7 @@ function SearchAndFilterBar({
   }
   //
   useEffect(() => {
-    handleProjectListApiFetch();
+    handleProjectListApiFetch(true, undefined);
   }, []);
 
   return (
@@ -104,7 +110,7 @@ function SearchAndFilterBar({
                     if (filterStatus === "All") return;
                     setFilterStatus("All");
                     setRenderFilterBar(false);
-                    handleProjectListApiFetch("All");
+                    handleProjectListApiFetch(false, "All");
                   }}
                 >
                   <h5>All</h5>
@@ -115,7 +121,7 @@ function SearchAndFilterBar({
                     if (filterStatus === "Active") return;
                     setFilterStatus("Active");
                     setRenderFilterBar(false);
-                    handleProjectListApiFetch("Active");
+                    handleProjectListApiFetch(false, "Active");
                   }}
                 >
                   <h5>Active</h5>
@@ -126,7 +132,7 @@ function SearchAndFilterBar({
                     if (filterStatus === "InActive") return;
                     setFilterStatus("InActive");
                     setRenderFilterBar(false);
-                    handleProjectListApiFetch("InActive");
+                    handleProjectListApiFetch(false, "InActive");
                   }}
                 >
                   <h5>Inactive</h5>
