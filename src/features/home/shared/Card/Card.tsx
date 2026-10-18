@@ -69,7 +69,7 @@ function Card({
         {isPC && (
           <span className="w-full h-full pointer min-[1000px]:h-100 overflow-hidden ourwork-image-card-parent">
             <img
-              className="w-full h-full pointer  ourwork-image-card  "
+              className="w-full h-full pointer   "
               src={projectDate.pImage}
               onClick={handleClick}
             ></img>
