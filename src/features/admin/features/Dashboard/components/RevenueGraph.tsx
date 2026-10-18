@@ -9,15 +9,11 @@ function RevenueGraph(): React.ReactElement {
   >([]);
   const data = [
     {
-      increaseOrDecrease: 40000,
+      increaseOrDecrease: 0,
       monthDay: "May 26",
     },
     {
-      increaseOrDecrease: 3000,
-      monthDay: "May 26",
-    },
-    {
-      increaseOrDecrease: 10000,
+      increaseOrDecrease: 100,
       monthDay: "May 26",
     },
     {
@@ -25,15 +21,19 @@ function RevenueGraph(): React.ReactElement {
       monthDay: "May 26",
     },
     {
-      increaseOrDecrease: 8000,
+      increaseOrDecrease: 60,
       monthDay: "May 26",
     },
     {
-      increaseOrDecrease: 60000,
+      increaseOrDecrease: 0,
       monthDay: "May 26",
     },
     {
-      increaseOrDecrease: 10000,
+      increaseOrDecrease: 0,
+      monthDay: "May 26",
+    },
+    {
+      increaseOrDecrease: 120,
       monthDay: "May 26",
     },
   ];
@@ -88,7 +88,9 @@ function RevenueGraph(): React.ReactElement {
           ctx.fill();
           ctx.fillText(
             `${dataPointXAndYIndex[i].value}`,
-            dataPointXAndYIndex[i].x - 20,
+            `${dataPointXAndYIndex[i].value}`.length > 3
+              ? dataPointXAndYIndex[i].x - 20
+              : dataPointXAndYIndex[i].x - 10,
             dataPointXAndYIndex[i].y + 20,
           );
         }
@@ -101,12 +103,12 @@ function RevenueGraph(): React.ReactElement {
     const canvasWidth: number = parentRef.current.clientWidth;
     canvasGraphObject.current = Graph({
       lineWidth: 2,
-      lineColor: "green",
-      pointRaduis: 5,
-      pointWidth: 2,
+      lineColor: "rgba(1, 78, 28, 0.603)",
+      pointRaduis: 3,
+      pointWidth: 3,
       pointColor: "white",
-      graphBodyColorTop: "#DFFEF6",
-      graphBodyColorBottom: "#DFFEF6",
+      graphBodyColorTop: "rgba(22, 163, 74, 0.15)",
+      graphBodyColorBottom: "#FFFFFF",
       data: data,
       canvas: canvasRef.current,
       canvasHeight,
@@ -131,7 +133,7 @@ function RevenueGraph(): React.ReactElement {
   //
 
   return (
-    <section className="w-[60%] h-full rounded-[20px] flex flex-col bg-[#fffcfca1] p-4 pb-0 ">
+    <section className="w-[60%] h-full rounded-[20px] flex flex-col bg-[#FFFFFF] p-4 pb-0 ">
       <div className="w-full h-[200px] rounded-[20px] mt-auto" ref={parentRef}>
         <canvas className="w-full h-full bg-[#FFFFFF]" ref={canvasRef}></canvas>
       </div>

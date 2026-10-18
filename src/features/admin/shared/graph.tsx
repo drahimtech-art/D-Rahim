@@ -237,8 +237,13 @@ export function Graph({
       }
       this.ctx.lineTo(this.endX, this.drawingContentHeightMax - 40);
       this.ctx.lineTo(this.startX, this.drawingContentHeightMax - 40);
-      const greadientColor = this.ctx.createLinearGradient(0, 0, 0, this.endY);
-      greadientColor.addColorStop(0.75, this.graphBodyColorTop);
+      const greadientColor = this.ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        Math.round(heightOfBgLine - 55),
+      );
+      greadientColor.addColorStop(0, this.graphBodyColorTop);
       greadientColor.addColorStop(1, this.graphBodyColorBottom);
       this.ctx.fillStyle = greadientColor;
       this.ctx.fill();
