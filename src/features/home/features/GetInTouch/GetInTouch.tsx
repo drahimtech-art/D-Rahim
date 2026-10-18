@@ -2,15 +2,23 @@ import End from "../../shared/Footer/Footer";
 import Top from "../../shared/Top/Top";
 import EnterDetailsAndMap from "./components/EnterDetailsAndMap";
 import GetInTouchHeadText from "./components/GetInTouchHeadText";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
+import LoadingAnimation from "../../shared/LoadingState/LoadingAnimation";
 function GetInTouch() {
   const pagesConfigData = PagesConfigDataApi();
-  const { setContactPage } = pagesConfigData;
+  const { setContactPage, contactPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!contactPage);
   useEffect(() => {
-    (() => {
-      setContactPage(true);
-    })();
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setContactPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
   }, []);
   return (
     <>
@@ -20,6 +28,7 @@ function GetInTouch() {
         <EnterDetailsAndMap />
       </main>
       <End />
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

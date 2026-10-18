@@ -188,7 +188,7 @@ function Top() {
       >
         <Menu setMenuControl={setMenuControl} />
       </div>
-      {shouldAppLoad && <LoadingAnimation />}
+      {shouldAppLoad && <LoadingAnimation shouldFadeOut={false} />}
     </>
   );
 }

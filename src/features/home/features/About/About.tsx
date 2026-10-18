@@ -4,15 +4,23 @@ import AboutHeadText from "./components/AboutHeadText";
 import AboutSubHeadText from "./components/AboutSubHeadText";
 import OurTerms from "./components/OurTerms";
 import End from "../../shared/Footer/Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
+import LoadingAnimation from "../../shared/LoadingState/LoadingAnimation";
 function About() {
   const pagesConfigData = PagesConfigDataApi();
-  const { setAboutPage } = pagesConfigData;
+  const { setAboutPage, aboutPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!aboutPage);
   useEffect(() => {
-    (() => {
-      setAboutPage(true);
-    })();
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setAboutPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
   }, []);
   return (
     <>
@@ -24,6 +32,7 @@ function About() {
         <EndCategoryMenu />
       </main>
       <End />
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

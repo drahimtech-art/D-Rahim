@@ -5,15 +5,23 @@ import SubHeadText from "./components/SubHeadText";
 import ServiceCard from "./components/ServicesCard";
 import EndSubMenuAndText from "./components/EndSubMenuAndText";
 import End from "../../shared/Footer/Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
+import LoadingAnimation from "../../shared/LoadingState/LoadingAnimation";
 function Service() {
   const pagesConfigData = PagesConfigDataApi();
-  const { setServicesPage } = pagesConfigData;
+  const { setServicesPage, servicesPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!servicesPage);
   useEffect(() => {
-    (() => {
-      setServicesPage(true);
-    })();
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setServicesPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
   }, []);
   return (
     <>
@@ -26,6 +34,7 @@ function Service() {
         <EndSubMenuAndText />
       </main>
       <End />
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

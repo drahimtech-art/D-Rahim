@@ -396,3 +396,15 @@ textarea:focus {
     opacity: 0;
   }
 }
+.loadFadeOut {
+  transition: all ease-in 800ms;
+  animation: fade-out ease-in 800ms forwards;
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

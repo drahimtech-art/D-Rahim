@@ -7,15 +7,23 @@ import MentorshipPlan from "./components/MentorshipPlan";
 import OurStudents from "./components/OurStudents";
 */
 import ComingSoon from "./components/comingSoon/ComingSoon";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
+import LoadingAnimation from "../../shared/LoadingState/LoadingAnimation";
 function Mentorship() {
   const pagesConfigData = PagesConfigDataApi();
-  const { setMentorshipPage } = pagesConfigData;
+  const { setMentorshipPage, mentorshipPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!mentorshipPage);
   useEffect(() => {
-    (() => {
-      setMentorshipPage(true);
-    })();
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setMentorshipPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
   }, []);
   return (
     <>
@@ -30,6 +38,7 @@ function Mentorship() {
       </main> */}
       <ComingSoon />
       <End />
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

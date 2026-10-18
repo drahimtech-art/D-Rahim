@@ -1,14 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import appLogo from "/images/logo.png";
-function LoadingAnimation(): React.ReactElement {
+function LoadingAnimation({
+  shouldFadeOut,
+}: {
+  shouldFadeOut: boolean;
+}): React.ReactElement {
+  const animationBody = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, []);
+  //
+  useEffect(() => {
+    console.log(shouldFadeOut);
+    if (!animationBody.current || !shouldFadeOut) return;
+    animationBody.current.classList.add("loadFadeOut");
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
   return (
-    <article className="w-full h-screen max-h-screen bg-[#004A3C] font-bold text-2xl top-0 fixed z-50">
+    <article
+      className="w-full h-screen max-h-screen  bg-[#004A3C] font-bold text-2xl top-0 fixed z-50"
+      ref={animationBody}
+    >
       <section className="flex justify-center items-center w-full h-full">
         <div className="flex flex-col gap-4 ">
           <div className=" relative w-[161px] h-[161px]">
