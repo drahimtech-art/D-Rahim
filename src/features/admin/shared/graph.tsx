@@ -78,8 +78,8 @@ export function Graph({
         (highstValueInList - lowsetValueInList) +
       graphMinPercent;
     const limit = Math.round(result);
-    const revaseLimitedResult = Math.round(graphMaxPercent - limit); // this revase the other since on canvase highst point is 0 which sets y at top if calulated percent is 100 then you - minus it from canvaes hight which gives you a low value in revease its a high value in canvas hight then if value be 50 - canves hight that gives you half the value which sets y at middle of canvas and 25 sets y at close to bottom as well as 80 set y close to top
-    return revaseLimitedResult ? revaseLimitedResult : 20; // now to avoid line reaching canvas top if revaseLimitedResult === 0 return 20 which gives all high lines spacing from canvas top
+    const revaseLimitedResult = Math.round(graphMaxPercent - limit) + 20; // this revase the other since on canvase highst point is 0 which sets y at top if calulated percent is 100 then you - minus it from canvaes hight which gives you a low value in revease its a high value in canvas hight then if value be 50 - canves hight that gives you half the value which sets y at middle of canvas and 25 sets y at close to bottom as well as 80 set y close to top
+    return !(revaseLimitedResult <= 0) ? revaseLimitedResult : 20; // now to avoid line reaching canvas top if revaseLimitedResult === 0 return 20 which gives all high lines spacing from canvas top
   }
   class DrawGraph {
     startX: number;
