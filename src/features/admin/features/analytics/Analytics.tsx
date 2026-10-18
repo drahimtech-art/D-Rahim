@@ -5,7 +5,7 @@ import Devices from "./components/Devices";
 import { AdminConfigApi } from "../../../../storage/AdminConfig";
 function Analytics(): React.ReactElement {
   const adminConfigApi = AdminConfigApi();
-  const { analyticsData } = adminConfigApi;
+  const { analyticsData, analyticsDataList, filterDateList } = adminConfigApi;
 
   return (
     <article className="w-full h-full  ">
@@ -22,6 +22,8 @@ function Analytics(): React.ReactElement {
         returningUsers={analyticsData.returningUsers}
       />
       <GraphAndTrafficLocation
+        filterDateList={filterDateList}
+        analyticsDataList={analyticsDataList}
         facebook={analyticsData.platformVisitedFrom.facebook}
         linkedIn={analyticsData.platformVisitedFrom.linkedIn}
         youtub={analyticsData.platformVisitedFrom.youtub}

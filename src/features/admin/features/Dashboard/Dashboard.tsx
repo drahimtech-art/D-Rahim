@@ -9,7 +9,12 @@ import { getAnalyticsData } from "../analytics/api/Api";
 import { AdminConfigApi } from "../../../../storage/AdminConfig";
 function Dashboard() {
   const adminConfigApi = AdminConfigApi();
-  const { filterDateList, analyticsData, setAnalyticsData } = adminConfigApi;
+  const {
+    filterDateList,
+    analyticsData,
+    setAnalyticsData,
+    setAnalyticsDataList,
+  } = adminConfigApi;
   const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
   const [isFirstRequstSent, setIsFirstRequstSent] = useState<boolean>(false);
   function fetchAnalyticsData() {
@@ -18,6 +23,7 @@ function Dashboard() {
     getAnalyticsData({ dateFilterList: filterDateList })
       .then((data) => {
         setAnalyticsData(data.data);
+        setAnalyticsDataList(data.graphData);
         if (!isFirstRequstSent) {
           setIsFirstRequstSent(true);
         }

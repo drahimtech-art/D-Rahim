@@ -7,6 +7,10 @@ interface AdminConfigType {
   filterDateRangeText: string;
   analyticsData: AnalyticsDataType;
   setAnalyticsData: React.Dispatch<React.SetStateAction<AnalyticsDataType>>;
+  analyticsDataList: AnalyticsDataType[];
+  setAnalyticsDataList: React.Dispatch<
+    React.SetStateAction<AnalyticsDataType[]>
+  >;
 }
 const AdminConfigContextData = createContext<AdminConfigType>({
   filterDateList: [],
@@ -43,6 +47,8 @@ const AdminConfigContextData = createContext<AdminConfigType>({
     __v: 0,
   },
   setAnalyticsData: () => {},
+  analyticsDataList: [],
+  setAnalyticsDataList: () => {},
 });
 function AdminConfigProvider({
   children,
@@ -83,6 +89,9 @@ function AdminConfigProvider({
     },
     __v: 0,
   });
+  const [analyticsDataList, setAnalyticsDataList] = useState<
+    AnalyticsDataType[]
+  >([]);
   //
   useEffect(() => {
     if (filterDateList.length > 1) {
@@ -107,6 +116,8 @@ function AdminConfigProvider({
         filterDateRangeText,
         analyticsData,
         setAnalyticsData,
+        analyticsDataList,
+        setAnalyticsDataList,
       }}
     >
       {children}

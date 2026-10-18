@@ -33,7 +33,12 @@ export function getAnalyticsData({
   dateFilterList,
 }: {
   dateFilterList: string[];
-}): Promise<{ ok: boolean; message: string; data: AnalyticsDataType }> {
+}): Promise<{
+  ok: boolean;
+  message: string;
+  data: AnalyticsDataType;
+  graphData: AnalyticsDataType[];
+}> {
   return new Promise((resolve, reject) => {
     const CLIENT_KEY = "CLIENT_KEY";
     const data = localStorage.getItem(CLIENT_KEY);

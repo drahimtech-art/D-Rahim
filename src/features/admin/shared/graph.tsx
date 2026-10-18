@@ -152,21 +152,29 @@ export function Graph({
       this.heightsValueInList = heightsValueInList;
       this.drawingContentHeightMax = canvas.height;
       this.drawingContentWidth = canvas.width;
-      this.startY = getPercent(
-        data[0].increaseOrDecrease,
-        0,
-        this.heightsValueInList,
-        this.drawingContentHeightMax,
-        this.drawingContentHeightMin,
-      );
+      if (data.length) {
+        this.startY = getPercent(
+          data[0].increaseOrDecrease,
+          0,
+          this.heightsValueInList,
+          this.drawingContentHeightMax,
+          this.drawingContentHeightMin,
+        );
+      } else {
+        this.startY = this.drawingContentHeightMax - 40;
+      }
       this.endX = canvas.width - 35;
-      this.endY = getPercent(
-        data[data.length - 1].increaseOrDecrease,
-        0,
-        this.heightsValueInList,
-        this.drawingContentHeightMax,
-        this.drawingContentHeightMin,
-      );
+      if (data.length) {
+        this.endY = getPercent(
+          data[data.length - 1].increaseOrDecrease,
+          0,
+          this.heightsValueInList,
+          this.drawingContentHeightMax,
+          this.drawingContentHeightMin,
+        );
+      } else {
+        this.endY = this.drawingContentHeightMax - 40;
+      }
       this.graphJumpWidth = Math.round(this.endX / data.length);
       this.linePointAToPointB = Math.round(this.graphJumpWidth);
       this.pointPointAToPointB = Math.round(this.graphJumpWidth);
@@ -208,7 +216,7 @@ export function Graph({
       this.ctx.lineWidth = this.lineWidth;
       this.ctx.font = "11px sans-serif";
       this.ctx.fillText(
-        this.dataList[0].monthDay,
+        this.dataList.length ? this.dataList[0].monthDay : "",
         this.startX - 10,
         this.drawingContentHeightMax - 20,
       );

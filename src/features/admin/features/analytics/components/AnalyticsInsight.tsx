@@ -22,6 +22,7 @@ function AnalyticsInsight({
     filterDateList,
     analyticsData,
     setAnalyticsData,
+    setAnalyticsDataList,
   } = adminConfigApi;
   const [filterDateText, setFilterDateText] = useState<string>("");
   const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
@@ -41,6 +42,7 @@ function AnalyticsInsight({
       getAnalyticsData({ dateFilterList: filterDateList })
         .then((data) => {
           setAnalyticsData(data.data);
+          setAnalyticsDataList(data.graphData);
         })
         .catch((error) => {
           console.warn(`${error}`);
