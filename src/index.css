@@ -319,7 +319,7 @@ textarea:focus {
 
 .ourwork-image-card-parent:hover {
   transition: 200ms ease-in;
-  margin-top: -1%;
+  margin-top: -2%;
   margin-left: -0.75%;
   width: 101%;
   height: 80%;
