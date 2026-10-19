@@ -1,7 +1,24 @@
 import conceptspring from "/images/conceptspring.png";
 import Top from "../../../../shared/Top/Top";
 import End from "../../../../shared/Footer/Footer";
+import { useEffect, useState } from "react";
+import { PagesConfigDataApi } from "../../../../../../storage/PagesConfig";
+import LoadingAnimation from "../../../../shared/LoadingState/LoadingAnimation";
 function ConceptSpring() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { conceptSprintPage, setConceptSprintPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!conceptSprintPage);
+  useEffect(() => {
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setConceptSprintPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
+  }, []);
   return (
     <>
       <Top />
@@ -134,6 +151,7 @@ function ConceptSpring() {
       <div className="min-[1000px]:-mt-40">
         <End />
       </div>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

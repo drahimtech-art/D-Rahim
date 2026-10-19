@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPopUp from "./CardPopUp";
+import { PagesConfigDataApi } from "../../../../storage/PagesConfig.tsx";
+import LoadingAnimation from "../LoadingState/LoadingAnimation.tsx";
 import {
   ProjectDataApi,
   type ProjectData,
@@ -19,6 +21,9 @@ function Card({
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
   const urlNavigator = useNavigate();
   const dataContext = ProjectDataApi();
+  const pagesConfigData = PagesConfigDataApi();
+  const { projectInfoPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(false);
   if (!dataContext) return;
   const { setProjectInfo } = dataContext;
   const data = {
@@ -62,6 +67,9 @@ function Card({
     setProjectInfo(data);
     const url = "/project/info";
     urlNavigator(url, { replace: false });
+    if (!projectInfoPage) {
+      setShouldLoad(true);
+    }
   }
   return (
     <>
@@ -96,6 +104,7 @@ function Card({
           body={data}
         />
       )}
+      {shouldLoad && <LoadingAnimation shouldFadeOut={false} />}
     </>
   );
 }

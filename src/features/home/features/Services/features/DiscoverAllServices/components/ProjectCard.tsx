@@ -3,9 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { ProjectDataApi } from "../../../../../../../storage/PortfolioProjectApi";
 import FAQ from "../../../../../shared/FAQ/FAQ";
 import CardList from "../../../../../shared/Card/CardList";
+import LoadingAnimation from "../../../../../shared/LoadingState/LoadingAnimation";
+import { PagesConfigDataApi } from "../../../../../../../storage/PagesConfig";
 function ProjectCard() {
   const urlNavigator = useNavigate();
+  const pagesConfigData = PagesConfigDataApi();
+  const { exploreProjectsPage, workPage } = pagesConfigData;
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
+  const [shouldLoad, setShouldLoad] = useState(false);
   const ourWorkProjecData = ProjectDataApi();
   const { allRandomSelectedProjectInfo } = ourWorkProjecData;
   if (!allRandomSelectedProjectInfo) return;
@@ -28,59 +33,68 @@ function ProjectCard() {
   function exploreBtw() {
     const url = "/explore/projects";
     urlNavigator(url, { replace: false });
+    if (!exploreProjectsPage) {
+      setShouldLoad(true);
+    }
   }
   function homeBtw() {
     const url = "/";
     urlNavigator(url, { replace: true });
+    if (!workPage) {
+      setShouldLoad(true);
+    }
   }
   return (
-    <article>
-      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30 mt-10">
-        <span className="block min-[1000px]:mt-30 ">
-          <h5 className="fontPoppins font-semibold min40Max60px">
-            Our Projects
-          </h5>
-          <h5 className="min-[1000px]mt-5 mt-10 min16Max24px w-full  font-inter min-[1000px]:max-w-247.75">
-            We’ve partnered with companies across a wide range of industries,
-            from mobile banking to earthworks operations. What connects all our
-            projects is a shared approach: deep empathy for end users, rapid
-            iteration, and close collaboration with our clients’ teams.
-          </h5>
-        </span>
-      </section>
-      <article className="min-[1000px]:mt-15 mt-10 h-fit  ">
-        {devicesWidth !== undefined && devicesWidth >= 1000 ? (
-          <CardList body={projects} isPC={true} isMoblie={false} />
-        ) : (
-          <CardList
-            body={projects}
-            isPC={false}
-            isMoblie={true}
-            isNotClickCable={true}
-          />
-        )}
+    <>
+      <article>
+        <section className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-30 mt-10">
+          <span className="block min-[1000px]:mt-30 ">
+            <h5 className="fontPoppins font-semibold min40Max60px">
+              Our Projects
+            </h5>
+            <h5 className="min-[1000px]mt-5 mt-10 min16Max24px w-full  font-inter min-[1000px]:max-w-247.75">
+              We’ve partnered with companies across a wide range of industries,
+              from mobile banking to earthworks operations. What connects all
+              our projects is a shared approach: deep empathy for end users,
+              rapid iteration, and close collaboration with our clients’ teams.
+            </h5>
+          </span>
+        </section>
+        <article className="min-[1000px]:mt-15 mt-10 h-fit  ">
+          {devicesWidth !== undefined && devicesWidth >= 1000 ? (
+            <CardList body={projects} isPC={true} isMoblie={false} />
+          ) : (
+            <CardList
+              body={projects}
+              isPC={false}
+              isMoblie={true}
+              isNotClickCable={true}
+            />
+          )}
+        </article>
+        <section className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25 mt-10">
+          {devicesWidth !== undefined && devicesWidth >= 1000 ? (
+            <button
+              className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
+              onClick={exploreBtw}
+            >
+              <h5 className="">Explore more projects</h5>
+            </button>
+          ) : (
+            <button
+              className="border-2 rounded-full pointer  w-fit sm:w-full sm:text-center pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
+              onClick={homeBtw}
+            >
+              <h5 className="">Explore more projects</h5>
+            </button>
+          )}
+        </section>
+        <div className="mt-30 sm:pb-10 min-[1000px]:mb-0">
+          <FAQ />
+        </div>
       </article>
-      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10  pl-5 pr-5 min-[1000px]:mt-27.25 mt-10">
-        {devicesWidth !== undefined && devicesWidth >= 1000 ? (
-          <button
-            className="border-2 rounded-full pointer  w-fit pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
-            onClick={exploreBtw}
-          >
-            <h5 className="">Explore more projects</h5>
-          </button>
-        ) : (
-          <button
-            className="border-2 rounded-full pointer  w-fit sm:w-full sm:text-center pl-7.5 pr-7.5 pt-2.5 pb-2.5 font-inter font-medium min16Max24px bg-transparent hover:bg-secondary-green hover:border-secondary-green hover:text-gray-200  text-black   transition-all"
-            onClick={homeBtw}
-          >
-            <h5 className="">Explore more projects</h5>
-          </button>
-        )}
-      </section>
-      <div className="mt-30 sm:pb-10 min-[1000px]:mb-0">
-        <FAQ />
-      </div>
-    </article>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={false} />}
+    </>
   );
 }
 export default ProjectCard;

@@ -10,8 +10,14 @@ function Menu(props: MenuControl) {
   const serverPath = window.location.hash;
   const urlNavigator = useNavigate();
   const pagesConfigData = PagesConfigDataApi();
-  const { workPage, servicesPage, aboutPage, mentorshipPage, contactPage } =
-    pagesConfigData;
+  const {
+    workPage,
+    servicesPage,
+    aboutPage,
+    mentorshipPage,
+    contactPage,
+    bookACallPage,
+  } = pagesConfigData;
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   function services() {
     urlNavigator("/services", { replace: true });
@@ -53,7 +59,7 @@ function Menu(props: MenuControl) {
   }
   function bookACall() {
     urlNavigator("/book/call", { replace: true });
-    if (serverPath != "#/book/call") {
+    if (serverPath != "#/book/call" && !bookACallPage) {
       setShouldAppLoad(true);
     } else {
       props.setMenuControl(false);

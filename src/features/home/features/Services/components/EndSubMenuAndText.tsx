@@ -7,100 +7,126 @@ import cv3Image from "/images/design_workshop.png";
 import cv4 from "/images/service_card_cover_4.png";
 import cv4Image from "/images/concept_sprint.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { PagesConfigDataApi } from "../../../../../storage/PagesConfig";
+import LoadingAnimation from "../../../shared/LoadingState/LoadingAnimation";
 function EndSubMenuAndText() {
+  const pagesConfigData = PagesConfigDataApi();
+  const {
+    uiUxPage,
+    simpleBrandingPage,
+    conceptSprintPage,
+    designWorkShopsPage,
+  } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(false);
   const urlNavigator = useNavigate();
   function toUiUxPage() {
     const url = "/uiux";
     urlNavigator(url, { replace: false });
+    if (!uiUxPage) {
+      setShouldLoad(true);
+    }
   }
   function toSimpleBranding() {
     const url = "/simplebranding";
     urlNavigator(url, { replace: false });
+    if (!simpleBrandingPage) {
+      setShouldLoad(true);
+    }
   }
   function toDesignWorkShop() {
     const url = "/designworkshop";
     urlNavigator(url, { replace: false });
+    if (!designWorkShopsPage) {
+      setShouldLoad(true);
+    }
   }
   function toConceptSpring() {
     const url = "/conceptspring";
     urlNavigator(url, { replace: false });
+    if (!conceptSprintPage) {
+      setShouldLoad(true);
+    }
   }
   return (
-    <article>
-      <section className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-30 mt-10 min-[1000px]:mb-27.25 mb-10">
-        <span className="flex flex-col gap-10 ">
-          <h5 className="font-Poppins font-semibold min40Max60px">
-            Tailored Solutions for Startups
-          </h5>
-          <h5 className="font-inter font-medium min16Max24px min-[1000px]:w-174.75">
-            We’re passionate about building young digital products and
-            understand that time is critical when so much is at stake. That’s
-            why we offer practical service packages to help you move forward
-            without delays.
-          </h5>
-        </span>
-      </section>
-      <article className="-mb-10 min-[1000px]:-mb-80 w-full  min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-20 overflow-hidden">
-        <div className="flex  min-[1000px]:gap-10 gap-7.5 min-[1000px]:justify-around w-full min-[1000px]:w-full  overflow-x-scroll min-[1000px]:overflow-auto ">
-          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
-            <img
-              className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
-              src={cv1Image}
-              onClick={toUiUxPage}
-            ></img>
-            <span className="w-70">
+    <>
+      <article>
+        <section className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-30 mt-10 min-[1000px]:mb-27.25 mb-10">
+          <span className="flex flex-col gap-10 ">
+            <h5 className="font-Poppins font-semibold min40Max60px">
+              Tailored Solutions for Startups
+            </h5>
+            <h5 className="font-inter font-medium min16Max24px min-[1000px]:w-174.75">
+              We’re passionate about building young digital products and
+              understand that time is critical when so much is at stake. That’s
+              why we offer practical service packages to help you move forward
+              without delays.
+            </h5>
+          </span>
+        </section>
+        <article className="-mb-10 min-[1000px]:-mb-80 w-full  min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5 min-[1000px]:mt-20 overflow-hidden">
+          <div className="flex  min-[1000px]:gap-10 gap-7.5 min-[1000px]:justify-around w-full min-[1000px]:w-full  overflow-x-scroll min-[1000px]:overflow-auto ">
+            <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
               <img
-                className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
-                src={cv1}
+                className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
+                src={cv1Image}
                 onClick={toUiUxPage}
               ></img>
-            </span>
-          </section>
-          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
-            <img
-              className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
-              src={cv2Image}
-              onClick={toSimpleBranding}
-            ></img>
-            <span className="w-70">
+              <span className="w-70">
+                <img
+                  className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
+                  src={cv1}
+                  onClick={toUiUxPage}
+                ></img>
+              </span>
+            </section>
+            <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
               <img
-                className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
-                src={cv2}
+                className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
+                src={cv2Image}
                 onClick={toSimpleBranding}
               ></img>
-            </span>
-          </section>
-          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
-            <img
-              className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
-              src={cv3Image}
-              onClick={toDesignWorkShop}
-            ></img>
-            <span className="w-70">
+              <span className="w-70">
+                <img
+                  className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
+                  src={cv2}
+                  onClick={toSimpleBranding}
+                ></img>
+              </span>
+            </section>
+            <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
               <img
-                className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
-                src={cv3}
+                className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
+                src={cv3Image}
                 onClick={toDesignWorkShop}
               ></img>
-            </span>
-          </section>
-          <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
-            <img
-              className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
-              src={cv4Image}
-              onClick={toConceptSpring}
-            ></img>
-            <span className="w-70">
+              <span className="w-70">
+                <img
+                  className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
+                  src={cv3}
+                  onClick={toDesignWorkShop}
+                ></img>
+              </span>
+            </section>
+            <section className="relative min-w-70 min-[1000px]:w-full h-70  min-[1000px]:max-h-171.5 pointer">
               <img
-                className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
-                src={cv4}
+                className=" h-38 min-[1000px]:h-full pt-2.5 pl-4 pr-4 min-[1000px]:pl-0 min-[1000px]:pr-0 min-[1000px]:pt-0  min-[1000px]:rounded-4xl w-full absolute min-[1000px]:block  min-[1000px]:max-h-171.5 "
+                src={cv4Image}
                 onClick={toConceptSpring}
               ></img>
-            </span>
-          </section>
-        </div>
+              <span className="w-70">
+                <img
+                  className="w-70 h-full min-[1000px]:w-full min-[1000px]:max-h-171.5 min-[1000px]:absolute  top-0 bg-[#bdb9b9] rounded-2xl  min-[1000px]:rounded-4xl min-[1000px]:hover:opacity-0 transition-all"
+                  src={cv4}
+                  onClick={toConceptSpring}
+                ></img>
+              </span>
+            </section>
+          </div>
+        </article>
       </article>
-    </article>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={false} />}
+    </>
   );
 }
 export default EndSubMenuAndText;

@@ -1,7 +1,24 @@
 import designworkshop from "/images/designworkshop.png";
 import Top from "../../../../shared/Top/Top";
 import End from "../../../../shared/Footer/Footer";
+import { useState, useEffect } from "react";
+import { PagesConfigDataApi } from "../../../../../../storage/PagesConfig";
+import LoadingAnimation from "../../../../shared/LoadingState/LoadingAnimation";
 function DesignWorkShop() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { designWorkShopsPage, setDesignWorkShopsPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!designWorkShopsPage);
+  useEffect(() => {
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setDesignWorkShopsPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
+  }, []);
   return (
     <>
       <Top />
@@ -137,6 +154,7 @@ function DesignWorkShop() {
       <div className="min-[1000px]:-mt-40">
         <End />
       </div>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

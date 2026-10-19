@@ -1,7 +1,24 @@
 import branding from "/images/branding.png";
 import Top from "../../../../shared/Top/Top";
 import End from "../../../../shared/Footer/Footer";
+import { useEffect, useState } from "react";
+import { PagesConfigDataApi } from "../../../../../../storage/PagesConfig";
+import LoadingAnimation from "../../../../shared/LoadingState/LoadingAnimation";
 function SimpleBranding() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { simpleBrandingPage, setSimpleBrandingPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!simpleBrandingPage);
+  useEffect(() => {
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setSimpleBrandingPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
+  }, []);
   return (
     <>
       <Top />
@@ -151,6 +168,7 @@ function SimpleBranding() {
       <div className="min-[1000px]:-mt-40">
         <End />
       </div>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }

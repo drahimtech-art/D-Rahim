@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import whatsAppIcon from "/images/icons/whatsApp_icon.png";
+import { PagesConfigDataApi } from "../../../../../storage/PagesConfig";
+import { useState } from "react";
+import LoadingAnimation from "../../../shared/LoadingState/LoadingAnimation";
 function GetInTouchHeadText() {
+  const pagesConfigData = PagesConfigDataApi();
+  const { bookACallPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(false);
   const urlNavigator = useNavigate();
   function bookACall() {
     urlNavigator("/book/call", { replace: false });
+    if (!bookACallPage) {
+      setShouldLoad(true);
+    }
   }
   return (
     <>
@@ -50,6 +59,7 @@ function GetInTouchHeadText() {
           </div>
         </section>
       </article>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={false} />}
     </>
   );
 }

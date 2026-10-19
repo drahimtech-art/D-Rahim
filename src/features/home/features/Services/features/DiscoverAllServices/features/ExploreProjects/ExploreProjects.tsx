@@ -4,6 +4,8 @@ import { ProjectDataApi } from "../../../../../../../../storage/PortfolioProject
 import Top from "../../../../../../shared/Top/Top";
 import Card from "./components/Card";
 import End from "../../../../../../shared/Footer/Footer";
+import { PagesConfigDataApi } from "../../../../../../../../storage/PagesConfig";
+import LoadingAnimation from "../../../../../../shared/LoadingState/LoadingAnimation";
 function ExploreProjects(): React.ReactElement {
   const ourWorkProjecData = ProjectDataApi();
   const { listOfProjects } = ourWorkProjecData;
@@ -14,6 +16,21 @@ function ExploreProjects(): React.ReactElement {
   ];
   const urlNavigator = useNavigate();
   const [devicesWidth, setDevicesWidth] = useState<number | undefined>();
+  const pagesConfigData = PagesConfigDataApi();
+  const { exploreProjectsPage, setExporeProjectsPage } = pagesConfigData;
+  const [shouldLoad, setShouldLoad] = useState(!exploreProjectsPage);
+  useEffect(() => {
+    const removeLoadinigAnimationTimeOut = setTimeout(() => {
+      (() => {
+        setExporeProjectsPage(true);
+        setShouldLoad(false);
+      })();
+    }, 1000);
+    return () => {
+      clearTimeout(removeLoadinigAnimationTimeOut);
+    };
+  }, []);
+  //
   useEffect((): any => {
     const handleWindowResize = () => {
       if (typeof window !== undefined) {
@@ -30,6 +47,7 @@ function ExploreProjects(): React.ReactElement {
     const url = "discover/all/services";
     urlNavigator(url, { replace: true });
   }
+  //
 
   return (
     <>
@@ -40,6 +58,7 @@ function ExploreProjects(): React.ReactElement {
         })}
       </main>
       <End />
+      {shouldLoad && <LoadingAnimation shouldFadeOut={shouldLoad} />}
     </>
   );
 }
