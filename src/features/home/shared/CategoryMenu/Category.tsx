@@ -338,23 +338,23 @@ function Category() {
 
       {ourWorkFirstRender && (
         <section className="hidden lg:flex justify-center gap-6 lg:mt-16 mt-8 ">
-          <span
-            className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
+          <button
+            className="w-fit h-fit pointer lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
             onClick={countMinus}
           >
             <i className="fa fa-arrow-left text-gray-200 text-[1.2rem]"></i>
-          </span>
+          </button>
           <span className="flex gap-4 self-center text-[1rem] lg:text-[1.2rem] text-gray-400 font-semibold">
             <h5 ref={oneRef}>1</h5>
             <h5 ref={twoRef}>2</h5>
             <h5 ref={threeRef}>3</h5>
           </span>
-          <span
-            className="w-fit h-fit lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
+          <button
+            className="w-fit h-fit pointer lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
             onClick={countPlus}
           >
-            <i className="fa fa-arrow-right text-gray-200 text-[1.2rem]"></i>
-          </span>
+            <i className="fa fa-arrow-right text-gray-200 text-[1.2rem] "></i>
+          </button>
         </section>
       )}
     </article>
