@@ -56,6 +56,7 @@ function Top() {
       })();
     }, 1000);
   }, []);
+  //
   useEffect(() => {
     if (
       !workRef.current ||
@@ -190,7 +191,7 @@ function Top() {
         </div>
       </article>
       <div
-        className="hiddeMenuBar opacity-0 fixed w-full  top-0 z-50 min-[1000px]:hidden "
+        className="bodyMaxSizing  fixed w-full  top-0 z-50 min-[1000px]:hidden "
         ref={menuDivRef}
       >
         {mountMenuBar && <Menu setMenuControl={setMenuControl} />}
