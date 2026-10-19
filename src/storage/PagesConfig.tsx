@@ -13,6 +13,20 @@ interface PagesConfigConextType {
   setContactPage: React.Dispatch<React.SetStateAction<boolean>>;
   bookACallPage: boolean;
   setBookACallPage: React.Dispatch<React.SetStateAction<boolean>>;
+  discoverAllServicesPage: boolean;
+  setDiscoverAllServicesPage: React.Dispatch<React.SetStateAction<boolean>>;
+  exploreProjectsPage: boolean;
+  setExporeProjectsPage: React.Dispatch<React.SetStateAction<boolean>>;
+  uiUxPage: boolean;
+  setUiUxPage: React.Dispatch<React.SetStateAction<boolean>>;
+  simpleBrandingPage: boolean;
+  setSimpleBrandingPage: React.Dispatch<React.SetStateAction<boolean>>;
+  designWorkShopsPage: boolean;
+  setDesignWorkShopsPage: React.Dispatch<React.SetStateAction<boolean>>;
+  conceptSprintPage: boolean;
+  setConceptSprintPage: React.Dispatch<React.SetStateAction<boolean>>;
+  projectInfoPage: boolean;
+  setProjectInfoPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface PagesLoaded {
   workPage: boolean;
@@ -70,8 +84,21 @@ const PagesConfigContextData = createContext<PagesConfigConextType>({
   setContactPage: () => {},
   bookACallPage: false,
   setBookACallPage: () => {},
+  discoverAllServicesPage: false,
+  setDiscoverAllServicesPage: () => {},
+  exploreProjectsPage: false,
+  setExporeProjectsPage: () => {},
+  uiUxPage: false,
+  setUiUxPage: () => {},
+  simpleBrandingPage: false,
+  setSimpleBrandingPage: () => {},
+  designWorkShopsPage: false,
+  setDesignWorkShopsPage: () => {},
+  conceptSprintPage: false,
+  setConceptSprintPage: () => {},
+  projectInfoPage: false,
+  setProjectInfoPage: () => {},
 });
-
 export function PagesConfigProvider({
   children,
 }: {
@@ -87,6 +114,15 @@ export function PagesConfigProvider({
   const [mentorshipPage, setMentorshipPage] = useState<boolean>(false);
   const [contactPage, setContactPage] = useState<boolean>(false);
   const [bookACallPage, setBookACallPage] = useState<boolean>(false);
+  const [discoverAllServicesPage, setDiscoverAllServicesPage] =
+    useState<boolean>(false);
+  const [exploreProjectsPage, setExporeProjectsPage] = useState<boolean>(false);
+  const [uiUxPage, setUiUxPage] = useState<boolean>(false);
+  const [simpleBrandingPage, setSimpleBrandingPage] = useState<boolean>(false);
+  const [designWorkShopsPage, setDesignWorkShopsPage] =
+    useState<boolean>(false);
+  const [conceptSprintPage, setConceptSprintPage] = useState<boolean>(false);
+  const [projectInfoPage, setProjectInfoPage] = useState<boolean>(false);
   //user
   const [visitedClientData, setVisitedClientData] = useState<
     WebsiteVistedClientData | undefined
@@ -231,6 +267,20 @@ export function PagesConfigProvider({
         setContactPage,
         bookACallPage,
         setBookACallPage,
+        discoverAllServicesPage,
+        setDiscoverAllServicesPage,
+        exploreProjectsPage,
+        setExporeProjectsPage,
+        uiUxPage,
+        setUiUxPage,
+        simpleBrandingPage,
+        setSimpleBrandingPage,
+        designWorkShopsPage,
+        setDesignWorkShopsPage,
+        conceptSprintPage,
+        setConceptSprintPage,
+        projectInfoPage,
+        setProjectInfoPage,
       }}
     >
       {children}
