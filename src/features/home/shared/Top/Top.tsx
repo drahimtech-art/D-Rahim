@@ -9,6 +9,7 @@ function Top() {
   const { workPage, servicesPage, aboutPage, mentorshipPage, contactPage } =
     pagesConfigData;
   const [menuControl, setMenuControl] = useState<boolean>(false);
+  const [mountMenuBar, setMountMenuBar] = useState<boolean>(false);
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   const serverPath = window.location.hash;
   const workRef = useRef<HTMLSpanElement | null>(null);
@@ -48,7 +49,13 @@ function Top() {
       setShouldAppLoad(true);
     }
   }
-
+  useEffect(() => {
+    setTimeout(() => {
+      (() => {
+        setMountMenuBar(true);
+      })();
+    }, 1000);
+  }, []);
   useEffect(() => {
     if (
       !workRef.current ||
@@ -100,20 +107,20 @@ function Top() {
   useEffect(() => {
     if (!menuDivRef.current || !topDivRef.current) return;
     if (menuControl) {
-      menuDivRef.current.classList.remove("menuAnimationSlideIn");
-      menuDivRef.current.classList.add("menuAnimationSlideIn-open");
+      menuDivRef.current.classList.remove("menuAnimationSlideOut");
+      menuDivRef.current.classList.add("menuAnimationSlideIn");
       document.body.style.overflow = "hidden";
       document.body.style.background = "rgba(219, 218, 218, 0.527)";
       topDivRef.current.style.background = "rgba(219, 218, 218, 0.527)";
     } else {
-      menuDivRef.current.classList.remove("menuAnimationSlideIn-open");
-      menuDivRef.current.classList.add("menuAnimationSlideIn");
+      menuDivRef.current.classList.remove("menuAnimationSlideIn");
+      menuDivRef.current.classList.add("menuAnimationSlideOut");
       document.body.style.overflow = "";
       document.body.style.background = "none";
       topDivRef.current.style.background = "white";
     }
   }, [menuControl]);
-
+  //
   return (
     <>
       <article className="bg-white  sticky top-0  z-5">
@@ -176,17 +183,17 @@ function Top() {
           </section>
           <section className="block min-[1000px]:hidden ml-auto">
             <i
-              className="fa fa-bars text-[1.5rem]"
+              className="fa fa-bars pointer text-[1.5rem]"
               onClick={() => setMenuControl(!menuControl)}
             ></i>
           </section>
         </div>
       </article>
       <div
-        className="menuAnimationSlideIn min-[1000px]:hidden"
+        className="hiddeMenuBar opacity-0 fixed w-full  top-0 z-50 min-[1000px]:hidden "
         ref={menuDivRef}
       >
-        <Menu setMenuControl={setMenuControl} />
+        {mountMenuBar && <Menu setMenuControl={setMenuControl} />}
       </div>
       {shouldAppLoad && <LoadingAnimation shouldFadeOut={false} />}
     </>
