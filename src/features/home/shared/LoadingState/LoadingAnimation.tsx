@@ -14,7 +14,6 @@ function LoadingAnimation({
   }, []);
   //
   useEffect(() => {
-    console.log(shouldFadeOut);
     if (!animationBody.current || !shouldFadeOut) return;
     animationBody.current.classList.add("loadFadeOut");
     return () => {

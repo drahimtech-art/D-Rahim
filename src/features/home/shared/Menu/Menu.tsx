@@ -2,47 +2,61 @@ import Logo from "/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import LoadingAnimation from "../LoadingState/LoadingAnimation";
+import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 type MenuControl = {
   setMenuControl: React.Dispatch<React.SetStateAction<boolean>>;
 };
 function Menu(props: MenuControl) {
   const serverPath = window.location.hash;
   const urlNavigator = useNavigate();
+  const pagesConfigData = PagesConfigDataApi();
+  const { workPage, servicesPage, aboutPage, mentorshipPage, contactPage } =
+    pagesConfigData;
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   function services() {
     urlNavigator("/services", { replace: true });
-    if (serverPath != "#/services") {
+    if (serverPath != "#/services" && !servicesPage) {
       setShouldAppLoad(true);
+    } else {
+      props.setMenuControl(false);
     }
   }
   function work() {
     urlNavigator("/", { replace: true });
-    if (serverPath != "/" && serverPath != "#/") {
+    if (serverPath != "/" && serverPath != "#/" && !workPage) {
       setShouldAppLoad(true);
+    } else {
+      props.setMenuControl(false);
     }
   }
   function about() {
     urlNavigator("/about", { replace: true });
-    if (serverPath != "#/about") {
+    if (serverPath != "#/about" && !aboutPage) {
       setShouldAppLoad(true);
+    } else {
+      props.setMenuControl(false);
     }
   }
   function mentorship() {
     urlNavigator("/mentorship", { replace: true });
-    if (serverPath != "#/mentorship") {
+    if (serverPath != "#/mentorship" && !mentorshipPage) {
       setShouldAppLoad(true);
     }
   }
   function contact() {
     urlNavigator("/contact", { replace: true });
-    if (serverPath != "#/contact") {
+    if (serverPath != "#/contact" && !contactPage) {
       setShouldAppLoad(true);
+    } else {
+      props.setMenuControl(false);
     }
   }
   function bookACall() {
     urlNavigator("/book/call", { replace: true });
     if (serverPath != "#/book/call") {
       setShouldAppLoad(true);
+    } else {
+      props.setMenuControl(false);
     }
   }
   return (
@@ -64,7 +78,7 @@ function Menu(props: MenuControl) {
           </header>
           <span className="ml-auto">
             <i
-              className="fa fa-xmark text-[1.3rem] text-gray-200"
+              className="fa fa-xmark pointer text-[1.3rem] text-gray-200"
               onClick={() => props.setMenuControl(false)}
             ></i>
           </span>
@@ -108,7 +122,7 @@ function Menu(props: MenuControl) {
           </section>
         </nav>
       </article>
-      {shouldAppLoad && <LoadingAnimation />}
+      {shouldAppLoad && <LoadingAnimation shouldFadeOut={false} />}
     </>
   );
 }
