@@ -389,7 +389,7 @@ function LeftNevBar(props: NavigationControl) {
         </div>
       </nav>
       {shouldLogout && (
-        <section className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0">
+        <section className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-100">
           <div className="flex w-full h-full justify-center items-center">
             <LogoutPopUpValidator cancelLogout={cancelLogout} />
           </div>

@@ -32,23 +32,30 @@ function ValidateAdminRoute({
         );
         const responds = await requst.json();
         if (responds.ok) {
-          console.log("socket connected");
+          //console.log("socket connected");
           connectsocket();
           setIsAdminValidated(true);
         } else {
           disConnectSocket();
-          const url = "/";
+          const url = "/admin/access/login";
           urlNavigator(url, { replace: true });
         }
       } catch (error) {
         //alert(`somthing whent wrong: ${error}`);
         console.warn(error);
+        disConnectSocket();
+        const url = "/admin/access/login";
+        urlNavigator(url, { replace: true });
       }
     };
     if (isAdminValidated) return;
     validateAdmin();
   }, []);
-  return <>{isAdminValidated ? children : <LoadingAnimation />}</>;
+  return (
+    <>
+      {isAdminValidated ? children : <LoadingAnimation shouldFadeOut={false} />}
+    </>
+  );
 }
 
 export default ValidateAdminRoute;

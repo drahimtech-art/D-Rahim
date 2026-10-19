@@ -1,9 +1,59 @@
 import logoutIcon from "/images/logout_icon.png";
+import { useState, useRef } from "react";
 function LogoutPopUpValidator({
   cancelLogout,
 }: {
   cancelLogout: () => void;
 }): React.ReactElement {
+  const serverPort = import.meta.env.VITE_SERVER_PORT;
+  const logoutControlFuncRef = useRef<HTMLButtonElement | null>(null);
+  const [isLogedOut, setIsLogedOut] = useState<boolean>(false);
+  //
+  async function logout() {
+    if (!logoutControlFuncRef.current || isLogedOut) return;
+    setIsLogedOut(true);
+    logoutControlFuncRef.current.classList.remove("AllowedPointerForButton");
+    logoutControlFuncRef.current.classList.add("notallowedPointerForButton");
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    try {
+      if (!data || data === "null") throw new Error("Access key not found");
+      const key = JSON.parse(data);
+      const requst = await fetch(
+        `${serverPort}/admin/access/api/requst/logout`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "X-Frontend-Key": `${key}`,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      const responds: { ok: boolean; message: string } = await requst.json();
+      if (responds.ok) {
+        alert(responds.message);
+        const CLIENT_KEY = "CLIENT_KEY";
+        localStorage.setItem(CLIENT_KEY, JSON.stringify(null));
+        setIsLogedOut(false);
+        cancelLogout();
+        logoutControlFuncRef.current.classList.remove(
+          "notallowedPointerForButton",
+        );
+        logoutControlFuncRef.current.classList.add("AllowedPointerForButton");
+        window.location.reload();
+      }
+    } catch (error) {
+      alert(`${error}`);
+      console.log(error);
+      setIsLogedOut(false);
+      //cancelLogout();
+      logoutControlFuncRef.current.classList.remove(
+        "notallowedPointerForButton",
+      );
+      logoutControlFuncRef.current.classList.add("AllowedPointerForButton");
+    }
+  }
   return (
     <section className="w-full max-w-135 h-fit flex justify-center bg-[#F0FFF1] rounded-[30px] p-10">
       <div className="w-full h-full ">
@@ -35,9 +85,11 @@ function LogoutPopUpValidator({
             >
               <h5 className="font-normal font-sans min18pxMax20px">Cancel</h5>
             </button>
-            <button className="ml-auto w-30.5 h-11 rounded-full hover:bg-[#ecaabeb9] border border-gray-300 flex justify-center items-center AllowedPointerForButton">
-              {/**onClick={logout}
-              ref={logoutControlFuncRef} */}
+            <button
+              className="ml-auto w-30.5 h-11 rounded-full hover:bg-[#ecaabeb9] border border-gray-300 flex justify-center items-center AllowedPointerForButton"
+              onClick={logout}
+              ref={logoutControlFuncRef}
+            >
               <h5 className="font-normal font-sans min18pxMax20px">Confirm</h5>
             </button>
           </div>

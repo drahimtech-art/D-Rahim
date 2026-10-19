@@ -96,7 +96,7 @@ function AdminDasboard() {
       <div className="flex gap-10 h-fit w-full ">
         <div className="w-[25%] min-w-73.5 ">
           <div className="fixed ">
-            <nav className="w-full h-full relative">
+            <nav className=" h-full w-[294px] relative">
               <div className="absolute w-[294px] ">
                 {/**sideber left*/}
                 <LeftNevBar

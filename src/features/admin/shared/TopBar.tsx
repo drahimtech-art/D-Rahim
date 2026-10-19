@@ -48,7 +48,7 @@ function TopBar(props: Heading) {
         {/**search bar */}
         {page === "overview" && (
           <section className="flex gap-8 items-center">
-            <div className="relative">
+            <div className="">
               <button
                 className="pointer flex p-3.25 gap-3.25 text-[#757575] items-center rounded-[10px] border-[0.5px] border-[#D9D9D9] "
                 onClick={() => setRenderFilterCalender(!renderFilterCalender)}
@@ -83,7 +83,7 @@ function TopBar(props: Heading) {
       </article>
       {renderFilterCalender && (
         <div
-          className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0"
+          className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-10"
           onClick={() => setRenderFilterCalender(!renderFilterCalender)}
         ></div>
       )}

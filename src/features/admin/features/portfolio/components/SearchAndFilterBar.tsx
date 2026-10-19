@@ -92,7 +92,7 @@ function SearchAndFilterBar({
         </span>
         {/** */}
         <div className="w-fit h-full flex items-center gap-5.5">
-          <div className="w-37.5 relative">
+          <div className="w-37.5 ">
             <button
               className="flex pointer w-37.5 gap-2 pl-2 pr-2 pt-1.5 pb-1.5 text-[#757575] justify-center items-center border border-gray-500 rounded-[30px]"
               onClick={() => setRenderFilterBar(!renderFilterBar)}
