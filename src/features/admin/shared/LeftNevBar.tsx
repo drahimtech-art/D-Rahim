@@ -15,6 +15,7 @@ import paymentIcon from "/images/icons/CreditCard.png";
 import lightPaymentIcon from "/images/icons/CreditCard_light.png";
 import portfolioIcon from "/images/icons/SquaresFour.png";
 import lightPortfolioIcon from "/images/icons/SquaresFour_light.png";
+import LogoutPopUpValidator from "./LogoutPopUpValidator";
 type NavigationControl = {
   toDashboard: () => void;
   toPortfolio: () => void;
@@ -44,6 +45,7 @@ function LeftNevBar(props: NavigationControl) {
   const analyticsRef = useRef<HTMLButtonElement | null>(null);
   const settingsRef = useRef<HTMLButtonElement | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [shouldLogout, setShouldLogout] = useState<boolean>(false);
   function removeButtonActionColor(ref: RefObject<HTMLButtonElement | null>) {
     if (!ref.current) return;
     ref.current.classList.remove("text-white");
@@ -267,114 +269,133 @@ function LeftNevBar(props: NavigationControl) {
       setIsMounted(true);
     })();
   }, []);
+  //
+  function logout() {
+    setShouldLogout(true);
+  }
+  function cancelLogout() {
+    setShouldLogout(false);
+  }
   return (
-    <nav className="w-full h-full flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
-      <header className="flex gap-2 items-center">
-        <span className="w-8 h-12.5">
-          <img className="w-full h-full" src={LogoImg}></img>
-        </span>
-        <span>
-          <h5 className="font-semibold font-inter min18pxMax20px">D’RAHIM</h5>
-          <h5 className="font-semibold font-inter text-[9.04px] -mt-0.5">
-            TECH INNOVATION
-          </h5>
-        </span>
-      </header>
-      {/**navber */}
-      <div className="mt-10 flex flex-col gap-4">
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5 bg-button-light-green text-white rounded-xl transition-all pointer"
-          ref={dashboardRef}
-          onClick={toDashboard}
-        >
-          {props.Dashboard ? (
-            <img className=" w-6 h-6 " src={lightHomeIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={homeIcon}></img>
-          )}
-          <h5 className="font-inter font-medium text-[18px]">Dashboard</h5>
-        </button>
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={portfolioRef}
-          onClick={toPortfolio}
-        >
-          {props.Portfolio ? (
-            <img className=" w-6 h-6 " src={lightPortfolioIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={portfolioIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Portfolio</h5>
-        </button>
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={jobInquiresRef}
-          onClick={toJobinquires}
-        >
-          {props.Jobinquires ? (
-            <img className=" w-6 h-6 " src={lightJobInquiresIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={jobInquiresIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Job inquires</h5>
-        </button>
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={bookingsRef}
-          onClick={toBooking}
-        >
-          {props.Booking ? (
-            <img className=" w-6 h-6 " src={lightCalenderIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={calenderIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Bookings</h5>
-        </button>
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={paymentRef}
-          onClick={toPayment}
-        >
-          {props.Payment ? (
-            <img className=" w-6 h-6 " src={lightPaymentIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={paymentIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Payments</h5>
-        </button>
+    <>
+      <nav className="w-full h-full flex flex-col bg-[#FFFFFF] p-10 rounded-[10px] ">
+        <header className="flex gap-2 items-center">
+          <span className="w-8 h-12.5">
+            <img className="w-full h-full" src={LogoImg}></img>
+          </span>
+          <span>
+            <h5 className="font-semibold font-inter min18pxMax20px">D’RAHIM</h5>
+            <h5 className="font-semibold font-inter text-[9.04px] -mt-0.5">
+              TECH INNOVATION
+            </h5>
+          </span>
+        </header>
+        {/**navber */}
+        <div className="mt-10 flex flex-col gap-4">
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5 bg-button-light-green text-white rounded-xl transition-all pointer"
+            ref={dashboardRef}
+            onClick={toDashboard}
+          >
+            {props.Dashboard ? (
+              <img className=" w-6 h-6 " src={lightHomeIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={homeIcon}></img>
+            )}
+            <h5 className="font-inter font-medium text-[18px]">Dashboard</h5>
+          </button>
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+            ref={portfolioRef}
+            onClick={toPortfolio}
+          >
+            {props.Portfolio ? (
+              <img className=" w-6 h-6 " src={lightPortfolioIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={portfolioIcon}></img>
+            )}
+            <h5 className="font-inter font-normal text-[18px]">Portfolio</h5>
+          </button>
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+            ref={jobInquiresRef}
+            onClick={toJobinquires}
+          >
+            {props.Jobinquires ? (
+              <img className=" w-6 h-6 " src={lightJobInquiresIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={jobInquiresIcon}></img>
+            )}
+            <h5 className="font-inter font-normal text-[18px]">Job inquires</h5>
+          </button>
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+            ref={bookingsRef}
+            onClick={toBooking}
+          >
+            {props.Booking ? (
+              <img className=" w-6 h-6 " src={lightCalenderIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={calenderIcon}></img>
+            )}
+            <h5 className="font-inter font-normal text-[18px]">Bookings</h5>
+          </button>
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+            ref={paymentRef}
+            onClick={toPayment}
+          >
+            {props.Payment ? (
+              <img className=" w-6 h-6 " src={lightPaymentIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={paymentIcon}></img>
+            )}
+            <h5 className="font-inter font-normal text-[18px]">Payments</h5>
+          </button>
 
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={analyticsRef}
-          onClick={toAnalytics}
-        >
-          {props.Analytics ? (
-            <img className=" w-6 h-6 " src={lightAnalyticsIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={analyticsIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Analytics</h5>
-        </button>
-        <button
-          className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
-          ref={settingsRef}
-          onClick={toSettings}
-        >
-          {props.Settings ? (
-            <img className=" w-6 h-6 " src={lightSettingsIcon}></img>
-          ) : (
-            <img className=" w-6 h-6 " src={settingsIcon}></img>
-          )}
-          <h5 className="font-inter font-normal text-[18px]">Settings</h5>
-        </button>
-      </div>
-      <div className="mt-10 min-[1500px]:mt-22.5">
-        <button className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl ">
-          <i className="fas fa-right-from-bracket font-extralight  text-[24px]"></i>
-          <h5 className="font-inter font-normal text-[18px]">Logout</h5>
-        </button>
-      </div>
-    </nav>
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+            ref={analyticsRef}
+            onClick={toAnalytics}
+          >
+            {props.Analytics ? (
+              <img className=" w-6 h-6 " src={lightAnalyticsIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={analyticsIcon}></img>
+            )}
+            <h5 className="font-inter font-normal text-[18px]">Analytics</h5>
+          </button>
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#757575] rounded-xl transition-all pointer"
+            ref={settingsRef}
+            onClick={toSettings}
+          >
+            {props.Settings ? (
+              <img className=" w-6 h-6 " src={lightSettingsIcon}></img>
+            ) : (
+              <img className=" w-6 h-6 " src={settingsIcon}></img>
+            )}
+            <h5 className="font-inter font-normal text-[18px]">Settings</h5>
+          </button>
+        </div>
+        <div className="mt-10 min-[1500px]:mt-22.5">
+          <button
+            className="w-full h-12 flex items-center gap-2.5 p-3 pl-2.5 pr-2.5  text-[#C0392B] rounded-xl pointer"
+            onClick={logout}
+          >
+            <i className="fas fa-right-from-bracket font-extralight  text-[24px]"></i>
+            <h5 className="font-inter font-normal text-[18px]">Logout</h5>
+          </button>
+        </div>
+      </nav>
+      {shouldLogout && (
+        <section className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0">
+          <div className="flex w-full h-full justify-center items-center">
+            <LogoutPopUpValidator cancelLogout={cancelLogout} />
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 export default LeftNevBar;
