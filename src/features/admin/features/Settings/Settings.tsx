@@ -13,6 +13,7 @@ function Settings() {
     if (!adminProfileData) {
       getAdminProfileData()
         .then((res) => {
+          console.log(res);
           console.log(res.message);
           setAdminProfileData(res.data);
         })
@@ -34,7 +35,11 @@ function Settings() {
         {/**content body */}
         <section className="w-full max-w-[700px] h-full mt-5 flex flex-col gap-[30px]">
           {/**profile */}
-          <ProfileHead />
+          <ProfileHead
+            name={adminProfileData?.name}
+            about={adminProfileData?.about}
+            image={adminProfileData?.image}
+          />
           {/**password section */}
           <PasswordSection />
           {/**notificationCenter Control */}
