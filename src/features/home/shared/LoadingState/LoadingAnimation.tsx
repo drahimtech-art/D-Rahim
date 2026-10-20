@@ -22,48 +22,37 @@ function LoadingAnimation({
   }, []);
   return (
     <article
-      className="w-full h-screen max-h-screen  bg-[#004A3C] font-bold text-2xl top-0 fixed z-50"
+      className="w-full h-screen max-h-screen bodyMaxSizing  bg-green-900 font-bold text-2xl top-0 fixed z-50"
       ref={animationBody}
     >
       <section className="flex justify-center items-center w-full h-full">
-        <div className="flex flex-col gap-4 ">
-          <div className=" relative w-[161px] h-[161px]">
-            <div className="w-[161px] h-[161px]  relative animation-180deg ">
-              {/**top 12 oclock*/}
-              <span className="w-[48px] h-1.5 bg-white block rounded-full absolute top-0 m-0 left-[35%] mt-4 rotate-90"></span>
-              {/**bottom 6 oclock*/}
-              <span className="w-[48px] h-1.5 bg-white block rounded-full absolute bottom-0 m-0 mb-4 left-[35%] rotate-90"></span>
-              {/**left 9 oclock */}
-              <span className="w-[48px] h-1.5 bg-white block rounded-full absolute top-[48%] m-0 -ml-1"></span>
-              {/**left 10:30 oclcok */}
-              <span className="w-[60px] h-1.5  block rounded-full absolute top-[20%] m-0  left-0 rotate-45">
-                <span className="ml-auto w-[52px] h-1.5 bg-white block rounded-full "></span>
-              </span>
-              {/**right 3 oclcok */}
-              <span className="w-[48px] h-1.5 bg-white block rounded-full absolute top-[48%] m-0 right-0 -mr-1"></span>
-              {/**right 1:30 oclcok */}
-              <span className="w-[60px] h-1.5  block rounded-full absolute top-[20%] m-0  right-0 -rotate-45">
-                <span className="w-[52px] h-1.5 bg-white block rounded-full "></span>
-              </span>
-              {/**left 7:30 oclcok */}
-              <span className="w-[62px] h-1.5  block rounded-full absolute bottom-0 m-0 mb-7 left-0 -rotate-45">
-                <span className="ml-auto w-[52px] h-1.5 bg-white block rounded-full "></span>
-              </span>
-              {/**right 4:30 oclcok */}
-              <span className="w-[62px] h-1.5  block rounded-full absolute bottom-0 m-0 mb-7 right-0 rotate-45">
-                <span className="mr-auto w-[52px] h-1.5 bg-white block rounded-full "></span>
-              </span>
-            </div>
-            {/**logo and text content */}
-            <div className="w-full h-full  absolute top-0 flex justify-center items-center">
-              <div className=" w-[35%] h-[35%] flex justify-center items-center">
-                <img className="w-fit h-fit" src={appLogo}></img>
-              </div>
+        <div className=" w-[300px] h-[300px] relative min-[700px]:w-[500px]  min-[700px]:h-[500px]  rounded-full">
+          {/**rotation ring */}
+          <div className=" w-[300px] h-[300px] relative min-[700px]:w-[500px]  min-[700px]:h-[500px] bg-green-900 border-7 border-green-500  rounded-full animation-180deg">
+            <div className="absolute bg-green-900 w-[200px] h-[90px]  min-[700px]:h-[150px]  top-[40%] -ml-4"></div>
+          </div>
+          {/**loading logo */}
+          <div className="w-full h-full z-10 absolute top-0  p-10 flex justify-center items-center">
+            <div className="w-[90%] h-[50%]  flex justify-center items-center">
+              <header className="flex items-center">
+                <div className="w-[70px] min-[700px]:w-[80px]  h-full">
+                  <img
+                    className="w-full  h-full"
+                    src={appLogo}
+                    alt="logo"
+                  ></img>
+                </div>
+                <span className="">
+                  <h5 className="font-inter text-gray-100 font-semibold min45Max80px">
+                    D'RAHIM
+                  </h5>
+                  <h5 className=" w-fit font-semibold text-gray-100  min21Max40px -mt-4 sm:-mt-5">
+                    TECH INNOVATION
+                  </h5>
+                </span>
+              </header>
             </div>
           </div>
-          <h5 className="text-center mt-[5px] text-white min20Max24px font-inter font-normal">
-            Just a moment…
-          </h5>
         </div>
       </section>
     </article>

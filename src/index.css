@@ -426,3 +426,9 @@ textarea:focus {
     opacity: 0;
   }
 }
+.min45Max80px {
+  font-size: clamp(40px, 9vw, 80px);
+}
+.min21Max40px {
+  font-size: clamp(18.5px, 4vw, 36px);
+}
