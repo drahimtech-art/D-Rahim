@@ -1,6 +1,13 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import type { AnalyticsDataType } from "../features/admin/features/analytics/api/Api";
 //
+interface AdminProfile {
+  image: string;
+  name: string;
+  about: string;
+  email: string;
+  __v: number;
+}
 interface AdminConfigType {
   filterDateList: string[];
   setFilterDateList: React.Dispatch<React.SetStateAction<string[]>>;
@@ -10,6 +17,10 @@ interface AdminConfigType {
   analyticsDataList: AnalyticsDataType[];
   setAnalyticsDataList: React.Dispatch<
     React.SetStateAction<AnalyticsDataType[]>
+  >;
+  adminProfileData: AdminProfile | undefined;
+  setAdminProfileData: React.Dispatch<
+    React.SetStateAction<AdminProfile | undefined>
   >;
 }
 const AdminConfigContextData = createContext<AdminConfigType>({
@@ -49,6 +60,8 @@ const AdminConfigContextData = createContext<AdminConfigType>({
   setAnalyticsData: () => {},
   analyticsDataList: [],
   setAnalyticsDataList: () => {},
+  adminProfileData: undefined,
+  setAdminProfileData: () => {},
 });
 function AdminConfigProvider({
   children,
@@ -93,6 +106,10 @@ function AdminConfigProvider({
     AnalyticsDataType[]
   >([]);
   //
+  const [adminProfileData, setAdminProfileData] = useState<
+    AdminProfile | undefined
+  >(undefined);
+  //
   useEffect(() => {
     if (filterDateList.length > 1) {
       const startingDate = `${filterDateList[0].split(" ")[1]} ${filterDateList[0].split(" ")[2]}`;
@@ -118,6 +135,8 @@ function AdminConfigProvider({
         setAnalyticsData,
         analyticsDataList,
         setAnalyticsDataList,
+        adminProfileData,
+        setAdminProfileData,
       }}
     >
       {children}
