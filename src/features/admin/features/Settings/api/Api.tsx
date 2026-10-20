@@ -11,7 +11,7 @@ export function getAdminProfileData(): Promise<{
     if (!data || data === "null") reject("Access key not found");
     const key = JSON.parse(data as string);
     const requst = fetch(
-      `${serverPort}/admin/access/api/requst/search/admin/profile/data`,
+      `${serverPort}/admin/access/api/requst/admin/profile/data`,
       {
         method: "GET",
         credentials: "include",
