@@ -2,7 +2,25 @@ import TopBar from "../../shared/TopBar";
 import ProfileHead from "./components/ProfileHead";
 import PasswordSection from "./components/PasswordSection";
 import NotificationCenter from "./components/NotificationCenter";
+import { AdminConfigApi } from "../../../../storage/AdminConfig";
+import { useEffect } from "react";
+import { getAdminProfileData } from "./api/Api";
 function Settings() {
+  const adminConfigData = AdminConfigApi();
+  const { adminProfileData, setAdminProfileData } = adminConfigData;
+  //
+  useEffect(() => {
+    if (!adminProfileData) {
+      getAdminProfileData()
+        .then((res) => {
+          console.log(res.message);
+          setAdminProfileData(res.data);
+        })
+        .catch((err) => {
+          console.warn(`${err}`);
+        });
+    }
+  }, []);
   return (
     <article className="w-full h-full  ">
       <TopBar

@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import type { AnalyticsDataType } from "../features/admin/features/analytics/api/Api";
 //
-interface AdminProfile {
+export interface AdminProfile {
   image: string;
   name: string;
   about: string;
