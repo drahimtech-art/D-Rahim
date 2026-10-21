@@ -4,13 +4,18 @@ import CalendarUi from "./Calender";
 import Time from "./Time";
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from "../../../shared/LoadingState/LoadingAnimation";
+import { PagesConfigDataApi } from "../../../../../storage/PagesConfig";
 function BookACallContent() {
   const routeNavigator = useNavigate();
+  const pagesConfigData = PagesConfigDataApi();
+  const { callPage } = pagesConfigData;
   const [shouldLoad, setShouldLoad] = useState(false);
 
   function toCallPage(): void {
     routeNavigator("/schedule/call", { replace: false });
-    setShouldLoad(true);
+    if (!callPage) {
+      setShouldLoad(true);
+    }
   }
   return (
     <>
