@@ -13,6 +13,8 @@ interface PagesConfigConextType {
   setContactPage: React.Dispatch<React.SetStateAction<boolean>>;
   bookACallPage: boolean;
   setBookACallPage: React.Dispatch<React.SetStateAction<boolean>>;
+  callPage: boolean;
+  setCallPage: React.Dispatch<React.SetStateAction<boolean>>;
   discoverAllServicesPage: boolean;
   setDiscoverAllServicesPage: React.Dispatch<React.SetStateAction<boolean>>;
   exploreProjectsPage: boolean;
@@ -84,6 +86,8 @@ const PagesConfigContextData = createContext<PagesConfigConextType>({
   setContactPage: () => {},
   bookACallPage: false,
   setBookACallPage: () => {},
+  callPage: false,
+  setCallPage: () => {},
   discoverAllServicesPage: false,
   setDiscoverAllServicesPage: () => {},
   exploreProjectsPage: false,
@@ -114,6 +118,7 @@ export function PagesConfigProvider({
   const [mentorshipPage, setMentorshipPage] = useState<boolean>(false);
   const [contactPage, setContactPage] = useState<boolean>(false);
   const [bookACallPage, setBookACallPage] = useState<boolean>(false);
+  const [callPage, setCallPage] = useState<boolean>(false);
   const [discoverAllServicesPage, setDiscoverAllServicesPage] =
     useState<boolean>(false);
   const [exploreProjectsPage, setExporeProjectsPage] = useState<boolean>(false);
@@ -267,6 +272,8 @@ export function PagesConfigProvider({
         setContactPage,
         bookACallPage,
         setBookACallPage,
+        callPage,
+        setCallPage,
         discoverAllServicesPage,
         setDiscoverAllServicesPage,
         exploreProjectsPage,
