@@ -66,7 +66,7 @@ function End() {
           ></a>
         </span>
       </nav>
-      <section className="mt-[62px] min-[1000px]:mt-30 flex flex-col gap-[24px] min-[1000px]:flex-row text-gray-200 text-[16px] font-inter  min-[1000px]:gap-46.5">
+      <section className="mt-[62px] min-[1000px]:mt-30 flex flex-col gap-[24px] min-[1000px]:flex-row text-gray-200 text-[16px] font-inter  min-[1000px]:gap-46.5 min-[1000px]:mb-3">
         <h5 className="hidden min-[1000px]:block">
           © {new Date().getFullYear()} D'RHIM TECH INNOVATION
         </h5>
