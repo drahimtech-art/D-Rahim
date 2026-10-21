@@ -5,6 +5,7 @@ import End from "../../shared/Footer/Footer";
 import { useEffect, useState } from "react";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 import LoadingAnimation from "../../shared/LoadingState/LoadingAnimation";
+
 function Home() {
   const pagesConfigData = PagesConfigDataApi();
   const { setWorkPage, workPage } = pagesConfigData;
