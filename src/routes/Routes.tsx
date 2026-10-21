@@ -45,6 +45,7 @@ const ConceptSpring = lazy(
   () =>
     import("../features/home/features/Services/features/ServicesCardInfo/ConceptSpring"),
 );
+const Call = lazy(() => import("../features/home/features/Call/Call"));
 //login page
 const AdminLogin = lazy(() => import("../auth/Login/AdminLogin"));
 const AdminDasboard = lazy(() => import("../features/admin/AdminDasbord"));
@@ -117,6 +118,10 @@ function Routes() {
         {
           path: "/book/call",
           element: <HomeLoadingState Children={BookACall} />,
+        },
+        {
+          path: "/schedule/call",
+          element: <HomeLoadingState Children={Call} />,
         },
         {
           path: "/admin/access/login",
