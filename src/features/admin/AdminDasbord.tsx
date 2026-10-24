@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import LeftNevBar from "./shared/LeftNevBar";
 import Dashboard from "./features/Dashboard/Dashboard";
 import Portfolio from "./features/portfolio/Portfolio";

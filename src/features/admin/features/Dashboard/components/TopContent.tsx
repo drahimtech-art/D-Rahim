@@ -23,7 +23,7 @@ function TopContent({
   useEffect(() => {
     setFilterDateText(filterDateRangeText.split(",")[0]);
   }, [filterDateRangeText]);
-
+  console.log(newUsers, returningUsers);
   return (
     <article className="w-full h-fit grid grid-cols-4 gap-[29px]">
       {/**content */}

@@ -33,11 +33,11 @@ function LoadingState({
     getData();
   }, []);
   return isDataGoten ? (
-    <Suspense fallback={<LoadingAnimation />}>
+    <Suspense fallback={<LoadingAnimation shouldFadeOut={false} />}>
       <Children />
     </Suspense>
   ) : (
-    <LoadingAnimation />
+    <LoadingAnimation shouldFadeOut={false} />
   );
 }
 export default LoadingState;

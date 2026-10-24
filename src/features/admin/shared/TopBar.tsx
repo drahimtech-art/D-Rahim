@@ -15,7 +15,7 @@ function TopBar(props: Heading) {
   const adminConfigApi = AdminConfigApi();
   const { filterDateList, setFilterDateList, filterDateRangeText } =
     adminConfigApi;
-  const [searchParems, setSearchParems] = useSearchParams();
+  const [searchParems] = useSearchParams();
   const [renderFilterCalender, setRenderFilterCalender] =
     useState<boolean>(false);
   const [isFirstMount, setIsFirstMount] = useState<boolean>(true);

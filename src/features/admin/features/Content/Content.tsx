@@ -1,14 +1,19 @@
 import TopBar from "../../shared/TopBar";
-import TopContent from "../Dashboard/components/TopContent";
+//import TopContent from "../Dashboard/components/TopContent";
 import ContentTable from "./components/ContentTable";
 function Content() {
   return (
     <div className="w-full h-full  ">
       <div className="w-full h-full flex flex-col gap-7">
         {/**Top bar*/}
-        <TopBar heading={"Content Management"} subHeading={false} />
+        <TopBar
+          heading={"Content Management"}
+          subHeading={"Manage your content here"}
+        />
         {/**Top Content */}
-        <TopContent />
+        {
+          // <TopContent />
+        }
       </div>
       <div className="mt-10 w-full h-full bg-[#FFFFFF] rounded-[20px]">
         {/**search bar */}

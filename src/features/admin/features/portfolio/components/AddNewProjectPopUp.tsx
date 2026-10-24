@@ -35,7 +35,7 @@ function AddNewProjectPopUp({
   const [team, setTeam] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [industry, setIndustry] = useState<string>("Select your Industry");
-  const [projectType, setProjectType] = useState<string>("");
+  //const [projectType, setProjectType] = useState<string>("");
   //
   const [file, setFile] = useState<Blob | undefined>(undefined);
   const [imageUrl, setImgeUrl] = useState<string | undefined>(undefined);

@@ -30,6 +30,7 @@ interface PagesConfigConextType {
   projectInfoPage: boolean;
   setProjectInfoPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
+/*
 interface PagesLoaded {
   workPage: boolean;
   setWorkPage: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,6 +45,7 @@ interface PagesLoaded {
   bookACallPage: boolean;
   setBookACallPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
+  */
 export interface WebsiteVistedClientData {
   userId: string;
   pageVisited: {

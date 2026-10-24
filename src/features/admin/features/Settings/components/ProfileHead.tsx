@@ -1,4 +1,4 @@
-import companyImg from "/images/icons/companyImg.png";
+//import companyImg from "/images/icons/companyImg.png";
 import editIcon from "/images/icons/edit_icon.png";
 function ProfileHead({
   name,

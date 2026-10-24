@@ -1,5 +1,5 @@
 import TopBar from "../../shared/TopBar";
-import TopContent from "../Dashboard/components/TopContent";
+//import TopContent from "../Dashboard/components/TopContent";
 import MentorshipTable from "./components/MentorshipTable";
 function Mentorship() {
   return (
@@ -8,7 +8,7 @@ function Mentorship() {
         {/**Top bar*/}
         <TopBar heading={"Mentorship Enrollments"} subHeading={""} />
         {/**Top Content */}
-        <TopContent />
+        {/** <TopContent /> */}
       </div>
       <div className="mt-10 w-full h-full bg-[#FFFFFF] rounded-[20px]">
         {/**search bar */}

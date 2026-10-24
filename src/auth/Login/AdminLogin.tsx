@@ -17,7 +17,7 @@ function AdminLogin() {
   }
   const [realEmail, setRealEmail] = useState<string>("");
   const [realPassword, setRealPassword] = useState<string>("");
-  const [privacyPassword, setPrivacyPassword] = useState<string>("");
+  //const [privacyPassword, setPrivacyPassword] = useState<string>("");
   const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [renderNotificationBar, setRenderNotificationBar] =
@@ -39,6 +39,7 @@ function AdminLogin() {
   function handlePasswordChange(e: ChangeEvent<HTMLInputElement>): void {
     const value = e.target.value;
     setRealPassword(value);
+    /*
     setPrivacyPassword((prevPassword) => {
       if (prevPassword.length < value.length) {
         return `${prevPassword}*`;
@@ -51,6 +52,7 @@ function AdminLogin() {
         return `${newV.join("")}`;
       }
     });
+    */
   }
   function handleLogin() {
     if (!loginControlFuncRef.current || isLoading) return;
