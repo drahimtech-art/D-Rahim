@@ -1,0 +1,1 @@
+var e=`/D-Rahim/images/icons/Clock.png`;export{e as t};

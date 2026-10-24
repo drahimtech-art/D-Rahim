@@ -1,0 +1,1 @@
+var e=`/D-Rahim/images/icons/Map.svg`,t=`/D-Rahim/images/icons/whatsApp_icon.png`;export{e as n,t};

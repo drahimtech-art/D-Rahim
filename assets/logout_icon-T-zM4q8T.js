@@ -1,0 +1,1 @@
+var e=`/D-Rahim/images/icons/HouseSimple_icon.png`,t=`/D-Rahim/images/logout_icon.png`;export{e as n,t};
