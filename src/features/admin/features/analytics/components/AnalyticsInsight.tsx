@@ -29,7 +29,7 @@ function AnalyticsInsight({
   useEffect(() => {
     setFilterDateText(filterDateRangeText.split(",")[0]);
   }, [filterDateRangeText]);
-
+  console.log(bouncedBackUsers);
   useEffect(() => {
     if (
       isFetchRequstSent ||
