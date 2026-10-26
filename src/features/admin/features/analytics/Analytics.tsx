@@ -1,6 +1,7 @@
 import TopBar from "../../shared/TopBar";
 import AnalyticsInsight from "./components/AnalyticsInsight";
-import GraphAndTrafficLocation from "./components/GraphAndTrafficLocation";
+import GraphContent from "./components/GraphContent";
+import TraficLocation from "./components/TrafficLoaction";
 import Devices from "./components/Devices";
 import { AdminConfigApi } from "../../../../storage/AdminConfig";
 function Analytics(): React.ReactElement {
@@ -21,26 +22,32 @@ function Analytics(): React.ReactElement {
         bouncedBackUsers={analyticsData.bouncedBackUsers}
         returningUsers={analyticsData.returningUsers}
       />
-      <GraphAndTrafficLocation
-        filterDateList={filterDateList}
-        analyticsDataList={analyticsDataList}
-        facebook={analyticsData.platformVisitedFrom.facebook}
-        linkedIn={analyticsData.platformVisitedFrom.linkedIn}
-        youtub={analyticsData.platformVisitedFrom.youtub}
-        tiktok={analyticsData.platformVisitedFrom.tiktok}
-        behance={analyticsData.platformVisitedFrom.behance}
-        instagram={analyticsData.platformVisitedFrom.instagram}
-        twitter={analyticsData.platformVisitedFrom.twitter}
-        google={analyticsData.platformVisitedFrom.google}
-        pintrest={analyticsData.platformVisitedFrom.pintrest}
-        other={analyticsData.platformVisitedFrom.other}
-      />
-      <Devices
-        desktop={analyticsData.deviceType.desktop}
-        mobile={analyticsData.deviceType.mobile}
-        tablet={analyticsData.deviceType.tablet}
-        other={analyticsData.deviceType.other}
-      />
+      <div className="flex mt-[20px] w-full gap-2">
+        <div className="w-[60%] h-fit">
+          <GraphContent
+            filterDateList={filterDateList}
+            analyticsDataList={analyticsDataList}
+          />
+          <Devices
+            desktop={analyticsData.deviceType.desktop}
+            mobile={analyticsData.deviceType.mobile}
+            tablet={analyticsData.deviceType.tablet}
+            other={analyticsData.deviceType.other}
+          />
+        </div>
+        <TraficLocation
+          facebook={analyticsData.platformVisitedFrom.facebook}
+          linkedIn={analyticsData.platformVisitedFrom.linkedIn}
+          youtub={analyticsData.platformVisitedFrom.youtub}
+          tiktok={analyticsData.platformVisitedFrom.tiktok}
+          behance={analyticsData.platformVisitedFrom.behance}
+          instagram={analyticsData.platformVisitedFrom.instagram}
+          twitter={analyticsData.platformVisitedFrom.twitter}
+          google={analyticsData.platformVisitedFrom.google}
+          pintrest={analyticsData.platformVisitedFrom.pintrest}
+          other={analyticsData.platformVisitedFrom.other}
+        />
+      </div>
     </article>
   );
 }

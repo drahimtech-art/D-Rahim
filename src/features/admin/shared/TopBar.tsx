@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Calender from "./Calender";
 import { AdminConfigApi } from "../../../storage/AdminConfig";
+import TopBarNotificationCard from "./TopBarNotificationCard";
 type Heading = {
   heading: string;
   subHeading: string;
@@ -18,6 +19,7 @@ function TopBar(props: Heading) {
   const [searchParems] = useSearchParams();
   const [renderFilterCalender, setRenderFilterCalender] =
     useState<boolean>(false);
+  const [renderNotification, setRenderNotification] = useState<boolean>(true);
   const [isFirstMount, setIsFirstMount] = useState<boolean>(true);
   const page = searchParems.get("page");
   function getIsFirstMount(): boolean {
@@ -34,6 +36,26 @@ function TopBar(props: Heading) {
     if (!props.isFirstRequstSent) return;
     setIsFirstMount(false);
   }, [props.isFirstRequstSent]);
+  const notifications = [
+    {
+      title: "New Booking",
+      content: "UI/UX consultation booked for Sep 8",
+      time: "5 mins ago",
+      isAction: false,
+    },
+    {
+      title: "Payment Received",
+      content: "N320,000 payment received from ABC Ltd",
+      time: "1 hour ago",
+      isAction: false,
+    },
+    {
+      title: "Email failed to send from server",
+      content: "",
+      time: "",
+      isAction: true,
+    },
+  ];
   return (
     <>
       <article className="w-full flex p-3.5 pl-5 pr-5 bg-[#FFFFFF] h-[100px] items-center rounded-[10px]">
@@ -74,9 +96,31 @@ function TopBar(props: Heading) {
               <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full">
                 <img className="w-[24px] h-[24px]" src={searchIcon}></img>
               </span>
-              <span className=" mr-5 flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full">
-                <img className="w-[24px] h-[24px]" src={bellIcon}></img>
-              </span>
+              <div className="mr-5 relative">
+                <span
+                  className="  flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full pointer"
+                  onClick={() => setRenderNotification(!renderNotification)}
+                >
+                  <img className="w-[24px] h-[24px]" src={bellIcon}></img>
+                </span>
+                {renderNotification && (
+                  <article className="w-[360px] h-[355px] overflow-hidden z-50 absolute -right-15   ">
+                    <div className="flex flex-col h-full pb-5 gap-[10px] overflow-y-auto">
+                      {notifications.map((e, i) => {
+                        return (
+                          <TopBarNotificationCard
+                            title={e.title}
+                            content={e.content}
+                            time={e.time}
+                            isAction={e.isAction}
+                            key={`notification-bar-key-${i}`}
+                          />
+                        );
+                      })}
+                    </div>
+                  </article>
+                )}
+              </div>
             </span>
           </section>
         )}
@@ -85,6 +129,12 @@ function TopBar(props: Heading) {
         <div
           className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-10"
           onClick={() => setRenderFilterCalender(!renderFilterCalender)}
+        ></div>
+      )}
+      {renderNotification && (
+        <div
+          className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-10"
+          onClick={() => setRenderNotification(!renderNotification)}
         ></div>
       )}
     </>
