@@ -339,12 +339,19 @@ textarea:focus {
   min-width: 100%;
 }
 
-.ourwork-image-card-parent:hover {
-  transition: 200ms ease-in;
-  margin-top: -2%;
-  margin-left: -0.75%;
-  width: 101%;
-  height: 80%;
+.ourwork-image-card-parent {
+ overflow: hidden;
+ width: 100%;
+ height: 100%;
+}
+.ourwork-image-card-parent img{
+ width: 100%;
+ height: 100%; 
+ object-fit: cover;
+ transition: transform 0.3s ease-in-out;
+}
+.ourwork-image-card-parent img:hover{
+ transform: scale(1.1);
 }
 .rotate-up {
   transition: 180ms ease-in-out;
