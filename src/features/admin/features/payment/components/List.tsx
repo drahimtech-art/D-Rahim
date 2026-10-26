@@ -39,9 +39,9 @@ function List(): React.ReactElement {
           </h5>
         </span>
       </section>
-      <section className="w-full h-[400px] overflow-hidden">
+      <section className="w-full h-[400px] ">
         <div className="w-full h-full  flex flex-col">
-          {Array.from({ length: 30 }).map((_, i) => {
+          {Array.from({ length: 5 }).map((_, i) => {
             return (
               <TableRows statusType="Confirmed" key={`table-row-key-${i}`} />
             );
