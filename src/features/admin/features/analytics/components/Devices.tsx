@@ -14,7 +14,7 @@ function Devices({
   other: number;
 }): React.ReactElement {
   return (
-    <article className="w-[55%] h-fit mt-[20px]  bg-[#FFFFFF] rounded-[20px] p-4 ">
+    <article className="w-[90%] h-fit mt-[20px]  bg-[#FFFFFF] rounded-[20px] p-4 ">
       <article className="w-[70%] h-full ">
         {/**head */}
         <section className="w-full h-fit p-2  flex">
