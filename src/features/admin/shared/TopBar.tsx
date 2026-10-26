@@ -19,7 +19,8 @@ function TopBar(props: Heading) {
   const [searchParems] = useSearchParams();
   const [renderFilterCalender, setRenderFilterCalender] =
     useState<boolean>(false);
-  const [renderNotification, setRenderNotification] = useState<boolean>(true);
+  const [renderNotification, setRenderNotification] = useState<boolean>(false);
+  const [isNewNotification, setIsNewNotification] = useState<boolean>(true);
   const [isFirstMount, setIsFirstMount] = useState<boolean>(true);
   const page = searchParems.get("page");
   function getIsFirstMount(): boolean {
@@ -55,7 +56,17 @@ function TopBar(props: Heading) {
       time: "",
       isAction: true,
     },
+    {
+      title: "Payment Received",
+      content: "N320,000 payment received from ABC Ltd",
+      time: "1 hour ago",
+      isAction: false,
+    },
   ];
+  function handleRenderNotification() {
+    setRenderNotification(!renderNotification);
+    setIsNewNotification(false);
+  }
   return (
     <>
       <article className="w-full flex p-3.5 pl-5 pr-5 bg-[#FFFFFF] h-[100px] items-center rounded-[10px]">
@@ -98,9 +109,12 @@ function TopBar(props: Heading) {
               </span>
               <div className="mr-5 relative">
                 <span
-                  className="  flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full pointer"
-                  onClick={() => setRenderNotification(!renderNotification)}
+                  className=" relative  flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full pointer"
+                  onClick={handleRenderNotification}
                 >
+                  {isNewNotification && (
+                    <div className="bg-red-600 absolute w-[7px] h-[7px] rounded-full ml-2 -mt-3"></div>
+                  )}
                   <img className="w-[24px] h-[24px]" src={bellIcon}></img>
                 </span>
                 {renderNotification && (
@@ -134,7 +148,7 @@ function TopBar(props: Heading) {
       {renderNotification && (
         <div
           className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-10"
-          onClick={() => setRenderNotification(!renderNotification)}
+          onClick={() => setRenderNotification(false)}
         ></div>
       )}
     </>

@@ -25,13 +25,13 @@ function TopBarNotificationCard({
             {title}
           </h5>
           {isAction ? (
-            <div className="pl-2.5 pr-2.5 pt-2 pb-2 flex gap-2.5">
+            <button className="pl-2.5 pr-2.5 pt-2 pb-2 flex gap-2.5 pointer">
               <img
                 className="min-w-[24px] min-h-[24px] max-w-[24px] max-h-[24px]"
                 src={reloadIcon}
               />
               <h5 className="font-normal font-inter text-[16px]">Retry</h5>
-            </div>
+            </button>
           ) : (
             <div className="flex flex-col gap-1.25">
               {/**content */}
