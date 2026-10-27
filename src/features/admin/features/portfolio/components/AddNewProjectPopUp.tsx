@@ -35,7 +35,9 @@ function AddNewProjectPopUp({
   const [team, setTeam] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [industry, setIndustry] = useState<string>("Select your Industry");
-  //const [projectType, setProjectType] = useState<string>("");
+  const [projectType, setProjectType] = useState<string>("Select your Service");
+  const [renderProjectTypeService, setRenderProjectTypeService] =
+    useState<boolean>(false);
   //
   const [file, setFile] = useState<Blob | undefined>(undefined);
   const [imageUrl, setImgeUrl] = useState<string | undefined>(undefined);
@@ -59,7 +61,8 @@ function AddNewProjectPopUp({
       duration.length < 3 ||
       team.length < 3 ||
       location.length < 3 ||
-      industry.length < 3
+      industry[0] === "Select your Industry" ||
+      projectType === "Select your Service"
     )
       return alert("Can't upload one or more fileds are empty!");
     if (!file) return alert("Can't upload project image not found");
@@ -74,9 +77,17 @@ function AddNewProjectPopUp({
       team: team.split(","),
       location: location,
       industry: industry.split(","),
-      projectType: "branding",
+      projectType: projectType,
     };
     handleUploadNewProject(projectInfo);
+  }
+  function handleRenderIndustry(): void {
+    setRenderProjectTypeService(false);
+    setRenderIndustry(!renderIndustry);
+  }
+  function handleRenderProjectTypeService(): void {
+    setRenderIndustry(false);
+    setRenderProjectTypeService(!renderProjectTypeService);
   }
   return (
     <div className="w-full h-full flex justify-center items-center">
@@ -123,41 +134,45 @@ function AddNewProjectPopUp({
             </section>
             {/**input section */}
             <article className="w-[55%] h-fit flex flex-col gap-[30px]">
+              {/**project title */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">
                   Project Title
                 </h5>
                 <input
-                  className="w-full h-[60px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full h-[60px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 ></input>
               </section>
+              {/**project heading */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">
                   Project Heading
                 </h5>
                 <input
-                  className="w-full h-[60px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full h-[60px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={heading}
                   onChange={(e) => setHeading(e.target.value)}
                 ></input>
               </section>
+              {/**project about */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">
                   Tell us about your project
                 </h5>
                 <textarea
-                  className="w-full min-h-[124px] h-[124px] max-h-[250px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full min-h-[124px] h-[124px] max-h-[250px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={about}
                   onChange={(e) => setAbout(e.target.value)}
                 ></textarea>
               </section>
+              {/**industry selection */}
               <section className="w-full flex flex-col gap-1 relative">
                 <h5 className="font-inter font-medium text-[24px]">Industry</h5>
                 <button
                   className="w-full pointer h-[60px] border p-3 border-[#56D566]  rounded-[12px] flex items-center"
-                  onClick={() => setRenderIndustry(!renderIndustry)}
+                  onClick={handleRenderIndustry}
                 >
                   <h5 className="text-[#3C3C43] font-inter text-[16px] font-medium">
                     {industry}
@@ -174,7 +189,7 @@ function AddNewProjectPopUp({
                   </span>
                 </button>
                 {renderIndustry && (
-                  <article className="w-full flex flex-col absolute border border-[#56D566] bg-[#FFFFFF]  rounded-[12px] mt-25">
+                  <article className="w-full flex flex-col absolute z-10 border border-[#56D566] bg-[#FFFFFF]  rounded-[12px] mt-25">
                     <section
                       className="w-full h-[50px] p-3.25 transition-all hover:bg-[#11AC76] pointer rounded-t-[12px]"
                       onClick={() => {
@@ -222,40 +237,104 @@ function AddNewProjectPopUp({
                   </article>
                 )}
               </section>
+              {/**service selection */}
+              <section className="w-full flex flex-col gap-1 relative">
+                <h5 className="font-inter font-medium text-[24px]">Service</h5>
+                <button
+                  className="w-full pointer h-[60px] border p-3 border-[#56D566]  rounded-[12px] flex items-center"
+                  onClick={handleRenderProjectTypeService}
+                >
+                  <h5 className="text-[#3C3C43] font-inter text-[16px] font-medium">
+                    {projectType}
+                  </h5>
+                  <span className="w-fit  ml-auto">
+                    {!renderProjectTypeService ? (
+                      <img className="w-[24px] h-[24px] " src={arrowDownIcon} />
+                    ) : (
+                      <img
+                        className="w-[24px] h-[24px] rotate-180"
+                        src={arrowDownIcon}
+                      />
+                    )}
+                  </span>
+                </button>
+                {renderProjectTypeService && (
+                  <article className="w-full flex flex-col absolute z-10 border border-[#56D566] bg-[#FFFFFF]  rounded-[12px] mt-25">
+                    <section
+                      className="w-full h-[50px] p-3.25 transition-all hover:bg-[#11AC76] pointer rounded-t-[12px]"
+                      onClick={() => {
+                        setProjectType("Mobile Design");
+                        setRenderProjectTypeService(false);
+                      }}
+                    >
+                      <h5 className="font-inter font-medium text-[16px]">
+                        Mobile Design
+                      </h5>
+                    </section>
+                    <section
+                      className="w-full h-[50px] p-3.25 transition-all hover:bg-[#11AC76] pointer"
+                      onClick={() => {
+                        setProjectType("Website Design");
+                        setRenderProjectTypeService(false);
+                      }}
+                    >
+                      <h5 className="font-inter font-medium text-[16px]">
+                        Website Design
+                      </h5>
+                    </section>
+                    <section
+                      className="w-full h-[50px] p-3.25 transition-all hover:bg-[#11AC76]  rounded-b-[12px] pointer"
+                      onClick={() => {
+                        setProjectType("Branding");
+                        setRenderProjectTypeService(false);
+                      }}
+                    >
+                      <h5 className="font-inter font-medium text-[16px]">
+                        Branding
+                      </h5>
+                    </section>
+                  </article>
+                )}
+              </section>
+              {/**capability */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">
                   Capability
                 </h5>
                 <input
-                  className="w-full h-[60px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full h-[60px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={capabilities}
                   onChange={(e) => setCapabilities(e.target.value)}
                 ></input>
               </section>
+              {/**teams */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">Teams</h5>
                 <input
-                  className="w-full h-[60px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full h-[60px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={team}
                   onChange={(e) => setTeam(e.target.value)}
                 ></input>
               </section>
+              {/**duration */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">Duration</h5>
                 <input
-                  className="w-full h-[60px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full h-[60px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
                 ></input>
               </section>
+              {/**location */}
               <section className="flex flex-col gap-1">
                 <h5 className="font-inter font-medium text-[24px]">Location</h5>
                 <input
-                  className="w-full h-[60px] text-[20px] font-medium border border-[#56D566] rounded-[12px] p-2"
+                  className="w-full h-[60px] text-[#3C3C43] font-inter text-[16px] font-medium border border-[#56D566] rounded-[12px] p-2"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 ></input>
               </section>
+              {/**action */}
               <section className="flex ">
                 <div className="ml-auto flex gap-[20px]">
                   <button
