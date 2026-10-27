@@ -52,7 +52,7 @@ function SearchAndFilterBar({
   function cheackIfEnterIsClickedOnSearch(e: any) {
     const key: string = e.key;
     if (key === "Enter") {
-      handleProjectListApiFetch(false, undefined);
+      handleProjectListApiFetch(false, filterStatus);
     }
   }
   function handleProjectListApiFetch(
@@ -81,17 +81,27 @@ function SearchAndFilterBar({
     const filtedList: ProjectInfo[] = [];
     console.log(searchWordsList);
     for (let i = 0; i < constProjectList.length; i++) {
-      if (
-        constProjectList[i].heading.includes(searchWordsList) ||
-        constProjectList[i].title.includes(searchWordsList) ||
-        constProjectList[i].duration.includes(searchWordsList) ||
-        constProjectList[i].location.includes(searchWordsList) ||
-        constProjectList[i].projectType.includes(searchWordsList) ||
-        new Date(constProjectList[i].creationDate)
-          .toLocaleDateString()
-          .includes(searchWordsList)
-      ) {
-        if (constProjectList[i].projectStatus === status || status === "All") {
+      if (searchWordsList.trim().length > 0) {
+        if (
+          constProjectList[i].heading.includes(searchWordsList) ||
+          constProjectList[i].title.includes(searchWordsList) ||
+          constProjectList[i].duration.includes(searchWordsList) ||
+          constProjectList[i].location.includes(searchWordsList) ||
+          constProjectList[i].projectType.includes(searchWordsList) ||
+          new Date(constProjectList[i].creationDate)
+            .toLocaleDateString()
+            .includes(searchWordsList)
+        ) {
+          if (!status && filterStatus === "All") {
+            filtedList.push(constProjectList[i]);
+          } else if (constProjectList[i].projectStatus === status) {
+            filtedList.push(constProjectList[i]);
+          }
+        }
+      } else {
+        if (status === "All") {
+          filtedList.push(constProjectList[i]);
+        } else if (constProjectList[i].projectStatus === status) {
           filtedList.push(constProjectList[i]);
         }
       }
