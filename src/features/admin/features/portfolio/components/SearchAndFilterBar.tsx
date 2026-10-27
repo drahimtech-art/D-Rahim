@@ -208,7 +208,7 @@ function SearchAndFilterBar({
         ></div>
       )}
       {renderAddNewProjectBar && (
-        <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0">
+        <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-50">
           <AddNewProjectPopUp
             closePopUp={setRenderAddNewProjectBar}
             isAddNewProjectRequstSent={isAddNewProjectRequstSent}

@@ -86,7 +86,7 @@ function List({
           </h5>
         </span>
       </section>
-      <section className="w-full h-[400px] overflow-hidden">
+      <section className="w-full h-[400px] ">
         <div className="w-full h-full  flex flex-col">
           {limitList.map((e, i) => {
             return <TableRows data={e} key={`table-row-key-${i}`} />;
