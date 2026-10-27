@@ -9,9 +9,13 @@ import {
 function SearchAndFilterBar({
   searchSection,
   setProjectList,
+  constProjectList,
+  setConstProjectList,
 }: {
   searchSection: string;
   setProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
+  constProjectList: ProjectInfo[];
+  setConstProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
@@ -24,6 +28,7 @@ function SearchAndFilterBar({
     "Active" | "InActive" | "All"
   >("All");
   const [isFilterRequstSent, setIsFilterRequstSent] = useState<boolean>(false);
+
   //
 
   //
@@ -51,11 +56,12 @@ function SearchAndFilterBar({
     }
   }
   function handleProjectListApiFetch(
-    isFirstFetch: boolean,
+    _: boolean,
     status?: "Active" | "InActive" | "All",
   ) {
     if (isFilterRequstSent) return;
     setIsFilterRequstSent(true);
+    /*
     getProjectData({
       searchWordsList,
       filterStatus: status ? status : filterStatus,
@@ -71,10 +77,46 @@ function SearchAndFilterBar({
         console.warn(error);
         setIsFilterRequstSent(false);
       });
+      */
+    const filtedList: ProjectInfo[] = [];
+    console.log(searchWordsList);
+    for (let i = 0; i < constProjectList.length; i++) {
+      if (
+        constProjectList[i].heading.includes(searchWordsList) ||
+        constProjectList[i].title.includes(searchWordsList) ||
+        constProjectList[i].duration.includes(searchWordsList) ||
+        constProjectList[i].location.includes(searchWordsList) ||
+        constProjectList[i].projectType.includes(searchWordsList) ||
+        new Date(constProjectList[i].creationDate)
+          .toLocaleDateString()
+          .includes(searchWordsList)
+      ) {
+        if (constProjectList[i].projectStatus === status || status === "All") {
+          filtedList.push(constProjectList[i]);
+        }
+      }
+    }
+    setProjectList(filtedList);
+    setIsFilterRequstSent(false);
   }
   //
   useEffect(() => {
-    handleProjectListApiFetch(true, undefined);
+    //handleProjectListApiFetch(true, undefined);
+    if (constProjectList.length !== 0) return;
+    getProjectData({
+      searchWordsList: "",
+      filterStatus: "All",
+    })
+      .then((res) => {
+        //alert(res.message);
+        setProjectList(res.data);
+        setConstProjectList(res.data);
+        setIsFilterRequstSent(false);
+      })
+      .catch((error) => {
+        console.warn(error);
+        setIsFilterRequstSent(false);
+      });
   }, []);
 
   return (

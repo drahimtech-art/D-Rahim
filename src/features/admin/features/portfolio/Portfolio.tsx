@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { ProjectInfo } from "./api/Api";
 function Portfolio(): React.ReactElement {
   const [projectsList, setProjectList] = useState<ProjectInfo[]>([]);
+  const [constProjectList, setConstProjectList] = useState<ProjectInfo[]>([]);
   return (
     <article className="w-full h-full">
       <TopBar
@@ -14,6 +15,8 @@ function Portfolio(): React.ReactElement {
       <SearchAndFilterBar
         searchSection="services"
         setProjectList={setProjectList}
+        constProjectList={constProjectList}
+        setConstProjectList={setConstProjectList}
       />
       <List projectList={projectsList} />
     </article>
