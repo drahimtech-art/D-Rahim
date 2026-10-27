@@ -263,12 +263,12 @@ function AddNewProjectPopUp({
                     <section
                       className="w-full h-[50px] p-3.25 transition-all hover:bg-[#11AC76] pointer rounded-t-[12px]"
                       onClick={() => {
-                        setProjectType("Mobile Design");
+                        setProjectType("Moblie Design");
                         setRenderProjectTypeService(false);
                       }}
                     >
                       <h5 className="font-inter font-medium text-[16px]">
-                        Mobile Design
+                        Moblie Design
                       </h5>
                     </section>
                     <section
