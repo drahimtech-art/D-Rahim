@@ -448,3 +448,8 @@ textarea:focus {
 .font-italic {
   font-style: italic;
 }
+.hover-bg-primary-green:hover {
+  background-color: #004a3c !important;
+  color: white !important;
+  transition: all 200ms ease-in;
+}

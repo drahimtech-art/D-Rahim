@@ -1,7 +1,13 @@
 import Logo1 from "/images/logo1.png";
 import clockIcon from "/images/icons/Clock.png";
 import videoCameraIcon from "/images/icons/VideoCamera.png";
-function Head(): React.ReactElement {
+function Head({
+  date,
+  time,
+}: {
+  date: string;
+  time: string;
+}): React.ReactElement {
   return (
     <section className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
       <div className="flex flex-col gap-2 min-[1000px]:mt-6">
@@ -21,7 +27,9 @@ function Head(): React.ReactElement {
             className="min-w-[24px] min-h-[24px] max-w-[24px] max-h-[24px]"
             src={clockIcon}
           ></img>
-          <h5 className="font-inter  text-[20px] text-[#5e5d5d]">48 mins</h5>
+          <h5 className="font-inter  text-[20px] text-[#5e5d5d]">
+            {`${date} at ${time}`}
+          </h5>
         </span>
         <span className=" flex gap-2 ">
           <img

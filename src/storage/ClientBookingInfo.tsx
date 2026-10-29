@@ -2,6 +2,7 @@ import { useState, useContext, createContext } from "react";
 export interface BookingRequiredData {
   date: Date;
   time: string;
+  defaultTimeOpenIndex: number;
   clientFullName: string;
   jobTitle: string;
   email: string;
