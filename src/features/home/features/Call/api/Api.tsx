@@ -14,6 +14,7 @@ export async function postRequstSevice(
           "X-Frontend-Key": `${key}`,
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(requstForm),
       },
     );
     const responds: { ok: boolean; message: string } = await postRequst.json();
