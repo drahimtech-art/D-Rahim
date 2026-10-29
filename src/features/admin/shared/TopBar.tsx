@@ -12,6 +12,16 @@ type Heading = {
   isFirstRequstSent?: boolean;
   fetchAnalyticsData?: () => void;
 };
+interface NotificationData {
+  title: string;
+  content: string;
+  date: Date;
+  isAction: boolean;
+  url: string;
+  isViewed: boolean;
+  _id: string;
+  __v: number;
+}
 function TopBar(props: Heading) {
   const adminConfigApi = AdminConfigApi();
   const { filterDateList, setFilterDateList, filterDateRangeText } =

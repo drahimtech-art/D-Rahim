@@ -44,7 +44,7 @@ function TraficLocation({
     other;
   //
   function returnPercentValueIn100(value: number): number {
-    return (value / totalSum) * 100;
+    return Math.round((value / totalSum) * 100);
   }
   return (
     <section className="w-[40%] h-full bg-[#FFFFFF] rounded-[20px] p-4 pr-0">
