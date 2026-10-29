@@ -10,14 +10,8 @@ function Menu(props: MenuControl) {
   const serverPath = window.location.hash;
   const urlNavigator = useNavigate();
   const pagesConfigData = PagesConfigDataApi();
-  const {
-    workPage,
-    servicesPage,
-    aboutPage,
-    mentorshipPage,
-    contactPage,
-    bookACallPage,
-  } = pagesConfigData;
+  const { workPage, servicesPage, aboutPage, mentorshipPage, bookACallPage } =
+    pagesConfigData;
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   function services() {
     urlNavigator("/services", { replace: true });
@@ -49,6 +43,7 @@ function Menu(props: MenuControl) {
       setShouldAppLoad(true);
     }
   }
+  /** 
   function contact() {
     urlNavigator("/contact", { replace: true });
     if (serverPath != "#/contact" && !contactPage) {
@@ -57,6 +52,7 @@ function Menu(props: MenuControl) {
       props.setMenuControl(false);
     }
   }
+    **/
   function bookACall() {
     urlNavigator("/book/call", { replace: true });
     if (serverPath != "#/book/call" && !bookACallPage) {
@@ -116,16 +112,16 @@ function Menu(props: MenuControl) {
           </section>
           <section
             className="p-2.5 sm:text-[24px] pointer text-[35px] text-green-500 font-inter font-semibold "
-            onClick={contact}
+            onClick={bookACall}
           >
             <h5>Get in touch</h5>
           </section>
-          <section
+          {/** <section
             className="p-2.5 sm:text-[24px] pointer text-[35px] text-green-500 font-inter font-semibold "
             onClick={bookACall}
           >
             <h5>Book a call</h5>
-          </section>
+          </section> */}
         </nav>
       </article>
       {shouldAppLoad && <LoadingAnimation shouldFadeOut={false} />}

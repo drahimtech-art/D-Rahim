@@ -11,9 +11,9 @@ const About = lazy(() => import("../features/home/features/About/About"));
 const Mentorship = lazy(
   () => import("../features/home/features/Mentorship/Mentorship"),
 );
-const GetInTouch = lazy(
-  () => import("../features/home/features/GetInTouch/GetInTouch"),
-);
+//const GetInTouch = lazy(
+//() => import("../features/home/features/GetInTouch/GetInTouch"),
+//);
 const BookACall = lazy(
   () => import("../features/home/features/BookACall/BookACall"),
 );
@@ -111,10 +111,12 @@ function Routes() {
           path: "/mentorship",
           element: <HomeLoadingState Children={Mentorship} />,
         },
+        /*
         {
           path: "/contact",
           element: <HomeLoadingState Children={GetInTouch} />,
         },
+        */
         {
           path: "/book/call",
           element: <HomeLoadingState Children={BookACall} />,

@@ -6,7 +6,7 @@ import LoadingAnimation from "../LoadingState/LoadingAnimation";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
 function Top() {
   const pagesConfigData = PagesConfigDataApi();
-  const { workPage, servicesPage, aboutPage, mentorshipPage, contactPage } =
+  const { workPage, servicesPage, aboutPage, mentorshipPage, bookACallPage } =
     pagesConfigData;
   const [menuControl, setMenuControl] = useState<boolean>(false);
   const [mountMenuBar, setMountMenuBar] = useState<boolean>(false);
@@ -44,8 +44,8 @@ function Top() {
     }
   }
   function contact() {
-    urlNavigator("/contact", { replace: true });
-    if (serverPath != "#/contact" && !contactPage) {
+    urlNavigator("/book/call", { replace: true });
+    if (serverPath != "#/book/call" && !bookACallPage) {
       setShouldAppLoad(true);
     }
   }

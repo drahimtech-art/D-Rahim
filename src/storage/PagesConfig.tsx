@@ -214,7 +214,7 @@ export function PagesConfigProvider({
             servicesPage,
             aboutPage,
             mentorshipPage,
-            contactPage,
+            contactPage: bookACallPage,
           },
         };
       });
