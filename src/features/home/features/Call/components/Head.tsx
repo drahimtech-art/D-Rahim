@@ -3,7 +3,13 @@ import clockIcon from "/images/icons/Clock.png";
 //import videoCameraIcon from "/images/icons/VideoCamera.png";
 import calenderIcon from "/images/icons/CalendarBlank.png";
 import worldIcon from "/images/icons/GlobeHemisphereWest.png";
-function Head(): React.ReactElement {
+function Head({
+  date,
+  time,
+}: {
+  date?: string;
+  time?: string;
+}): React.ReactElement {
   return (
     <div className="min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  min-[1000px]:mt-20 mt-10 flex flex-col min-[1000px]:flex-row min-[1000px]:gap-10 gap-5 justify-around">
       <section className="flex flex-col min-[1000px]:mr-auto min-[1000px]:w-[32%]">
@@ -32,7 +38,7 @@ function Head(): React.ReactElement {
               src={calenderIcon}
             ></img>
             <h5 className="font-inter  text-[20px] text-[#5e5d5d]">
-              7:00am-7:48am, Tuesday, September 9, 2026
+              {time}, {date}
             </h5>
           </span>
           <span className="flex flex-col gap-12">
