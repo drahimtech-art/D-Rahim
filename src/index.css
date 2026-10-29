@@ -455,3 +455,6 @@ textarea:focus {
     transition: all 200ms ease-in;
   }
 }
+.min16pxMax35px {
+  font-size: clamp(16px, 4vw, 35px);
+}
