@@ -17,7 +17,6 @@ function SearchAndFilterBar({
   const [filterStatus, setFilterStatus] = useState<
     "Pending" | "Cancelled" | "Confirmed" | "All"
   >("All");
-  const [isFilterRequstSent, setIsFilterRequstSent] = useState<boolean>(false);
   //
   function cheackIfEnterIsClickedOnSearch(e: any) {
     const key: string = e.key;
@@ -29,25 +28,6 @@ function SearchAndFilterBar({
     _: boolean,
     status?: "Pending" | "Cancelled" | "Confirmed" | "All",
   ) {
-    if (isFilterRequstSent) return;
-    setIsFilterRequstSent(true);
-    /*
-      getProjectData({
-        searchWordsList,
-        filterStatus: status ? status : filterStatus,
-      })
-        .then((res) => {
-          if (!isFirstFetch) {
-            //alert(res.message);
-          }
-          setBookingList(res.data);
-          setIsFilterRequstSent(false);
-        })
-        .catch((error) => {
-          console.warn(error);
-          setIsFilterRequstSent(false);
-        });
-        */
     const filtedList: BookingData[] = [];
     console.log(searchWordsList);
     for (let i = 0; i < constBookingList.length; i++) {
@@ -97,9 +77,7 @@ function SearchAndFilterBar({
         }
       }
     }
-    console.log(filtedList);
     setBookingList(filtedList);
-    setIsFilterRequstSent(false);
   }
   //
   useEffect(() => {

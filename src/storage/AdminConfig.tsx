@@ -38,6 +38,8 @@ interface AdminConfigType {
   setAdminProfileData: React.Dispatch<
     React.SetStateAction<AdminProfile | undefined>
   >;
+  bookingsDataList: BookingData[];
+  setBookingsDataList: React.Dispatch<React.SetStateAction<BookingData[]>>;
 }
 const AdminConfigContextData = createContext<AdminConfigType>({
   filterDateList: [],
@@ -78,6 +80,8 @@ const AdminConfigContextData = createContext<AdminConfigType>({
   setAnalyticsDataList: () => {},
   adminProfileData: undefined,
   setAdminProfileData: () => {},
+  bookingsDataList: [],
+  setBookingsDataList: () => {},
 });
 function AdminConfigProvider({
   children,
@@ -126,6 +130,8 @@ function AdminConfigProvider({
     AdminProfile | undefined
   >(undefined);
   //
+  const [bookingsDataList, setBookingsDataList] = useState<BookingData[]>([]);
+  //
   useEffect(() => {
     if (filterDateList.length > 1) {
       const startingDate = `${filterDateList[0].split(" ")[1]} ${filterDateList[0].split(" ")[2]}`;
@@ -153,6 +159,8 @@ function AdminConfigProvider({
         setAnalyticsDataList,
         adminProfileData,
         setAdminProfileData,
+        bookingsDataList,
+        setBookingsDataList,
       }}
     >
       {children}
