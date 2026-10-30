@@ -48,7 +48,7 @@ const ConceptSpring = lazy(
 const Call = lazy(() => import("../features/home/features/Call/Call"));
 //login page
 const AdminLogin = lazy(() => import("../auth/Login/AdminLogin"));
-const AdminDasboard = lazy(() => import("../features/admin/AdminDasbord"));
+const AdminDasboard = lazy(() => import("../features/admin/AdminDashboard"));
 //access student page
 const AccessLogin = lazy(() => import("../auth/Login/AccessLogin"));
 const AccessStudentPage = lazy(
