@@ -4,16 +4,23 @@ import List from "./components/List";
 import type { BookingData } from "../../../../storage/AdminConfig";
 import { useState, useEffect } from "react";
 import { getBookingsData } from "./api/Api";
+import { AdminConfigApi } from "../../../../storage/AdminConfig";
 function Bookings() {
-  const [bookingList, setBookingList] = useState<BookingData[]>([]);
-  const [constBookingList, setConstBookingList] = useState<BookingData[]>([]);
+  const adminConfigApi = AdminConfigApi();
+  const { bookingsDataList, setBookingsDataList } = adminConfigApi;
+  const [bookingList, setBookingList] =
+    useState<BookingData[]>(bookingsDataList);
+  const [constBookingList, setConstBookingList] =
+    useState<BookingData[]>(bookingsDataList);
   //
   useEffect(() => {
+    if (bookingsDataList.length !== 0) return;
     getBookingsData()
       .then((res) => {
         console.log(res);
         setConstBookingList(res.bookingsList);
         setBookingList(res.bookingsList);
+        setBookingsDataList(res.bookingsList);
       })
       .catch((err) => {
         console.warn(err);
