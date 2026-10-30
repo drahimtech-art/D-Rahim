@@ -16,9 +16,27 @@ type Message = {
   sentAt: string;
   text: string;
 };
+export interface NotificationData {
+  title: string;
+  content: string;
+  date: Date;
+  isAction: boolean;
+  url: string;
+  isViewed: boolean;
+  notificationActionId: string;
+  _id: string;
+  __v: number;
+}
 type ServerToClient = {
   //students
   "receive-message": (message: Message) => void;
+  //admin
+  "admin-response-to-get-all-notifications": (data: {
+    ok: boolean;
+    message: string;
+    notificationsList: NotificationData;
+    isNewNotification: boolean;
+  }) => void;
 };
 type ClientToServer = {
   //homepage
@@ -32,6 +50,8 @@ type ClientToServer = {
   "join-room": (connectionId: string) => void;
   "leave-room": (connectionId: string) => void;
   isOnline: (room: string, senderRoom: (state: boolean) => void) => void; // send requst to connection if his online and get response
+  //admin
+  "admin-get-all-notifications": () => void;
 };
 type AppSocket = Socket<ServerToClient, ClientToServer>;
 type SocketContextType = {

@@ -3,6 +3,7 @@ import whatsAppIcon from "/images/icons/whatsApp_icon.png";
 import type { BookingRequiredData } from "../../../../../storage/ClientBookingInfo";
 import { useState, useEffect } from "react";
 import FormSubmitResponse from "../../../shared/formSubmitResponse/FormSubmitResponse";
+import { postRequstSevice } from "../api/Api";
 function PageContent({
   bookingInfo,
   setBookingInfo,
@@ -37,6 +38,12 @@ function PageContent({
     })();
   }, []);
   //
+  function validateEmail(e: string): boolean {
+    if (typeof e !== "string") return false;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(e.trim());
+  }
+  //
   function submitClientInputForm() {
     if (clientFullName.length < 3) return alert("full name required");
     if (jobTitle.length < 3) return alert("jobTitle required");
@@ -45,6 +52,8 @@ function PageContent({
     if (companyName.length < 3) return alert("company name required");
     if (aboutProject.length < 3) return alert("project description required");
     if (trafficSource.length < 3) return alert("how do you here about us");
+    if (!validateEmail(email))
+      return alert("please enter in a valide email address");
     if (bookingInfo) {
       setBookingInfo({
         ...bookingInfo,
@@ -56,7 +65,22 @@ function PageContent({
         aboutProject,
         trafficSource,
       });
-      setRenderFormResponse(!renderFormResponse);
+      postRequstSevice({
+        ...bookingInfo,
+        clientFullName,
+        jobTitle,
+        email,
+        phoneNumber,
+        companyName,
+        aboutProject,
+        trafficSource,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
   return (
