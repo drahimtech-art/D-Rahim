@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import type { AnalyticsDataType } from "../features/admin/features/analytics/api/Api";
+import type { ProjectInfo } from "../features/admin/features/portfolio/api/Api";
 //
 export interface AdminProfile {
   image: string;
@@ -40,6 +41,8 @@ interface AdminConfigType {
   >;
   bookingsDataList: BookingData[];
   setBookingsDataList: React.Dispatch<React.SetStateAction<BookingData[]>>;
+  projectDataInfoList: ProjectInfo[];
+  setProjectDataInfoList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
 }
 const AdminConfigContextData = createContext<AdminConfigType>({
   filterDateList: [],
@@ -82,6 +85,8 @@ const AdminConfigContextData = createContext<AdminConfigType>({
   setAdminProfileData: () => {},
   bookingsDataList: [],
   setBookingsDataList: () => {},
+  projectDataInfoList: [],
+  setProjectDataInfoList: () => {},
 });
 function AdminConfigProvider({
   children,
@@ -132,6 +137,10 @@ function AdminConfigProvider({
   //
   const [bookingsDataList, setBookingsDataList] = useState<BookingData[]>([]);
   //
+  const [projectDataInfoList, setProjectDataInfoList] = useState<ProjectInfo[]>(
+    [],
+  );
+  //
   useEffect(() => {
     if (filterDateList.length > 1) {
       const startingDate = `${filterDateList[0].split(" ")[1]} ${filterDateList[0].split(" ")[2]}`;
@@ -161,6 +170,8 @@ function AdminConfigProvider({
         setAdminProfileData,
         bookingsDataList,
         setBookingsDataList,
+        projectDataInfoList,
+        setProjectDataInfoList,
       }}
     >
       {children}
