@@ -25,7 +25,7 @@ function TopBar(props: Heading) {
   const [renderFilterCalender, setRenderFilterCalender] =
     useState<boolean>(false);
   const [renderNotification, setRenderNotification] = useState<boolean>(false);
-  const [isNewNotification, setIsNewNotification] = useState<boolean>(true);
+  const [isNewNotification, setIsNewNotification] = useState<boolean>(false);
   const [isFirstMount, setIsFirstMount] = useState<boolean>(true);
   const [notificationsDataList, setNotificationDataList] = useState<
     NotificationData[]
