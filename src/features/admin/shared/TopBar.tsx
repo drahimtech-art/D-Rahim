@@ -8,6 +8,7 @@ import { AdminConfigApi } from "../../../storage/AdminConfig";
 import TopBarNotificationCard from "./TopBarNotificationCard";
 import type { NotificationData } from "../../../storage/SocketApi";
 import { SocketApi } from "../../../storage/SocketApi";
+import { postValidateNotificationsIsViewed } from "./api/Api";
 type Heading = {
   heading: string;
   subHeading: string;
@@ -45,7 +46,25 @@ function TopBar(props: Heading) {
     if (!props.isFirstRequstSent) return;
     setIsFirstMount(false);
   }, [props.isFirstRequstSent]);
+  //
   function handleRenderNotification() {
+    if (!renderNotification && isNewNotification) {
+      const notificationsNotViewedIdList: string[] = [];
+      notificationsDataList.forEach((e) => {
+        if (!e.isViewed) {
+          notificationsNotViewedIdList.push(e._id);
+        }
+      });
+      if (notificationsNotViewedIdList.length !== 0) {
+        postValidateNotificationsIsViewed(notificationsNotViewedIdList)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.warn(err);
+          });
+      }
+    }
     setRenderNotification(!renderNotification);
     setIsNewNotification(false);
   }
