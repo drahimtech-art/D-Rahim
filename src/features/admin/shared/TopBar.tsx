@@ -77,7 +77,6 @@ function TopBar(props: Heading) {
       isNewNotification: boolean;
       notificationsList: NotificationData[];
     }) {
-      console.log(data);
       setIsNewNotification(data.isNewNotification);
       setNotificationDataList(data.notificationsList);
     }
@@ -87,13 +86,10 @@ function TopBar(props: Heading) {
     );
     const getAllNotificationsAfter5Min = setInterval(
       () => {
-        socket.on(
-          "admin-response-to-get-all-notifications",
-          handleAllNotificationsRes,
-        );
+        socket.emit("admin-get-all-notifications");
       },
       60 * 5 * 1000,
-    );
+    ); // 5min
     if (page !== "overview")
       return () => {
         clearInterval(getAllNotificationsAfter5Min);
