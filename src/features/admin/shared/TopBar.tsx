@@ -69,7 +69,7 @@ function TopBar(props: Heading) {
     setIsNewNotification(false);
   }
   useEffect(() => {
-    if (!socket) return;
+    if (!socket || page !== "overview") return;
     socket.emit("admin-get-all-notifications");
     function handleAllNotificationsRes(data: {
       ok: boolean;
@@ -94,6 +94,14 @@ function TopBar(props: Heading) {
       },
       60 * 5 * 1000,
     );
+    if (page !== "overview")
+      return () => {
+        clearInterval(getAllNotificationsAfter5Min);
+        socket.off(
+          "admin-response-to-get-all-notifications",
+          handleAllNotificationsRes,
+        );
+      };
     return () => {
       clearInterval(getAllNotificationsAfter5Min);
       socket.off(
@@ -101,7 +109,7 @@ function TopBar(props: Heading) {
         handleAllNotificationsRes,
       );
     };
-  }, []);
+  }, [page]);
   function totalTimePassed(timePased: Date) {
     const [date, time] = new Date(timePased).toISOString().split("T");
     const [newDate, newTime] = new Date().toISOString().split("T");
