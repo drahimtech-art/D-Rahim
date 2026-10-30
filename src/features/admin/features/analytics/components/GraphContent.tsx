@@ -62,7 +62,6 @@ function GraphConent({
   //
   useEffect(() => {
     if (!graphData.length) return;
-
     mountGraph();
   }, [graphData.length]);
   useEffect(() => {
@@ -150,14 +149,17 @@ function GraphConent({
   }
   useEffect(() => {
     if (!canvasRef.current || !parentRef.current) return;
-    window.addEventListener("resize", () => {
-      if (!canvasGraphObject.current || !parentRef.current) return;
+    function handleResizeFunction() {
+      if (!canvasGraphObject.current || !parentRef.current || !graphData.length)
+        return;
       canvasGraphObject.current?.clearGraph();
       mountGraph();
-    });
-    mountGraph();
-    //console.log(test);
-  }, []);
+    }
+    window.addEventListener("resize", handleResizeFunction);
+    return () => {
+      window.removeEventListener("resize", handleResizeFunction);
+    };
+  }, [graphData]);
   //
 
   //
