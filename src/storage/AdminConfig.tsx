@@ -19,7 +19,7 @@ export interface BookingData {
   companyName: string;
   aboutProject: string;
   trafficSource: string;
-  status: false;
+  status: "Pending" | "Confirmed" | "Cancelled";
   createdAt: Date;
   updatedAt: Date;
   __v: number;

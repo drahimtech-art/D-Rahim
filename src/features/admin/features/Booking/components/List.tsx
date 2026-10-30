@@ -92,10 +92,8 @@ function List({
       </section>
       <section className="w-full h-[400px] max-h-[400px]">
         <div className="w-full h-full  flex flex-col">
-          {Array.from({ length: 5 }).map((_, i) => {
-            return (
-              <TableRows statusType="Confirmed" key={`table-row-key-${i}`} />
-            );
+          {limitList.map((e, i) => {
+            return <TableRows data={e} key={`booking-table-row-key-${i}`} />;
           })}
         </div>
       </section>
