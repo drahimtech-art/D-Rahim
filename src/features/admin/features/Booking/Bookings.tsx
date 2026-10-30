@@ -36,7 +36,6 @@ function Bookings() {
       <SearchAndFilterBar
         constBookingList={constBookingList}
         setBookingList={setBookingList}
-        setConstBookingList={setConstBookingList}
         searchSection="bookings"
       />
       <List bookingList={bookingList} />

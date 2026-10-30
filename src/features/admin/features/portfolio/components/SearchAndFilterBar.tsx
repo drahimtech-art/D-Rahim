@@ -83,14 +83,31 @@ function SearchAndFilterBar({
     for (let i = 0; i < constProjectList.length; i++) {
       if (searchWordsList.trim().length > 0) {
         if (
-          constProjectList[i].heading.includes(searchWordsList) ||
-          constProjectList[i].title.includes(searchWordsList) ||
-          constProjectList[i].duration.includes(searchWordsList) ||
-          constProjectList[i].location.includes(searchWordsList) ||
-          constProjectList[i].projectType.includes(searchWordsList) ||
+          constProjectList[i].heading
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constProjectList[i].title
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constProjectList[i].duration
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constProjectList[i].location
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constProjectList[i].projectType
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
           new Date(constProjectList[i].creationDate)
             .toLocaleDateString()
-            .includes(searchWordsList)
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase())
         ) {
           if (!status && filterStatus === "All") {
             filtedList.push(constProjectList[i]);
@@ -187,7 +204,7 @@ function SearchAndFilterBar({
                     handleProjectListApiFetch(false, "InActive");
                   }}
                 >
-                  <h5>Inactive</h5>
+                  <h5>InActive</h5>
                 </button>
               </article>
             )}

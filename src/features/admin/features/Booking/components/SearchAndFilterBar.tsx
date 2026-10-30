@@ -4,12 +4,10 @@ function SearchAndFilterBar({
   searchSection,
   setBookingList,
   constBookingList,
-  setConstBookingList,
 }: {
   searchSection: string;
   setBookingList: React.Dispatch<React.SetStateAction<BookingData[]>>;
   constBookingList: BookingData[];
-  setConstBookingList: React.Dispatch<React.SetStateAction<BookingData[]>>;
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   //
