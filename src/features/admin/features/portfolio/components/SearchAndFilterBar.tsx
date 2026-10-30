@@ -1,16 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
 import type { PortfolioDataType } from "./AddNewProjectPopUp";
-import {
-  postUploadNewProjectData,
-  getProjectData,
-  type ProjectInfo,
-} from "../api/Api";
+import { postUploadNewProjectData, type ProjectInfo } from "../api/Api";
 function SearchAndFilterBar({
   searchSection,
   setProjectList,
   constProjectList,
-  setConstProjectList,
 }: {
   searchSection: string;
   setProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
@@ -27,8 +22,6 @@ function SearchAndFilterBar({
   const [filterStatus, setFilterStatus] = useState<
     "Active" | "InActive" | "All"
   >("All");
-  const [isFilterRequstSent, setIsFilterRequstSent] = useState<boolean>(false);
-
   //
 
   //
@@ -59,8 +52,6 @@ function SearchAndFilterBar({
     _: boolean,
     status?: "Active" | "InActive" | "All",
   ) {
-    if (isFilterRequstSent) return;
-    setIsFilterRequstSent(true);
     /*
     getProjectData({
       searchWordsList,
@@ -124,27 +115,8 @@ function SearchAndFilterBar({
       }
     }
     setProjectList(filtedList);
-    setIsFilterRequstSent(false);
   }
   //
-  useEffect(() => {
-    //handleProjectListApiFetch(true, undefined);
-    if (constProjectList.length !== 0) return;
-    getProjectData({
-      searchWordsList: "",
-      filterStatus: "All",
-    })
-      .then((res) => {
-        //alert(res.message);
-        setProjectList(res.data);
-        setConstProjectList(res.data);
-        setIsFilterRequstSent(false);
-      })
-      .catch((error) => {
-        console.warn(error);
-        setIsFilterRequstSent(false);
-      });
-  }, []);
 
   return (
     <>
