@@ -8,6 +8,22 @@ export interface AdminProfile {
   email: string;
   __v: number;
 }
+export interface BookingData {
+  _id: string;
+  date: Date;
+  time: string;
+  clientFullName: string;
+  jobTitle: string;
+  email: string;
+  phoneNumber: string;
+  companyName: string;
+  aboutProject: string;
+  trafficSource: string;
+  status: false;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
 interface AdminConfigType {
   filterDateList: string[];
   setFilterDateList: React.Dispatch<React.SetStateAction<string[]>>;

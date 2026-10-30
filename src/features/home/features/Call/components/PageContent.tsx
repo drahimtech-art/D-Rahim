@@ -76,6 +76,7 @@ function PageContent({
         trafficSource,
       })
         .then((res) => {
+          setRenderFormResponse(true);
           console.log(res);
         })
         .catch((err) => {

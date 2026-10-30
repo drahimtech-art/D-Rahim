@@ -1,10 +1,113 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import type { BookingData } from "../../../../../storage/AdminConfig";
 function SearchAndFilterBar({
   searchSection,
+  setBookingList,
+  constBookingList,
+  setConstBookingList,
 }: {
   searchSection: string;
+  setBookingList: React.Dispatch<React.SetStateAction<BookingData[]>>;
+  constBookingList: BookingData[];
+  setConstBookingList: React.Dispatch<React.SetStateAction<BookingData[]>>;
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
+  //
+  const [searchWordsList, setSearchWordsList] = useState<string>("");
+  const [filterStatus, setFilterStatus] = useState<
+    "Pending" | "Cancelled" | "Confirmed" | "All"
+  >("All");
+  const [isFilterRequstSent, setIsFilterRequstSent] = useState<boolean>(false);
+  //
+  function cheackIfEnterIsClickedOnSearch(e: any) {
+    const key: string = e.key;
+    if (key === "Enter") {
+      handleBookingListApiFetch(false, filterStatus);
+    }
+  }
+  function handleBookingListApiFetch(
+    _: boolean,
+    status?: "Pending" | "Cancelled" | "Confirmed" | "All",
+  ) {
+    if (isFilterRequstSent) return;
+    setIsFilterRequstSent(true);
+    /*
+      getProjectData({
+        searchWordsList,
+        filterStatus: status ? status : filterStatus,
+      })
+        .then((res) => {
+          if (!isFirstFetch) {
+            //alert(res.message);
+          }
+          setBookingList(res.data);
+          setIsFilterRequstSent(false);
+        })
+        .catch((error) => {
+          console.warn(error);
+          setIsFilterRequstSent(false);
+        });
+        */
+    const filtedList: BookingData[] = [];
+    console.log(searchWordsList);
+    for (let i = 0; i < constBookingList.length; i++) {
+      if (searchWordsList.trim().length > 0) {
+        if (
+          constBookingList[i].clientFullName.includes(searchWordsList) ||
+          constBookingList[i].companyName.includes(searchWordsList) ||
+          constBookingList[i].email.includes(searchWordsList) ||
+          constBookingList[i].jobTitle.includes(searchWordsList) ||
+          constBookingList[i].aboutProject.includes(searchWordsList) ||
+          new Date(constBookingList[i].createdAt)
+            .toLocaleDateString()
+            .includes(searchWordsList)
+        ) {
+          if (!status && filterStatus === "All") {
+            filtedList.push(constBookingList[i]);
+          } else if (
+            status === "Pending" &&
+            constBookingList[i].status === false
+          ) {
+            filtedList.push(constBookingList[i]);
+          }
+        }
+      } else {
+        if (status === "All") {
+          filtedList.push(constBookingList[i]);
+        } else if (
+          status === "Pending" &&
+          constBookingList[i].status === false
+        ) {
+          filtedList.push(constBookingList[i]);
+        }
+      }
+    }
+    setBookingList(filtedList);
+    setIsFilterRequstSent(false);
+  }
+  //
+  useEffect(() => {
+    //handleBookingListApiFetch(true, undefined);
+    if (constBookingList.length !== 0) return;
+    /**
+       *   getProjectData({
+        searchWordsList: "",
+        filterStatus: "All",
+      })
+        .then((res) => {
+          //alert(res.message);
+          setBookingList(res.data);
+          setConstBookingList(res.data);
+          setIsFilterRequstSent(false);
+        })
+        .catch((error) => {
+          console.warn(error);
+          setIsFilterRequstSent(false);
+        });
+       * 
+       */
+  }, []);
+
   return (
     <>
       <div className="w-full mt-10  flex pt-7.5 pb-7.5 pl-2.5 pr-2.5 bg-[#FFFFFF]">
@@ -13,6 +116,9 @@ function SearchAndFilterBar({
           <input
             className="w-full h-full pl-2"
             placeholder={`Search ${searchSection ? searchSection : "...."}...`}
+            value={searchWordsList}
+            onChange={(e) => setSearchWordsList(e.target.value)}
+            onKeyDown={cheackIfEnterIsClickedOnSearch}
           ></input>
         </span>
         {/** */}
