@@ -53,35 +53,51 @@ function SearchAndFilterBar({
     for (let i = 0; i < constBookingList.length; i++) {
       if (searchWordsList.trim().length > 0) {
         if (
-          constBookingList[i].clientFullName.includes(searchWordsList) ||
-          constBookingList[i].companyName.includes(searchWordsList) ||
-          constBookingList[i].email.includes(searchWordsList) ||
-          constBookingList[i].jobTitle.includes(searchWordsList) ||
-          constBookingList[i].aboutProject.includes(searchWordsList) ||
-          new Date(constBookingList[i].createdAt)
-            .toLocaleDateString()
-            .includes(searchWordsList)
+          constBookingList[i].clientFullName
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constBookingList[i].companyName
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constBookingList[i].email
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constBookingList[i].jobTitle
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constBookingList[i].aboutProject
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          new Date(constBookingList[i].date)
+            .toDateString()
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase()) ||
+          constBookingList[i].time
+            .trim()
+            .toLocaleLowerCase()
+            .includes(searchWordsList.trim().toLocaleLowerCase())
         ) {
-          if (!status && filterStatus === "All") {
+          if (status === "All") {
             filtedList.push(constBookingList[i]);
-          } else if (
-            status === "Pending" &&
-            constBookingList[i].status === false
-          ) {
+          } else if (constBookingList[i].status === status) {
             filtedList.push(constBookingList[i]);
           }
         }
       } else {
         if (status === "All") {
           filtedList.push(constBookingList[i]);
-        } else if (
-          status === "Pending" &&
-          constBookingList[i].status === false
-        ) {
+        } else if (constBookingList[i].status === status) {
           filtedList.push(constBookingList[i]);
         }
       }
     }
+    console.log(filtedList);
     setBookingList(filtedList);
     setIsFilterRequstSent(false);
   }
@@ -128,21 +144,55 @@ function SearchAndFilterBar({
               className="flex pointer w-37.5 gap-2 pl-2 pr-2 pt-1.5 pb-1.5 text-[#757575] justify-center items-center border border-gray-500 rounded-[30px]"
               onClick={() => setRenderFilterBar(!renderFilterBar)}
             >
-              <h5 className="font-inter font-normal text-[16px]">All Status</h5>
+              <h5 className="font-inter font-normal text-[16px]">
+                {filterStatus === "All" ? "All Status" : filterStatus}
+              </h5>
               <i className="fa fa-angle-down text-[18px] font-light"></i>
             </button>
             {renderFilterBar && (
               <article className="absolute w-[150px] flex flex-col gap-[8px] z-50 h-fit pl-6.25 pr-6.25 pt-3.25 pb-3.25 rounded-[10px] bg-[#FFFFFF] mt-[0.5px] ">
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "All") return;
+                    setFilterStatus("All");
+                    setRenderFilterBar(false);
+                    handleBookingListApiFetch(false, "All");
+                  }}
+                >
                   <h5>All</h5>
                 </button>
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "Confirmed") return;
+                    setFilterStatus("Confirmed");
+                    setRenderFilterBar(false);
+                    handleBookingListApiFetch(false, "Confirmed");
+                  }}
+                >
                   <h5>Confirmed</h5>
                 </button>
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "Pending") return;
+                    setFilterStatus("Pending");
+                    setRenderFilterBar(false);
+                    handleBookingListApiFetch(false, "Pending");
+                  }}
+                >
                   <h5>Pending</h5>
                 </button>
-                <button className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]">
+                <button
+                  className="pointer w-full h-[40px] border border-[#D9D9D9] text-[#757575] flex justify-center items-center rounded-[30px]"
+                  onClick={() => {
+                    if (filterStatus === "Cancelled") return;
+                    setFilterStatus("Cancelled");
+                    setRenderFilterBar(false);
+                    handleBookingListApiFetch(false, "Cancelled");
+                  }}
+                >
                   <h5>Cancelled</h5>
                 </button>
               </article>
