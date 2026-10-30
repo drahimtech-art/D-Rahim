@@ -147,7 +147,7 @@ export function PagesConfigProvider({
       location.hash !== "#/services" &&
       location.hash !== "#/about" &&
       location.hash !== "#/mentorship" &&
-      location.hash !== "#/contact"
+      location.hash !== "#/book/call"
     )
       return;
     const userId = crypto.randomUUID();
