@@ -94,8 +94,8 @@ function AdminDasboard() {
   return (
     <div className=" p-10 w-full min-w-[1200px]  min-h-screen max-h-fit bg-[#f8ffff] ">
       <div className="flex gap-10 h-fit w-full ">
-        <div className="w-[25%] min-w-73.5 ">
-          <div className="fixed ">
+        <div className="w-[25%] min-w-73.5 relative">
+          <div className=" sticky top-10">
             <nav className=" h-full w-[294px] relative">
               <div className="absolute w-[294px] ">
                 {/**sideber left*/}
