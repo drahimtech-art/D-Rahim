@@ -104,12 +104,12 @@ function SearchAndFilterBar({
             .toLocaleLowerCase()
             .includes(searchWordsList.trim().toLocaleLowerCase()) ||
           new Date(constProjectList[i].creationDate)
-            .toLocaleDateString()
+            .toDateString()
             .trim()
             .toLocaleLowerCase()
             .includes(searchWordsList.trim().toLocaleLowerCase())
         ) {
-          if (!status && filterStatus === "All") {
+          if (status === "All") {
             filtedList.push(constProjectList[i]);
           } else if (constProjectList[i].projectStatus === status) {
             filtedList.push(constProjectList[i]);
