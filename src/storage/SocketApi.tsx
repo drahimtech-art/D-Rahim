@@ -24,6 +24,7 @@ export interface NotificationData {
   url: string;
   isViewed: boolean;
   notificationActionId: string;
+  createdAt: Date;
   _id: string;
   __v: number;
 }
@@ -34,7 +35,7 @@ type ServerToClient = {
   "admin-response-to-get-all-notifications": (data: {
     ok: boolean;
     message: string;
-    notificationsList: NotificationData;
+    notificationsList: NotificationData[];
     isNewNotification: boolean;
   }) => void;
 };

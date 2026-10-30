@@ -6,23 +6,18 @@ import { useEffect, useState } from "react";
 import Calender from "./Calender";
 import { AdminConfigApi } from "../../../storage/AdminConfig";
 import TopBarNotificationCard from "./TopBarNotificationCard";
+import type { NotificationData } from "../../../storage/SocketApi";
+import { SocketApi } from "../../../storage/SocketApi";
 type Heading = {
   heading: string;
   subHeading: string;
   isFirstRequstSent?: boolean;
   fetchAnalyticsData?: () => void;
 };
-interface NotificationData {
-  title: string;
-  content: string;
-  date: Date;
-  isAction: boolean;
-  url: string;
-  isViewed: boolean;
-  _id: string;
-  __v: number;
-}
+
 function TopBar(props: Heading) {
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
   const adminConfigApi = AdminConfigApi();
   const { filterDateList, setFilterDateList, filterDateRangeText } =
     adminConfigApi;
@@ -32,6 +27,9 @@ function TopBar(props: Heading) {
   const [renderNotification, setRenderNotification] = useState<boolean>(false);
   const [isNewNotification, setIsNewNotification] = useState<boolean>(true);
   const [isFirstMount, setIsFirstMount] = useState<boolean>(true);
+  const [notificationsDataList, setNotificationDataList] = useState<
+    NotificationData[]
+  >([]);
   const page = searchParems.get("page");
   function getIsFirstMount(): boolean {
     return isFirstMount;
@@ -47,35 +45,96 @@ function TopBar(props: Heading) {
     if (!props.isFirstRequstSent) return;
     setIsFirstMount(false);
   }, [props.isFirstRequstSent]);
-  const notifications = [
-    {
-      title: "New Booking",
-      content: "UI/UX consultation booked for Sep 8",
-      time: "5 mins ago",
-      isAction: false,
-    },
-    {
-      title: "Payment Received",
-      content: "N320,000 payment received from ABC Ltd",
-      time: "1 hour ago",
-      isAction: false,
-    },
-    {
-      title: "Email failed to send from server",
-      content: "",
-      time: "",
-      isAction: true,
-    },
-    {
-      title: "Payment Received",
-      content: "N320,000 payment received from ABC Ltd",
-      time: "1 hour ago",
-      isAction: false,
-    },
-  ];
   function handleRenderNotification() {
     setRenderNotification(!renderNotification);
     setIsNewNotification(false);
+  }
+  useEffect(() => {
+    if (!socket) return;
+    socket.emit("admin-get-all-notifications");
+    function handleAllNotificationsRes(data: {
+      ok: boolean;
+      message: string;
+      isNewNotification: boolean;
+      notificationsList: NotificationData[];
+    }) {
+      console.log(data);
+      setIsNewNotification(data.isNewNotification);
+      setNotificationDataList(data.notificationsList);
+    }
+    socket.on(
+      "admin-response-to-get-all-notifications",
+      handleAllNotificationsRes,
+    );
+    const getAllNotificationsAfter5Min = setInterval(
+      () => {
+        socket.on(
+          "admin-response-to-get-all-notifications",
+          handleAllNotificationsRes,
+        );
+      },
+      60 * 5 * 1000,
+    );
+    return () => {
+      clearInterval(getAllNotificationsAfter5Min);
+      socket.off(
+        "admin-response-to-get-all-notifications",
+        handleAllNotificationsRes,
+      );
+    };
+  }, []);
+  function totalTimePassed(timePased: Date) {
+    const [date, time] = new Date(timePased).toISOString().split("T");
+    const [newDate, newTime] = new Date().toISOString().split("T");
+    const newHour = Number(newTime.split(":")[0]);
+    const newMinites = Number(newTime.split(":")[1]);
+    const newMonth = Number(newDate.split("-")[1]);
+    const newDay = Number(newDate.split("-")[2]);
+    const newYear = newDate.split("-")[0];
+    //
+    const oldMonth = Number(date.split("-")[1]);
+    const oldDay = Number(date.split("-")[2]);
+    const oldYear = date.split("-")[0];
+    let oldHour = Number(time.split(":")[0]);
+    let oldMinites = Number(time.split(":")[1]);
+    let timePassed;
+    //minites passed
+    if (
+      oldHour === newHour &&
+      oldMonth === newMonth &&
+      oldDay === newDay &&
+      oldYear === newYear
+    ) {
+      timePassed = newMinites - oldMinites;
+      return timePassed > 1 ? `${timePassed} min ago` : `few seconds ago`;
+    }
+    //hours passed
+    if (
+      oldHour !== newHour &&
+      oldMonth === newMonth &&
+      oldDay === newDay &&
+      oldYear === newYear
+    ) {
+      timePassed = newHour - oldHour;
+      return timePassed > 1 ? `${timePassed} hours ago` : `${timePassed} hour`;
+    }
+    //days passed
+    if (oldMonth === newMonth && oldYear === newYear && oldDay !== newDay) {
+      timePassed = newDay - oldDay;
+      return timePassed > 1 ? `${timePassed} days ago` : `${timePassed} day`;
+    }
+    //months passed
+    if (oldMonth !== newMonth && oldYear === newYear) {
+      timePassed = newMonth - oldMonth;
+      return timePassed > 1
+        ? `${timePassed} months ago`
+        : `${timePassed} month`;
+    }
+    //years
+    if (oldYear !== newYear) {
+      timePassed = newMonth - oldMonth;
+      return timePassed > 1 ? `${timePassed} years ago` : `${timePassed} year`;
+    }
   }
   return (
     <>
@@ -130,12 +189,12 @@ function TopBar(props: Heading) {
                 {renderNotification && (
                   <article className="w-[360px] h-[355px] overflow-hidden z-50 absolute -right-15   ">
                     <div className="flex flex-col h-full pb-5 gap-[10px] overflow-y-auto">
-                      {notifications.map((e, i) => {
+                      {notificationsDataList.map((e, i) => {
                         return (
                           <TopBarNotificationCard
                             title={e.title}
                             content={e.content}
-                            time={e.time}
+                            time={`${totalTimePassed(e.date)}`}
                             isAction={e.isAction}
                             key={`notification-bar-key-${i}`}
                           />
