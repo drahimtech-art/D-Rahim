@@ -124,7 +124,7 @@ function Top() {
   //
   return (
     <>
-      <article className="bg-white  sticky top-0  z-5">
+      <article className="bg-white  sticky top-0  z-20">
         <div
           className="flex  w-full max-h-28.75  z-5 items-center min-[1000px]:p-10 p-5    bg-white  "
           ref={topDivRef}
