@@ -1,1 +1,0 @@
-var e=`/D-Rahim/images/logo1.png`;export{e as t};
