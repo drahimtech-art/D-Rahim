@@ -96,11 +96,13 @@ function PageContent({
               <h5 className="ourWorkHeadMenu font-inter font-medium">
                 Full Name
               </h5>
-              <input
-                className="border-2 min-[1000px]:border-0 pl-4 sm:min-h-12 min-[1000px]:h-full min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7 min-[1000px]:mt-6 rounded-2xl min-[1000px]:rounded-none"
-                value={clientFullName}
-                onChange={(e) => setClientFullName(e.target.value)}
-              ></input>
+              <div className="relative w-full h-full min-[1000px]:mt-6">
+                <input
+                  className="border-2  min-[1000px]:border-0 pl-4 sm:min-h-12 min-[1000px]:h-full min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7  rounded-2xl min-[1000px]:rounded-none"
+                  value={clientFullName}
+                  onChange={(e) => setClientFullName(e.target.value)}
+                ></input>
+              </div>
             </span>
             <span className="flex flex-col font-inter">
               <h5 className="ourWorkHeadMenu font-inter font-medium">
