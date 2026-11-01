@@ -29,6 +29,8 @@ jobs:
 
       - name: deploy to github pages
         run: |
+          git config --global user.email "nwanoruovictory87@gmail.com"
+          git config --global user.name "victory nwanoruo"
           npm install --force or --legacy-peer-deps
           npm run build
           npm run deploy
