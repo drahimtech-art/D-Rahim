@@ -1,45 +1,28 @@
-name: Deploy to GitHub Pages
+name: NodeJS with Webpack
 
 on:
   push:
-    branches: [main] # Change to your default branch
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches: ["main"]
+  #pull_request:
+  #branches: ["main"]
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Set up Node
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "npm"
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build # Makes sure your 'dist' folder is generated
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "./dist" # Points directly to your built files
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: deploy to github pages
+        run: |
+          npm run build
+          npm run deploy
