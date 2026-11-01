@@ -30,7 +30,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --force or --legacy-peer-deps
 
       - name: Build
         run: npm run build # Makes sure your 'dist' folder is generated
