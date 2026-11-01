@@ -24,5 +24,6 @@ jobs:
 
       - name: deploy to github pages
         run: |
+          npm install --force or --legacy-peer-deps
           npm run build
           npm run deploy
