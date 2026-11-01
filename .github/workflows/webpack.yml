@@ -5,7 +5,12 @@ on:
     branches: ["main"]
   #pull_request:
   #branches: ["main"]
-
+# Add this near the top of your workflow file (at the job or workflow level)
+permissions:
+  contents: write
+env:
+  # This provides authentication to the gh-pages npm package
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
     runs-on: ubuntu-latest
