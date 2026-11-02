@@ -363,18 +363,18 @@ textarea:focus {
 }
 @keyframes rotate-revase-up {
   from {
-    rotate: 0deg;
+    transform: rotate(0deg);
   }
   to {
-    rotate: 180deg;
+    transform: rotate(180deg);
   }
 }
 @keyframes rotate-revase-down {
   from {
-    rotate: 180deg;
+    transform: rotate(180deg);
   }
   to {
-    rotate: 0deg;
+    transform: rotate(0deg);
   }
 }
 .animation-180deg {
@@ -382,10 +382,10 @@ textarea:focus {
 }
 @keyframes rotate-full {
   from {
-    rotate: 0deg;
+    transform: rotate(0deg);
   }
   to {
-    rotate: 360deg;
+    transform: rotate(360deg);
   }
 }
 .swicth-shadow {
