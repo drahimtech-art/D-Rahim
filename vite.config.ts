@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite"; //
 export default defineConfig({
-  base: "/",
+  base: "/D-Rahim/",
   plugins: [
     tailwindcss(), // This makes Tailwind "see" your classes
   ],
