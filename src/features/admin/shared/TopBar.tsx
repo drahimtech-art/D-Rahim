@@ -77,7 +77,6 @@ function TopBar(props: Heading) {
       isNewNotification: boolean;
       notificationsList: NotificationData[];
     }) {
-      console.log(data);
       setIsNewNotification(data.isNewNotification);
       setNotificationDataList(data.notificationsList);
     }
