@@ -94,7 +94,9 @@ function Calender({
     setDate(e as Date);
   }
   return (
-    <Calendar value={date} selectRange={true} onChange={handleDateChage} />
+    <div className="dashboard-calendar">
+      <Calendar value={date} selectRange={true} onChange={handleDateChage} />
+    </div>
   );
 }
 export default Calender;

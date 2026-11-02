@@ -25,7 +25,7 @@ function CalendarUi({
           Select a Date & Time
         </h5>
       </span>
-      <div className="min-[1000px]:mt-10 mt-5 w-full min-[1000px]:h-137.5 h-fit ">
+      <div className="min-[1000px]:mt-10 mt-5 w-full min-[1000px]:h-137.5 h-fit booking-calendar">
         <Calendar
           minDate={minDate}
           value={bookingDate}

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @theme {
   --color-primary-green: #004a3c;
   --color-secondary-green: #56d566;
@@ -7,7 +6,9 @@
   --font-size-heading: clamp(40px, 7vw, 80px);
   --color-button-bgGreen: #11ac76;
 }
-
+@import "react-calendar/dist/Calendar.css";
+@import "./features/home/features/BookACall/components/Calender.css";
+@import "./features/admin/shared/Calender.css";
 .body-spacing {
   padding-top: 64px;
   padding-left: 40px;
