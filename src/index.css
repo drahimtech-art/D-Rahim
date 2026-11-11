@@ -477,3 +477,6 @@ textarea:focus {
 .min14pxMax16px {
   font-size: clamp(14px, 2vw, 16px);
 }
+.min18pxMax24px {
+  font-size: clamp(18px, 3vw, 24px);
+}

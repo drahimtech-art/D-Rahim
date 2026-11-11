@@ -36,7 +36,10 @@ function Time({
   ]);
   const [isDateNotInCurrentDate, setIsDateNotInCurrentDate] =
     useState<boolean>(false);
-  const [renderTimeErrAlert, setRenderTimeErrAlert] = useState<boolean>(true);
+  const [renderTimeErrAlert, setRenderTimeErrAlert] = useState<boolean>(false);
+  function closeTimeErrAlert(): void {
+    setRenderTimeErrAlert(false);
+  }
   useEffect(() => {
     if (!bookingInfo) return;
     (() => {
@@ -214,10 +217,7 @@ function Time({
   //
   function handleClientBookingTime(index: number) {
     const clientTime = defaultTimeOpen[index];
-    if (!clientTime.state)
-      return alert(
-        "Can't book appointment on short notice try another time & date period",
-      );
+    if (!clientTime.state) return setRenderTimeErrAlert(true);
     const timeFormart = `${clientTime.hour >= 10 ? clientTime.hour : "0" + clientTime.hour}:${clientTime.minite >= 10 ? clientTime.minite : "0" + clientTime.minite}${clientTime.dayPeriod}`;
     setBookingTime(timeFormart);
     setDefaultTimeOpen((prevsTime) => {
@@ -414,7 +414,9 @@ function Time({
           </button>
         </div>
       </section>
-      {renderTimeErrAlert && <BookACallTimeErrNotificationBar />}
+      {renderTimeErrAlert && (
+        <BookACallTimeErrNotificationBar close={closeTimeErrAlert} />
+      )}
     </>
   );
 }
