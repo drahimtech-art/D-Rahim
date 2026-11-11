@@ -112,10 +112,12 @@ function FAQ() {
               ref={dropdownMenuRef2}
             >
               <h5>
-                Quality design, data-driven solutions, and reliability. For the
-                past three years, we've delivered high-quality digital product
-                and UX design services. Backed by a skilled team and a proven
-                process, we ensure excellence in every project.
+                Digital product design focuses on creating solutions that are
+                efficient, user-friendly, and adaptable to a fast-moving digital
+                environment. With data-driven UX design services, you can
+                eliminate guesswork and build products that are both visually
+                engaging and highly functional, while staying flexible as needs
+                evolve.
               </h5>
             </span>
           </div>
@@ -146,10 +148,14 @@ function FAQ() {
               ref={dropdownMenuRef3}
             >
               <h5>
-                Quality design, data-driven solutions, and reliability. For the
-                past three years, we've delivered high-quality digital product
-                and UX design services. Backed by a skilled team and a proven
-                process, we ensure excellence in every project.
+                Our product design process starts with understanding the problem
+                space and the people we’re designing for. We align closely with
+                business goals, conduct research, and define clear user needs to
+                ensure we’re solving the right problem from the start. From
+                there, we move through rapid ideation, prototyping, and testing
+                in short iterations. This allows us to validate ideas quickly,
+                refine based on feedback, and deliver solutions that are both
+                user-centered and aligned with business objectives.
               </h5>
             </span>
           </div>
@@ -181,10 +187,16 @@ function FAQ() {
               ref={dropdownMenuRef4}
             >
               <h5>
-                Quality design, data-driven solutions, and reliability. For the
-                past three years, we've delivered high-quality digital product
-                and UX design services. Backed by a skilled team and a proven
-                process, we ensure excellence in every project.
+                UX design services focus specifically on improving how users
+                interact with a product. This includes user research,
+                wireframing, usability testing, and refining flows to make the
+                experience intuitive, efficient, and user-friendly. The goal is
+                to ensure the product is easy and enjoyable to use. Digital
+                product design services are broader. They cover the full product
+                experience, combining UX with UI design, product strategy, and
+                sometimes even business alignment. It’s not just about
+                usability, but also about shaping the product from idea to
+                launch and ensuring it meets both user needs and business goals.
               </h5>
             </span>
           </div>
