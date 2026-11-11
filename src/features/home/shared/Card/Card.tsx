@@ -93,9 +93,11 @@ function Card({
         <h5 className="logoMainText font-bold ">
           {projectDate.title.toLocaleUpperCase()}
         </h5>
-        <h5 className="ourWorkHeadMenu text-gray-600 min-[1000px]:line-clamp-3   font-inter">
-          {projectDate.about}
-        </h5>
+        <div className="min-[1000px]:h-[100px]">
+          <h5 className="ourWorkHeadMenu text-gray-600 min-[1000px]:line-clamp-3    font-inter">
+            {projectDate.about}
+          </h5>
+        </div>
       </section>
       {devicesWidth !== undefined && devicesWidth >= 1000 && (
         <CardPopUp
