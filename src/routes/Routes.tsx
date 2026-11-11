@@ -2,6 +2,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { StudentsContextProvider } from "../storage/StudentsApi";
 import ScrollToTop from "./components/ScrollToTop";
+import ErroPageUi from "../shared/ErroPageUi";
 const Home = lazy(() => import("../features/home/features/Home/Home"));
 import HomeLoadingState from "../features/home/shared/LoadingState/LoadingState";
 const Service = lazy(
@@ -66,6 +67,7 @@ function Routes() {
     {
       path: "/",
       element: <ScrollToTop />,
+      errorElement: <ErroPageUi />,
       children: [
         {
           path: "/",
@@ -111,6 +113,7 @@ function Routes() {
           path: "/mentorship",
           element: <HomeLoadingState Children={Mentorship} />,
         },
+
         /*
         {
           path: "/contact",
