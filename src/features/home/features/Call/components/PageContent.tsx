@@ -5,6 +5,9 @@ import { useState, useEffect, useRef } from "react";
 import FormSubmitResponse from "../../../shared/formSubmitResponse/FormSubmitResponse";
 import { postRequstSevice } from "../api/Api";
 import NotificationBar from "../../../shared/notificationBar/NotificationBar";
+import LoadingAnimation from "../../../shared/LoadingState/LoadingAnimation";
+import { useNavigate } from "react-router-dom";
+import { PagesConfigDataApi } from "../../../../../storage/PagesConfig";
 function PageContent({
   bookingInfo,
   setBookingInfo,
@@ -14,6 +17,10 @@ function PageContent({
     React.SetStateAction<BookingRequiredData | undefined>
   >;
 }): React.ReactElement {
+  const urlNavigator = useNavigate();
+  const pagesConfigData = PagesConfigDataApi();
+  const { workPage } = pagesConfigData;
+  const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   const [clientFullName, setClientFullName] = useState<string>("");
   const [jobTitle, setJobTitle] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -63,7 +70,12 @@ function PageContent({
   }
   //
   function closeFormResponse() {
+    setBookingInfo(undefined);
     setRenderFormResponse(!renderFormResponse);
+    urlNavigator("/", { replace: true });
+    if (!workPage) {
+      setShouldAppLoad(true);
+    }
   }
   //
   useEffect(() => {
@@ -427,8 +439,9 @@ function PageContent({
         </section>
       </article>
       {renderFormResponse && (
-        <FormSubmitResponse closePopUp={closeFormResponse} />
+        <FormSubmitResponse backToHomePage={closeFormResponse} />
       )}
+      {shouldAppLoad && <LoadingAnimation shouldFadeOut={false} />}
     </>
   );
 }

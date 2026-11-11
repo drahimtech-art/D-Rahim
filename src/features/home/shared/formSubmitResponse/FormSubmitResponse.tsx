@@ -1,99 +1,87 @@
-import closeIcon from "/images/icons/Close.png";
-import logo from "/images/logo1.png";
+import checkIcon from "/images/icons/check-green-icon.png";
+import mailIcon from "/images/icons/mail_icon.png";
 function FormSubmitResponse({
-  closePopUp,
+  backToHomePage,
 }: {
-  closePopUp: () => void;
+  backToHomePage: () => void;
 }): React.ReactElement {
   return (
     <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-50">
       <div className="w-full h-full flex justify-center items-center">
-        <article className="w-[90%] min-[700px]:w-[80%] max-w-[1136px] max-h-[750px] min-[1000px]:max-h-[1120px] h-[95%] overflow-hidden rounded-[16px]  min-[1000px]:pl-10 min-[1000px]:pr-10 min-[1000px]:pt-5 min-[1000px]:pb-0 pl-4 pr-4 pt-3 bg-[#FFFFFF] ">
-          <div className="w-full h-full relative overflow-y-scroll scroll-container ">
-            <section className="flex items-center">
-              <span className="ml-auto  flex justify-center w-[70px]">
-                <div className="pointer bg-white  absolute top-0 p-3.5 transition-all hover:bg-transparent  z-10 right-0">
-                  <button className="pointer " onClick={closePopUp}>
-                    <img
-                      className="min-[1000px]:w-[40px] min-[1000px]:h-[40px] w-[25px] h-[25px]"
-                      src={closeIcon}
-                    ></img>
-                  </button>
-                </div>
-                <h5 className="font-medium text-[14px] mt-4  min-[1000px]:mt-14">
-                  Close
-                </h5>
-              </span>
-            </section>
-            <article className="pl-4 pr-4">
-              <header>
-                <img
-                  className="min-[1000px]:w-[140px] min-[1000px]:h-[140px] w-[90px] h-[90px] rounded-full"
-                  src={logo}
-                />
-                <h2 className="mt-[32px] font-semibold font-inter min18pxMax36px">
-                  Hello from D’rahim Tech Innovation!
-                </h2>
-              </header>
-              <div className="w-full h-full min-[1000px]mt-[81px] mt-[20px] min-[700px]:mt-[40px] flex flex-col min-[1000px]:gap-[81px] gap-[40px] mb-20">
-                <span>
-                  <h5 className="font-inter font-normal min14pxMax24px">
-                    We appreciate you reaching out to us. We will get back to
-                    you shortly.
-                  </h5>
+        <article className="w-[85%] max-w-[687px] h-[90%] max-h-full overflow-y-auto overflow-hidden pl-10 pr-10 p-4 pb-7 rounded-[16px] bg-white">
+          <section className="mt-[20px] flex justify-center  ">
+            <header className="flex flex-col gap-[12px] items-center">
+              <img className="w-fit h-fit" src={checkIcon}></img>
+              <h4 className="font-inter font-semibold min20pxMax36px text-[#004A3C]">
+                Application Submitted!
+              </h4>
+              <h5 className="font-inter font-normal min16pxMax20px mt-[5px]">
+                Your application has been successfully received.
+              </h5>
+            </header>
+          </section>
+          <section className="mt-[29px] flex flex-col">
+            <h5 className="font-inter font-medium min16pxMax20px">
+              What’s next?
+            </h5>
+            <article className="mt-[22px] flex flex-col gap-[50px]">
+              <section className="flex gap-[12px]">
+                <span className=" bg-[#11AC76] w-[24px] h-[24px] rounded-full flex justify-center items-center text-[#FFFFFF] font-medium font-inter text-[14px]">
+                  <h5>1</h5>
                 </span>
-                <ul className="min-[1000px]:pl-15 pl-4 list-disc flex flex-col min-[1000px]:gap-[67px] gap-[30px]">
-                  <li className="font-inter font-normal min14pxMax24px">
-                    If you want to reach us faster, please schedule a meeting on{" "}
-                    <a className="text-[#2563EB] border-b-2 pointer">
-                      Whatsapp
-                    </a>
-                  </li>
-                  <li className="font-inter font-normal min14pxMax24px">
-                    Learn more about{" "}
-                    <strong className="text-[#004A3C] font-normal">
-                      D’rahim Tech Innovation
-                    </strong>{" "}
-                    by exploring our work, discovering our approach to digital
-                    product design, and staying connected with us through our
-                    latest updates.
-                  </li>
-                </ul>
-                <div className="flex flex-col min-[1000px]:gap-[40px] gap-[20px]">
-                  <span className="font-inter font-normal min14pxMax24px ">
-                    We’ll be glad to see you!
-                  </span>
-                  <span className="font-inter font-normal min14pxMax24px text-[#004A3C]">
-                    D’rahim Tech Innovation!
-                  </span>
-                </div>
-                <nav className="">
-                  <span className="flex gap-5 text-[1.8rem] lg:text-[2rem] text-black">
-                    <a
-                      className="fa-brands fa-facebook"
-                      href="https://web.facebook.com/people/Drahim-Tech-Innovation/100076332797158/"
-                      target="_blank"
-                    ></a>
-                    <a
-                      className="fa-brands fa-linkedin"
-                      href="https://www.linkedin.com/company/d-rahim-tech-innovation/"
-                      target="_blank"
-                    ></a>
-                    <a
-                      className="fa-brands fa-behance"
-                      href="https://www.behance.net/drahimtechinnovation"
-                      target="_blank"
-                    ></a>
-                    <a
-                      className="fa-brands fa-instagram"
-                      href="https://www.instagram.com/drahimtech?igsh=N2psejUyeTNlbnl0&utm_source=qr"
-                      target="_blank"
-                    ></a>
-                  </span>
-                </nav>
-              </div>
+                <span className="flex flex-col gap-[8px]">
+                  <h5 className="font-medium font-inter text-[#11AC76] min14pxMax16px">
+                    Application Review
+                  </h5>
+                  <p className="font-normal font-inter  min14pxMax16px">
+                    We'll review your project details to understand your
+                    requirements.
+                  </p>
+                </span>
+              </section>
+              <section className="flex gap-[12px]">
+                <span className=" bg-[#11AC76] w-[24px] h-[24px] rounded-full flex justify-center items-center text-[#FFFFFF] font-medium font-inter text-[14px]">
+                  <h5>2</h5>
+                </span>
+                <span className="flex flex-col gap-[8px]">
+                  <h5 className="font-medium font-inter text-[#11AC76] min14pxMax16px">
+                    We'll Get in Touch
+                  </h5>
+                  <p className="font-normal font-inter  min14pxMax16px">
+                    Our team will contact you via email within 1–3 business
+                    days.
+                  </p>
+                </span>
+              </section>
             </article>
-          </div>
+            <div className="mt-[27px] flex gap-[5px]">
+              <span className=" block w-[16px] h-[16px]">
+                <img className="w-fit h-fit" src={mailIcon}></img>
+              </span>
+              <span className="flex flex-col gap-[6px]">
+                <h5 className="font-medium font-inter text-[12px]">
+                  Check your inbox
+                </h5>
+                <p className="font-normal font-inter  text-[10px]">
+                  A confirmation email with your application details will be
+                  sent to your email address.
+                </p>
+              </span>
+            </div>
+          </section>
+          <section className="mt-[34px] flex flex-col">
+            <button
+              className="pointer w-full h-[50px] bg-[#11AC76] transition-all hover:bg-primary-green rounded-[30px] flex justify-center items-center"
+              onClick={backToHomePage}
+            >
+              <h5 className="font-inter font-medium min16pxMax20px text-[#FFFFFF] ">
+                Back to Homepage
+              </h5>
+            </button>
+            <p className="font-normal font-inter  text-[10px] mt-[5px] text-center">
+              Thank you for considering us for your project.
+            </p>
+          </section>
         </article>
       </div>
     </div>

@@ -468,3 +468,12 @@ textarea:focus {
 .min14pxMax18px {
   font-size: clamp(14px, 3vw, 18px);
 }
+.min20pxMax36px {
+  font-size: clamp(20px, 4vw, 36px);
+}
+.min16pxMax20px {
+  font-size: clamp(16px, 3vw, 20px);
+}
+.min14pxMax16px {
+  font-size: clamp(14px, 2vw, 16px);
+}
