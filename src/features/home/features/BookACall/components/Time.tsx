@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ClientBookingInfoApi } from "../../../../../storage/ClientBookingInfo";
+import BookACallTimeErrNotificationBar from "../../../shared/notificationBar/BookACallTimeErrNotificationBar";
 function Time({
   toCallPage,
   bookingDate,
@@ -35,6 +36,7 @@ function Time({
   ]);
   const [isDateNotInCurrentDate, setIsDateNotInCurrentDate] =
     useState<boolean>(false);
+  const [renderTimeErrAlert, setRenderTimeErrAlert] = useState<boolean>(true);
   useEffect(() => {
     if (!bookingInfo) return;
     (() => {
@@ -254,163 +256,166 @@ function Time({
   }
 
   return (
-    <section className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
-      <span>
-        <h5 className="font-inter  text-[24px]">Tuesday, September 9</h5>
-      </span>
-      <div className="mt-12.5 flex flex-col gap-2.5 ">
-        <button
-          className="w-full h-16.75 p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400 pointer"
-          style={{
-            backgroundColor: defaultTimeOpen[0].selected
-              ? "#004a3c"
-              : defaultTimeOpen[0].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[0].selected ? "white" : "black",
-            cursor: defaultTimeOpen[0].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(0)}
-        >
-          <h5 className="font-inter  text-[24px]">07:00 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[1].selected
-              ? "#004a3c"
-              : defaultTimeOpen[1].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[1].selected ? "white" : "black",
-            cursor: defaultTimeOpen[1].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(1)}
-        >
-          <h5 className="font-inter  text-[24px]">07:30 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[2].selected
-              ? "#004a3c"
-              : defaultTimeOpen[2].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[2].selected ? "white" : "black",
-            cursor: defaultTimeOpen[2].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(2)}
-        >
-          <h5 className="font-inter  text-[24px]">08:00 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[3].selected
-              ? "#004a3c"
-              : defaultTimeOpen[3].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[3].selected ? "white" : "black",
-            cursor: defaultTimeOpen[3].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(3)}
-        >
-          <h5 className="font-inter  text-[24px]">08:30 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[4].selected
-              ? "#004a3c"
-              : defaultTimeOpen[4].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[4].selected ? "white" : "black",
-            cursor: defaultTimeOpen[4].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(4)}
-        >
-          <h5 className="font-inter  text-[24px]">09:00 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[5].selected
-              ? "#004a3c"
-              : defaultTimeOpen[5].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[5].selected ? "white" : "black",
-            cursor: defaultTimeOpen[5].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(5)}
-        >
-          <h5 className="font-inter  text-[24px]">09:40 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[6].selected
-              ? "#004a3c"
-              : defaultTimeOpen[6].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[6].selected ? "white" : "black",
-            cursor: defaultTimeOpen[6].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(6)}
-        >
-          <h5 className="font-inter  text-[24px]">11:00 am</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[7].selected
-              ? "#004a3c"
-              : defaultTimeOpen[7].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[7].selected ? "white" : "black",
-            cursor: defaultTimeOpen[7].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(7)}
-        >
-          <h5 className="font-inter  text-[24px]">02:00 pm</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[8].selected
-              ? "#004a3c"
-              : defaultTimeOpen[8].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[8].selected ? "white" : "black",
-            cursor: defaultTimeOpen[8].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(8)}
-        >
-          <h5 className="font-inter  text-[24px]">08:00 pm</h5>
-        </button>
-        <button
-          className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
-          style={{
-            backgroundColor: defaultTimeOpen[9].selected
-              ? "#004a3c"
-              : defaultTimeOpen[9].state
-                ? "transparent"
-                : "#f0f0f0",
-            color: defaultTimeOpen[9].selected ? "white" : "black",
-            cursor: defaultTimeOpen[9].state ? "pointer" : "not-allowed",
-          }}
-          onClick={() => handleClientBookingTime(9)}
-        >
-          <h5 className="font-inter  text-[24px]">08:30 pm</h5>
-        </button>
-      </div>
-    </section>
+    <>
+      <section className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
+        <span>
+          <h5 className="font-inter  text-[24px]">Tuesday, September 9</h5>
+        </span>
+        <div className="mt-12.5 flex flex-col gap-2.5 ">
+          <button
+            className="w-full h-16.75 p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400 pointer"
+            style={{
+              backgroundColor: defaultTimeOpen[0].selected
+                ? "#004a3c"
+                : defaultTimeOpen[0].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[0].selected ? "white" : "black",
+              cursor: defaultTimeOpen[0].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(0)}
+          >
+            <h5 className="font-inter  text-[24px]">07:00 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[1].selected
+                ? "#004a3c"
+                : defaultTimeOpen[1].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[1].selected ? "white" : "black",
+              cursor: defaultTimeOpen[1].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(1)}
+          >
+            <h5 className="font-inter  text-[24px]">07:30 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[2].selected
+                ? "#004a3c"
+                : defaultTimeOpen[2].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[2].selected ? "white" : "black",
+              cursor: defaultTimeOpen[2].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(2)}
+          >
+            <h5 className="font-inter  text-[24px]">08:00 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[3].selected
+                ? "#004a3c"
+                : defaultTimeOpen[3].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[3].selected ? "white" : "black",
+              cursor: defaultTimeOpen[3].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(3)}
+          >
+            <h5 className="font-inter  text-[24px]">08:30 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[4].selected
+                ? "#004a3c"
+                : defaultTimeOpen[4].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[4].selected ? "white" : "black",
+              cursor: defaultTimeOpen[4].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(4)}
+          >
+            <h5 className="font-inter  text-[24px]">09:00 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[5].selected
+                ? "#004a3c"
+                : defaultTimeOpen[5].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[5].selected ? "white" : "black",
+              cursor: defaultTimeOpen[5].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(5)}
+          >
+            <h5 className="font-inter  text-[24px]">09:40 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[6].selected
+                ? "#004a3c"
+                : defaultTimeOpen[6].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[6].selected ? "white" : "black",
+              cursor: defaultTimeOpen[6].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(6)}
+          >
+            <h5 className="font-inter  text-[24px]">11:00 am</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[7].selected
+                ? "#004a3c"
+                : defaultTimeOpen[7].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[7].selected ? "white" : "black",
+              cursor: defaultTimeOpen[7].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(7)}
+          >
+            <h5 className="font-inter  text-[24px]">02:00 pm</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[8].selected
+                ? "#004a3c"
+                : defaultTimeOpen[8].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[8].selected ? "white" : "black",
+              cursor: defaultTimeOpen[8].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(8)}
+          >
+            <h5 className="font-inter  text-[24px]">08:00 pm</h5>
+          </button>
+          <button
+            className="w-full h-16.75 pointer p-2.5 transition-all hover-bg-primary-green flex justify-center border-2 items-center border-gray-400"
+            style={{
+              backgroundColor: defaultTimeOpen[9].selected
+                ? "#004a3c"
+                : defaultTimeOpen[9].state
+                  ? "transparent"
+                  : "#f0f0f0",
+              color: defaultTimeOpen[9].selected ? "white" : "black",
+              cursor: defaultTimeOpen[9].state ? "pointer" : "not-allowed",
+            }}
+            onClick={() => handleClientBookingTime(9)}
+          >
+            <h5 className="font-inter  text-[24px]">08:30 pm</h5>
+          </button>
+        </div>
+      </section>
+      {renderTimeErrAlert && <BookACallTimeErrNotificationBar />}
+    </>
   );
 }
 export default Time;
