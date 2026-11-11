@@ -86,36 +86,46 @@ function Menu(props: MenuControl) {
           </span>
         </section>
         <nav className="w-full mt-20 sm:mt-0 flex flex-col gap-3">
-          <section
-            className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
-            onClick={work}
-          >
-            <h5>Work</h5>
-          </section>
-          <section
-            className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
-            onClick={services}
-          >
-            <h5>Services</h5>
-          </section>
-          <section
-            className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
-            onClick={about}
-          >
-            <h5>About</h5>
-          </section>
-          <section
-            className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
-            onClick={mentorship}
-          >
-            <h5>Mentorship</h5>
-          </section>
-          <section
-            className="p-2.5 sm:text-[24px] pointer text-[35px] text-green-500 font-inter font-semibold "
-            onClick={bookACall}
-          >
-            <h5>Get in touch</h5>
-          </section>
+          {serverPath != "/" && serverPath != "#/" && (
+            <section
+              className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
+              onClick={work}
+            >
+              <h5>Work</h5>
+            </section>
+          )}
+          {serverPath != "#/services" && (
+            <section
+              className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
+              onClick={services}
+            >
+              <h5>Services</h5>
+            </section>
+          )}
+          {serverPath != "#/about" && (
+            <section
+              className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
+              onClick={about}
+            >
+              <h5>About</h5>
+            </section>
+          )}
+          {serverPath != "#/mentorship" && (
+            <section
+              className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
+              onClick={mentorship}
+            >
+              <h5>Mentorship</h5>
+            </section>
+          )}
+          {serverPath != "#/book/call" && (
+            <section
+              className="p-2.5 sm:text-[24px] pointer text-[35px] text-gray-200 font-inter font-semibold "
+              onClick={bookACall}
+            >
+              <h5>Get in touch</h5>
+            </section>
+          )}
           {/** <section
             className="p-2.5 sm:text-[24px] pointer text-[35px] text-green-500 font-inter font-semibold "
             onClick={bookACall}
