@@ -101,7 +101,7 @@ function EnterDetailsAndMap() {
         </section>
       </article>
       {renderFormResponse && (
-        <FormSubmitResponse closePopUp={closeFormResponse} />
+        <FormSubmitResponse backToHomePage={closeFormResponse} />
       )}
     </>
   );
