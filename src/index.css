@@ -480,3 +480,16 @@ textarea:focus {
 .min18pxMax24px {
   font-size: clamp(18px, 3vw, 24px);
 }
+.hid-scrollbar-width::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent;
+}
+.hid-scrollbar-width::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.hid-scrollbar-width {
+  scrollbar-width: none;
+}
+.hid-scrollbar-width {
+  -ms-overflow-style: none;
+}

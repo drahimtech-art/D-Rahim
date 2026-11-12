@@ -30,7 +30,7 @@ function ServiceCard() {
   }, []);
   return (
     <article className="min-[1000px]:mt-20 mt-10 min-[1000px]:pl-10 min-[1000px]:pr-10 pl-5 pr-5  w-full  min-[1000px]:max-h-171.5 overflow-hidden">
-      <div className="flex min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 gap-7.5 overflow-x-scroll min-[1000px]:overflow-auto">
+      <div className="flex min-[1000px]:grid min-[1000px]:grid-cols-2 min-[1000px]:gap-4 gap-7.5 overflow-x-scroll hid-scrollbar-width min-[1000px]:overflow-auto">
         <section className="relative min-w-70 h-70 min-[1000px]:max-h-171.5 bg-[#bdb9b9] min-[1000px]:rounded-4xl rounded-2xl min-[1000px]:w-full min-[1000px]:h-full ">
           {devicesWidth !== undefined && devicesWidth >= 1000 ? (
             <img
