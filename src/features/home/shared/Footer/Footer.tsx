@@ -52,7 +52,7 @@ function End() {
               <h5>Remote-first digital innovation team</h5>
             </span>
             <span className="mt-6 font-inter">
-              <h5>Serving clients across Nigeria and beyond.</h5>
+              <h5>Serving clients across Africa and beyond.</h5>
             </span>
           </section>
         </article>
