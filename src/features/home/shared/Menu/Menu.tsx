@@ -1,4 +1,4 @@
-import Logo from "/images/logo.png";
+import Logo from "/images/mobile-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import LoadingAnimation from "../LoadingState/LoadingAnimation";
@@ -63,7 +63,7 @@ function Menu(props: MenuControl) {
   }
   return (
     <>
-      <article className="w-full h-screen  fixed z-50 sm:w-75 sm:right-5 sm:h-fit sm:pl-5 sm:pr-5 sm:pt-16 sm:pb-30 sm:rounded-3xl sm:top-16 top-0 p-7 bg-[#020e02]">
+      <article className="w-full h-screen  fixed z-50 sm:w-75 sm:right-5 sm:h-fit sm:pl-5 sm:pr-5 sm:pt-16 sm:pb-30 sm:rounded-3xl sm:top-16 top-0 p-7 bg-[#323239]">
         <section className="flex items-center  sm:hidden">
           <header className="flex text-gray-200 ">
             <div className="w-7  sm:w-8 h-10">
