@@ -13,7 +13,7 @@ function Top() {
   const [menuControl, setMenuControl] = useState<boolean>(false);
   const [mountMenuBar, setMountMenuBar] = useState<boolean>(false);
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
-  const serverPath = window.location.hash;
+  const serverPath = window.location.hash.trim();
   const workRef = useRef<HTMLSpanElement | null>(null);
   const servicesRef = useRef<HTMLSpanElement | null>(null);
   const aboutRef = useRef<HTMLSpanElement | null>(null);
@@ -131,6 +131,9 @@ function Top() {
         setIsNotInMainPages(false);
         break;
       case "/":
+        setIsNotInMainPages(false);
+        break;
+      case "":
         setIsNotInMainPages(false);
         break;
       case "#/services":
