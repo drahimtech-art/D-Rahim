@@ -1,4 +1,5 @@
 import Logo from "/images/logo.png";
+import messageGreenIcon from "/images/icons/message-green-icon.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Menu from "../Menu/Menu";
@@ -212,7 +213,14 @@ function Top() {
               </h5>
             </span>
           </section>
-          <section className="block min-[1000px]:hidden ml-auto">
+          <section className=" min-[1000px]:hidden ml-auto flex justify-center items-center gap-[17px]">
+            <button className="pointer " onClick={contact}>
+              <img
+                className="w-[30px] h-[30px] pointer"
+                src={messageGreenIcon}
+                alt="get intouch"
+              />
+            </button>
             <i
               className="fa fa-bars pointer text-[1.5rem]"
               onClick={() => setMenuControl(!menuControl)}
