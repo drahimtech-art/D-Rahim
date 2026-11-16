@@ -55,7 +55,7 @@ function CategoryMenu() {
   }, [optionOne, optionTwo, optionThree, optionFour]);
   function toDiscoverAllServices() {
     const url = "/discover/all/services";
-    urlNavigator(url, { replace: true });
+    urlNavigator(url, { replace: false });
     if (!discoverAllServicesPage) {
       setShouldLoad(true);
     }

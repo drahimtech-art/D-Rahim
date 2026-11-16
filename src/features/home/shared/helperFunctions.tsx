@@ -1,8 +1,6 @@
-export function goBackInRouteHistory({
-  routeNavigator,
-}: {
-  routeNavigator: (url?: string, options?: object) => void;
-}) {
+import type { NavigateFunction } from "react-router-dom";
+
+export function goBackInRouteHistory(routeNavigator: NavigateFunction) {
   if (window.history.length > 1) {
     window.history.back();
   } else {

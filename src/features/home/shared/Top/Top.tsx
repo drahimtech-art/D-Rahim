@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Menu from "../Menu/Menu";
 import LoadingAnimation from "../LoadingState/LoadingAnimation";
 import { PagesConfigDataApi } from "../../../../storage/PagesConfig";
+import { goBackInRouteHistory } from "../helperFunctions";
 function Top() {
   const pagesConfigData = PagesConfigDataApi();
   const { workPage, servicesPage, aboutPage, mentorshipPage, bookACallPage } =
@@ -18,6 +19,7 @@ function Top() {
   const mentorshipRef = useRef<HTMLSpanElement | null>(null);
   const menuDivRef = useRef<HTMLDivElement | null>(null);
   const topDivRef = useRef<HTMLDivElement | null>(null);
+  const [isNotInMainPages, setIsNotInMainPages] = useState<boolean>(false);
   const urlNavigator = useNavigate();
   function services() {
     urlNavigator("/services", { replace: true });
@@ -122,6 +124,34 @@ function Top() {
     }
   }, [menuControl]);
   //
+  useEffect(() => {
+    switch (serverPath) {
+      case "#/":
+        setIsNotInMainPages(false);
+        break;
+      case "/":
+        setIsNotInMainPages(false);
+        break;
+      case "#/services":
+        setIsNotInMainPages(false);
+        break;
+      case "#/about":
+        setIsNotInMainPages(false);
+        break;
+      case "#/mentorship":
+        setIsNotInMainPages(false);
+        break;
+      case "#/book/call":
+        setIsNotInMainPages(false);
+        break;
+      case "#/schedule/call":
+        setIsNotInMainPages(false);
+        break;
+      default:
+        setIsNotInMainPages(true);
+        break;
+    }
+  }, []);
   return (
     <>
       <article className="bg-white  sticky top-0  z-20">
@@ -189,6 +219,18 @@ function Top() {
             ></i>
           </section>
         </div>
+        {isNotInMainPages && (
+          <section className="absolute w-full h-fit -mt z-10 flex items-center min-[1000px]:pl-10 pl-5">
+            <button
+              className="min-[1000px]:w-[62px] min-[1000px]:h-[62px] w-[40px] h-[40px] rounded-full bg-[#cdcdcf6b] pointer hover:text-white hover:bg-secondary-green text-[#8E8E93]"
+              onClick={() => {
+                goBackInRouteHistory(urlNavigator);
+              }}
+            >
+              <i className="fa fa-arrow-left  font-semibold"></i>
+            </button>
+          </section>
+        )}
       </article>
       <div
         className="bodyMaxSizing  fixed w-full  top-0 z-50 min-[1000px]:hidden "
