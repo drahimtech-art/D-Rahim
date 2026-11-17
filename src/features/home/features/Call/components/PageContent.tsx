@@ -22,12 +22,8 @@ function PageContent({
   const { workPage } = pagesConfigData;
   const [shouldAppLoad, setShouldAppLoad] = useState<boolean>(false);
   const [clientFullName, setClientFullName] = useState<string>("");
-  const [jobTitle, setJobTitle] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [companyName, setCompanyName] = useState<string>("");
   const [aboutProject, setAboutProject] = useState<string>("");
-  const [trafficSource, setTrafficSource] = useState<string>("");
   const [renderFormResponse, setRenderFormResponse] = useState<boolean>(false);
   const [renderInputErrUx, setRenderInputErrUx] = useState<boolean>(false);
   const [inputErrUxTreeSection, setInputErrUxTreeSection] = useState<number>(0);
@@ -36,14 +32,9 @@ function PageContent({
   );
   //
   const fullNameInputRef = useRef<HTMLInputElement | null>(null);
-  const jobTitleInputRef = useRef<HTMLInputElement | null>(null);
-  const companyNameInputRef = useRef<HTMLInputElement | null>(null);
   const emailInputRef = useRef<HTMLInputElement | null>(null);
-  const phoneNumberInputRef = useRef<HTMLInputElement | null>(null);
   const aboutProjectInputRef = useRef<HTMLInputElement | null>(null);
-  const trafficSourceInputRef = useRef<HTMLInputElement | null>(null);
   const aboutProjectTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
-  const trafficSourceTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
   function addInputErrUx(
     ref:
       | React.RefObject<HTMLInputElement | null>
@@ -82,12 +73,8 @@ function PageContent({
     if (!bookingInfo) return;
     (() => {
       setClientFullName(bookingInfo.clientFullName);
-      setJobTitle(bookingInfo.jobTitle);
       setEmail(bookingInfo.email);
-      setPhoneNumber(bookingInfo.phoneNumber);
-      setCompanyName(bookingInfo.companyName);
       setAboutProject(bookingInfo.aboutProject);
-      setTrafficSource(bookingInfo.trafficSource);
     })();
   }, []);
   //
@@ -107,15 +94,6 @@ function PageContent({
     } else {
       removeInputErrUx(fullNameInputRef);
     }
-    if (jobTitle.length < 3) {
-      addInputErrUx(jobTitleInputRef);
-      setInputErrUxMsg("This field is required");
-      setInputErrUxTreeSection(1);
-      setRenderInputErrUx(true);
-      return;
-    } else {
-      removeInputErrUx(jobTitleInputRef);
-    }
     if (email.length < 3) {
       addInputErrUx(emailInputRef);
       setInputErrUxMsg("This field is required");
@@ -134,24 +112,6 @@ function PageContent({
     } else {
       removeInputErrUx(emailInputRef);
     }
-    if (phoneNumber.length < 3) {
-      addInputErrUx(phoneNumberInputRef);
-      setInputErrUxMsg("This field is required");
-      setInputErrUxTreeSection(3);
-      setRenderInputErrUx(true);
-      return;
-    } else {
-      removeInputErrUx(phoneNumberInputRef);
-    }
-    if (companyName.length < 3) {
-      addInputErrUx(companyNameInputRef);
-      setInputErrUxMsg("This field is required");
-      setInputErrUxTreeSection(4);
-      setRenderInputErrUx(true);
-      return;
-    } else {
-      removeInputErrUx(companyNameInputRef);
-    }
     if (aboutProject.length < 3) {
       addInputErrUx(aboutProjectInputRef);
       addInputErrUx(aboutProjectTextAreaRef);
@@ -163,17 +123,6 @@ function PageContent({
       removeInputErrUx(aboutProjectInputRef);
       removeInputErrUx(aboutProjectTextAreaRef);
     }
-    if (trafficSource.length < 4) {
-      addInputErrUx(trafficSourceInputRef);
-      addInputErrUx(trafficSourceTextAreaRef);
-      setInputErrUxMsg("This field is required");
-      setInputErrUxTreeSection(6);
-      setRenderInputErrUx(true);
-      return;
-    } else {
-      removeInputErrUx(trafficSourceInputRef);
-      removeInputErrUx(trafficSourceTextAreaRef);
-    }
 
     //
     setRenderInputErrUx(false);
@@ -181,22 +130,14 @@ function PageContent({
       setBookingInfo({
         ...bookingInfo,
         clientFullName,
-        jobTitle,
         email,
-        phoneNumber,
-        companyName,
         aboutProject,
-        trafficSource,
       });
       postRequstSevice({
         ...bookingInfo,
         clientFullName,
-        jobTitle,
         email,
-        phoneNumber,
-        companyName,
         aboutProject,
-        trafficSource,
       })
         .then((res) => {
           setRenderFormResponse(true);
@@ -241,29 +182,6 @@ function PageContent({
             <span className="flex flex-col font-inter">
               <span className="flex items-center gap-3">
                 <h5 className="ourWorkHeadMenu font-inter font-medium">
-                  Job Title
-                </h5>
-                {renderInputErrUx && inputErrUxTreeSection === 1 && (
-                  <h5 className="ourWorkHeadMenu font-inter font-bold text-[#C0392B]">
-                    *
-                  </h5>
-                )}
-              </span>
-              <div className="relative w-full h-full min-[1000px]:mt-6">
-                <input
-                  className="border-2 min-[1000px]:border-0 pl-4 sm:min-h-12 min-[1000px]:h-full min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7 rounded-2xl min-[1000px]:rounded-none"
-                  value={jobTitle}
-                  ref={jobTitleInputRef}
-                  onChange={(e) => setJobTitle(e.target.value)}
-                ></input>
-                {renderInputErrUx && inputErrUxTreeSection === 1 && (
-                  <NotificationBar errMassage={inputErrUxMsg} />
-                )}
-              </div>
-            </span>
-            <span className="flex flex-col font-inter">
-              <span className="flex items-center gap-3">
-                <h5 className="ourWorkHeadMenu font-inter font-medium">
                   Business Email
                 </h5>
                 {renderInputErrUx && inputErrUxTreeSection === 2 && (
@@ -280,52 +198,6 @@ function PageContent({
                   onChange={(e) => setEmail(e.target.value)}
                 ></input>
                 {renderInputErrUx && inputErrUxTreeSection === 2 && (
-                  <NotificationBar errMassage={inputErrUxMsg} />
-                )}
-              </div>
-            </span>
-            <span className="flex flex-col font-inter">
-              <span className="flex items-center gap-3">
-                <h5 className="ourWorkHeadMenu font-inter font-medium">
-                  Phone Number
-                </h5>
-                {renderInputErrUx && inputErrUxTreeSection === 3 && (
-                  <h5 className="ourWorkHeadMenu font-inter font-bold text-[#C0392B]">
-                    *
-                  </h5>
-                )}
-              </span>
-              <div className="relative w-full h-full min-[1000px]:mt-6">
-                <input
-                  className="border-2 min-[1000px]:border-0 pl-4 sm:min-h-12 min-[1000px]:h-full min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7 rounded-2xl min-[1000px]:rounded-none"
-                  value={phoneNumber}
-                  ref={phoneNumberInputRef}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                ></input>
-                {renderInputErrUx && inputErrUxTreeSection === 3 && (
-                  <NotificationBar errMassage={inputErrUxMsg} />
-                )}
-              </div>
-            </span>
-            <span className="flex flex-col font-inter">
-              <span className="flex items-center gap-3">
-                <h5 className="ourWorkHeadMenu font-inter font-medium">
-                  Company Name
-                </h5>
-                {renderInputErrUx && inputErrUxTreeSection === 4 && (
-                  <h5 className="ourWorkHeadMenu font-inter font-bold text-[#C0392B]">
-                    *
-                  </h5>
-                )}
-              </span>
-              <div className="relative w-full h-full min-[1000px]:mt-6">
-                <input
-                  className="border-2 min-[1000px]:border-0 pl-4 sm:min-h-12 min-[1000px]:h-full min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7 rounded-2xl min-[1000px]:rounded-none"
-                  value={companyName}
-                  ref={companyNameInputRef}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                ></input>
-                {renderInputErrUx && inputErrUxTreeSection === 4 && (
                   <NotificationBar errMassage={inputErrUxMsg} />
                 )}
               </div>
@@ -356,37 +228,6 @@ function PageContent({
                     onChange={(e) => setAboutProject(e.target.value)}
                   ></textarea>
                   {renderInputErrUx && inputErrUxTreeSection === 5 && (
-                    <NotificationBar errMassage={inputErrUxMsg} />
-                  )}
-                </div>
-              </span>
-            </span>
-            <span className="flex flex-col h-full font-inter mt-0 min-[1000px]:mt-5">
-              <span className="flex items-center gap-3">
-                <h5 className="ourWorkHeadMenu font-inter font-medium">
-                  How did you find D'rahim tech innovation?
-                </h5>
-                {renderInputErrUx && inputErrUxTreeSection === 6 && (
-                  <h5 className="ourWorkHeadMenu font-inter font-bold text-[#C0392B]">
-                    *
-                  </h5>
-                )}
-              </span>
-              <span>
-                <div className="relative w-full h-full  min-[1000px]:mt-6 ">
-                  <input
-                    className="min-[1000px]:inline-block hidden h-41.75 min-[1000px]:h-full border-2 min-[1000px]:border-0 pl-4 sm:min-h-12  min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7  rounded-2xl min-[1000px]:rounded-none"
-                    value={trafficSource}
-                    ref={trafficSourceInputRef}
-                    onChange={(e) => setTrafficSource(e.target.value)}
-                  ></input>
-                  <textarea
-                    className="min-[1000px]:hidden min-h-41.75  max-h-[200px] inline-block   h-41.75 min-[1000px]:h-full border-2 min-[1000px]:border-0 pl-4  min-[1000px]:border-b-2 border-gray-600 w-full p-2.5 min-[620px]:p-0 min-[1000px]:pb-7  rounded-2xl min-[1000px]:rounded-none"
-                    value={trafficSource}
-                    ref={trafficSourceTextAreaRef}
-                    onChange={(e) => setTrafficSource(e.target.value)}
-                  ></textarea>
-                  {renderInputErrUx && inputErrUxTreeSection === 6 && (
                     <NotificationBar errMassage={inputErrUxMsg} />
                   )}
                 </div>
