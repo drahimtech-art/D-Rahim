@@ -1,5 +1,11 @@
 import whatsAppIcon from "/images/icons/whatsapp-icon.png";
 function ComingSoon(): React.ReactElement {
+  function openWhatsApp() {
+    window.open(
+      "https://api.whatsapp.com/message/AS5GZTUQICMZK1?autoload=1&app_absent=0",
+      "_blank",
+    );
+  }
   return (
     <main className="lg:pl-10 lg:pr-10 pl-5 pr-5 lg:mt-15 mt-7 ">
       <header>
@@ -18,7 +24,7 @@ function ComingSoon(): React.ReactElement {
         </h5>
       </section>
       <section className="min-[1000px]:mt-[83px] mt-10 flex justify-center">
-        <div className="">
+        <button className="pointer " onClick={openWhatsApp}>
           <span className="flex justify-center pointer">
             <img
               className="w-fit h-fit max-w-[162px] max-h-[163px]"
@@ -28,7 +34,7 @@ function ComingSoon(): React.ReactElement {
           <h5 className="text-center font-inter font-normal min16Max20px mt-3.25">
             Click To Reach out to us on WhatsApp
           </h5>
-        </div>
+        </button>
       </section>
     </main>
   );
