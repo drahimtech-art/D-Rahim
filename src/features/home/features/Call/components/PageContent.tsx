@@ -1,5 +1,3 @@
-import mapIcon from "/images/icons/Map.svg";
-import whatsAppIcon from "/images/icons/whatsApp_icon.png";
 import type { BookingRequiredData } from "../../../../../storage/ClientBookingInfo";
 import { useState, useEffect, useRef } from "react";
 import FormSubmitResponse from "../../../shared/formSubmitResponse/FormSubmitResponse";
@@ -35,6 +33,10 @@ function PageContent({
   const emailInputRef = useRef<HTMLInputElement | null>(null);
   const aboutProjectInputRef = useRef<HTMLInputElement | null>(null);
   const aboutProjectTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  //
+  const submitActionButtonTextRef = useRef<HTMLHeadingElement | null>(null);
+  const [isFormSent, setIsFormSet] = useState<boolean>(false);
+  //
   function addInputErrUx(
     ref:
       | React.RefObject<HTMLInputElement | null>
@@ -85,6 +87,7 @@ function PageContent({
   }
   //
   function submitClientInputForm() {
+    if (isFormSent) return;
     if (clientFullName.length < 3) {
       addInputErrUx(fullNameInputRef);
       setInputErrUxMsg("This field is required");
@@ -123,9 +126,11 @@ function PageContent({
       removeInputErrUx(aboutProjectInputRef);
       removeInputErrUx(aboutProjectTextAreaRef);
     }
-
+    if (!submitActionButtonTextRef.current) return;
     //
     setRenderInputErrUx(false);
+    setIsFormSet(true);
+    submitActionButtonTextRef.current.textContent = "Sending...";
     if (bookingInfo) {
       setBookingInfo({
         ...bookingInfo,
@@ -140,10 +145,19 @@ function PageContent({
         aboutProject,
       })
         .then((res) => {
+          if (submitActionButtonTextRef.current) {
+            submitActionButtonTextRef.current.textContent =
+              "Submit Application";
+          }
+          setBookingInfo(undefined);
           setRenderFormResponse(true);
           console.log(res);
         })
         .catch((err) => {
+          if (submitActionButtonTextRef.current) {
+            submitActionButtonTextRef.current.textContent =
+              "Submit Application";
+          }
           console.log(err);
         });
     }
@@ -250,7 +264,10 @@ function PageContent({
               className="flex mr-auto pointer pl-7.5 pr-7.5 p-2.5 items-center justify-center mt-10 bg-button-bgGreen min-[1000px]:w-fit min-[1000px]:h-12.5 w-fit rounded-full"
               onClick={submitClientInputForm}
             >
-              <h5 className="text-center min22 text-gray-200 font-medium font-inter">
+              <h5
+                className="text-center min22 text-gray-200 font-medium font-inter"
+                ref={submitActionButtonTextRef}
+              >
                 Submit Application
               </h5>
             </button>
