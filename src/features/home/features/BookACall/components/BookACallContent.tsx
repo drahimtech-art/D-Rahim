@@ -54,7 +54,13 @@ function BookACallContent() {
           <h5 className="min16pxMax35px w-full font-medium min-[1000px]:w-[80%] max-w-[839px] ">
             If you want to reach us faster, please schedule a meeting on{" "}
             <strong className="text-green-400 border-b-2 border-green-400 pointer">
-              <a>Whatsapp</a>
+              <a
+                className="pointer "
+                target="_blank"
+                href="https://api.whatsapp.com/message/AS5GZTUQICMZK1?autoload=1&app_absent=0"
+              >
+                Whatsapp
+              </a>
             </strong>{" "}
           </h5>
         </span>
