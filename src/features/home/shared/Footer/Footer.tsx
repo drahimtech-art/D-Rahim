@@ -82,13 +82,13 @@ function End() {
         </nav>
         <section className="mt-[62px] min-[1000px]:mt-30 flex flex-col gap-[24px] min-[1000px]:flex-row text-gray-200 text-[16px] font-inter  min-[1000px]:gap-46.5 min-[1000px]:mb-3">
           <h5 className="hidden min-[1000px]:block">
-            © {new Date().getFullYear()} D'RHIM TECH INNOVATION
+            © {new Date().getFullYear()} D'RAHIM TECH INNOVATION
           </h5>
           <h5>Privacy Policy</h5>
           <h5>Terms of Use</h5>
           <h5>All Services</h5>
           <h5 className="block mb-10 min-[1000px]:hidden">
-            © {new Date().getFullYear()} D'RHIM TECH INNOVATION
+            © {new Date().getFullYear()} D'RAHIM TECH INNOVATION
           </h5>
         </section>
       </footer>
