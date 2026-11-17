@@ -4,12 +4,8 @@ export interface BookingRequiredData {
   time: string;
   defaultTimeOpenIndex: number;
   clientFullName: string;
-  jobTitle: string;
   email: string;
-  phoneNumber: string;
-  companyName: string;
   aboutProject: string;
-  trafficSource: string;
 }
 interface ClientBookingInfoType {
   bookingInfo: BookingRequiredData | undefined;
