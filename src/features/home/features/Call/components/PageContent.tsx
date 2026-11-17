@@ -256,28 +256,6 @@ function PageContent({
             </button>
           </div>
         </section>
-        <section className="w-[40%] ml-auto hidden min-[1000px]:block">
-          <section className="w-full flex justify-center  ">
-            <div className="w-full max-w-[229px] h-fit">
-              <div className="w-full flex justify-center">
-                <img className="w-fit h-fit pointer" src={whatsAppIcon}></img>
-              </div>
-              <h5 className="text-black  text-center mt-3.25 font-inter font-normal min18pxMax20px">
-                Chat via Whatsapp
-              </h5>
-            </div>
-          </section>
-          <div className="w-full mt-[17px] h-full">
-            <div className=" w-full h-[50%]  max-h-112.5  rounded-2xl">
-              <img className="w-full h-full  rounded-2xl" src={mapIcon} />
-            </div>
-            <span className="flex justify-center w-full mt-2">
-              <h5 className="font-normal font-inter logoMainText">
-                Find Us On The Map
-              </h5>
-            </span>
-          </div>
-        </section>
       </article>
       {renderFormResponse && (
         <FormSubmitResponse backToHomePage={closeFormResponse} />
