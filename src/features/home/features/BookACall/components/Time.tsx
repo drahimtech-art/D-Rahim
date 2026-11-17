@@ -254,12 +254,55 @@ function Time({
       toCallPage();
     });
   }
-
+  function getEnglishDateFormart(date: Date): string {
+    const daysOfTheWeek = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+    const monthsOfTheYear = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dateFormat: string[] = [];
+    const DATE = date.toDateString();
+    daysOfTheWeek.forEach((d) => {
+      if (
+        d.toLocaleLowerCase().includes(DATE.split(" ")[0].toLocaleLowerCase())
+      ) {
+        dateFormat.push(d);
+      }
+    });
+    monthsOfTheYear.forEach((m) => {
+      if (
+        m.toLocaleLowerCase().includes(DATE.split(" ")[1].toLocaleLowerCase())
+      ) {
+        dateFormat.push(m);
+      }
+    });
+    return `${dateFormat.join(", ")} ${DATE.split(" ")[2]}`;
+  }
   return (
     <>
-      <section className="min-[1000px]:mt-16  min-[1000px]:w-[20%] flex flex-col">
+      <section className="min-[1000px]:mt-16  min-[1000px]:w-[22%] flex flex-col">
         <span>
-          <h5 className="font-inter  text-[24px]">Tuesday, September 9</h5>
+          <h5 className="font-inter  text-[24px]">
+            {getEnglishDateFormart(bookingDate)}
+          </h5>
         </span>
         <div className="mt-12.5 flex flex-col gap-2.5 ">
           <button
