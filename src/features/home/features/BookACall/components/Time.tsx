@@ -242,12 +242,8 @@ function Time({
         time: timeFormart,
         defaultTimeOpenIndex: index,
         clientFullName: "",
-        jobTitle: "",
         email: "",
-        phoneNumber: "",
-        companyName: "",
         aboutProject: "",
-        trafficSource: "",
       });
     }
     setTimeout(() => {
