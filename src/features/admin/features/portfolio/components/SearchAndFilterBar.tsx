@@ -141,7 +141,7 @@ function SearchAndFilterBar({
               <h5 className="font-inter font-normal text-[16px]">
                 {filterStatus === "All" ? "All Status" : filterStatus}
               </h5>
-              <i className="fa fa-angle-down text-[18px] font-light"></i>
+              <i className="fa fa-angle-down text-[18px] "></i>
             </button>
             {renderFilterBar && (
               <article className="absolute w-[150px] flex flex-col gap-[8px] z-50 h-fit pl-6.25 pr-6.25 pt-3.25 pb-3.25 rounded-[10px] bg-[#FFFFFF] mt-[0.5px] ">
@@ -185,7 +185,7 @@ function SearchAndFilterBar({
             className="pointer flex w-37.5 gap-2 pl-2 bg-primary-green pr-2 pt-1.5 pb-1.5 text-[#FFFFFF] justify-center items-center border border-gray-500 rounded-[30px]"
             onClick={() => setRenderAddNewProjectBar(!renderAddNewProjectBar)}
           >
-            <i className="fa fa-plus text-[18px] font-light"></i>
+            <i className="fa fa-plus text-[18px] "></i>
             <h5 className="font-inter font-normal text-[16px]">Add New</h5>
           </button>
         </div>
