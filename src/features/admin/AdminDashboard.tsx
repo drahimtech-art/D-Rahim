@@ -4,7 +4,6 @@ import Dashboard from "./features/Dashboard/Dashboard";
 import Portfolio from "./features/portfolio/Portfolio";
 import Bookings from "./features/Booking/Bookings";
 import Payment from "./features/payment/Payment";
-import JobInquires from "./features/JobInquires/JobInquires";
 import Analytics from "./features/analytics/Analytics";
 import Settings from "./features/Settings/Settings";
 function AdminDasboard() {
@@ -12,13 +11,11 @@ function AdminDasboard() {
   const [renderPortfolio, setRenderPortfolio] = useState<boolean>(false);
   const [renderBooking, setRenderBooking] = useState<boolean>(false);
   const [renderPayment, setRenderPayment] = useState<boolean>(false);
-  const [renderJobInquires, setRenderJobInquires] = useState<boolean>(false);
   const [renderAnalytics, setRenderAnalytics] = useState<boolean>(false);
   const [renderSettings, setRenderSettings] = useState<boolean>(false);
   function toDashboard() {
     setRenderSettings(false);
     setRenderAnalytics(false);
-    setRenderJobInquires(false);
     setRenderPayment(false);
     setRenderBooking(false);
     setRenderPortfolio(false);
@@ -27,7 +24,6 @@ function AdminDasboard() {
   function toPortfolio() {
     setRenderSettings(false);
     setRenderAnalytics(false);
-    setRenderJobInquires(false);
     setRenderPayment(false);
     setRenderBooking(false);
     setRenderDashboard(false);
@@ -36,7 +32,6 @@ function AdminDasboard() {
   function toBooking() {
     setRenderSettings(false);
     setRenderAnalytics(false);
-    setRenderJobInquires(false);
     setRenderPayment(false);
     setRenderDashboard(false);
     setRenderPortfolio(false);
@@ -45,24 +40,13 @@ function AdminDasboard() {
   function toPayment() {
     setRenderSettings(false);
     setRenderAnalytics(false);
-    setRenderJobInquires(false);
     setRenderBooking(false);
     setRenderDashboard(false);
     setRenderPortfolio(false);
     setRenderPayment(true);
   }
-  function toJobinquires() {
-    setRenderSettings(false);
-    setRenderAnalytics(false);
-    setRenderPayment(false);
-    setRenderBooking(false);
-    setRenderDashboard(false);
-    setRenderPortfolio(false);
-    setRenderJobInquires(true);
-  }
   function toAnalytics() {
     setRenderSettings(false);
-    setRenderJobInquires(false);
     setRenderPayment(false);
     setRenderBooking(false);
     setRenderDashboard(false);
@@ -71,7 +55,6 @@ function AdminDasboard() {
   }
   function toSettings() {
     setRenderAnalytics(false);
-    setRenderJobInquires(false);
     setRenderPayment(false);
     setRenderBooking(false);
     setRenderDashboard(false);
@@ -85,7 +68,6 @@ function AdminDasboard() {
   }, [
     renderDashboard,
     renderPortfolio,
-    renderJobInquires,
     renderBooking,
     renderPayment,
     renderAnalytics,
@@ -104,12 +86,10 @@ function AdminDasboard() {
                   toPortfolio={toPortfolio}
                   toBooking={toBooking}
                   toAnalytics={toAnalytics}
-                  toJobinquires={toJobinquires}
                   toPayment={toPayment}
                   toSettings={toSettings}
                   logout={logout}
                   Dashboard={renderDashboard}
-                  Jobinquires={renderJobInquires}
                   Booking={renderBooking}
                   Payment={renderPayment}
                   Analytics={renderAnalytics}
@@ -125,7 +105,6 @@ function AdminDasboard() {
           {renderPortfolio && <Portfolio />}
           {renderBooking && <Bookings />}
           {renderPayment && <Payment />}
-          {renderJobInquires && <JobInquires />}
           {renderAnalytics && <Analytics />}
           {renderSettings && <Settings />}
         </main>
