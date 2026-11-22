@@ -84,22 +84,22 @@ function TopBar(props: Heading) {
       "admin-response-to-get-all-notifications",
       handleAllNotificationsRes,
     );
-    const getAllNotificationsAfter5Min = setInterval(
+    const getAllNotificationsAfter1Min = setInterval(
       () => {
         socket.emit("admin-get-all-notifications");
       },
-      60 * 5 * 1000,
-    ); // 5min
+      60 * 1 * 1000,
+    ); // 1min
     if (page !== "overview")
       return () => {
-        clearInterval(getAllNotificationsAfter5Min);
+        clearInterval(getAllNotificationsAfter1Min);
         socket.off(
           "admin-response-to-get-all-notifications",
           handleAllNotificationsRes,
         );
       };
     return () => {
-      clearInterval(getAllNotificationsAfter5Min);
+      clearInterval(getAllNotificationsAfter1Min);
       socket.off(
         "admin-response-to-get-all-notifications",
         handleAllNotificationsRes,
