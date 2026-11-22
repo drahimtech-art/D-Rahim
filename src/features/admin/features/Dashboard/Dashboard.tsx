@@ -2,7 +2,6 @@ import TopBar from "../../shared/TopBar";
 import TopContent from "./components/TopContent";
 import RevenueGraph from "./components/RevenueGraph";
 import Alert from "./components/Alert";
-import RecentJobRequestAlert from "./components/RecentJobRequestAlert";
 import RecentBookings from "./components/RecentBookings";
 import { useState, useEffect } from "react";
 import { getAnalyticsData } from "../analytics/api/Api";
@@ -69,7 +68,6 @@ function Dashboard() {
       </article>
       {/**end content */}
       <div className="grid grid-cols-2 w-full h-68.5 gap-6.75">
-        <RecentJobRequestAlert />
         <RecentBookings />
       </div>
     </article>
