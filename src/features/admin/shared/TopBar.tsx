@@ -205,7 +205,7 @@ function TopBar(props: Heading) {
                   onClick={handleRenderNotification}
                 >
                   {isNewNotification && (
-                    <div className="bg-red-600 absolute w-[7px] h-[7px] rounded-full ml-2 -mt-3"></div>
+                    <div className="bg-green-600 absolute w-[7px] h-[7px] rounded-full ml-2 -mt-3"></div>
                   )}
                   <img className="w-[24px] h-[24px]" src={bellIcon}></img>
                 </span>
