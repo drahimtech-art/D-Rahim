@@ -34,8 +34,14 @@ export function postUploadNewProjectData({
     if (!data || data === "null") reject("Access key not found");
     const key = JSON.parse(data as string);
     const formRequst = new FormData();
-    formRequst.append("projectImage", projectInfo.image);
-    formRequst.append("body", JSON.stringify({ ...projectInfo, image: "" }));
+    console.log(projectInfo);
+    if (projectInfo.pImageFile) {
+      formRequst.append("primary", projectInfo.pImageFile);
+    }
+    if (projectInfo.sImageFile) {
+      formRequst.append("secondary", projectInfo.sImageFile);
+    }
+    formRequst.append("body", JSON.stringify({ ...projectInfo }));
     const requst = fetch(
       `${serverPort}/admin/access/api/requst/upload/new/portfolio/project`,
       {

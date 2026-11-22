@@ -9,7 +9,8 @@ export interface PortfolioDataType {
   title: string;
   about: string;
   heading: string;
-  image: Blob;
+  pImageFile?: Blob;
+  sImageFile?: Blob;
   capabilities: string[];
   duration: string;
   team: string[];
@@ -44,9 +45,32 @@ function AddNewProjectPopUp({
   const [renderProjectTypeService, setRenderProjectTypeService] =
     useState<boolean>(false);
   //
-  const [file, setFile] = useState<Blob | undefined>(undefined);
+  const [pfile, setPFile] = useState<Blob | undefined>(undefined);
+  const [sfile, setSFile] = useState<Blob | undefined>(undefined);
+  const [isPImage, setIsPImage] = useState<boolean>(true);
   const [imageUrl, setImgeUrl] = useState<string | undefined>(undefined);
+  const [imageList, setImageList] = useState<
+    [string, string] | [undefined, undefined] | [string, undefined]
+  >([undefined, undefined]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  //
+  useEffect(() => {
+    if (!pfile && !sfile) return;
+    if (pfile) {
+      setImageList((prevList) => {
+        const imgURL = URL.createObjectURL(pfile);
+        prevList[0] = imgURL;
+        return prevList;
+      });
+    }
+    if (sfile) {
+      setImageList((prevList) => {
+        const imgURL = URL.createObjectURL(sfile);
+        prevList[1] = imgURL;
+        return prevList;
+      });
+    }
+  }, [pfile, sfile]);
   //
   useEffect(() => {
     if (!isEditeMode || !projectInfo) return;
@@ -61,8 +85,8 @@ function AddNewProjectPopUp({
       setTeam(projectInfo.team.join(", "));
       setDuration(projectInfo.duration);
       setLocation(projectInfo.location);
-      if (projectInfo.sImage) {
-        setImgeUrl(projectInfo.sImage);
+      if (projectInfo.pImage) {
+        setImgeUrl(projectInfo.pImage);
       }
     })();
   }, []);
@@ -73,7 +97,11 @@ function AddNewProjectPopUp({
     if (!file.type.includes("image")) return alert("File type is not an image");
     const createDisplayImageUrl = URL.createObjectURL(file);
     setImgeUrl(createDisplayImageUrl);
-    setFile(file);
+    if (isPImage) {
+      setPFile(file);
+    } else {
+      setSFile(file);
+    }
   }
   function validateProjectPostData() {
     if (isAddNewProjectRequstSent) return;
@@ -89,13 +117,22 @@ function AddNewProjectPopUp({
       projectType === "Select your Service"
     )
       return alert("Can't upload one or more fileds are empty!");
-    if (!file) return alert("Can't upload project image not found");
-    const projectInfo: PortfolioDataType = {
+    if (isEditeMode && projectInfo) {
+      if (!pfile && !projectInfo.pImage)
+        return alert("Can't upload primary image not found");
+      if (!sfile && !projectInfo.sImage)
+        return alert("Can't upload secondary image not found");
+    } else {
+      if (!pfile || !sfile)
+        return alert("Can't upload project image's not found");
+    }
+    const projectData: PortfolioDataType = {
       pImage: "",
       title: title,
       about: about,
       heading: heading,
-      image: file,
+      pImageFile: pfile,
+      sImageFile: sfile,
       capabilities: capabilities.split(","),
       duration: duration,
       team: team.split(","),
@@ -103,7 +140,7 @@ function AddNewProjectPopUp({
       industry: industry.split(","),
       projectType: projectType,
     };
-    handleUploadNewProject(projectInfo);
+    handleUploadNewProject(projectData);
   }
   function handleRenderIndustry(): void {
     setRenderProjectTypeService(false);
@@ -112,6 +149,22 @@ function AddNewProjectPopUp({
   function handleRenderProjectTypeService(): void {
     setRenderIndustry(false);
     setRenderProjectTypeService(!renderProjectTypeService);
+  }
+  function handleToPrimaryImage(): void {
+    if (isEditeMode && !pfile) {
+      setImgeUrl(projectInfo?.pImage);
+    } else {
+      setImgeUrl(imageList[0]);
+    }
+    setIsPImage(true);
+  }
+  function handleToSecondaryImage(): void {
+    if (isEditeMode && !sfile) {
+      setImgeUrl(projectInfo?.sImage);
+    } else {
+      setImgeUrl(imageList[1]);
+    }
+    setIsPImage(false);
   }
   return (
     <div className="w-full h-full flex justify-center items-center">
@@ -133,10 +186,33 @@ function AddNewProjectPopUp({
           <article className="w-full h-fit pb-10 flex gap-[75px] mt-10">
             {/**image section */}
             <section className="w-[45%] flex flex-col gap-[16px]">
-              <img
-                className="w-full h-fit max-h-[450px]"
-                src={imageUrl ? imageUrl : noImgIcon}
-              ></img>
+              <div className="w-full h-fit relative">
+                <span className="w-[100px] h-[30px] rounded-b-[7px] bg-primary-green flex justify-center items-center absolute top-0 left-0 ">
+                  <h5 className="font-medium text-[14px] text-white font-inter">
+                    {isPImage ? "Primary" : "Secondary"}
+                  </h5>
+                </span>
+                <button
+                  className="absolute top-[40%] left-0 w-fit h-fit pointer lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
+                  onClick={handleToPrimaryImage}
+                >
+                  <i className="fa fa-arrow-left text-gray-200 text-[1.2rem] "></i>
+                </button>
+                <img
+                  className="w-full h-fit max-h-[450px] pointer"
+                  src={imageUrl ? imageUrl : noImgIcon}
+                  onClick={() => {
+                    if (!fileInputRef.current) return;
+                    fileInputRef.current.click();
+                  }}
+                ></img>
+                <button
+                  className="absolute top-[40%] right-0 w-fit h-fit pointer lg:p-5 p-3 bg-primary-green hover:bg-secondary-green rounded-full"
+                  onClick={handleToSecondaryImage}
+                >
+                  <i className="fa fa-arrow-right text-gray-200 text-[1.2rem] "></i>
+                </button>
+              </div>
               <button
                 className="flex w-fit pointer gap-1 items-center"
                 onClick={() => {

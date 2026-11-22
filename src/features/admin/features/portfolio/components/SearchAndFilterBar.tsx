@@ -14,7 +14,7 @@ function SearchAndFilterBar({
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const [isAddNewProjectRequstSent, setIsAddNewProjectRequstSent] =
     useState<boolean>(false);
   //
