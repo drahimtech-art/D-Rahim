@@ -13,9 +13,9 @@ function TableRows({ data }: { data: BookingData }): React.ReactElement {
         </h5>
       </section>
       {/**project type */}
-      <section className="pl-2.5 pr-2.5 border border-l-0 border-t-0 border-[#ebe8e8]  flex justify-start items-center">
-        <h5 className="font-inter text-[16px] font-normal text-[#1C1C1E]">
-          {data.jobTitle}
+      <section className="pl-2.5 pr-2.5 border border-l-0 border-t-0 border-[#ebe8e8]  flex justify-start items-center overflow-hidden">
+        <h5 className="font-inter text-[16px] font-normal text-[#1C1C1E] line-clamp-1">
+          {data.aboutProject}
         </h5>
       </section>
       {/**date */}
