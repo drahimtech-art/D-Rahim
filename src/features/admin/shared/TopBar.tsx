@@ -196,9 +196,6 @@ function TopBar(props: Heading) {
               )}
             </div>
             <span className="h-full flex">
-              <span className="ml-5 mr-5 flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full">
-                <img className="w-[24px] h-[24px]" src={searchIcon}></img>
-              </span>
               <div className="mr-5 relative">
                 <span
                   className=" relative  flex justify-center items-center w-12.5 h-12.5 border border-[#D9D9D9] rounded-full pointer"
