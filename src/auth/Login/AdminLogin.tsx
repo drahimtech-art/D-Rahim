@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { createSearchParams } from "react-router-dom";
-import { useState, useRef, type ChangeEvent } from "react";
+import { useState, useRef, type ChangeEvent, useEffect } from "react";
 import { PostToAdminLoginApi } from "./api/AdminLoginApi";
 import LoginLogo from "/images/loginLogo.png";
 import PopUpNotifications from "./components/PopUpNotifications";
@@ -17,7 +17,7 @@ function AdminLogin() {
   }
   const [realEmail, setRealEmail] = useState<string>("");
   const [realPassword, setRealPassword] = useState<string>("");
-  //const [privacyPassword, setPrivacyPassword] = useState<string>("");
+  const [privacyPassword, setPrivacyPassword] = useState<string>("");
   const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [renderNotificationBar, setRenderNotificationBar] =
@@ -38,22 +38,66 @@ function AdminLogin() {
   }
   function handlePasswordChange(e: ChangeEvent<HTMLInputElement>): void {
     const value = e.target.value;
-    setRealPassword(value);
-    /*
-    setPrivacyPassword((prevPassword) => {
-      if (prevPassword.length < value.length) {
-        return `${prevPassword}*`;
-      } else {
-        const newV: string[] = [];
-        for (let i = 0; i < prevPassword.length - 1; i++) {
-          newV.push("*");
+    if (
+      value.length > realPassword.length &&
+      realPassword.length + 2 <= value.length
+    ) {
+      // this cheacks for copy paste how useally a user can insert one caracter at a time so if caracter is greater or equal to two then its pasted in
+      setRealPassword((prevsValue) => {
+        // add nw value to previous value
+        const updateValue = [];
+        for (let i = 0; i < prevsValue.length; i++) {
+          updateValue.push(prevsValue[i]);
         }
-        console.log(newV);
-        return `${newV.join("")}`;
+        for (let i = prevsValue.length; i < value.length; i++) {
+          updateValue.push(value[i]);
+        }
+        return updateValue.join("");
+      });
+    } else {
+      // else caracter is typed in
+      const lastSignificateValue = value[value.length - 1]; // get the recent value entered
+      if (lastSignificateValue) {
+        // if there is a value
+        if (value.length > realPassword.length) {
+          // if value was added
+          setRealPassword((prevsValue) => {
+            // add nw value to previous value
+            const updateValue = [];
+            for (let i = 0; i < prevsValue.length; i++) {
+              updateValue.push(prevsValue[i]);
+            }
+            updateValue.push(lastSignificateValue);
+            return updateValue.join("");
+          });
+        } else {
+          // else if value was deleted
+          setRealPassword((prevsValue) => {
+            // remove 1 value from list
+            const updateValue = [];
+            for (let i = 0; i < prevsValue.length - 1; i++) {
+              updateValue.push(prevsValue[i]);
+            }
+            return updateValue.join("");
+          });
+        }
+      } else {
+        // else if recent/ all values are empty
+        setRealPassword(""); // set data to be empty
       }
-    });
-    */
+    }
   }
+  useEffect(() => {
+    // listen on new caracter inserted and hide it
+    setPrivacyPassword(() => {
+      const privacy = [];
+      for (let i = 0; i < realPassword.length; i++) {
+        privacy.push("*");
+      }
+      return privacy.join("");
+    });
+  }, [realPassword]);
+  console.log(realPassword, privacyPassword);
   function handleLogin() {
     if (!loginControlFuncRef.current || isLoading) return;
     const isEmailValid = validateEmail(realEmail);
@@ -150,7 +194,7 @@ function AdminLogin() {
               <h5 className="font-inter font-medium min20Max24px">Pasword</h5>
               <input
                 className="w-full h-15 border-b-2 border-gray-200 pl-5 mt-0.75"
-                value={realPassword}
+                value={privacyPassword}
                 onChange={handlePasswordChange}
               ></input>
             </div>
