@@ -97,7 +97,6 @@ function AdminLogin() {
       return privacy.join("");
     });
   }, [realPassword]);
-  console.log(realPassword, privacyPassword);
   function handleLogin() {
     if (!loginControlFuncRef.current || isLoading) return;
     const isEmailValid = validateEmail(realEmail);

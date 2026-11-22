@@ -35,7 +35,9 @@ function TopBarNotificationCard({
           ) : (
             <div className="flex flex-col gap-1.25">
               {/**content */}
-              <h5 className="font-inter text-[14px] font-normal">{content}</h5>
+              <h5 className="font-inter text-[14px] font-normal line-clamp-2">
+                {content}
+              </h5>
               {/**time */}
               <h5 className=" font-italic text-[14px] font-light">{time}</h5>
             </div>
