@@ -1,9 +1,11 @@
+import downAngleIcon from "/images/icons/CaretDown.png";
 import { Graph, type GraphObject } from "../../../shared/graph";
 import { useRef, useEffect, useState } from "react";
 function RevenueGraph(): React.ReactElement {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const canvasGraphObject = useRef<GraphObject | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
+  const [isIncress, setIsIncress] = useState<boolean>(true);
   const [dataPointXAndYIndex, setDataPointXAndYIndex] = useState<
     { x: number; y: number; value: number }[]
   >([]);
@@ -134,6 +136,42 @@ function RevenueGraph(): React.ReactElement {
 
   return (
     <section className="w-[60%] h-full rounded-[20px] flex flex-col bg-[#FFFFFF] p-4 pb-0 ">
+      <div className="w-full h-fit flex items-center p-3.25 pl-0 pt-0">
+        <div className="flex flex-col">
+          <h5 className="font-inter font-medium text-[14px]">
+            Revenue Overview
+          </h5>
+          <span className="flex gap-3 items-center">
+            <h5 className="font-inter font-semibold text-[30px] -mt-1">
+              N71,000
+            </h5>
+            {isIncress ? (
+              <span className="flex justify-center items-center bg-[#DFFEF6] p-1.5 rounded-[10px]">
+                <i className="fa fa-arrow-up  text-[#11AC76] text-[11px]"></i>
+                <h5 className="text-[#11AC76] font-inter font-normal text-[11px]">
+                  13%
+                </h5>
+              </span>
+            ) : (
+              <span className="flex justify-center items-center bg-[#FFE0EB] p-1.5 rounded-[10px]">
+                <i className="fa fa-arrow-down text-[#F31260] text-[11px]"></i>
+                <h5 className="text-[#F31260] font-inter font-normal text-[11px]">
+                  0%
+                </h5>
+              </span>
+            )}
+          </span>
+          <h5 className="flex font-inter font-light text-[10px] m-0 -mt-1">
+            Total revenue generated this week
+          </h5>
+        </div>
+        <button className="ml-auto pointer w-[93px] h-[29px] flex items-center gap-2 border border-[#D9D9D9] rounded-[10px] p-1.25">
+          <h5 className="font-inter font-medium text-[12px] text-[#757575]">
+            This Week
+          </h5>
+          <img className="w-[12px] h-[12px]" src={downAngleIcon} />
+        </button>
+      </div>
       <div className="w-full h-[200px] rounded-[20px] mt-auto" ref={parentRef}>
         <canvas className="w-full h-full bg-[#FFFFFF]" ref={canvasRef}></canvas>
       </div>
