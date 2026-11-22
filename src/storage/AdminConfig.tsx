@@ -14,12 +14,8 @@ export interface BookingData {
   date: Date;
   time: string;
   clientFullName: string;
-  jobTitle: string;
   email: string;
-  phoneNumber: string;
-  companyName: string;
   aboutProject: string;
-  trafficSource: string;
   status: "Pending" | "Confirmed" | "Cancelled";
   createdAt: Date;
   updatedAt: Date;
