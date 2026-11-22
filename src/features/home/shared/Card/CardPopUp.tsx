@@ -50,7 +50,7 @@ function CardPopUp(props: Body) {
                         props.setIsPopUpVisible((prevSate) => !prevSate)
                       }
                     >
-                      <i className="fa fa-xmark text-[2rem] font-light pointer"></i>
+                      <i className="fa fa-xmark text-[2rem]  pointer"></i>
                     </span>
                     <span
                       className="absolute -ml-12 mt-5 opacity-0 hover:opacity-100 transition-all"
