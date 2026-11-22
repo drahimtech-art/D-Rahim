@@ -202,6 +202,8 @@ function SearchAndFilterBar({
             closePopUp={setRenderAddNewProjectBar}
             isAddNewProjectRequstSent={isAddNewProjectRequstSent}
             handleUploadNewProject={handleUploadNewProject}
+            isEditeMode={false}
+            projectInfo={undefined}
           />
         </div>
       )}

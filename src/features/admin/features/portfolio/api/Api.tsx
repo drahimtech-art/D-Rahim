@@ -8,7 +8,7 @@ export interface ProjectInfo {
   sImage: string;
   capabilities: string[];
   duration: string;
-  team: string;
+  team: string[];
   location: string;
   industry: string[];
   projectType: string;

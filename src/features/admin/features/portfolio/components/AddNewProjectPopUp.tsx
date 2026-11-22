@@ -2,7 +2,8 @@ import closeIcon from "/images/icons/Close.png";
 import noImgIcon from "/images/icons/addImgFrame.png";
 import penIcon from "/images/icons/PencilSimpleLine.png";
 import arrowDownIcon from "/images/icons/iconamoon_arrow-down-2-duotone.png";
-import { useState, useRef, type ChangeEvent } from "react";
+import { useState, useRef, useEffect, type ChangeEvent } from "react";
+import type { ProjectInfo } from "../api/Api";
 export interface PortfolioDataType {
   pImage: string;
   title: string;
@@ -20,10 +21,14 @@ function AddNewProjectPopUp({
   closePopUp,
   isAddNewProjectRequstSent,
   handleUploadNewProject,
+  isEditeMode,
+  projectInfo,
 }: {
   closePopUp: (boolean: boolean) => void;
   isAddNewProjectRequstSent: boolean;
   handleUploadNewProject: (projectData: PortfolioDataType) => void;
+  isEditeMode: boolean;
+  projectInfo?: ProjectInfo;
 }): React.ReactElement {
   const [renderIndustry, setRenderIndustry] = useState<boolean>(false);
   //
@@ -42,6 +47,25 @@ function AddNewProjectPopUp({
   const [file, setFile] = useState<Blob | undefined>(undefined);
   const [imageUrl, setImgeUrl] = useState<string | undefined>(undefined);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  //
+  useEffect(() => {
+    if (!isEditeMode || !projectInfo) return;
+    (() => {
+      console.log(projectInfo);
+      setTitle(projectInfo.title);
+      setHeading(projectInfo.heading);
+      setAbout(projectInfo.about);
+      setIndustry(projectInfo.industry.join(", "));
+      setProjectType(projectInfo.projectType);
+      setCapabilities(projectInfo.capabilities.join(", "));
+      setTeam(projectInfo.team.join(", "));
+      setDuration(projectInfo.duration);
+      setLocation(projectInfo.location);
+      if (projectInfo.sImage) {
+        setImgeUrl(projectInfo.sImage);
+      }
+    })();
+  }, []);
   //
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) return;
@@ -355,7 +379,7 @@ function AddNewProjectPopUp({
                     onClick={validateProjectPostData}
                   >
                     <h5 className="font-inter font-normal text-[16px]">
-                      Upload
+                      {isEditeMode ? "Save" : "Upload"}
                     </h5>
                   </button>
                 </div>
