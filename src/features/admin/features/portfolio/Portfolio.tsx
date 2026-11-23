@@ -41,7 +41,11 @@ function Portfolio(): React.ReactElement {
         constProjectList={constProjectList}
         setConstProjectList={setConstProjectList}
       />
-      <List projectList={projectsList} />
+      <List
+        projectList={projectsList}
+        setProjectList={setProjectList}
+        setConstProjectList={setConstProjectList}
+      />
     </article>
   );
 }

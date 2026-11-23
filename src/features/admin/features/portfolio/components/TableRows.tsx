@@ -1,13 +1,36 @@
 import menuIcon from "/images/icons/DotsThreeOutlineVertical.png";
-import type { ProjectInfo } from "../api/Api";
+import { type ProjectInfo, deleteProjectData } from "../api/Api";
 import { useState } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
-function TableRows({ data }: { data: ProjectInfo }): React.ReactElement {
+function TableRows({
+  data,
+  handleFilterOutOFProjectsWithProjectId,
+}: {
+  data: ProjectInfo;
+  handleFilterOutOFProjectsWithProjectId: (id: string) => void;
+}): React.ReactElement {
   const [renderActionBar, setRenderActionBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
     useState<boolean>(false);
-  const [isAddNewProjectRequstSent, setIsAddNewProjectRequstSent] =
-    useState<boolean>(false);
+  const [isProjectRequstSent, setIsProjectRequstSent] = useState<boolean>(true);
+  function handleDeleteProjectData(): void {
+    if (isProjectRequstSent) return alert("You have an ungoing requst!");
+    setIsProjectRequstSent(true);
+    if (window.confirm(`delete: ${data.title}`)) {
+      deleteProjectData({ projectID: data._id })
+        .then((e) => {
+          setIsProjectRequstSent(false);
+          setRenderActionBar(false);
+          handleFilterOutOFProjectsWithProjectId(data._id);
+          alert(e.message);
+          console.log(e);
+        })
+        .catch((err) => {
+          setIsProjectRequstSent(false);
+          console.log(err);
+        });
+    }
+  }
   return (
     <>
       <article className="w-full min-h-[80px] max-h-[80px] grid grid-cols-[25%_32%_20%_13%_10%]">
@@ -48,7 +71,12 @@ function TableRows({ data }: { data: ProjectInfo }): React.ReactElement {
             <div className=" absolute z-10 w-[100px] h-fit bg-[#757575] mt-40 flex flex-col gap-[8px] items-center pl-6.25 pr-6.25 pt-3.25 pb-3.25 rounded-[10px] right-0">
               <button
                 className="w-[80px] h-[34px] pl-[8px] pr-[8px] pt-[6px] pb-[6px] rounded-[30px] border-2 border-[#D9D9D9] transition-all hover:bg-[#8FC0B2]  flex justify-center items-center pointer "
+                style={{
+                  cursor: isProjectRequstSent ? "not-allowed" : "pointer",
+                }}
                 onClick={() => {
+                  if (isProjectRequstSent)
+                    return alert("You have an ungoing requst!");
                   setRenderActionBar(false);
                   setRenderAddNewProjectBar(true);
                 }}
@@ -57,7 +85,13 @@ function TableRows({ data }: { data: ProjectInfo }): React.ReactElement {
                   Edit
                 </h5>
               </button>
-              <button className="w-[80px] h-[34px] pl-[8px] pr-[8px] pt-[6px] pb-[6px] rounded-[30px] border-2 border-[#F31260] hover:border-[#f35e92e1] transition-all hover:bg-[#f35e92e1] bg-[#F31260] flex justify-center items-center pointer ">
+              <button
+                className="w-[80px] h-[34px] pl-[8px] pr-[8px] pt-[6px] pb-[6px] rounded-[30px] border-2 border-[#F31260] hover:border-[#f35e92e1] transition-all hover:bg-[#f35e92e1] bg-[#F31260] flex justify-center items-center pointer "
+                style={{
+                  cursor: isProjectRequstSent ? "not-allowed" : "pointer",
+                }}
+                onClick={handleDeleteProjectData}
+              >
                 <h5 className="font-inter font-normal text-[14px] text-[#FFFFFF]">
                   Delete
                 </h5>
@@ -76,7 +110,7 @@ function TableRows({ data }: { data: ProjectInfo }): React.ReactElement {
         <div className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0 z-50">
           <AddNewProjectPopUp
             closePopUp={setRenderAddNewProjectBar}
-            isAddNewProjectRequstSent={isAddNewProjectRequstSent}
+            isAddNewProjectRequstSent={isProjectRequstSent}
             handleUploadNewProject={() => {}}
             isEditeMode={true}
             projectInfo={data}

@@ -3,8 +3,12 @@ import type { ProjectInfo } from "../api/Api";
 import { useEffect, useState } from "react";
 function List({
   projectList,
+  setProjectList,
+  setConstProjectList,
 }: {
   projectList: ProjectInfo[];
+  setProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
+  setConstProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
 }): React.ReactElement {
   const [limitList, setLimitList] = useState<ProjectInfo[]>([]);
   const [startIndexList, setStartIndexList] = useState<number>(0);
@@ -56,6 +60,20 @@ function List({
     setEndIndexList(endIndex + 1);
     setLimitList(limitedListToFiveIndexData.reverse());
   }
+  function handleFilterOutOFProjectsWithProjectId(id: string) {
+    setConstProjectList((prevsList) => {
+      const list = prevsList.filter((e) => {
+        if (e._id != id) return e;
+      });
+      return list;
+    });
+    setProjectList((prevsList) => {
+      const list = prevsList.filter((e) => {
+        if (e._id != id) return e;
+      });
+      return list;
+    });
+  }
   return (
     <article className="w-full h-full bg-white">
       <section className="w-full h-15 border border-[#ebe8e8] bg-[#F5F5F5] grid grid-cols-[25%_32%_20%_13%_10%] ">
@@ -89,7 +107,15 @@ function List({
       <section className="w-full h-[400px] min-h-[400px]">
         <div className="w-full h-full  flex flex-col">
           {limitList.map((e, i) => {
-            return <TableRows data={e} key={`table-row-key-${i}`} />;
+            return (
+              <TableRows
+                data={e}
+                handleFilterOutOFProjectsWithProjectId={
+                  handleFilterOutOFProjectsWithProjectId
+                }
+                key={`table-row-key-${i}`}
+              />
+            );
           })}
           {/**{Array.from({ length: 30 }).map((_, i) => {
             return <TableRows key={`table-row-key-${i}`} />;

@@ -6,6 +6,7 @@ function SearchAndFilterBar({
   searchSection,
   setProjectList,
   constProjectList,
+  setConstProjectList,
 }: {
   searchSection: string;
   setProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
@@ -14,7 +15,7 @@ function SearchAndFilterBar({
 }): React.ReactElement {
   const [renderFilterBar, setRenderFilterBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [isAddNewProjectRequstSent, setIsAddNewProjectRequstSent] =
     useState<boolean>(false);
   //
@@ -39,7 +40,6 @@ function SearchAndFilterBar({
         alert(`${error}`);
         setIsAddNewProjectRequstSent(false);
       });
-    console.log("post to server");
   }
   //
   function cheackIfEnterIsClickedOnSearch(e: any) {
