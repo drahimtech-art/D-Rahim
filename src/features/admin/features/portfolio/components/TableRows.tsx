@@ -3,6 +3,7 @@ import {
   type ProjectInfo,
   deleteProjectData,
   postUploadEditedProjectData,
+  updateProjectDataStatus,
 } from "../api/Api";
 import { useState } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
@@ -60,6 +61,25 @@ function TableRows({
         setIsProjectRequstSent(false);
       });
   }
+  function handleUpdateProjectDataStatus(): void {
+    if (isProjectRequstSent) return alert("You have an ungoing requst!");
+    setIsProjectRequstSent(true);
+    const status = data.projectStatus === "Active" ? "InActive" : "Active";
+    updateProjectDataStatus({ projectID: data._id, status })
+      .then((res) => {
+        alert(res.message);
+        handleUpdatedProjectInfoWithProjectId(data._id, {
+          ...data,
+          projectStatus: status,
+        });
+        setIsProjectRequstSent(false);
+      })
+      .catch((err) => {
+        console.warn(err);
+        alert(`${err}`);
+        setIsProjectRequstSent(false);
+      });
+  }
   return (
     <>
       <article className="w-full min-h-[80px] max-h-[80px] grid grid-cols-[25%_32%_20%_13%_10%]">
@@ -83,8 +103,19 @@ function TableRows({
         </section>
         {/**status */}
         <section className="pl-2.5 pr-2.5 border border-l-0 border-t-0 border-[#ebe8e8]  flex justify-start items-center">
-          <span className="block w-fit pl-2.5 pr-2.5 pt-2 pb-2 bg-[#E9FFEA] rounded-[10px]">
-            <h5 className="font-inter text-[12px] font-medium text-[#2BC035]">
+          <span
+            className="block w-fit pl-2.5 pr-2.5 pt-2 pb-2  rounded-[10px]"
+            style={{
+              backgroundColor:
+                data.projectStatus === "Active" ? "#E9FFEA" : "#fffce9",
+            }}
+          >
+            <h5
+              className="font-inter text-[12px] font-medium "
+              style={{
+                color: data.projectStatus === "Active" ? "#2BC035" : "#c0b62b",
+              }}
+            >
               {data.projectStatus}
             </h5>
           </span>
@@ -112,6 +143,22 @@ function TableRows({
               >
                 <h5 className="font-inter font-normal text-[14px] text-[#FFFFFF]">
                   Edit
+                </h5>
+              </button>
+              <button
+                className="w-[80px] h-[34px] pl-[8px] pr-[8px] pt-[6px] pb-[6px] rounded-[30px] border-2 border-[#D9D9D9] transition-all hover:bg-[#8FC0B2]  flex justify-center items-center pointer "
+                style={{
+                  cursor: isProjectRequstSent ? "not-allowed" : "pointer",
+                }}
+                onClick={() => {
+                  if (isProjectRequstSent)
+                    return alert("You have an ungoing requst!");
+                  setRenderActionBar(false);
+                  handleUpdateProjectDataStatus();
+                }}
+              >
+                <h5 className="font-inter font-normal text-[14px] text-[#FFFFFF]">
+                  {data.projectStatus === "Active" ? "InActive" : "Active"}
                 </h5>
               </button>
               <button
