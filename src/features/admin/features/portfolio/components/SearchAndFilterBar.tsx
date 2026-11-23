@@ -27,11 +27,17 @@ function SearchAndFilterBar({
 
   //
   async function handleUploadNewProject(projectInfo: PortfolioDataType) {
+    if (isAddNewProjectRequstSent) return alert("You have an ungoing requst!");
     setIsAddNewProjectRequstSent(true);
     postUploadNewProjectData({ projectInfo })
       .then((res) => {
-        console.log(res);
         alert(res.message);
+        setConstProjectList((prevList) => {
+          return [res.projectData, ...prevList];
+        });
+        setProjectList((prevList) => {
+          return [res.projectData, ...prevList];
+        });
         setIsAddNewProjectRequstSent(false);
         setRenderAddNewProjectBar(false);
       })

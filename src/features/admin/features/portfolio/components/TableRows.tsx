@@ -12,7 +12,8 @@ function TableRows({
   const [renderActionBar, setRenderActionBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
     useState<boolean>(false);
-  const [isProjectRequstSent, setIsProjectRequstSent] = useState<boolean>(true);
+  const [isProjectRequstSent, setIsProjectRequstSent] =
+    useState<boolean>(false);
   function handleDeleteProjectData(): void {
     if (isProjectRequstSent) return alert("You have an ungoing requst!");
     setIsProjectRequstSent(true);
@@ -29,6 +30,8 @@ function TableRows({
           setIsProjectRequstSent(false);
           console.log(err);
         });
+    } else {
+      setIsProjectRequstSent(false);
     }
   }
   return (
