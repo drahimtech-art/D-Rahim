@@ -9,6 +9,7 @@ function RevenueGraph(): React.ReactElement {
   const [dataPointXAndYIndex, setDataPointXAndYIndex] = useState<
     { x: number; y: number; value: number }[]
   >([]);
+  console.log(setIsIncress);
   const data = [
     {
       increaseOrDecrease: 0,
