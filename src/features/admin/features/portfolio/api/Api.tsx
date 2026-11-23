@@ -34,7 +34,6 @@ export function postUploadNewProjectData({
     if (!data || data === "null") reject("Access key not found");
     const key = JSON.parse(data as string);
     const formRequst = new FormData();
-    console.log(projectInfo);
     if (projectInfo.pImageFile) {
       formRequst.append("primary", projectInfo.pImageFile);
     }
@@ -143,6 +142,61 @@ export function deleteProjectData({
           "X-Frontend-Key": `${key}`,
           "Content-Type": "application/json",
         },
+      },
+    );
+    requst
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            if (data.ok) {
+              resolve(data);
+            } else {
+              reject(data.message);
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+export function postUploadEditedProjectData({
+  projectInfo,
+  projectId,
+}: {
+  projectInfo: PortfolioDataType;
+  projectId: string;
+}): Promise<{
+  ok: boolean;
+  message: string;
+  projectData: ProjectInfo;
+}> {
+  return new Promise((resolve, reject) => {
+    const CLIENT_KEY = "CLIENT_KEY";
+    const data = localStorage.getItem(CLIENT_KEY);
+    if (!data || data === "null") reject("Access key not found");
+    const key = JSON.parse(data as string);
+    const formRequst = new FormData();
+    if (projectInfo.pImageFile) {
+      formRequst.append("primary", projectInfo.pImageFile);
+    }
+    if (projectInfo.sImageFile) {
+      formRequst.append("secondary", projectInfo.sImageFile);
+    }
+    formRequst.append("body", JSON.stringify({ ...projectInfo }));
+    const requst = fetch(
+      `${serverPort}/admin/access/api/requst/update/portfolio/project/${projectId}`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "X-Frontend-Key": `${key}`,
+        },
+        body: formRequst,
       },
     );
     requst

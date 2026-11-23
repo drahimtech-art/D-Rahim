@@ -1,13 +1,23 @@
 import menuIcon from "/images/icons/DotsThreeOutlineVertical.png";
-import { type ProjectInfo, deleteProjectData } from "../api/Api";
+import {
+  type ProjectInfo,
+  deleteProjectData,
+  postUploadEditedProjectData,
+} from "../api/Api";
 import { useState } from "react";
 import AddNewProjectPopUp from "./AddNewProjectPopUp";
+import type { PortfolioDataType } from "./AddNewProjectPopUp";
 function TableRows({
   data,
   handleFilterOutOFProjectsWithProjectId,
+  handleUpdatedProjectInfoWithProjectId,
 }: {
   data: ProjectInfo;
   handleFilterOutOFProjectsWithProjectId: (id: string) => void;
+  handleUpdatedProjectInfoWithProjectId: (
+    id: string,
+    projectData: ProjectInfo,
+  ) => void;
 }): React.ReactElement {
   const [renderActionBar, setRenderActionBar] = useState<boolean>(false);
   const [renderAddNewProjectBar, setRenderAddNewProjectBar] =
@@ -33,6 +43,22 @@ function TableRows({
     } else {
       setIsProjectRequstSent(false);
     }
+  }
+  async function handlePostUpdatedProjectData(projectInfo: PortfolioDataType) {
+    if (isProjectRequstSent) return alert("You have an ungoing requst!");
+    setIsProjectRequstSent(true);
+    postUploadEditedProjectData({ projectInfo, projectId: data._id })
+      .then((res) => {
+        handleUpdatedProjectInfoWithProjectId(data._id, res.projectData);
+        alert(res.message);
+        setIsProjectRequstSent(false);
+        setRenderAddNewProjectBar(false);
+      })
+      .catch((error) => {
+        console.warn(error);
+        alert(`${error}`);
+        setIsProjectRequstSent(false);
+      });
   }
   return (
     <>
@@ -114,7 +140,7 @@ function TableRows({
           <AddNewProjectPopUp
             closePopUp={setRenderAddNewProjectBar}
             isAddNewProjectRequstSent={isProjectRequstSent}
-            handleUploadNewProject={() => {}}
+            handleUploadNewProject={handlePostUpdatedProjectData}
             isEditeMode={true}
             projectInfo={data}
           />

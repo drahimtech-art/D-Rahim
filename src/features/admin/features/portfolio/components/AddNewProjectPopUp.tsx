@@ -6,6 +6,7 @@ import { useState, useRef, useEffect, type ChangeEvent } from "react";
 import type { ProjectInfo } from "../api/Api";
 export interface PortfolioDataType {
   pImage: string;
+  sImage: string;
   title: string;
   about: string;
   heading: string;
@@ -75,7 +76,6 @@ function AddNewProjectPopUp({
   useEffect(() => {
     if (!isEditeMode || !projectInfo) return;
     (() => {
-      console.log(projectInfo);
       setTitle(projectInfo.title);
       setHeading(projectInfo.heading);
       setAbout(projectInfo.about);
@@ -127,7 +127,8 @@ function AddNewProjectPopUp({
         return alert("Can't upload project image's not found");
     }
     const projectData: PortfolioDataType = {
-      pImage: "",
+      pImage: isEditeMode && projectInfo ? projectInfo?.pImage : "",
+      sImage: isEditeMode && projectInfo ? projectInfo?.sImage : "",
       title: title,
       about: about,
       heading: heading,

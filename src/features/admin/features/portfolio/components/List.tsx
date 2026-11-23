@@ -14,6 +14,8 @@ function List({
   const [startIndexList, setStartIndexList] = useState<number>(0);
   const [endIndexList, setEndIndexList] = useState<number>(0);
   //
+  const [rerenderLimitList, setRerenderLimitList] = useState<boolean>(false);
+  //
   useEffect(() => {
     const limitedListToFiveIndexData = [];
     let startingIndex = 0;
@@ -32,7 +34,7 @@ function List({
     (() => {
       setLimitList(limitedListToFiveIndexData);
     })();
-  }, [projectList.length]);
+  }, [projectList.length, rerenderLimitList]);
   //
   function handleMoveToNextListIndex() {
     if (endIndexList >= projectList.length) return;
@@ -74,6 +76,32 @@ function List({
       return list;
     });
   }
+  function handleUpdatedProjectInfoWithProjectId(
+    id: string,
+    projectData: ProjectInfo,
+  ) {
+    setConstProjectList((prevsList) => {
+      const list = prevsList.map((e) => {
+        if (e._id != id) {
+          return e;
+        } else {
+          return { ...projectData };
+        }
+      });
+      return [...list];
+    });
+    setProjectList((prevsList) => {
+      const list = prevsList.map((e) => {
+        if (e._id != id) {
+          return e;
+        } else {
+          return { ...projectData };
+        }
+      });
+      return [...list];
+    });
+    setRerenderLimitList(!rerenderLimitList);
+  }
   return (
     <article className="w-full h-full bg-white">
       <section className="w-full h-15 border border-[#ebe8e8] bg-[#F5F5F5] grid grid-cols-[25%_32%_20%_13%_10%] ">
@@ -112,6 +140,9 @@ function List({
                 data={e}
                 handleFilterOutOFProjectsWithProjectId={
                   handleFilterOutOFProjectsWithProjectId
+                }
+                handleUpdatedProjectInfoWithProjectId={
+                  handleUpdatedProjectInfoWithProjectId
                 }
                 key={`table-row-key-${i}`}
               />
