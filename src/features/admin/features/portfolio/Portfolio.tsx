@@ -45,6 +45,7 @@ function Portfolio(): React.ReactElement {
         projectList={projectsList}
         setProjectList={setProjectList}
         setConstProjectList={setConstProjectList}
+        setGlobalProjectList={setProjectDataInfoList}
       />
     </article>
   );

@@ -5,16 +5,16 @@ function List({
   projectList,
   setProjectList,
   setConstProjectList,
+  setGlobalProjectList,
 }: {
   projectList: ProjectInfo[];
   setProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
   setConstProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
+  setGlobalProjectList: React.Dispatch<React.SetStateAction<ProjectInfo[]>>;
 }): React.ReactElement {
   const [limitList, setLimitList] = useState<ProjectInfo[]>([]);
   const [startIndexList, setStartIndexList] = useState<number>(0);
   const [endIndexList, setEndIndexList] = useState<number>(0);
-  //
-  const [rerenderLimitList, setRerenderLimitList] = useState<boolean>(false);
   //
   useEffect(() => {
     const limitedListToFiveIndexData = [];
@@ -34,7 +34,7 @@ function List({
     (() => {
       setLimitList(limitedListToFiveIndexData);
     })();
-  }, [projectList.length, rerenderLimitList]);
+  }, [projectList.length]);
   //
   function handleMoveToNextListIndex() {
     if (endIndexList >= projectList.length) return;
@@ -80,6 +80,16 @@ function List({
     id: string,
     projectData: ProjectInfo,
   ) {
+    setGlobalProjectList((prevsList) => {
+      const list = prevsList.map((e) => {
+        if (e._id != id) {
+          return e;
+        } else {
+          return { ...projectData };
+        }
+      });
+      return [...list];
+    });
     setConstProjectList((prevsList) => {
       const list = prevsList.map((e) => {
         if (e._id != id) {
@@ -100,7 +110,16 @@ function List({
       });
       return [...list];
     });
-    setRerenderLimitList(!rerenderLimitList);
+    setLimitList((prevsList) => {
+      const list = prevsList.map((e) => {
+        if (e._id != id) {
+          return e;
+        } else {
+          return { ...projectData };
+        }
+      });
+      return [...list];
+    });
   }
   return (
     <article className="w-full h-full bg-white">
