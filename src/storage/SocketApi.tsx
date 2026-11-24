@@ -41,7 +41,11 @@ type ServerToClient = {
   "admin-response-get-max3-recent-bookings": (data: {
     ok: boolean;
     message: string;
-    recentBookings: { clientFullName: number; email: string; createdAt: Date };
+    recentBookings: {
+      clientFullName: number;
+      email: string;
+      createdAt: string;
+    }[];
   }) => void;
 };
 type ClientToServer = {
