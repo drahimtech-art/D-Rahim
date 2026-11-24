@@ -80,7 +80,6 @@ function Dashboard() {
         createdAt: string;
       }[];
     }) {
-      console.log(data);
       setRecentBookings(data.recentBookings);
     }
     socket.on(

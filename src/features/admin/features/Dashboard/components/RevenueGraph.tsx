@@ -100,6 +100,20 @@ function RevenueGraph(): React.ReactElement {
       }
     }
   }
+  //
+  //
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    canvasRef.current.addEventListener("click", handleClickEventChangeOnCanvas);
+    return () => {
+      if (!canvasRef.current) return;
+      canvasRef.current.removeEventListener(
+        "click",
+        handleClickEventChangeOnCanvas,
+      );
+    };
+  }, [dataPointXAndYIndex]);
+  //
   function mountGraph() {
     if (!canvasRef.current || !parentRef.current) return;
     const canvasHeight: number = parentRef.current.clientHeight;
@@ -117,7 +131,6 @@ function RevenueGraph(): React.ReactElement {
       canvasHeight,
       canvasWidth,
       setDataPointXAndYIndex,
-      handleClickEventChangeOnCanvas,
     });
     canvasGraphObject.current.constructGraph();
     canvasGraphObject.current.drawGraph();
