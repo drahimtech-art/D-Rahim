@@ -70,6 +70,7 @@ export interface WebsiteVistedClientData {
     instagram: boolean;
     twitter: boolean;
     google: boolean;
+    pintrest: boolean;
     other: boolean;
   };
   dateVisited: Date;
@@ -113,6 +114,7 @@ export function PagesConfigProvider({
   const socketApi = SocketApi();
   const { socket } = socketApi;
   const location = window.location;
+  const searchParems = new URLSearchParams(window.location.search);
   //pages
   const [workPage, setWorkPage] = useState<boolean>(false);
   const [servicesPage, setServicesPage] = useState<boolean>(false);
@@ -158,6 +160,40 @@ export function PagesConfigProvider({
     const tablet = deviceWidth >= 768 && deviceWidth < 1025 ? true : false;
     const other = deviceWidth < 320 ? true : false;
     //
+    const facebook = searchParems.get("fbclid") ? true : false;
+    const linkedIn =
+      searchParems.get("li_fat_id") ||
+      searchParems.get("trk") ||
+      searchParems.get("trkInfo") ||
+      searchParems.get("lipi") ||
+      searchParems.get("licu")
+        ? true
+        : false;
+    const youtub =
+      searchParems.get("si") || searchParems.get("gclid") ? true : false;
+    const tiktok = searchParems.get("ttclid") ? true : false;
+    const behance = false;
+    const instagram =
+      searchParems.get("fbclid") || searchParems.get("igshid") ? true : false;
+    const twitter = searchParems.get("twclid") ? true : false;
+    const google =
+      searchParems.get("gclid") || searchParems.get("gbraid") ? true : false;
+    const pintrest = searchParems.get("epik") ? true : false;
+    let otherMedia = false;
+    if (
+      !facebook &&
+      !linkedIn &&
+      !youtub &&
+      !tiktok &&
+      !behance &&
+      !instagram &&
+      !twitter &&
+      !google &&
+      !pintrest
+    ) {
+      otherMedia = true;
+    }
+    //
     const newVisitedClientData: WebsiteVistedClientData = {
       userId,
       pageVisited: {
@@ -174,15 +210,16 @@ export function PagesConfigProvider({
         other,
       },
       platformVisitedFrom: {
-        facebook: false,
-        linkedIn: false,
-        youtub: false,
-        tiktok: false,
-        behance: false,
-        instagram: false,
-        twitter: false,
-        google: false,
-        other: true,
+        facebook,
+        linkedIn,
+        youtub,
+        tiktok,
+        behance,
+        instagram,
+        twitter,
+        google,
+        pintrest,
+        other: otherMedia,
       },
       dateVisited,
     };
