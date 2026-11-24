@@ -13,11 +13,11 @@ function LoadingState({
   const [isDataGoten, setIsDataGoten] = useState<boolean>(false);
   useEffect(() => {
     if (
-      listOfProjects.branding.length !== 0 ||
-      listOfProjects.moblieDesign.length !== 0 ||
-      listOfProjects.websiteDesign.length !== 0
+      listOfProjects.branding.length != 0 ||
+      listOfProjects.moblieDesign.length != 0 ||
+      listOfProjects.websiteDesign.length != 0
     )
-      return setIsDataGoten(true);
+      return (setIsDataGoten(true), console.log("return"));
     async function getData() {
       try {
         const callGetApi: boolean = await GetProjectList(

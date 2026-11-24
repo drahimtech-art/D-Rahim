@@ -33,9 +33,9 @@ export async function GetProjectList(
         setAllRandomSelectedProjectInfo,
       );
       if (
-        responds.list.branding.length > 3 &&
-        responds.list.moblieDesign.length > 3 &&
-        responds.list.websiteDesign.length > 3
+        responds.list.branding.length > 0 ||
+        responds.list.moblieDesign.length > 0 ||
+        responds.list.websiteDesign.length > 0
       ) {
         return true;
       } else {
