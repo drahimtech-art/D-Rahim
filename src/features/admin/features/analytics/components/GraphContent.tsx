@@ -13,9 +13,19 @@ function GraphConent({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const canvasGraphObject = useRef<GraphObject | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
+  const [allStaticGraphData, setAllStaticGraphData] = useState<
+    {
+      increaseOrDecrease: number;
+      monthDay: string;
+    }[]
+  >([]);
+  const [renderActionBar, setRenderActionBar] = useState<boolean>(false);
   const [dataPointXAndYIndex, setDataPointXAndYIndex] = useState<
     { x: number; y: number; value: number }[]
   >([]);
+  const [startingIndex, setStartingIndex] = useState<number>(0);
+  const [endingIndex, setEndingIndex] = useState<number>(0);
+  //
   const [graphData, setGraphData] = useState<
     {
       increaseOrDecrease: number;
@@ -32,8 +42,11 @@ function GraphConent({
       const bDate = new Date(b.dateMonthYearDate);
       return (aDate as any) - (bDate as any);
     });
+    let endIndex = 0;
+    setStartingIndex(0);
     for (let i = 0; i < filterDateList.length; i++) {
       if (i === 7) break;
+      endIndex++;
       const dataDate = `${filterDateList[i].split(" ")[1]} ${filterDateList[i].split(" ")[2]}`;
       for (let j = 0; j < sortedDataList.length; j++) {
         const sDataDate = `${sortedDataList[j].dateMonthYearDate.split(" ")[1]} ${sortedDataList[j].dateMonthYearDate.split(" ")[2]}`;
@@ -54,21 +67,51 @@ function GraphConent({
         }
       }
     }
+    setEndingIndex(endIndex);
+    //
+    const allGraphData: {
+      increaseOrDecrease: number;
+      monthDay: string;
+    }[] = [];
+    //
+    for (let i = 0; i < filterDateList.length; i++) {
+      const dataDate = `${filterDateList[i].split(" ")[1]} ${filterDateList[i].split(" ")[2]}`;
+      for (let j = 0; j < sortedDataList.length; j++) {
+        const sDataDate = `${sortedDataList[j].dateMonthYearDate.split(" ")[1]} ${sortedDataList[j].dateMonthYearDate.split(" ")[2]}`;
+        if (dataDate === sDataDate) {
+          const data = {
+            increaseOrDecrease: sortedDataList[j].liveVistors,
+            monthDay: sDataDate,
+          };
+          allGraphData.push(data);
+          break;
+        }
+        if (j + 1 === sortedDataList.length) {
+          const data = {
+            increaseOrDecrease: 0,
+            monthDay: dataDate,
+          };
+          allGraphData.push(data);
+        }
+      }
+    }
     (() => {
       setGraphData(formatedGraphData);
+      setAllStaticGraphData(allGraphData);
     })();
   }, [analyticsDataList.length]);
-
   //
   useEffect(() => {
-    if (!graphData.length) return;
+    if (!graphData.length || !canvasRef.current) return;
+    canvasGraphObject.current?.clearGraph();
     mountGraph();
-  }, [graphData.length]);
+  }, [graphData]);
   useEffect(() => {
     if (!canvasRef.current) return;
     canvasGraphObject.current?.clearGraph();
     mountGraph();
   }, [dataPointXAndYIndex.length]);
+  //
   //
   function handleClickEventChangeOnCanvas(e: PointerEvent) {
     if (dataPointXAndYIndex.length === 0) return;
@@ -124,6 +167,19 @@ function GraphConent({
       }
     }
   }
+  //
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    canvasRef.current.addEventListener("click", handleClickEventChangeOnCanvas);
+    return () => {
+      if (!canvasRef.current) return;
+      canvasRef.current.removeEventListener(
+        "click",
+        handleClickEventChangeOnCanvas,
+      );
+    };
+  }, [dataPointXAndYIndex]);
+  //
   function mountGraph() {
     if (!canvasRef.current || !parentRef.current) return;
     const canvasHeight: number = parentRef.current.clientHeight;
@@ -141,7 +197,6 @@ function GraphConent({
       canvasHeight,
       canvasWidth,
       setDataPointXAndYIndex,
-      handleClickEventChangeOnCanvas,
     });
     canvasGraphObject.current.constructGraph();
     canvasGraphObject.current.drawGraph();
@@ -161,35 +216,117 @@ function GraphConent({
     };
   }, [graphData]);
   //
-
+  function handleMoveToNextWeek() {
+    setRenderActionBar(false);
+    if (endingIndex >= allStaticGraphData.length) return;
+    setStartingIndex(endingIndex);
+    let endIndex = endingIndex;
+    const formatedGraphData: {
+      increaseOrDecrease: number;
+      monthDay: string;
+    }[] = [];
+    for (let i = endingIndex; i < allStaticGraphData.length; i++) {
+      if (i === endingIndex + 7) break;
+      endIndex++;
+      formatedGraphData.push(allStaticGraphData[i]);
+    }
+    setEndingIndex(endIndex);
+    setGraphData(formatedGraphData);
+  }
+  function handleMoveToLastWeek() {
+    setRenderActionBar(false);
+    const endIndex = startingIndex;
+    if (endIndex <= 0) return;
+    setEndingIndex(startingIndex);
+    let startIndex = endIndex;
+    const formatedGraphData: {
+      increaseOrDecrease: number;
+      monthDay: string;
+    }[] = [];
+    for (let i = endIndex; i >= 0; i--) {
+      if (i === endIndex - 7) break;
+      startIndex--;
+      formatedGraphData.push(allStaticGraphData[startIndex]);
+    }
+    setStartingIndex(startIndex);
+    setGraphData(formatedGraphData.reverse());
+  }
   //
 
   return (
-    <article className="w-full h-[310px]  ">
-      {/**graph */}
-      <section className="w-full h-full rounded-[20px] flex flex-col bg-[#FFFFFF] p-4 pb-0  ">
-        <div className="w-full h-fit flex items-center p-3.25 pt-0">
-          <h5 className="font-inter font-medium text-[14px]">
-            Visitor Overview
-          </h5>
-          <button className="ml-auto pointer w-[93px] h-[29px] flex items-center gap-2 border border-[#D9D9D9] rounded-[10px] p-1.25">
-            <h5 className="font-inter font-medium text-[12px] text-[#757575]">
-              This Week
+    <>
+      <article className="w-full h-[310px]  ">
+        {/**graph */}
+        <section className="w-full h-full rounded-[20px] flex flex-col bg-[#FFFFFF] p-4 pb-0  ">
+          <div className="w-full h-fit flex items-center p-3.25 pt-0">
+            <h5 className="font-inter font-medium text-[14px]">
+              Visitor Overview
             </h5>
-            <img className="w-[12px] h-[12px]" src={downAngleIcon} />
-          </button>
-        </div>
+            <div className="relative ml-auto h-fit w-fit">
+              <button
+                className=" pointer w-[93px] h-[29px] flex items-center gap-2 border border-[#D9D9D9] rounded-[10px] p-1.25"
+                onClick={() => {
+                  setRenderActionBar(!renderActionBar);
+                }}
+              >
+                <h5 className="font-inter font-medium text-[12px] text-[#757575]">
+                  This Week
+                </h5>
+                <img className="w-[12px] h-[12px]" src={downAngleIcon} />
+              </button>
+              {renderActionBar && (
+                <div className="absolute z-10 flex justify-center w-full ">
+                  <div className="  w-fit h-fit bg-[white]  mt-0.5 flex flex-col gap-[8px] items-center p-3.25 rounded-[10px] ">
+                    <button
+                      className=" pointer w-[93px] h-[29px] flex items-center gap-2 border border-[#D9D9D9] rounded-[10px] p-1.25"
+                      onClick={handleMoveToLastWeek}
+                      style={{
+                        cursor: startingIndex === 0 ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      <h5 className="font-inter font-medium text-[12px] text-[#757575]">
+                        Last Week
+                      </h5>
+                      <i className="fa fa-arrow-left text-[9px] text-[#757575]"></i>
+                    </button>
+                    <button
+                      className=" pointer w-[93px] h-[29px] flex items-center gap-2 border border-[#D9D9D9] rounded-[10px] p-1.25"
+                      onClick={handleMoveToNextWeek}
+                      style={{
+                        cursor:
+                          endingIndex === allStaticGraphData.length
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      <h5 className="font-inter font-medium text-[12px] text-[#757575]">
+                        Next Week
+                      </h5>
+                      <i className="fa fa-arrow-right text-[9px] text-[#757575]"></i>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div
+            className="w-full h-[240px] rounded-[20px] mt-auto"
+            ref={parentRef}
+          >
+            <canvas
+              className="w-full h-full bg-[#FFFFFF]"
+              ref={canvasRef}
+            ></canvas>
+          </div>
+        </section>
+      </article>
+      {renderActionBar && (
         <div
-          className="w-full h-[240px] rounded-[20px] mt-auto"
-          ref={parentRef}
-        >
-          <canvas
-            className="w-full h-full bg-[#FFFFFF]"
-            ref={canvasRef}
-          ></canvas>
-        </div>
-      </section>
-    </article>
+          className="w-full h-screen fixed bodyMaxSizing bg-[#41404028] top-0 left-0 right-0"
+          onClick={() => setRenderActionBar(!renderActionBar)}
+        ></div>
+      )}
+    </>
   );
 }
 export default GraphConent;

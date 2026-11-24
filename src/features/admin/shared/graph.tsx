@@ -39,7 +39,6 @@ export function Graph({
   canvasHeight,
   canvasWidth,
   setDataPointXAndYIndex,
-  handleClickEventChangeOnCanvas,
 }: {
   lineWidth: number;
   lineColor: string;
@@ -55,7 +54,6 @@ export function Graph({
   setDataPointXAndYIndex: React.Dispatch<
     React.SetStateAction<{ x: number; y: number; value: number }[]>
   >;
-  handleClickEventChangeOnCanvas: (e: PointerEvent) => void;
 }): GraphObject {
   function getPercent(
     currentValue: number,
@@ -207,8 +205,8 @@ export function Graph({
       in this section i drawa the graph background line and graph line using innitailize this.object propaties
       */
       if (!this.ctx || !this.canvas) return;
-      this.canvas.removeEventListener("click", handleClickEventChangeOnCanvas); // in this section a remove an canvas click event listiner to aviod duplication an component rereander
-      this.canvas.addEventListener("click", handleClickEventChangeOnCanvas); // this adds a listiner on canvas for click event the function comes from parent body as to store function signature/refreance/pointer in memore as this.graph component rerenders which removes refrenace to function there for creating a duplicate listiner on each render as remove event listiner funtion call dont have a refreance signature to function to remove it
+      //this.canvas.removeEventListener("click", handleClickEventChangeOnCanvas); // in this section a remove an canvas click event listiner to aviod duplication an component rereander
+      //this.canvas.addEventListener("click", handleClickEventChangeOnCanvas); // this adds a listiner on canvas for click event the function comes from parent body as to store function signature/refreance/pointer in memore as this.graph component rerenders which removes refrenace to function there for creating a duplicate listiner on each render as remove event listiner funtion call dont have a refreance signature to function to remove it
       const oneFouthOfHight = this.drawingContentHeightMax / 4; // in this section i split my canvas full hight into 4 section (25% of 100 %);
       let heightOfBgLine = oneFouthOfHight;
       for (let i = 0; i < 4; i++) {
