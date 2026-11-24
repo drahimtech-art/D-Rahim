@@ -6,6 +6,7 @@ import RecentBookings from "./components/RecentBookings";
 import { useState, useEffect } from "react";
 import { getAnalyticsData } from "../analytics/api/Api";
 import { AdminConfigApi } from "../../../../storage/AdminConfig";
+import { getAdminProfileData } from "../Settings/api/Api";
 function Dashboard() {
   const adminConfigApi = AdminConfigApi();
   const {
@@ -13,6 +14,8 @@ function Dashboard() {
     analyticsData,
     setAnalyticsData,
     setAnalyticsDataList,
+    adminProfileData,
+    setAdminProfileData,
   } = adminConfigApi;
   const [isFetchRequstSent, setIsFetchRequstSent] = useState<boolean>(false);
   const [isFirstRequstSent, setIsFirstRequstSent] = useState<boolean>(false);
@@ -44,11 +47,25 @@ function Dashboard() {
     }
     fetchAnalyticsData();
   }, []);
+  //
+
+  //
+  useEffect(() => {
+    if (!adminProfileData) {
+      getAdminProfileData()
+        .then((res) => {
+          setAdminProfileData(res.data);
+        })
+        .catch((err) => {
+          console.warn(`${err}`);
+        });
+    }
+  }, []);
   return (
     <article className="w-full h-full flex flex-col gap-7 ">
       {/**top bar */}
       <TopBar
-        heading={"Welcome back, Victory! 👋"}
+        heading={`Welcome back, ${adminProfileData ? adminProfileData.name.split(" ")[0] : "Admin"}! 👋`}
         subHeading={" Here’s what’s happening today."}
         isFirstRequstSent={isFirstRequstSent}
         fetchAnalyticsData={fetchAnalyticsData}
