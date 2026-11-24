@@ -38,6 +38,11 @@ type ServerToClient = {
     notificationsList: NotificationData[];
     isNewNotification: boolean;
   }) => void;
+  "admin-response-get-max3-recent-bookings": (data: {
+    ok: boolean;
+    message: string;
+    recentBookings: { clientFullName: number; email: string; createdAt: Date };
+  }) => void;
 };
 type ClientToServer = {
   //homepage
@@ -53,6 +58,7 @@ type ClientToServer = {
   isOnline: (room: string, senderRoom: (state: boolean) => void) => void; // send requst to connection if his online and get response
   //admin
   "admin-get-all-notifications": () => void;
+  "admin-get-max3-recent-bookings": () => void;
 };
 type AppSocket = Socket<ServerToClient, ClientToServer>;
 type SocketContextType = {
