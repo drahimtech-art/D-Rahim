@@ -75,6 +75,18 @@ function List({
       });
       return list;
     });
+    setGlobalProjectList((prevsList) => {
+      const list = prevsList.filter((e) => {
+        if (e._id != id) return e;
+      });
+      return list;
+    });
+    setLimitList((prevsList) => {
+      const list = prevsList.filter((e) => {
+        if (e._id != id) return e;
+      });
+      return list;
+    });
   }
   function handleUpdatedProjectInfoWithProjectId(
     id: string,
