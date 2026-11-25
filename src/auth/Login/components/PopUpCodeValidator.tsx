@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { createSearchParams } from "react-router-dom";
-import { PostValidateEmailCode } from "../api/AdminLoginApi";
+import {
+  PostValidateEmailCode,
+  requstNewValidationEmailCode,
+} from "../api/AdminLoginApi";
 import { useState, useRef, useEffect, type ChangeEvent } from "react";
 import LoadingAnimation from "../../../features/home/shared/LoadingState/LoadingAnimation";
 function PopUpCodeValidator(): React.ReactElement {
@@ -132,20 +135,30 @@ function PopUpCodeValidator(): React.ReactElement {
   //
   function handleSendNewCode(): void {
     if (isRequstSent) return;
+    setIsRequstSent(true);
     setFirstInput("");
     setSecondInput("");
     setThirdInput("");
     setFouthInput("");
     setFifthInput("");
-    if (!inputFiledParentBodyRef.current) return;
-    inputFiledParentBodyRef.current.classList.remove(
-      "parent-children-active-border-color-green",
-    );
-    inputFiledParentBodyRef.current.classList.remove(
-      "parent-children-err-border-color-red",
-    );
-    setIsErr(false);
-    setStartTimeOutBeforeNext(!startTimeOutBeforeNextCode);
+    requstNewValidationEmailCode()
+      .then(() => {
+        if (!inputFiledParentBodyRef.current) return;
+        inputFiledParentBodyRef.current.classList.remove(
+          "parent-children-active-border-color-green",
+        );
+        inputFiledParentBodyRef.current.classList.remove(
+          "parent-children-err-border-color-red",
+        );
+        setIsErr(false);
+        setStartTimeOutBeforeNext(!startTimeOutBeforeNextCode);
+        setIsRequstSent(false);
+      })
+      .catch((err) => {
+        setErrMsg(`${err}`);
+        setIsErr(true);
+        setIsRequstSent(false);
+      });
   }
 
   return (
@@ -236,7 +249,7 @@ function PopUpCodeValidator(): React.ReactElement {
                 ></input>
               </article>
               {isErr && (
-                <h5 className="font-inter font-normal text-[18px] text-[#FF383C]">
+                <h5 className="font-inter font-normal line-clamp-1 text-[18px] text-[#FF383C]">
                   {errMsg}
                 </h5>
               )}
