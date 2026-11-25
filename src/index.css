@@ -493,3 +493,9 @@ textarea:focus {
 .hid-scrollbar-width {
   -ms-overflow-style: none;
 }
+.parent-children-err-border-color-red input {
+  border-color: #ff383c;
+}
+.parent-children-active-border-color-green input {
+  border-color: #38ff84;
+}

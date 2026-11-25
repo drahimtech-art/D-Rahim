@@ -4,6 +4,7 @@ import { useState, useRef, type ChangeEvent, useEffect } from "react";
 import { PostToAdminLoginApi } from "./api/AdminLoginApi";
 import LoginLogo from "/images/loginLogo.png";
 import PopUpNotifications from "./components/PopUpNotifications";
+import PopUpCodeValidator from "./components/PopUpCodeValidator";
 function AdminLogin() {
   const urlNavigator = useNavigate();
   function toAdminDasbord() {
@@ -20,6 +21,7 @@ function AdminLogin() {
   const [privacyPassword, setPrivacyPassword] = useState<string>("");
   const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [renderCodeValidator, setRenderCodeValidator] = useState<boolean>(true);
   const [renderNotificationBar, setRenderNotificationBar] =
     useState<boolean>(false);
   const [isNotificationWaring, setIsNotificationWarning] =
@@ -224,6 +226,7 @@ function AdminLogin() {
           closePopUp={setRenderNotificationBar}
         />
       )}
+      {renderCodeValidator && <PopUpCodeValidator />}
     </>
   );
 }
