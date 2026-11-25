@@ -117,6 +117,9 @@ function PopUpCodeValidator(): React.ReactElement {
       fifthInput.length > 0
     ) {
       inputFiledParentBodyRef.current.classList.add(
+        "parent-children-err-border-color-red",
+      );
+      inputFiledParentBodyRef.current.classList.add(
         "parent-children-active-border-color-green",
       );
       setIsErr(false);
