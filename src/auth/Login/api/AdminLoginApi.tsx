@@ -35,3 +35,40 @@ export function PostToAdminLoginApi({
       });
   });
 }
+export function PostValidateEmailCode({
+  code,
+}: {
+  code: string;
+}): Promise<{ ok: boolean; message: string; adminApiKey: string }> {
+  return new Promise((resolve, reject) => {
+    const postLoginInfo = fetch(
+      `${serverPort}/admin/access/login/validate/email/code`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ code }),
+      },
+    );
+    postLoginInfo
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            if (data.ok) {
+              resolve(data);
+            } else {
+              reject(data.message);
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
