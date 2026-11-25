@@ -1,10 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { createSearchParams } from "react-router-dom";
+import { PostValidateEmailCode } from "../api/AdminLoginApi";
 import { useState, useRef, useEffect, type ChangeEvent } from "react";
+import LoadingAnimation from "../../../features/home/shared/LoadingState/LoadingAnimation";
 function PopUpCodeValidator(): React.ReactElement {
+  const urlNavigator = useNavigate();
+  const [shouldLoad, setShouldLoad] = useState<boolean>(false);
   const [firstInput, setFirstInput] = useState<string>("");
   const [secondInput, setSecondInput] = useState<string>("");
   const [thirdInput, setThirdInput] = useState<string>("");
   const [fouthInput, setFouthInput] = useState<string>("");
   const [fifthInput, setFifthInput] = useState<string>("");
+
   const firstInputRef = useRef<HTMLInputElement | null>(null);
   const secondInputRef = useRef<HTMLInputElement | null>(null);
   const thirdInputRef = useRef<HTMLInputElement | null>(null);
@@ -17,6 +24,16 @@ function PopUpCodeValidator(): React.ReactElement {
   const [timeOutBeforeNextCode, setTimeOutBeforeNext] = useState<number>(0);
   const [startTimeOutBeforeNextCode, setStartTimeOutBeforeNext] =
     useState<boolean>(true);
+  //
+  function toAdminDasbord() {
+    const url = `/admin/access/dashboard`;
+    urlNavigator({
+      pathname: url,
+      search: `?${createSearchParams({
+        page: "overview",
+      })}`,
+    });
+  }
   //
   useEffect(() => {
     setTimeOutBeforeNext(40);
@@ -45,18 +62,26 @@ function PopUpCodeValidator(): React.ReactElement {
   //
   function handleValidateCode(code: string): void {
     //alert(code);
-    setTimeout(() => {
-      if (!inputFiledParentBodyRef.current) return;
-      inputFiledParentBodyRef.current.classList.remove(
-        "parent-children-active-border-color-green",
-      );
-      inputFiledParentBodyRef.current.classList.add(
-        "parent-children-err-border-color-red",
-      );
-      setIsErr(true);
-      setErrMsg("Wrong code, please try again");
-      setIsRequstSent(false);
-    }, 30000);
+    PostValidateEmailCode({ code })
+      .then((res) => {
+        const CLIENT_KEY = "CLIENT_KEY";
+        setIsRequstSent(false);
+        localStorage.setItem(CLIENT_KEY, JSON.stringify(res.adminApiKey));
+        setShouldLoad(true);
+        toAdminDasbord();
+      })
+      .catch((err) => {
+        if (!inputFiledParentBodyRef.current) return;
+        inputFiledParentBodyRef.current.classList.remove(
+          "parent-children-active-border-color-green",
+        );
+        inputFiledParentBodyRef.current.classList.add(
+          "parent-children-err-border-color-red",
+        );
+        setIsErr(true);
+        setErrMsg(`${err}`);
+        setIsRequstSent(false);
+      });
   }
 
   //
@@ -119,127 +144,133 @@ function PopUpCodeValidator(): React.ReactElement {
     setIsErr(false);
     setStartTimeOutBeforeNext(!startTimeOutBeforeNextCode);
   }
+
   return (
-    <div className="w-full h-screen fixed bodyMaxSizing  top-0 left-0 right-0 z-50">
-      <div className="w-full h-full flex justify-center items-center">
-        <article className="w-[60%] max-w-[540px] h-[416px] rounded-[30px] bg-[#F0FFF1] p-10">
-          <div className="w-full h-full  flex flex-col gap-[25px]">
-            <h5 className="text-[22px] font-inter font-semibold">Enter code</h5>
-            <h5 className=" font-normal font-inter text-[18px] max-w-[334px]">
-              We’ve sent an activation code to your email address
-            </h5>
-            <article
-              className="w-full grid grid-cols-5 gap-[31px]"
-              ref={inputFiledParentBodyRef}
-            >
-              <input
-                className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
-                value={firstInput}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  if (isRequstSent) return;
-                  const lastValue =
-                    e.target.value.split("")[e.target.value.length - 1];
-                  setFirstInput(lastValue ? lastValue : "");
-                }}
-                ref={firstInputRef}
-                style={{
-                  cursor: isRequstSent ? "not-allowed" : "text",
-                }}
-              ></input>
-              <input
-                className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
-                value={secondInput}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  if (isRequstSent) return;
-                  const lastValue =
-                    e.target.value.split("")[e.target.value.length - 1];
-                  setSecondInput(lastValue ? lastValue : "");
-                }}
-                ref={secondInputRef}
-                style={{
-                  cursor: isRequstSent ? "not-allowed" : "text",
-                }}
-              ></input>
-              <input
-                className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
-                value={thirdInput}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  if (isRequstSent) return;
-                  const lastValue =
-                    e.target.value.split("")[e.target.value.length - 1];
-                  setThirdInput(lastValue ? lastValue : "");
-                }}
-                ref={thirdInputRef}
-                style={{
-                  cursor: isRequstSent ? "not-allowed" : "text",
-                }}
-              ></input>
-              <input
-                className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
-                value={fouthInput}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  if (isRequstSent) return;
-                  const lastValue =
-                    e.target.value.split("")[e.target.value.length - 1];
-                  setFouthInput(lastValue ? lastValue : "");
-                }}
-                ref={fouthInputRef}
-                style={{
-                  cursor: isRequstSent ? "not-allowed" : "text",
-                }}
-              ></input>
-              <input
-                className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
-                value={fifthInput}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  if (isRequstSent) return;
-                  const lastValue =
-                    e.target.value.split("")[e.target.value.length - 1];
-                  setFifthInput(lastValue ? lastValue : "");
-                }}
-                ref={fifthInputRef}
-                style={{
-                  cursor: isRequstSent ? "not-allowed" : "text",
-                }}
-              ></input>
-            </article>
-            {isErr && (
-              <h5 className="font-inter font-normal text-[18px] text-[#FF383C]">
-                {errMsg}
+    <>
+      <div className="w-full h-screen fixed bodyMaxSizing  top-0 left-0 right-0 z-50">
+        <div className="w-full h-full flex justify-center items-center">
+          <article className="w-[60%] max-w-[540px] h-[416px] rounded-[30px] bg-[#F0FFF1] p-10">
+            <div className="w-full h-full  flex flex-col gap-[25px]">
+              <h5 className="text-[22px] font-inter font-semibold">
+                Enter code
               </h5>
-            )}
-            <div
-              className="flex justify-center "
-              style={{
-                marginTop: isErr ? "24px" : "49px",
-              }}
-            >
-              <span className="flex items-center">
-                <h5 className="font-inter font-semibold text-[18px]">
-                  Send code again
-                  {timeOutBeforeNextCode === 0 && "?"}
+              <h5 className=" font-normal font-inter text-[18px] max-w-[334px]">
+                We’ve sent an activation code to your email address
+              </h5>
+              <article
+                className="w-full grid grid-cols-5 gap-[31px]"
+                ref={inputFiledParentBodyRef}
+              >
+                <input
+                  className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
+                  value={firstInput}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    if (isRequstSent) return;
+                    const lastValue =
+                      e.target.value.split("")[e.target.value.length - 1];
+                    setFirstInput(lastValue ? lastValue : "");
+                  }}
+                  ref={firstInputRef}
+                  style={{
+                    cursor: isRequstSent ? "not-allowed" : "text",
+                  }}
+                ></input>
+                <input
+                  className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
+                  value={secondInput}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    if (isRequstSent) return;
+                    const lastValue =
+                      e.target.value.split("")[e.target.value.length - 1];
+                    setSecondInput(lastValue ? lastValue : "");
+                  }}
+                  ref={secondInputRef}
+                  style={{
+                    cursor: isRequstSent ? "not-allowed" : "text",
+                  }}
+                ></input>
+                <input
+                  className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
+                  value={thirdInput}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    if (isRequstSent) return;
+                    const lastValue =
+                      e.target.value.split("")[e.target.value.length - 1];
+                    setThirdInput(lastValue ? lastValue : "");
+                  }}
+                  ref={thirdInputRef}
+                  style={{
+                    cursor: isRequstSent ? "not-allowed" : "text",
+                  }}
+                ></input>
+                <input
+                  className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
+                  value={fouthInput}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    if (isRequstSent) return;
+                    const lastValue =
+                      e.target.value.split("")[e.target.value.length - 1];
+                    setFouthInput(lastValue ? lastValue : "");
+                  }}
+                  ref={fouthInputRef}
+                  style={{
+                    cursor: isRequstSent ? "not-allowed" : "text",
+                  }}
+                ></input>
+                <input
+                  className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
+                  value={fifthInput}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    if (isRequstSent) return;
+                    const lastValue =
+                      e.target.value.split("")[e.target.value.length - 1];
+                    setFifthInput(lastValue ? lastValue : "");
+                  }}
+                  ref={fifthInputRef}
+                  style={{
+                    cursor: isRequstSent ? "not-allowed" : "text",
+                  }}
+                ></input>
+              </article>
+              {isErr && (
+                <h5 className="font-inter font-normal text-[18px] text-[#FF383C]">
+                  {errMsg}
                 </h5>
-                {timeOutBeforeNextCode > 0 ? (
-                  <h5 className=" ml-2 font-inter font-normal text-[16px]">
-                    {`00:${timeOutBeforeNextCode >= 10 ? timeOutBeforeNextCode : "0" + timeOutBeforeNextCode}`}
+              )}
+              <div
+                className="flex justify-center "
+                style={{
+                  marginTop: isErr ? "24px" : "49px",
+                }}
+              >
+                <span className="flex items-center">
+                  <h5 className="font-inter font-semibold text-[18px]">
+                    Send code again
+                    {timeOutBeforeNextCode === 0 && "?"}
                   </h5>
-                ) : (
-                  <button
-                    className="ml-2 font-inter font-normal border-b border-b-[#0051ff] text-[16px] text-[#0051ff] pointer"
-                    onClick={handleSendNewCode}
-                    style={{
-                      cursor: isRequstSent ? "not-allowed" : "pointer",
-                    }}
-                  >
-                    New code
-                  </button>
-                )}
-              </span>
+                  {timeOutBeforeNextCode > 0 ? (
+                    <h5 className=" ml-2 font-inter font-normal text-[16px]">
+                      {`00:${timeOutBeforeNextCode >= 10 ? timeOutBeforeNextCode : "0" + timeOutBeforeNextCode}`}
+                    </h5>
+                  ) : (
+                    <button
+                      className="ml-2 font-inter font-normal border-b border-b-[#0051ff] text-[16px] text-[#0051ff] pointer"
+                      onClick={handleSendNewCode}
+                      style={{
+                        cursor: isRequstSent ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      New code
+                    </button>
+                  )}
+                </span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
-    </div>
+      {shouldLoad && <LoadingAnimation shouldFadeOut={false} />}
+    </>
   );
 }
 export default PopUpCodeValidator;

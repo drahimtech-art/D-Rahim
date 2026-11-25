@@ -5,7 +5,7 @@ export function PostToAdminLoginApi({
 }: {
   email: string;
   password: string;
-}): Promise<{ ok: boolean; message: string; adminApiKey: string }> {
+}): Promise<{ ok: boolean; message: string }> {
   return new Promise((resolve, reject) => {
     const postLoginInfo = fetch(`${serverPort}/admin/access/login`, {
       method: "POST",

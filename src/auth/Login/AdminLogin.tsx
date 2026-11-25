@@ -1,27 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import { createSearchParams } from "react-router-dom";
 import { useState, useRef, type ChangeEvent, useEffect } from "react";
 import { PostToAdminLoginApi } from "./api/AdminLoginApi";
 import LoginLogo from "/images/loginLogo.png";
 import PopUpNotifications from "./components/PopUpNotifications";
 import PopUpCodeValidator from "./components/PopUpCodeValidator";
 function AdminLogin() {
-  const urlNavigator = useNavigate();
-  function toAdminDasbord() {
-    const url = `/admin/access/dashboard`;
-    urlNavigator({
-      pathname: url,
-      search: `?${createSearchParams({
-        page: "overview",
-      })}`,
-    });
-  }
   const [realEmail, setRealEmail] = useState<string>("");
   const [realPassword, setRealPassword] = useState<string>("");
   const [privacyPassword, setPrivacyPassword] = useState<string>("");
   const loginControlFuncRef = useRef<HTMLButtonElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [renderCodeValidator, setRenderCodeValidator] = useState<boolean>(true);
+  const [renderCodeValidator, setRenderCodeValidator] =
+    useState<boolean>(false);
   const [renderNotificationBar, setRenderNotificationBar] =
     useState<boolean>(false);
   const [isNotificationWaring, setIsNotificationWarning] =
@@ -123,18 +112,14 @@ function AdminLogin() {
       password: realPassword.trim(),
     };
     PostToAdminLoginApi(data)
-      .then((res) => {
-        const CLIENT_KEY = "CLIENT_KEY";
-        localStorage.setItem(CLIENT_KEY, JSON.stringify(res.adminApiKey));
+      .then(() => {
         setIsLoading(false);
         if (!loginControlFuncRef.current) return;
         loginControlFuncRef.current.classList.remove(
           "notallowedPointerForButton",
         );
         loginControlFuncRef.current.classList.add("AllowedPointerForButton");
-        setTimeout(() => {
-          toAdminDasbord();
-        }, 3000);
+        setRenderCodeValidator(true);
       })
       .catch((error) => {
         setNotificationMessage(`${error}`);
