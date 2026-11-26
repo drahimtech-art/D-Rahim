@@ -1,1 +1,0 @@
-var e=`/D-Rahim/images/logo.png`;export{e as t};

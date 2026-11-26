@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-B96Z8O0J.js";import{t}from"./Head-CtI9mpLV.js";var n=e();function r(e){return(0,n.jsx)(n.Fragment,{children:(0,n.jsx)(t,{feedsSate:e.feedsState,groupState:e.groupState,connectionsState:e.connectionsState,toFeedsPage:e.toFeedsPage,toGroupsPage:e.toGroupsPage,toConnectionsPage:e.toConnectionsPage})})}export{r as default};
