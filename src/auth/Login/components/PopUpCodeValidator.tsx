@@ -237,7 +237,9 @@ function PopUpCodeValidator(): React.ReactElement {
                   className="w-[64px] h-[72px] border-2 rounded-[15px] pl-[20px] pr-[20px] text-[28px] font-medium font-inter"
                   value={fifthInput}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    console.log(e);
                     if (isRequstSent) return;
+
                     const lastValue =
                       e.target.value.split("")[e.target.value.length - 1];
                     setFifthInput(lastValue ? lastValue : "");

@@ -255,14 +255,14 @@ function GraphConent({
 
   return (
     <>
-      <article className="w-full h-[310px]  ">
+      <article className="w-full h-[310px] ">
         {/**graph */}
         <section className="w-full h-full rounded-[20px] flex flex-col bg-[#FFFFFF] p-4 pb-0  ">
           <div className="w-full h-fit flex items-center p-3.25 pt-0">
             <h5 className="font-inter font-medium text-[14px]">
               Visitor Overview
             </h5>
-            <div className="relative ml-auto h-fit w-fit">
+            <div className="relative z-10 ml-auto h-fit w-fit">
               <button
                 className=" pointer w-[93px] h-[29px] flex items-center gap-2 border border-[#D9D9D9] rounded-[10px] p-1.25"
                 onClick={() => {
